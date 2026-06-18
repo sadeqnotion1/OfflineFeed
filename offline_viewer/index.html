@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OfflineFeed - Offline Cinema & Entertainment Feed</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Main Container -->
+  <div class="app-container">
+    
+    <!-- Top Header -->
+    <header class="main-header">
+      <div class="header-left">
+        <div class="logo-area" onclick="showNewsTab()">
+          <div class="logo-circles">
+            <div class="logo-circle circle-orange"></div>
+            <div class="logo-circle circle-green"></div>
+            <div class="logo-circle circle-blue"></div>
+          </div>
+          <span class="logo-letterboxd">OFFLINE</span>
+          <span class="logo-offline-tag">FEED</span>
+        </div>
+      </div>
+      
+      <div class="header-center-nav">
+        <span id="nav-tab-entertainment" class="nav-link active">ENTERTAINMENT</span>
+        <span id="nav-tab-sports" class="nav-link">SPORTS</span>
+        <span id="nav-tab-technology" class="nav-link">TECHNOLOGY</span>
+        <span id="nav-tab-settings" class="nav-link">SETTINGS</span>
+      </div>
+
+      <div class="header-right" style="width: 180px; display: flex; justify-content: flex-end;">
+        <span id="sync-indicator" class="sync-indicator-dot" title="Server Connection Status"></span>
+      </div>
+    </header>
+
+    <!-- News Tab Content View -->
+    <div id="news-view" class="app-content">
+      <div class="list-info-bar" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span class="list-breadcrumb">TELEGRAM-STYLE NEWS CHANNELS</span>
+          <h1 class="list-title" id="feed-list-title">Cinema & TV News</h1>
+          <p class="list-subtitle" id="feed-list-subtitle">Aggregated entertainment feeds saved locally for offline consumption</p>
+        </div>
+      </div>
+
+      <!-- Telegram style news feed -->
+      <div class="telegram-news-container">
+        
+        <!-- Sidebar: List of Channels -->
+        <div class="telegram-channels-sidebar">
+          <div class="telegram-sidebar-header">
+            <div style="display: flex; gap: 10px; align-items: center; width: 100%;">
+              <div class="telegram-search-bar" style="flex-grow: 1;">
+                <svg class="search-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="news-search-input" placeholder="Search feeds...">
+              </div>
+              <button id="btn-manage-news-sources" class="telegram-refresh-btn" title="Manage Custom Feeds" style="padding: 10px; flex-shrink: 0; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+              </button>
+            </div>
+          </div>
+          
+          <div class="telegram-channels-list" id="telegram-channels-list">
+            <!-- Channel items rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Chat Feed Area -->
+        <div class="telegram-feed-area">
+          <div class="telegram-feed-header">
+            <div class="telegram-header-left">
+              <div id="telegram-header-avatar" class="telegram-avatar" style="width: 40px; height: 40px;">G</div>
+              <div class="telegram-header-info">
+                <h3 class="telegram-header-title" id="telegram-header-title">Select Channel</h3>
+                <span class="telegram-header-subtitle" id="telegram-header-subtitle">Tap a feed in the sidebar to read</span>
+              </div>
+            </div>
+            <div class="telegram-header-right" style="display: flex; align-items: center; gap: 8px;">
+              <button id="btn-send-all-to-tg" class="telegram-refresh-btn" title="Forward All Channels to Telegram" style="color: var(--accent-orange); display: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="18 2 12 18 9 11 2 8 18 2" opacity="0.6" transform="translate(-2, 2) scale(0.9)"></polygon>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+              <button id="btn-send-to-tg" class="telegram-refresh-btn" title="Forward Channel to Telegram" style="color: var(--accent-blue); display: none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13"></line>
+                  <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                </svg>
+              </button>
+              <button id="btn-refresh-news" class="telegram-refresh-btn" title="Refresh News">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+                </svg>
+              </button>
+              <button id="btn-toggle-fullscreen" class="telegram-refresh-btn" title="Toggle Window Fullscreen">
+                <svg id="fullscreen-svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Pinned Banner -->
+          <div class="telegram-pinned-banner" id="telegram-pinned-banner">
+            <span class="telegram-pinned-icon" style="display: flex; align-items: center; color: var(--accent-orange);">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><path d="M15 4.5l-4 4L7 5.5l-1.5 1.5 4 4L5 19l1.5 1.5 8-4.5 4 4 1.5-1.5-3-3 4-4z"></path><line x1="9" y1="15" x2="4" y2="20"></line></svg>
+            </span>
+            <div class="telegram-pinned-content" id="telegram-pinned-content">
+              <strong>Pinned Message:</strong> Welcome to OfflineFeed! Tap channels on the left to browse feeds.
+            </div>
+          </div>
+
+          <!-- Messages Container -->
+          <div class="telegram-feed-messages" id="news-articles-grid">
+            
+            <!-- Shimmer Loading -->
+            <div id="news-loading" style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 100px 20px; gap: 15px; margin: auto;">
+              <div class="shimmer-placeholder" style="width: 50px; height: 50px; border-radius: 50%;"></div>
+              <span style="font-size: 14px; color: var(--text-muted); font-weight: 500;">Scraping feeds...</span>
+            </div>
+
+            <!-- Empty State -->
+             <div id="news-empty" class="hidden" style="text-align: center; padding: 80px 20px; margin: auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-svg" style="margin-bottom: 10px;"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><circle cx="12" cy="20" r="1"></circle></svg>
+              <h3 style="font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px;">No messages match</h3>
+              <p style="font-size: 13px; color: var(--text-muted); margin: 0;">Try broadening your query or adding new sources.</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="news-error" class="hidden" style="text-align: center; padding: 80px 20px; background: rgba(224, 86, 86, 0.05); border: 1px dashed rgba(224, 86, 86, 0.2); border-radius: 12px; margin: auto;">
+              <h3 style="font-size: 16px; font-weight: 700; color: #e56; margin-bottom: 8px;">Failed to synchronize news</h3>
+              <p id="news-error-message" style="font-size: 13px; color: var(--text-muted); margin-bottom: 15px;">A connection issue occurred while syncing channels.</p>
+              <button id="btn-news-retry" class="btn btn-primary" style="padding: 8px 16px; font-size: 12px; font-weight: 700; border-radius: 6px; cursor: pointer;">RETRY SYNC</button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Settings Tab Content View -->
+    <div id="settings-view" class="app-content hidden">
+      <div class="list-info-bar" style="margin-bottom: 30px;">
+        <span class="list-breadcrumb">APP CONFIGURATION</span>
+        <h1 class="list-title">Settings</h1>
+        <p class="list-subtitle">Configure feed aggregations, appearances, and caches</p>
+      </div>
+
+      <!-- Theme Card -->
+      <div class="settings-card" style="background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: var(--border-radius-lg); box-shadow: var(--card-shadow); padding: 30px; max-width: 700px; margin: 0 auto 30px auto;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 14.7255 3.09032 17.1962 4.85857 19C5.03345 19.1749 5.0934 19.4394 5.01168 19.675C4.84824 20.1462 4.75 20.6546 4.75 21.18C4.75 21.6329 5.11714 22 5.57 22H12Z"></path><circle cx="7.5" cy="10.5" r="1.5"></circle><circle cx="11.5" cy="7.5" r="1.5"></circle><circle cx="16.5" cy="9.5" r="1.5"></circle></svg> Theme & Appearance
+        </h3>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; background: rgba(255, 255, 255, 0.02); padding: 16px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);">
+          <div style="flex-grow: 1; padding-right: 10px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;">Parchment Mode Theme</label>
+            <span style="font-size: 12px; color: var(--text-muted); line-height: 1.4; display: block;">
+              Switch the interface to a warm, soft-contrast parchment styling that mimics book pages and eases eye strain.
+            </span>
+          </div>
+          <div style="display: flex; align-items: center; align-self: center;">
+            <button id="btn-theme-toggle" class="btn" style="padding: 10px 18px; font-size: 13px; font-weight: 700; border-radius: 6px; display: flex; align-items: center; gap: 8px; cursor: pointer; transition: all 0.2s; white-space: nowrap; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); color: #fff;">
+              <img id="theme-toggle-icon" src="assets/book.svg" style="width: 16px; height: 16px; filter: invert(1);" />
+              <span id="theme-toggle-text">Parchment Mode</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom RSS Feed Management Card -->
+      <div class="settings-card" style="background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: var(--border-radius-lg); box-shadow: var(--card-shadow); padding: 30px; max-width: 700px; margin: 0 auto 30px auto;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Manage Custom News Feeds
+        </h3>
+        
+        <!-- List of active feeds -->
+        <div style="margin-bottom: 25px;">
+          <h4 style="font-size: 13px; font-weight: 700; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px;">Active Subscriptions</h4>
+          <div id="custom-feeds-settings-list" style="display: flex; flex-direction: column; gap: 10px;">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+        
+        <div style="height: 1px; background: rgba(255,255,255,0.08); margin: 25px 0;"></div>
+
+        <!-- Add Feed Form -->
+        <div>
+          <h4 style="font-size: 13px; font-weight: 700; color: var(--text-secondary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px;">Add Custom Feed Source</h4>
+          <div style="display: flex; flex-direction: column; gap: 15px;">
+            
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+              <div style="flex: 1.5; min-width: 200px;">
+                <label for="settings-feed-name" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Feed Name</label>
+                <input type="text" id="settings-feed-name" placeholder="e.g. IndieWire, SlashFilm" style="width: 100%; padding: 10px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; outline: none; font-size: 13px;">
+              </div>
+              <div style="flex: 1; min-width: 150px;">
+                <label for="settings-feed-section" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Section</label>
+                <select id="settings-feed-section" style="width: 100%; padding: 10px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; outline: none; font-size: 13px; height: 38px;">
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Technology">Technology</option>
+                </select>
+              </div>
+              <div style="flex: 1; min-width: 150px;">
+                <label for="settings-feed-category" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Category</label>
+                <select id="settings-feed-category" style="width: 100%; padding: 10px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; outline: none; font-size: 13px; height: 38px;">
+                  <option value="General">General</option>
+                  <option value="Movies">Movies</option>
+                  <option value="TV">TV</option>
+                  <option value="Reviews">Reviews</option>
+                  <option value="Scorecards">Scorecards</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Tech">Tech</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="settings-feed-url" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Feed RSS URL</label>
+              <input type="text" id="settings-feed-url" placeholder="https://domain.com/rss" style="width: 100%; padding: 10px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; outline: none; font-size: 13px;">
+              <div id="settings-feed-url-status" style="font-size: 11px; margin-top: 4px; color: var(--text-muted); min-height: 14px; text-align: left;"></div>
+            </div>
+
+            <div>
+              <label style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Channel Icon / Avatar</label>
+              <div style="display: flex; align-items: center; gap: 12px;">
+                <input type="file" id="settings-feed-avatar" accept="image/*" style="display: none;">
+                <img id="settings-feed-avatar-preview" style="width: 28px; height: 28px; border-radius: 50%; object-fit: contain; display: none; border: 1.5px solid rgba(255,255,255,0.15); background: white; padding: 2px;" />
+                <button type="button" onclick="document.getElementById('settings-feed-avatar').click()" id="btn-settings-select-avatar" class="btn btn-secondary" style="margin: 0; padding: 10px 16px; font-size: 12px; font-weight: 700; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); color: #fff; cursor: pointer;">
+                  Choose File...
+                </button>
+                <span id="settings-avatar-filename" style="font-size: 12px; color: var(--text-muted);">No file selected</span>
+              </div>
+            </div>
+
+            <button id="btn-settings-submit-feed" class="btn btn-primary" style="margin-top: 10px; width: 100%; padding: 12px; font-weight: 700; font-size: 13px; text-transform: uppercase; border-radius: 6px;">
+              Add Custom Feed
+            </button>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Telegram Channel Forwarding Settings -->
+      <div class="settings-card" style="background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: var(--border-radius-lg); box-shadow: var(--card-shadow); padding: 30px; max-width: 700px; margin: 0 auto 30px auto;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-blue)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg> Telegram Channel Poster
+        </h3>
+        <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;">
+          Automatically forward aggregated offline news items with their images to a Telegram channel or group. You can direct news into specific forum topics (thread IDs) based on the channel's category.
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div>
+            <label for="tg-bot-token" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Telegram Bot Token</label>
+            <input type="password" id="tg-bot-token" placeholder="e.g. 123456789:ABCdefGhIJKlmNoPQRsT..." style="width: 100%; padding: 10px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; outline: none; font-size: 13px;">
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; flex-wrap: wrap;">
+            <div>
+              <label for="tg-chat-id-entertainment" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Entertainment Chat ID</label>
+              <input type="text" id="tg-chat-id-entertainment" placeholder="e.g. -1001234567890" style="width: 100%; padding: 10px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; outline: none; font-size: 13px;">
+            </div>
+            <div>
+              <label for="tg-chat-id-sports" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Sports Chat ID</label>
+              <input type="text" id="tg-chat-id-sports" placeholder="Optional fallback" style="width: 100%; padding: 10px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; outline: none; font-size: 13px;">
+            </div>
+            <div>
+              <label for="tg-chat-id-technology" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px; text-transform: uppercase;">Technology Chat ID</label>
+              <input type="text" id="tg-chat-id-technology" placeholder="Optional fallback" style="width: 100%; padding: 10px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; outline: none; font-size: 13px;">
+            </div>
+          </div>
+          
+          <div style="border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 16px; margin-top: 4px;">
+            <span style="display: block; font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 12px;">Channel-to-Topic Thread IDs (Optional)</span>
+            <div id="tg-channel-threads-container">
+              <!-- Rendered dynamically for each channel -->
+              <p style="color: var(--text-muted); font-size: 12px; font-style: italic;">Loading channels...</p>
+            </div>
+          </div>
+          
+          <button id="btn-save-tg-settings" class="btn btn-primary" style="margin-top: 10px; width: 100%; padding: 12px; font-weight: 700; font-size: 13px; text-transform: uppercase; border-radius: 6px;">
+            Save Telegram Settings
+          </button>
+        </div>
+      </div>
+
+      <!-- Cache & System Management Card -->
+      <div class="settings-card" style="background: var(--panel-bg); border: 1px solid var(--panel-border); border-radius: var(--border-radius-lg); box-shadow: var(--card-shadow); padding: 30px; max-width: 700px; margin: 0 auto 30px auto;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg> Cache & Vault Control
+        </h3>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; background: rgba(255, 255, 255, 0.02); padding: 16px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04);">
+          <div style="flex-grow: 1; padding-right: 10px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;">Clear Cached Articles</label>
+            <span style="font-size: 12px; color: var(--text-muted); line-height: 1.4; display: block;">
+              Delete parsed news articles stored locally for the offline reader. This frees up disk space without removing your custom source feeds.
+            </span>
+          </div>
+          <div style="display: flex; align-items: center; align-self: center;">
+            <button id="btn-clear-cache" class="btn btn-secondary" style="padding: 10px 18px; font-size: 13px; font-weight: 700; border-radius: 6px; white-space: nowrap; margin: 0; background: rgba(250, 50, 50, 0.1); color: #fa3232; border: 1px solid rgba(250, 50, 50, 0.2);">
+              CLEAR CACHE
+            </button>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; background: rgba(255, 255, 255, 0.02); padding: 16px 20px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.04); margin-top: 16px;">
+          <div style="flex-grow: 1; padding-right: 10px;">
+            <label style="display: block; font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 4px;">Reset Telegram History</label>
+            <span style="font-size: 12px; color: var(--text-muted); line-height: 1.4; display: block;">
+              Clear the log of forwarded articles. This allows already sent articles to be posted to Telegram again.
+            </span>
+          </div>
+          <div style="display: flex; align-items: center; align-self: center;">
+            <button id="btn-reset-tg-history" class="btn btn-secondary" style="padding: 10px 18px; font-size: 13px; font-weight: 700; border-radius: 6px; white-space: nowrap; margin: 0; background: rgba(0, 136, 204, 0.1); color: #0088cc; border: 1px solid rgba(0, 136, 204, 0.2);">
+              RESET HISTORY
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Fullscreen Article Reader Overlay -->
+  <div id="article-reader" class="article-reader-overlay">
+    <div class="reader-header">
+      <div class="reader-header-left" style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+        <span class="reader-back-arrow" onclick="closeOfflineReader()" title="Go back">←</span>
+        <h2 class="reader-title" id="reader-title-content">Article Reader</h2>
+      </div>
+      <button class="reader-close-btn" onclick="closeOfflineReader()" title="Close reader">×</button>
+    </div>
+    <div class="reader-container">
+      <article class="reader-body" id="reader-body-content">
+        <!-- Rendered dynamically -->
+      </article>
+    </div>
+  </div>
+
+  <!-- Manage Custom News Feeds Modal Overlay (from News tab shortcut) -->
+  <div id="news-sources-modal" class="modal-overlay hidden" style="z-index: 10000;">
+    <div class="modal-card" style="max-width: 600px; padding: 30px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px;">
+        <h3 style="font-size: 16px; font-weight: 700; color: #fff; margin: 0; display: flex; align-items: center; gap: 8px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-orange)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="icon-svg"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Manage Custom News Feeds
+        </h3>
+        <button id="btn-close-news-sources-modal" style="background: transparent; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer; line-height: 1;">×</button>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <h4 style="font-size: 12px; font-weight: 700; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase;">Active Feeds</h4>
+        <div id="custom-feeds-list-container" style="display: flex; flex-direction: column; gap: 8px; max-height: 200px; overflow-y: auto; padding-right: 5px;">
+          <!-- Loaded via JS -->
+        </div>
+      </div>
+
+      <div style="height: 1px; background: rgba(255,255,255,0.08); margin: 20px 0;"></div>
+
+      <div>
+        <h4 style="font-size: 12px; font-weight: 700; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase;">Add Custom Feed</h4>
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          
+          <div style="display: flex; gap: 10px;">
+            <input type="text" id="add-feed-name" placeholder="Feed Name" style="flex: 2; padding: 8px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 13px;">
+            <select id="add-feed-section" style="flex: 1.2; padding: 8px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 13px;">
+              <option value="Entertainment">Entertainment</option>
+              <option value="Sports">Sports</option>
+              <option value="Technology">Technology</option>
+            </select>
+            <select id="add-feed-category" style="flex: 1; padding: 8px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 13px;">
+              <option value="General">General</option>
+              <option value="Movies">Movies</option>
+              <option value="TV">TV</option>
+              <option value="Reviews">Reviews</option>
+              <option value="Scorecards">Scorecards</option>
+              <option value="Sports">Sports</option>
+              <option value="Tech">Tech</option>
+            </select>
+          </div>
+
+          <input type="text" id="add-feed-url" placeholder="https://domain.com/feed-rss" style="width: 100%; padding: 8px 12px; border-radius: 6px; background: #0d1117; border: 1px solid rgba(255,255,255,0.08); color: #fff; font-size: 13px;">
+          <div id="add-feed-url-status" style="font-size: 11px; margin-top: -4px; color: var(--text-muted); min-height: 14px; text-align: left;"></div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <input type="file" id="add-feed-avatar" accept="image/*" style="display: none;">
+            <img id="add-feed-avatar-preview" style="width: 28px; height: 28px; border-radius: 50%; object-fit: contain; display: none; border: 1.5px solid rgba(255,255,255,0.15); background: white; padding: 2px;" />
+            <button type="button" onclick="document.getElementById('add-feed-avatar').click()" id="btn-select-avatar" class="btn btn-secondary" style="margin: 0; padding: 8px 12px; font-size: 12px; font-weight: 600; border-radius: 6px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.03); color: #fff; cursor: pointer;">
+              Choose File...
+            </button>
+            <span id="modal-avatar-filename" style="font-size: 11px; color: var(--text-muted);">No file selected</span>
+          </div>
+
+          <button id="btn-submit-new-feed" class="btn btn-primary" style="margin-top: 5px; width: 100%; padding: 10px; font-weight: 700; font-size: 12px; text-transform: uppercase; border-radius: 6px;">
+            Add Feed Source
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container placeholder -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+    <!-- Offline-viewer system font picker (independent of the desktop app). -->
+    <script src="font_picker.js"></script>
+  </body>
+</html>

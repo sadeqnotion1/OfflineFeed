@@ -1,0 +1,166 @@
+{
+    "title": "Dreams of Violets Creators on How Their AI-Generated Film Was Made",
+    "url": "https://editorial.rottentomatoes.com/article/dreams-of-violets-ai-film-interview/",
+    "blocks": [
+        {
+            "type": "img",
+            "content": "https://editorial.rottentomatoes.com/wp-content/uploads/2026/06/dreams_of_violets_780x300.jpg?w=700"
+        },
+        {
+            "type": "p",
+            "content": "When it was announced an AI movie that cost $2,000 to make was debuting at Tribeca Film Festival, more than a few eyebrows were raised. After all, the use of AI in filmmaking continues to be a hot debate, one that elicits every emotion from excitement and curiosity to skepticism and, for some, outrage."
+        },
+        {
+            "type": "p",
+            "content": "According to the movie\u2019s creators, Dreams of Violets, a 75-minute fictionalized docudrama set in Tehran during the January 2026 protests, is the first fully AI-generated, feature-length film to be accepted at a major film festival. The debut project from new AI production company Fountain 0 uses journalistic reports and thousands of images and videos from actual protesters on the ground, and relies on proprietary technology and AI models like Kling AI for things like video generation and world modeling. Fountain 0\u2019s second movie is set to be announced at the end of the month."
+        },
+        {
+            "type": "p",
+            "content": "Despite its AI billing, producers and brothers Ash and Pooya Koosha are adamant that the movie is ultimately a human story, one whose emotional core is intended to shed light on the Iranian government\u2019s violent crackdown on protesters and is informed, in part, by their own experiences in Iran."
+        },
+        {
+            "type": "p",
+            "content": "\u201cAI films are not intentional. [Dreams of Violets] is very intentional. That\u2019s why I don\u2019t like to say this is an AI film,\u201d Ash Koosha, CEO of Fountain 0, tells Rotten Tomatoes. \u201cIt\u2019s just a film because I knew I\u2019m taking a risk making this film. It might not go anywhere, but if it does, if it goes down as one of the first AI films in history, 50 years from now when people look back and study AI films, they will hear the voices of those victims again and again and again. That\u2019s the least I could do for those people.\u201d"
+        },
+        {
+            "type": "p",
+            "content": "Below, the first-time filmmakers discuss how AI was (and wasn\u2019t) used in the creation of Dreams of Violets, their reaction to criticisms, the impact they hope AI will have on filmmaking, and why they felt they needed AI to make this movie."
+        },
+        {
+            "type": "p",
+            "content": "Rotten Tomatoes: Tell us about the development of Dreams of Violets. Where did the idea of using AI to create a film begin, and why did you want to specifically tell this story?"
+        },
+        {
+            "type": "p",
+            "content": "Ash Koosha: I was always ready to have an excuse to use my AI background and AI knowledge since a decade ago, but it always felt like an experiment or something that is incomplete until the January 2026 events happened in Iran. Something clicked, which was I wanted to sort of write a story and turn it into a piece, and none of the mediums available, including a YouTube video, or a post, or a blog, were sufficient to tell this story and to basically inform people of some of the events that I thought were important. Suddenly I just had this decision. It was a hard decision to basically use the AI knowledge that I have and tell that story through the medium of film \u2014 basically movies, because many people might have a problem with using the term \u2018film\u2019."
+        },
+        {
+            "type": "img",
+            "content": "https://editorial.rottentomatoes.com/wp-content/uploads/2026/06/dreams_of_violets_700x380-05.jpg?w=700"
+        },
+        {
+            "type": "p",
+            "content": "RT: When people hear AI-generated, they often imagine you press a button and all of a sudden you receive a finished movie. Can you walk us through, in practical terms, how this film was actually made from idea to a full-length feature film?"
+        },
+        {
+            "type": "p",
+            "content": "AK: I think most people think that is the case, where you have these technologies suddenly removing a lot of the human processes and the work that we do to tell these stories, and I think that\u2019s wrong. With Dreams of Violets, the only AI element that is fully generated is in fact the visuals, the video, and the reason for that is the locations and the worlds are just impossible to recreate. Even if you have a budget \u2014 which I doubt anyone can de-risk this kind of story and go to Iran and to shoot without getting arrested and prosecuted \u2014 the worlds are so incredibly rare and hard to visualize that I had to use AI for that component. But [for] the rest of the film, it started with a script, with a screenplay, [and] with an idea. I blocked it like you would a traditional film. I decided what timeline I\u2019m gonna use, what kind of decoupage and mise-en-scene I\u2019m gonna use for each block [and] for each sequence. There was a lot of work done before even touching AI. Also the process afterwards, which is the music, the soundtrack, the sound mix, the editing, the pacing, correction of the film, and the coloring of the film. All of this stuff comes before and after you press that button on an AI model."
+        },
+        {
+            "type": "p",
+            "content": "RT: When you\u2019re in the phase of actually using AI, what does that look like?"
+        },
+        {
+            "type": "p",
+            "content": "AK: Without going into some of the proprietary systems that are still in development \u2014 I\u2019m using those internally to create new methods and new tools for filmmaking \u2014 I can say that preparation of the pre-video process is the most important and the most artistic process. You have to imagine a world, the people in there, the way they look at each other, the way objects are basically designed and placed, the way motion happens. All of this happens in collaboration with AI, rather than letting AI decide what to do with your scene\u2019s physics or with the scene\u2019s logic. In cinema, I think the logic is in the hands of a few people, mainly the director and the cinematographer. The logic of the scene often is decided through a preparation of physical production, and then you get the right take. Here, it\u2019s kind of translated into some digital preparation that I, as a director, have to then tell the model, \u2018Let\u2019s shoot it.\u2019 The model becomes the camera, becomes the world, and becomes the performance."
+        },
+        {
+            "type": "img",
+            "content": "https://editorial.rottentomatoes.com/wp-content/uploads/2026/06/dreams_of_violets_700x380-04.jpg?w=700"
+        },
+        {
+            "type": "p",
+            "content": "RT: To that point, in a traditional production, a director works with actors, cinematographers, production designers, editors, lighters, gaffers, and countless people to shape a film through collaboration. In this process, what does directing or filmmaking actually mean in practice?"
+        },
+        {
+            "type": "p",
+            "content": "AK: In [terms] of vision, it\u2019s the same. The director, most of the time, has seen the film in their head so from that perspective; it doesn\u2019t change. Using an AI model means that instead of going on set, you have to build that reality within your studio well before you hit the AI model. And the reason 99% of the AI output out there is useless and worthless, to me at least as an audience, is because that preparation, that intent and vision, simply doesn\u2019t exist. With each [new AI] film, I\u2019m hoping we\u2019re going to invent new roles for the gaffer, for the lighting guy, for the sound guy, because if you don\u2019t have on-set experience or edit room experience, you will never be able to operate these models correctly. It\u2019s a shame that due to the political advertisement, whatever is out there that has scared people from AI, we are not giving these models to the right people to operate them. Those are often the scared folks and the people who hate on it based on just news [headlines]. Through a real human story, [we are looking] to invent and create new opportunities and jobs and see if this is a viable progression for cinema and augmentation for cinema, rather than a replacement for what there is already."
+        },
+        {
+            "type": "p",
+            "content": "RT: You\u2019re pointing to the skepticism that some people in the entertainment industry have about AI. Some people are also very curious to see how the technology evolves and how it will impact the art of filmmaking, but also types of films that we see. There\u2019s an active debate happening right now about authorship, labor, and training data. Where do you see Dreams of Violets sitting within that broader conversation?"
+        },
+        {
+            "type": "p",
+            "content": "AK: I think all of those criticisms and skepticism are valid, and the reason we did this is because we believe in many of those criticisms ourselves. We want to find answers through actually doing the traditional route of filmmaking. Otherwise, we would have just put stuff on YouTube and tried to do social media marketing. We are trying to find where the errors are or where the opportunities are that are going to impact people positively. What I personally want to do is bring AI research through my art experience and art practice and say, \u2018Hey, there are new areas of questions that we can\u2019t answer that are in fact beneficial.\u2019 AI\u2019s not going to go anywhere. I don\u2019t think this is ever going to go back to where we were 10 years ago, so we might as well be the people and inspire other people to come in and have these conversations through real projects."
+        },
+        {
+            "type": "img",
+            "content": "https://editorial.rottentomatoes.com/wp-content/uploads/2026/06/dreams_of_violets_700x380-02.jpg?w=700"
+        },
+        {
+            "type": "p",
+            "content": "RT: What is something that this technology still cannot do that audiences may assume that it can?"
+        },
+        {
+            "type": "p",
+            "content": "AK: Compositionally and in terms of motion we still have a long way to go. People think that the model has a lot of control, so if I just talk to it, it will respond. I think that\u2019s the fallacy. We\u2019re nowhere close to experiential intelligence, machine intelligence. Experiential means that [the AI model] has a reason to return with a good shot of video to you."
+        },
+        {
+            "type": "p",
+            "content": "Pooya Koosha: When digital cameras came around, nobody believed in that. There was a huge backlash with it. But eventually, even that got improved. Seeing how post-production was such an important role in this, we quickly figured out that with AI, the same thing is happening as well. It\u2019s not just one click and then you just get some beautiful shot out of the model. It\u2019s a lot of human input, human decision making, and a lot of taste that goes into it. You need to actually go back and forth, you need to work with it to get the look. We did actually a lot of post-production polygrading and manipulating the footage to make it actually much more cinematic."
+        },
+        {
+            "type": "p",
+            "content": "RT: Can you point to a specific scene or moment that feels clearly authored by you?"
+        },
+        {
+            "type": "p",
+            "content": "AK: Except for a few very specific resemblances of some things that we have put in the film intentionally as a documented voice, for example, everything else I\u2019ve seen in my head. It\u2019s there because I had seen that scene flow in such a way. Thirty minutes into the production [of the film], I went back and changed about 15 minutes of scenes in terms of location and narrative, and this is just impossible to do in films. The way I\u2019m even saying this, \u2018I was 30 minutes into the film,\u2019 [is incredible] because you usually shoot the film, and that\u2019s it. You can\u2019t get your A-list actor to come back on set. The agents will not pick up your phone again. So this was a privilege to be able to correct the film in terms of accuracy, in terms of emotions, and that is my unique take."
+        },
+        {
+            "type": "p",
+            "content": "[Pooya and I] have seen it with our own eyes, and we\u2019ve heard those things from interrogators. There\u2019s a scene where there\u2019s an interrogation, and that reminds me of the way it happened to us. And because it\u2019s a lived experience, it becomes almost like a canvas where I\u2019m excited to just put what I know."
+        },
+        {
+            "type": "img",
+            "content": "https://editorial.rottentomatoes.com/wp-content/uploads/2026/06/dreams_of_violets_700x380-03.jpg?w=700"
+        },
+        {
+            "type": "p",
+            "content": "RT: Can you talk a little bit more about your personal experiences?"
+        },
+        {
+            "type": "p",
+            "content": "AK: Myself and Pooya, we were in music in Iran when we were young, and we got prosecuted only for the fact that we were in a band and just played a concert. It was all over the news 20 years ago. After that, we made a documentary about it, and when we left Iran, we basically got exiled because we got a call, like, \u2018You can\u2019t come back or you\u2019re gonna go straight to prison or worse.\u2019 And that film, No One Knows About Persian Cats, won a Cannes award. This is a film [in which] we risked telling a lie in Iran. When we were on set shooting that film in Tehran, we were on the back of a motorcycle, the camera following us. We had a fake permit. Now I look back, if they had arrested us back then, it would be straight-up execution. We would be gone. And we still did that. The reason now I\u2019m not gonna do that again is because we\u2019ve done it once. We know that if you go on the streets and make a docudrama on the streets, you\u2019re risking your life. Years later, I kind of got reminded of the same things, like maybe I\u2019m now mature enough to be that director like Bahman Ghobadi was 20 years ago, and this is my way of starting this new venture of a film studio. But the first [film], the flagship, I thought it should be about the struggle."
+        },
+        {
+            "type": "p",
+            "content": "RT: When people hear a feature film was made for roughly $2,000, some people are going to hear opportunity and some people are going to think of it as a threat. How do you respond to both reactions?"
+        },
+        {
+            "type": "p",
+            "content": "AK: There are so many stories that you can\u2019t simply sign off a loan or an investment to make, including this one that we made. The disparity in cinema is where you have the best worldbuilding and all these amazing, impossible stories told by the big studios, the big-name directors, whereas I think with this budgeting, you can have an indie filmmaker mindset, and you don\u2019t have much of a risk trying to have a stab at some mythology or some space movie or the next Star Wars."
+        },
+        {
+            "type": "p",
+            "content": "This is an experimental sandbox. For [our] next film, we have now licensed 10 faces and voices. We will take their biological presence, put it in a film, and they get a share in the profit of the film. That\u2019s an experiment [to] even get the contracts correctly on this. It\u2019s our job as the people in this industry and with our background to make a film and test out how [this model] works. Without [execution], it would just be a podcast debate. It\u2019s time to move on from the discourse and let people come in."
+        },
+        {
+            "type": "p",
+            "content": "I want to be very careful saying this, but a lot of the cabling and preparation on set are mundane jobs. [With AI films], the lowest level person is so creative. That\u2019s the demand of the AI model because the AI model will work a lot better if everyone is using their creative force. If I wasn\u2019t a big fan of [Andrei] Tarkovsky and Paolo Sorrentino, I don\u2019t think I would have ever been able to get what we got out of the model. It\u2019s just impossible, and we\u2019re here to prove that it\u2019s not the case that everyone is just suddenly gonna press the button."
+        },
+        {
+            "type": "img",
+            "content": "https://editorial.rottentomatoes.com/wp-content/uploads/2026/06/dreams_of_violets_700x380-01.jpg?w=700"
+        },
+        {
+            "type": "p",
+            "content": "RT: You mentioned there\u2019s already another film in the works. Can you share any details about it?"
+        },
+        {
+            "type": "p",
+            "content": "AK: We\u2019re going to announce the trailer at the end of this month, but it\u2019s a fantasy movie. It\u2019s a huge story. I think most humans will have known this story at some point in their life."
+        },
+        {
+            "type": "p",
+            "content": "RT: If audiences are still talking about Dreams of Violets five years from now, what do you hope they\u2019re talking about: the story itself or its place in the evolution of filmmaking?"
+        },
+        {
+            "type": "p",
+            "content": "AK: The primary goal is that [the protesters\u2019 stories] will be highlighted, but I think hopefully we will find these new types of stories, and the jobs and the intention has basically grown past just one film. And it\u2019s something that we\u2019ve expanded responsibly."
+        },
+        {
+            "type": "p",
+            "content": "PK: Because of the firsthand experiences that [Ash and I] had, we\u2019ve seen brutality and we\u2019ve seen dictatorship. I would say it is a monumental piece of art that is going to stay in history and it will speak for the fallen lives. Five years, 10 years from now on, no matter which side of the history you are on, how you think about it, if you think that it was fair, if it wasn\u2019t fair, people have lost their lives for no reason just because they wanted to protest. And I think this is just something that would keep the voices for the generations to hear."
+        },
+        {
+            "type": "p",
+            "content": "This interview has been edited and condensed for clarity."
+        },
+        {
+            "type": "p",
+            "content": "Find Something Fresh! Discover What to Watch, Read Reviews, Leave Ratings and Build Watchlists. Download the Rotten Tomatoes App."
+        }
+    ]
+}

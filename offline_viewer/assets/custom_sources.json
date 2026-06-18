@@ -1,0 +1,21 @@
+[
+    {
+        "name": "IndieWire",
+        "url": "https://www.indiewire.com/feed/",
+        "category": "General",
+        "avatar_path": "assets/avatars/indiewire.png"
+    },
+    {
+        "name": "SlashFilm",
+        "url": "https://www.slashfilm.com/feed/",
+        "category": "General",
+        "avatar_path": "assets/avatars/slashfilm.png"
+    },
+    {
+        "name": "MovieWeb",
+        "url": "https://movieweb.com/feed/",
+        "category": "General",
+        "avatar_path": "assets/avatars/movieweb.png",
+        "is_rss": true
+    }
+]

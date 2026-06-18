@@ -1,0 +1,65 @@
+[
+    {
+        "appearance": {
+            "theme": "dark",
+            "font_family": "Roboto",
+            "accent_override": "#9b6dff",
+            "wallpaper_mode": "pattern",
+            "interface_scale": 0.8,
+            "auto_night": false,
+            "reader_font_family": "Roboto",
+            "wallpaper_image": ""
+        },
+        "notifications": {
+            "enabled": true,
+            "sound": "default"
+        },
+        "privacy": {
+            "keep_history": "forever",
+            "lock_code": ""
+        },
+        "feed": {
+            "reader_mode": "rich",
+            "scraping_fallback": true
+        },
+        "language": {
+            "language": "en",
+            "rtl": false
+        },
+        "advanced": {
+            "backend_port": 8080,
+            "cache_limit_mb": 500
+        },
+        "account": {
+            "api_id": "",
+            "api_hash": "",
+            "bot_token": "8633830760:AAG3_g78kxSE2n4q2Cjm2u1Y2rlCWOG9HFI",
+            "default_chat_id": "-1003866441602",
+            "sports_chat_id": "",
+            "technology_chat_id": "",
+            "channel_threads": {
+                "MovieWeb": "8",
+                "SlashFilm": "10",
+                "Variety": "2",
+                "The Hollywood Reporter": "4",
+                "Vulture": "6",
+                "IndieWire": "12",
+                "Rotten Tomatoes": "14",
+                "Screen Daily": "16"
+            }
+        },
+        "folders": {
+            "custom": [
+                {
+                    "id": "folder:vic:1",
+                    "name": "VIC",
+                    "channels": []
+                }
+            ]
+        },
+        "pins": {
+            "channels": [],
+            "messages": []
+        }
+    }
+]

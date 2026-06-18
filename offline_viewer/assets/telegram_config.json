@@ -1,0 +1,14 @@
+{
+    "bot_token": "8633830760:AAG3_g78kxSE2n4q2Cjm2u1Y2rlCWOG9HFI",
+    "default_chat_id": "-1003866441602",
+    "channel_threads": {
+        "MovieWeb": "8",
+        "SlashFilm": "10",
+        "Variety": "2",
+        "The Hollywood Reporter": "4",
+        "Vulture": "6",
+        "IndieWire": "12",
+        "Rotten Tomatoes": "14",
+        "Screen Daily": "16"
+    }
+}

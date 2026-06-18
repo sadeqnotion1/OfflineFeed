@@ -1,0 +1,50 @@
+{
+    "title": "How Apple Is Making Your Older iPhone Run Faster and Stay Alive Longer | WIRED",
+    "url": "https://www.wired.com/story/how-apple-is-making-your-older-iphone-run-faster-and-stay-alive-longer/",
+    "blocks": [
+        {
+            "type": "p",
+            "content": "will feel a little more responsive once you download iOS 27 later this year. At least, that's Apple's claim. At its developer keynote at this year\u2019s WWDC, the company said its next mobile operating system update brings several platform stability improvements that will make older devices, as far back as the iPhone 11 from 2019, run a little better."
+        },
+        {
+            "type": "p",
+            "content": "There's a laundry list of improvements, from faster PDF saving to the camera launching faster when in Low Power Mode. But the main highlights? App launches are up to 30 percent faster\u2014that's tested on an iPhone 11 Pro Max. AirDrop file transfers are up to 80 percent faster (tested on an iPhone 16 Plus), and jumping into your photo library after snapping a photo will load images up to 70 percent faster, as tested on an iPhone 15."
+        },
+        {
+            "type": "p",
+            "content": "The iPhone will get smarter about switching between cellular and Wi-Fi networks. Apple has also rebuilt the system that powers search in Spotlight, Photos, and Mail, meaning you should ideally see exactly what you're searching for on the first try."
+        },
+        {
+            "type": "img",
+            "content": "https://media.wired.com/photos/6a281ea7c51bd4a5da3f302a/master/w_1600%2Cc_limit/WWDC26-platform-improvements-responsiveness.gif"
+        },
+        {
+            "type": "p",
+            "content": "Some of these improvements are thanks to optimizations to the iPhone's CPU scheduler. This is a standard component in operating systems that coordinates work for the CPU, managing the traffic flow of apps and services so that the main thing you're doing on your iPhone\u2014the thing you\u2019re currently focused on\u2014runs smooth and fast. Apple's most advanced CPU scheduler is in its latest devices, but the team brought many of those algorithm advancements down to the iPhone 11 in iOS 27."
+        },
+        {
+            "type": "p",
+            "content": "It's in Apple's best interest to keep older devices updated for as long as possible. Francisco Jeronimo, vice president for Data and Analytics at research firm IDC, says consumers don't want to feel forced to upgrade their smartphone. If they can keep their device for longer, it's one less worry, and better value for money, especially as we're spending more on smartphones today than ever before."
+        },
+        {
+            "type": "p",
+            "content": "\u201cThis is a big differentiator between iOS and Android,\u201d Jeronimo says. \u201cBecause consumers now know that if they buy an iOS device, it will last longer, and it will retain value at the end when they decide to upgrade. An Android device\u2014after two, three years, depending on the brand\u2014they will not be able to get upgrades anymore. The device will lose value if they want to upgrade, and they will not be able to sell it at a higher price.\u201d"
+        },
+        {
+            "type": "p",
+            "content": "While Apple typically supports its devices for six to seven years, only select Android phone makers like Google and Samsung promise that level of support."
+        },
+        {
+            "type": "p",
+            "content": "But if people are holding onto their phones for longer, keeping devices updated also opens the door for those customers to buy other Apple products. Maybe they'll purchase an Apple Watch or AirPods to supplement their device, Jeronimo says."
+        },
+        {
+            "type": "p",
+            "content": "\u201cNo one will criticize them if they weren't able to support [the iPhone 11],\u201d Jeronimo says. \u201cBut they clearly want to support all their devices because they know that means a lot in terms of brand value, and for consumers to know that when they buy their products, their products last, and that's critical.\u201d"
+        },
+        {
+            "type": "p",
+            "content": "The caveat is that while these older iPhones will remain supported, they will not be able to take advantage of several key new features debuting in iOS 27. All Apple Intelligence features\u2014including the brand-new Siri AI experience that finally purports to make the voice assistant useful\u2014are only available on the iPhone 15 Pro or newer phones. So if you want a smarter Siri or if you want to use AI to dress up your photos, you'll finally have to upgrade."
+        }
+    ]
+}

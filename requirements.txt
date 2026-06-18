@@ -1,0 +1,14 @@
+# OfflineFeed - Python dependencies
+# NOTE: PySide6 is required by the desktop frontend. The remaining packages are
+# the typical needs of the RSS/news backend (gui_server.py). Reconcile this list
+# with whatever your backend actually imports, then:
+#     pip install -r requirements.txt
+# Verify everything resolved with:
+#     python -m frontend.doctor
+
+PySide6>=6.5
+requests>=2.28
+feedparser>=6.0
+beautifulsoup4>=4.11
+lxml>=4.9
+pillow>=9.0
