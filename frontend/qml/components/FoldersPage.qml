@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 import "../themes"
 
 // Folders: OfflineFeed groups feeds into the categories shown in the folder

@@ -13,8 +13,8 @@ Item {
     // Preset accent swatches; "" means "use the theme default accent".
     property var accents: [ "", "#3390ec", "#2ea6ff", "#4dcd5e", "#f5a623", "#e8506e", "#9b6dff", "#13b9a8" ]
 
-    // Item 1: reader-font choices sourced from the installed system fonts.
-    property var fontOptions: {
+    property var fontOptions: getFontOptions()
+    function getFontOptions() {
         var arr = bridge.systemFonts || []
         var out = []
         for (var i = 0; i < arr.length; i++) out.push({ value: String(arr[i]), label: String(arr[i]) })
@@ -157,7 +157,7 @@ Item {
                     Repeater {
                         model: page.accents
                         delegate: Rectangle {
-                            required property string modelData
+                            required property var modelData
                             width: 34; height: 34; radius: 17
                             color: modelData === "" ? Theme.bg : modelData
                             border.width: (bridge.accentOverride === modelData) ? 3 : 1
