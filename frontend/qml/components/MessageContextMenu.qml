@@ -105,4 +105,31 @@ Menu {
         height: visible ? 38 : 0
         onTriggered: menu.ignore(menu.url)
     }
+    MenuSeparator {
+        padding: 6
+        contentItem: Rectangle { implicitHeight: 1; color: Theme.divider }
+    }
+    MenuRow {
+        text: qsTr("Delete post")
+        iconName: "trash"
+        danger: true
+        visible: bridge.currentChannelId !== "BinMessages"
+        height: visible ? 38 : 0
+        onTriggered: bridge.deletePost(menu.url, menu.messageTitle)
+    }
+    MenuRow {
+        text: qsTr("Restore from Bin")
+        iconName: "refresh"
+        visible: bridge.currentChannelId === "BinMessages"
+        height: visible ? 38 : 0
+        onTriggered: bridge.restorePost(menu.url, menu.messageTitle)
+    }
+    MenuRow {
+        text: qsTr("Delete permanently")
+        iconName: "trash"
+        danger: true
+        visible: bridge.currentChannelId === "BinMessages"
+        height: visible ? 38 : 0
+        onTriggered: bridge.purgePost(menu.url, menu.messageTitle)
+    }
 }

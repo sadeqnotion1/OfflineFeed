@@ -231,9 +231,13 @@ Rectangle {
 
                 Popup {
                     id: fontPopup
-                    y: fontField.y + fontField.height + 4
-                    width: 260
-                    height: 320
+                    parent: fontField                 // anchor to the trigger field
+                    x: 0
+                    y: fontField.height + 4
+                    width: fontField.width            // always match the field width
+                    // Size to content (search box + rows), capped so it never
+                    // overflows small windows or leaves a large empty area.
+                    height: Math.min(360, 52 + Math.max(fontList.count, 1) * 36)
                     padding: 6
                     modal: false
                     focus: true

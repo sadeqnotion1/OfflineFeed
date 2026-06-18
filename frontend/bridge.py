@@ -348,6 +348,7 @@ SPECIAL_SAVED = "SavedMessages"
 SPECIAL_ARCHIVED = "ArchivedMessages"
 SPECIAL_SEARCH = "SearchResults"
 SPECIAL_LOGS = "SystemLogs"
+SPECIAL_BIN = "BinMessages"          # NEW: recoverable deleted posts
 REACTION_EMOJIS = ["\U0001F44D", "\u2764\ufe0f", "\U0001F525", "\U0001F389", "\U0001F44F"]
 
 
@@ -451,6 +452,13 @@ class ChatBridge(QObject):
         self._msg_search: str = ""  # in-channel message search
         self._news_refreshing = False  # backs the newsRefreshing property
 
+        # ---- Bin: recoverable deleted posts (task 3 + task 4) ----
+        # Full article dicts are kept locally so a deleted post survives feed
+        # refresh and stays readable even after it leaves the source feed.
+        _bin = self._ui_settings.setdefault("bin", {})
+        self._binned_items: List[Dict[str, Any]] = list(_bin.get("items", []) or [])
+        self._binned_keys: set = {self._article_key(a) for a in self._binned_items}
+
         self._rebuild_chat_list()
         self.refreshNews(False)
 
@@ -459,6 +467,10 @@ class ChatBridge(QObject):
         return self._theme
 
     def _set_theme(self, value):
+        if value == "dark":
+            value = "night"
+        elif value == "light":
+            value = "day"
         if value != self._theme:
             self._theme = value
             self.themeChanged.emit(value)
@@ -765,13 +777,19 @@ class ChatBridge(QObject):
                 matching_posts = []
                 # Search across all channels: normal articles, saved, archived
                 for a in self._articles:
+                    if self._article_key(a) in self._binned_keys:
+                        continue
                     if self._match_article(a, query_terms):
                         matching_posts.append(a)
                 for a in self._saved_articles:
+                    if self._article_key(a) in self._binned_keys:
+                        continue
                     if self._match_article(a, query_terms):
                         if not any(self._is_same_article(a, m) for m in matching_posts):
                             matching_posts.append(a)
                 for a in self._archived_articles:
+                    if self._article_key(a) in self._binned_keys:
+                        continue
                     if self._match_article(a, query_terms):
                         if not any(self._is_same_article(a, m) for m in matching_posts):
                             matching_posts.append(a)
@@ -1443,6 +1461,11 @@ class ChatBridge(QObject):
                             elif isinstance(v, dict) and isinstance(d1[k], dict):
                                 merge(d1[k], v)
                     merge(loaded, defaults)
+                    app_settings = loaded.get("appearance", {})
+                    if app_settings.get("theme") == "dark":
+                        app_settings["theme"] = "night"
+                    elif app_settings.get("theme") == "light":
+                        app_settings["theme"] = "day"
                     return loaded
         except Exception as e:
             print(f"Error loading UI settings: {e}")
@@ -1626,6 +1649,8 @@ class ChatBridge(QObject):
             return "bookmark"
         if cid == SPECIAL_LOGS:
             return "logs"
+        if cid == SPECIAL_BIN:
+            return "trash"
         if cid == SPECIAL_ARCHIVED:
             return ""
         return self._avatar_for(cid)
@@ -1662,6 +1687,91 @@ class ChatBridge(QObject):
             self._message_model.set_items([])
         self._rebuild_chat_list()
         self.toastMessage.emit("ok", "Channel removed")
+
+    # ===================== slots: Bin (recoverable delete) ================
+    @staticmethod
+    def _now_iso() -> str:
+        from datetime import datetime
+        return datetime.now().isoformat()
+
+    def _article_key(self, art) -> str:
+        # Mirrors gui_server.get_article_key(): url, else hash of the title.
+        url = (art.get("url") or "").strip()
+        if url:
+            return url
+        return "hash:" + hashlib.sha256((art.get("title") or "").encode("utf-8")).hexdigest()
+
+    def _find_article(self, url, title=""):
+        url = (url or "").strip()
+        pools = (self._articles, self._saved_articles, self._archived_articles)
+        if url:
+            for pool in pools:
+                for a in pool:
+                    if (a.get("url") or "").strip() == url:
+                        return a
+        if title:
+            for pool in pools:
+                for a in pool:
+                    if a.get("title") == title:
+                        return a
+        return None
+
+    def _save_bin(self):
+        self._ui_settings.setdefault("bin", {})["items"] = [dict(a) for a in self._binned_items]
+        self._save_ui_settings(self._ui_settings)
+
+    def _refresh_after_bin_change(self):
+        self._rebuild_chat_list()
+        if self._current_channel_id:
+            self._rebuild_messages(self._current_channel_id)
+
+    @Slot(str, str)
+    def deletePost(self, url, title=""):
+        art = self._find_article(url, title) or {
+            "title": title, "url": url, "description": "",
+            "thumbnail": "", "category": "", "source": "", "section": "",
+        }
+        key = self._article_key(art)
+        if key not in self._binned_keys:
+            binned = dict(art)
+            binned["deleted_at"] = self._now_iso()
+            self._binned_items.insert(0, binned)
+            self._binned_keys.add(key)
+            self._save_bin()
+        self.toastMessage.emit("ok", "Moved to Bin")
+        self._refresh_after_bin_change()
+
+    @Slot(str, str)
+    def restorePost(self, url, title=""):
+        key = self._article_key({"url": url, "title": title})
+        before = len(self._binned_items)
+        self._binned_items = [a for a in self._binned_items if self._article_key(a) != key]
+        self._binned_keys.discard(key)
+        if len(self._binned_items) != before:
+            self._save_bin()
+            self.toastMessage.emit("ok", "Restored from Bin")
+        self._refresh_after_bin_change()
+
+    @Slot(str, str)
+    def purgePost(self, url, title=""):
+        key = self._article_key({"url": url, "title": title})
+        self._binned_items = [a for a in self._binned_items if self._article_key(a) != key]
+        self._binned_keys.discard(key)
+        self._save_bin()
+        self.toastMessage.emit("ok", "Permanently deleted")
+        self._refresh_after_bin_change()
+
+    @Slot()
+    def emptyBin(self):
+        self._binned_items = []
+        self._binned_keys = set()
+        self._save_bin()
+        self.toastMessage.emit("ok", "Bin emptied")
+        self._refresh_after_bin_change()
+
+    @Slot(result=int)
+    def binCount(self):
+        return len(self._binned_items)
 
     # ===================== internals =====================
     def _run(self, work, done):
@@ -1718,17 +1828,24 @@ class ChatBridge(QObject):
             return "Search results"
         if channel_id == SPECIAL_LOGS:
             return "System Logs"
+        if channel_id == SPECIAL_BIN:
+            return "Bin"
         return channel_id
 
     def _articles_for_channel(self, channel_id: str) -> List[Dict[str, Any]]:
+        if channel_id == SPECIAL_BIN:
+            return list(self._binned_items)
         if channel_id == SPECIAL_SAVED:
-            return self._saved_articles
+            return [a for a in self._saved_articles
+                    if self._article_key(a) not in self._binned_keys]
         if channel_id == SPECIAL_ARCHIVED:
-            return self._archived_articles
+            return [a for a in self._archived_articles
+                    if self._article_key(a) not in self._binned_keys]
         if channel_id == SPECIAL_SEARCH:
             return []
         return [a for a in self._articles
-                if (a.get("source") or a.get("category")) == channel_id]
+                if (a.get("source") or a.get("category")) == channel_id
+                and self._article_key(a) not in self._binned_keys]
 
     def _matches_search(self, name: str) -> bool:
         if not self._search:
@@ -1816,6 +1933,8 @@ class ChatBridge(QObject):
                 rows.append(self._special_row(SPECIAL_SAVED, "Saved Messages", "bookmark"))
             if self._matches_search("Archived Messages"):
                 rows.append(self._special_row(SPECIAL_ARCHIVED, "Archived Messages", "archive"))
+            if self._binned_items and self._matches_search("Bin"):
+                rows.append(self._special_row(SPECIAL_BIN, "Bin", "trash"))
 
             chan_rows = []
             for cid in self._channels():

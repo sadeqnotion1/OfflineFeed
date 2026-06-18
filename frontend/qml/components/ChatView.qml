@@ -312,7 +312,7 @@ Rectangle {
         Rectangle {
             Layout.fillWidth: true
             Layout.preferredHeight: visible ? 58 : 0
-            visible: root.channelId !== "" && root.channelId !== "SavedMessages" && root.channelId !== "ArchivedMessages" && root.channelId !== "SystemLogs"
+            visible: root.channelId !== "" && root.channelId !== "SavedMessages" && root.channelId !== "ArchivedMessages" && root.channelId !== "SystemLogs" && root.channelId !== "BinMessages"
             color: Theme.panel
             Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: Theme.divider }
             RowLayout {
@@ -347,6 +347,50 @@ Rectangle {
                         hoverEnabled: true
                         cursorShape: Qt.PointingHandCursor
                         onClicked: root.forwardChannelRequested(root.channelId)
+                    }
+                }
+            }
+        }
+
+        // ---- Bin action bar: empty the Bin ----
+        Rectangle {
+            Layout.fillWidth: true
+            Layout.preferredHeight: visible ? 58 : 0
+            visible: root.channelId === "BinMessages" && messages.count > 0
+            color: Theme.panel
+            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: Theme.divider }
+            RowLayout {
+                anchors.fill: parent
+                anchors.margins: 10
+                spacing: 10
+                LayoutMirroring.enabled: Theme.rtl
+                Item { Layout.fillWidth: true }
+                Rectangle {
+                    Layout.preferredHeight: 38
+                    Layout.preferredWidth: binRow.implicitWidth + 28
+                    radius: 19
+                    color: binMouse.containsMouse ? "#d34b52" : "#ec3942"
+                    Behavior on color { ColorAnimation { duration: Theme.animFast } }
+                    Row {
+                        id: binRow
+                        anchors.centerIn: parent
+                        spacing: 8
+                        Icon { anchors.verticalCenter: parent.verticalCenter; name: "trash"; size: 17; color: "#ffffff" }
+                        Text {
+                            anchors.verticalCenter: parent.verticalCenter
+                            text: qsTr("Empty Bin")
+                            color: "#ffffff"
+                            font.family: Theme.fontFamily
+                            font.pixelSize: 14
+                            font.bold: true
+                        }
+                    }
+                    MouseArea {
+                        id: binMouse
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: bridge.emptyBin()
                     }
                 }
             }
