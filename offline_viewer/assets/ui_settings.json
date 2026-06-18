@@ -1,9 +1,9 @@
 [
     {
         "appearance": {
-            "theme": "dark",
+            "theme": "tinted",
             "font_family": "Roboto",
-            "accent_override": "#e8506e",
+            "accent_override": "#13b9a8",
             "wallpaper_mode": "image",
             "interface_scale": 0.8,
             "auto_night": false,

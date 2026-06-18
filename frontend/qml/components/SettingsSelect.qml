@@ -4,10 +4,9 @@ import QtQuick.Layouts
 import "../themes"
 
 // Labelled dropdown. `options` is an array of { value, label } objects.
-// Content-aware width (min/max clamp). The popup uses a fixed compact row
-// height and a hard height cap so long lists (e.g. the full system-font list)
-// never overflow the page, and it shows a live search/filter box when the
-// option list is long.
+// The closed box has a FIXED compact width so long labels (e.g. font names)
+// never stretch it; the open list can be wider and shows a live search box
+// when the option list is long.
 Rectangle {
     id: ctl
 
@@ -15,9 +14,10 @@ Rectangle {
     property var options: []
     property string value: ""
 
-    // Width tunables (kept local so no other component is affected).
-    property int minComboWidth: 200
-    property int maxComboWidth: 360
+    // Fixed closed-box width (compact + consistent across every dropdown).
+    property int comboWidth: 200
+    // Open-list width (independent of the closed box, so long names fit).
+    property int popupWidth: 300
 
     // Show the in-popup search box once the list gets long.
     property int searchThreshold: 8
@@ -35,7 +35,6 @@ Rectangle {
         return -1
     }
 
-    // Live filter used by the popup list.
     function filteredOptions(q) {
         if (!q || q.length === 0) return options
         var ql = q.toLowerCase()
@@ -45,27 +44,6 @@ Rectangle {
             if (lbl.toLowerCase().indexOf(ql) !== -1) out.push(options[i])
         }
         return out
-    }
-
-    // Measure the widest label so the closed box fits its content.
-    TextMetrics {
-        id: optMetrics
-        font.family: Theme.fontFamily
-        font.pixelSize: 14
-    }
-    function longestOptionWidth() {
-        // Performance guard: if there are many options (e.g. font lists), measuring them all
-        // synchronously using TextMetrics layout/font queries freezes the GUI thread.
-        // We bypass the loop and return a safe maximum width.
-        if (options.length > 30) {
-            return maxComboWidth - 72
-        }
-        var w = 0
-        for (var i = 0; i < options.length; i++) {
-            optMetrics.text = (options[i] && options[i].label !== undefined) ? String(options[i].label) : ""
-            if (optMetrics.width > w) w = optMetrics.width
-        }
-        return w
     }
 
     RowLayout {
@@ -86,12 +64,9 @@ Rectangle {
 
         ComboBox {
             id: combo
-            Layout.minimumWidth: ctl.minComboWidth
-            Layout.preferredWidth: {
-                var _count = ctl.options.length   // re-evaluate when options change
-                var _font = Theme.fontFamily      // re-evaluate when the UI font changes
-                return Math.min(ctl.maxComboWidth, Math.max(ctl.minComboWidth, ctl.longestOptionWidth() + 72))
-            }
+            // FIXED width  no longer grows with content.
+            Layout.preferredWidth: ctl.comboWidth
+            Layout.maximumWidth: ctl.comboWidth
             Layout.alignment: Qt.AlignVCenter
             model: ctl.options
             textRole: "label"
@@ -127,36 +102,26 @@ Rectangle {
                 y: (combo.height - height) / 2
             }
 
-            // Custom popup: optional search box + compact, height-capped list.
             popup: Popup {
                 id: comboPopup
-                y: combo.height + 2
+                // Align the (wider) list to the box, kept on-screen for RTL.
                 x: Theme.rtl ? (combo.width - width) : 0
-                width: Math.max(combo.width, 240)
-                // Size to content (search + rows), capped so it never overflows.
+                y: combo.height + 2
+                width: Math.max(combo.width, ctl.popupWidth)
                 height: Math.min(
                     320,
                     (ctl.searchable ? 40 : 0) + Math.max(filtList.count, 1) * 36 + 12)
                 padding: 6
 
-                onOpened: {
-                    searchField.text = ""
-                    if (ctl.searchable) searchField.forceActiveFocus()
-                }
+                onOpened: { searchField.text = ""; if (ctl.searchable) searchField.forceActiveFocus() }
                 onClosed: searchField.text = ""
 
-                background: Rectangle {
-                    radius: 8
-                    color: Theme.panel
-                    border.width: 1
-                    border.color: Theme.divider
-                }
+                background: Rectangle { radius: 8; color: Theme.panel; border.width: 1; border.color: Theme.divider }
 
                 contentItem: ColumnLayout {
                     spacing: 6
 
                     Rectangle {
-                        id: searchBox
                         visible: ctl.searchable
                         Layout.fillWidth: true
                         Layout.preferredHeight: visible ? 34 : 0
@@ -166,8 +131,7 @@ Rectangle {
                         border.color: searchField.activeFocus ? Theme.accent : Theme.divider
                         RowLayout {
                             anchors.fill: parent
-                            anchors.leftMargin: 8
-                            anchors.rightMargin: 8
+                            anchors.leftMargin: 8; anchors.rightMargin: 8
                             spacing: 6
                             LayoutMirroring.enabled: Theme.rtl
                             Icon { name: "search"; size: 14; color: Theme.textSecondary }
@@ -207,14 +171,8 @@ Rectangle {
                                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
                                 elide: Text.ElideRight
                             }
-                            background: Rectangle {
-                                radius: 6
-                                color: deleg.highlighted ? Theme.hover : "transparent"
-                            }
-                            onClicked: {
-                                ctl.activatedValue(modelData.value)
-                                comboPopup.close()
-                            }
+                            background: Rectangle { radius: 6; color: deleg.highlighted ? Theme.hover : "transparent" }
+                            onClicked: { ctl.activatedValue(modelData.value); comboPopup.close() }
                         }
                     }
                 }

@@ -133,7 +133,7 @@ Item {
                     id: c3; width: parent.width
                     SettingsSelect {
                         id: selReaderFont
-                        label: qsTr("Reader font")
+                        label: qsTr("Reader font (offline viewer)")
                         options: page.fontOptions
                         value: bridge.readerFontFamily
                         onActivatedValue: bridge.setReaderFont(value)
@@ -185,6 +185,13 @@ Item {
                 width: parent.width; radius: 10; color: Theme.panel; clip: true; height: c2.implicitHeight
                 Column {
                     id: c2; width: parent.width
+                    SettingsSelect {
+                        id: selAppFont
+                        label: qsTr("App font")
+                        options: page.fontOptions
+                        value: bridge.fontFamily
+                        onActivatedValue: bridge.fontFamily = value   // whole-UI font (Theme.fontFamily)
+                    }
                     SettingsSlider {
                         id: slScale
                         label: qsTr("Interface scale")
