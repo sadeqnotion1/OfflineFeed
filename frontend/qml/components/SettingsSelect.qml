@@ -4,12 +4,20 @@ import QtQuick.Layouts
 import "../themes"
 
 // Labelled dropdown. `options` is an array of { value, label } objects.
+// D6: width is content-aware. The combo measures its widest option label with a
+// hidden TextMetrics and sizes itself between a sensible MIN and MAX so every
+// dropdown renders as a proper, readable box instead of a thin 170px sliver.
+// This single shared component fixes dropdown width app-wide.
 Rectangle {
     id: ctl
 
     property string label: ""
     property var options: []
     property string value: ""
+
+    // D6: tunables (kept local so no other component is affected).
+    property int minComboWidth: 200
+    property int maxComboWidth: 360
 
     signal activatedValue(string value)
 
@@ -21,6 +29,21 @@ Rectangle {
         for (var i = 0; i < options.length; i++)
             if (options[i].value === v) return i
         return -1
+    }
+
+    // D6: measure the widest label so the box fits its content.
+    TextMetrics {
+        id: optMetrics
+        font.family: Theme.fontFamily
+        font.pixelSize: 14
+    }
+    function longestOptionWidth() {
+        var w = 0
+        for (var i = 0; i < options.length; i++) {
+            optMetrics.text = (options[i] && options[i].label !== undefined) ? String(options[i].label) : ""
+            if (optMetrics.width > w) w = optMetrics.width
+        }
+        return w
     }
 
     RowLayout {
@@ -41,7 +64,14 @@ Rectangle {
 
         ComboBox {
             id: combo
-            Layout.preferredWidth: 170
+            // D6: content-fit width with min/max clamps (was a fixed 170).
+            // +72 leaves room for left padding, the chevron indicator and breathing space.
+            Layout.minimumWidth: ctl.minComboWidth
+            Layout.preferredWidth: {
+                var _count = ctl.options.length          // re-evaluate when options change
+                var _font = Theme.fontFamily             // re-evaluate when the UI font changes
+                return Math.min(ctl.maxComboWidth, Math.max(ctl.minComboWidth, ctl.longestOptionWidth() + 72))
+            }
             Layout.alignment: Qt.AlignVCenter
             model: ctl.options
             textRole: "label"

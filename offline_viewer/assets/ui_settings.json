@@ -4,11 +4,11 @@
             "theme": "dark",
             "font_family": "Roboto",
             "accent_override": "#9b6dff",
-            "wallpaper_mode": "pattern",
+            "wallpaper_mode": "image",
             "interface_scale": 0.8,
             "auto_night": false,
             "reader_font_family": "Roboto",
-            "wallpaper_image": ""
+            "wallpaper_image": "file:///E:/Projects/OfflineFeed-master/data/wallpapers/wallpaper.jpg"
         },
         "notifications": {
             "enabled": true,

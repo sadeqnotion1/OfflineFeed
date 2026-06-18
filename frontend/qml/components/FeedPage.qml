@@ -71,9 +71,68 @@ Item {
                     SettingsSelect {
                         id: selWall
                         label: qsTr("Chat wallpaper")
-                        options: [ { value: "pattern", label: qsTr("Pattern") }, { value: "solid", label: qsTr("Solid") }, { value: "none", label: qsTr("None") } ]
+                        options: [ { value: "pattern", label: qsTr("Pattern") }, { value: "solid", label: qsTr("Solid") }, { value: "image", label: qsTr("Custom image") }, { value: "none", label: qsTr("None") } ]
                         value: bridge.wallpaperMode
                         onActivatedValue: bridge.wallpaperMode = value
+                    }
+                }
+            }
+
+            // D1: chat-wallpaper image picker surfaced HERE in Chat settings where
+            // users expect it. It is wired to the SAME bridge.wallpaperMode /
+            // bridge.wallpaperImage backing state used by Appearance, so any
+            // wallpaper chosen in either place keeps applying identically.
+            Rectangle {
+                width: parent.width; radius: 10; color: Theme.panel; height: wallRow.implicitHeight + 24
+                Row {
+                    id: wallRow
+                    x: 16; y: 12
+                    width: parent.width - 32
+                    spacing: 12
+                    LayoutMirroring.enabled: Theme.rtl
+                    Column {
+                        width: parent.width - 150
+                        spacing: 2
+                        Text {
+                            width: parent.width
+                            text: qsTr("Custom wallpaper image")
+                            color: Theme.text; font.family: Theme.fontFamily; font.pixelSize: 15
+                            horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+                        }
+                        Text {
+                            width: parent.width
+                            text: bridge.wallpaperImage !== ""
+                                  ? qsTr("An image is set. Pick \u201cCustom image\u201d above to show it.")
+                                  : qsTr("Pick an image from your computer to use as the chat background.")
+                            color: Theme.textSecondary; font.family: Theme.fontFamily; font.pixelSize: 12
+                            wrapMode: Text.WordWrap
+                            horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+                        }
+                    }
+                    Rectangle {
+                        anchors.verticalCenter: parent.verticalCenter
+                        width: 130; height: 34; radius: 8
+                        color: chooseMouse.containsMouse ? Theme.accent : Theme.bg
+                        border.width: 1; border.color: Theme.accent
+                        Behavior on color { ColorAnimation { duration: Theme.animFast } }
+                        Row {
+                            anchors.centerIn: parent
+                            spacing: 6
+                            Icon { anchors.verticalCenter: parent.verticalCenter; name: "image"; size: 15; color: chooseMouse.containsMouse ? Theme.accentText : Theme.accent }
+                            Text {
+                                anchors.verticalCenter: parent.verticalCenter
+                                text: qsTr("Choose image")
+                                color: chooseMouse.containsMouse ? Theme.accentText : Theme.accent
+                                font.family: Theme.fontFamily; font.pixelSize: 13; font.bold: true
+                            }
+                        }
+                        MouseArea {
+                            id: chooseMouse
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: bridge.pickWallpaperImage()
+                        }
                     }
                 }
             }

@@ -73,9 +73,13 @@ ApplicationWindow {
                     visible: width > 0
                     Behavior on width { NumberAnimation { duration: Theme.anim; easing.type: Theme.easing } }
                     onOpenChat: function(id) { bridge.openChat(id) }
-                    onChatContextMenu: function(id, name, gx, gy) {
+                    // D5: receive the row's pin/mute state and pass it to the menu so
+                    // it shows the correct verb; the action still toggles real state.
+                    onChatContextMenu: function(id, name, pinned, muted, gx, gy) {
                         ctxMenu.channelId = id;
                         ctxMenu.channelName = name;
+                        ctxMenu.isPinned = pinned;
+                        ctxMenu.isMuted = muted;
                         ctxMenu.popup();
                     }
                 }

@@ -9,6 +9,10 @@ Menu {
     id: menu
     property string channelId: ""
     property string channelName: ""
+    // D5: the opener sets these from the row's real model state so the Pin/Mute
+    // rows can show the correct verb instead of a hardcoded "Unpin"/"Unmute".
+    property bool isPinned: false
+    property bool isMuted: false
 
     signal openInNewWindow(string id)
     signal archive(string id)
@@ -67,8 +71,9 @@ Menu {
 
     MenuRow { text: qsTr("Open in new window"); iconName: "window";  onTriggered: menu.openInNewWindow(menu.channelId) }
     MenuRow { text: qsTr("Archive");            iconName: "archive"; onTriggered: menu.archive(menu.channelId) }
-    MenuRow { text: qsTr("Unpin");              iconName: "pin";     onTriggered: menu.togglePin(menu.channelId) }
-    MenuRow { text: qsTr("Unmute");             iconName: "mute";    onTriggered: menu.toggleMute(menu.channelId) }
+    // D5: conditional verb + the action still toggles the real pin state via bridge.togglePin.
+    MenuRow { text: menu.isPinned ? qsTr("Unpin") : qsTr("Pin");    iconName: "pin";  onTriggered: menu.togglePin(menu.channelId) }
+    MenuRow { text: menu.isMuted ? qsTr("Unmute") : qsTr("Mute");   iconName: "mute"; onTriggered: menu.toggleMute(menu.channelId) }
     MenuRow { text: qsTr("Mark as unread");     iconName: "unread";  onTriggered: menu.markUnread(menu.channelId) }
     MenuRow { text: qsTr("Add to folder");      iconName: "folder";  onTriggered: menu.addToFolder(menu.channelId) }
     MenuSeparator {

@@ -19,7 +19,9 @@ Rectangle {
     }
 
     signal openChat(string channelId)
-    signal chatContextMenu(string channelId, string channelName, real gx, real gy)
+    // D5: carry the row's real pin/mute state to the opener so the context menu
+    // can show "Pin" vs "Unpin" (and "Mute" vs "Unmute") correctly.
+    signal chatContextMenu(string channelId, string channelName, bool pinned, bool muted, real gx, real gy)
 
     Column {
         anchors.fill: parent
@@ -87,6 +89,7 @@ Rectangle {
                 onClicked: root.openChat(model.channelId)
                 onRightClicked: function(gx, gy) {
                     root.chatContextMenu(model.channelId, model.name,
+                                         model.pinned === true, model.muted === true,
                                          mapToItem(root, gx, gy).x,
                                          mapToItem(root, gx, gy).y)
                 }
