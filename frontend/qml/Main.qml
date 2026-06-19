@@ -34,6 +34,23 @@ ApplicationWindow {
         function onToastMessage(kind, message) { toast.show(kind, message) }
     }
 
+    // ---- Bug #3: real, live "Interface scale" ----
+    // The slider writes bridge.interfaceScale (0.8-1.4) but previously NOTHING
+    // consumed it. We now lay the whole UI out at a "logical" size
+    // (window / scale) and scale it up to fill the real window, so the value is
+    // applied as a genuine, live UI zoom. At scale 1.0 this is a no-op.
+    Item {
+        id: uiScaler
+        anchors.fill: parent
+        readonly property real s: bridge.interfaceScale > 0 ? bridge.interfaceScale : 1.0
+
+        Item {
+        id: scaledRoot
+        width: uiScaler.width / uiScaler.s
+        height: uiScaler.height / uiScaler.s
+        scale: uiScaler.s
+        transformOrigin: Item.TopLeft
+
     Column {
         anchors.fill: parent
         spacing: 0
@@ -136,6 +153,8 @@ ApplicationWindow {
                 anchors.fill: parent
                 z: 60
             }
+        }
+    }
         }
     }
 

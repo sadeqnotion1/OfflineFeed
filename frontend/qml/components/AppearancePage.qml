@@ -67,7 +67,7 @@ Item {
                         id: selTheme
                         label: qsTr("Color theme")
                         options: [ { value: "night", label: qsTr("Dark") }, { value: "day", label: qsTr("Light") },
-                                   { value: "classic", label: qsTr("Classic") }, { value: "tinted", label: qsTr("Tinted") } ]
+                            { value: "classic", label: qsTr("Classic") }, { value: "tinted", label: qsTr("Tinted") } ]
                         value: bridge.theme
                         onActivatedValue: bridge.theme = value
                     }
@@ -102,8 +102,8 @@ Item {
                         Text {
                             width: parent.width
                             text: bridge.wallpaperImage !== ""
-                                  ? qsTr("An image is set. Pick \u201cCustom image\u201d above to show it.")
-                                  : qsTr("Pick an image from your computer to use as the chat background.")
+                                ? qsTr("An image is set. Pick \u201cCustom image\u201d above to show it.")
+                                : qsTr("Pick an image from your computer to use as the chat background.")
                             color: Theme.textSecondary; font.family: Theme.fontFamily; font.pixelSize: 12
                             wrapMode: Text.WordWrap
                             horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
@@ -175,9 +175,16 @@ Item {
                         delegate: Rectangle {
                             required property var modelData
                             width: 34; height: 34; radius: Theme.radius.pill
+                            // Bug #2: the default/reset swatch ("") was painted with the
+                            // page background and a faint divider border, making it nearly
+                            // invisible on dark themes (looked like 7 swatches, not 8).
+                            // Give it a clearly visible border (and keep the palette glyph
+                            // below) so it reads as a real, clickable "reset to default".
                             color: modelData === "" ? Theme.bg : modelData
-                            border.width: (bridge.accentOverride === modelData) ? 3 : 1
-                            border.color: (bridge.accentOverride === modelData) ? Theme.accent : Theme.divider
+                            border.width: (bridge.accentOverride === modelData) ? 3 : (modelData === "" ? 2 : 1)
+                            border.color: (bridge.accentOverride === modelData)
+                                          ? Theme.accent
+                                          : (modelData === "" ? Theme.textSecondary : Theme.divider)
                             Icon {
                                 visible: modelData === ""
                                 anchors.centerIn: parent; name: "palette"; size: 18; color: Theme.textSecondary
@@ -206,7 +213,7 @@ Item {
                         label: qsTr("App font")
                         options: page.fontOptions
                         value: bridge.fontFamily
-                        onActivatedValue: bridge.fontFamily = value   // whole-UI font (Theme.fontFamily)
+                        onActivatedValue: bridge.fontFamily = value // whole-UI font (Theme.fontFamily)
                     }
                     SettingsSlider {
                         id: slScale

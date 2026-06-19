@@ -17,7 +17,11 @@ Rectangle {
 
     // Closed-box clamp range.
     property int minComboWidth: 84
-    property int maxComboWidth: 220
+    // Bug #4: raised from 220 so long values (font names, "Custom image", etc.)
+    // are no longer clipped in the closed box. The box still auto-sizes to the
+    // current value and is clamped to this max; a hover tooltip (below) reveals
+    // anything still too long to fit.
+    property int maxComboWidth: 300
     // Open-list width (independent of the closed box, so long names fit).
     property int popupWidth: 300
 
@@ -98,6 +102,14 @@ Rectangle {
             currentIndex: ctl.indexOfValue(ctl.value)
             font.family: Theme.fontFamily
             font.pixelSize: 14
+
+            // Bug #4: when a value is still too long for the (max-clamped) box and
+            // has to elide, reveal the full text on hover so nothing is ever
+            // permanently hidden.
+            hoverEnabled: true
+            ToolTip.visible: hovered && combo.contentItem.truncated
+            ToolTip.text: combo.displayText
+            ToolTip.delay: 400
 
             // Visual label: elides ONLY when the value exceeds maxComboWidth.
             contentItem: Text {
