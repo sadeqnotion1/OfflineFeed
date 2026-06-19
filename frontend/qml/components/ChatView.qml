@@ -326,9 +326,12 @@ Rectangle {
         }
 
         // ---- Bottom action bar: forward this channel to Telegram ----
+        // Restrained: a single compact primary AppButton (one action among
+        // others), docked in its bar. Reuses the shared button + accent tokens
+        // instead of a bespoke bold red pill, so it no longer dominates.
         Rectangle {
             Layout.fillWidth: true
-            Layout.preferredHeight: visible ? 58 : 0
+            Layout.preferredHeight: visible ? 54 : 0
             visible: root.channelId !== "" && root.channelId !== "SavedMessages" && root.channelId !== "ArchivedMessages" && root.channelId !== "SystemLogs" && root.channelId !== "BinMessages"
             color: Theme.panel
             Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: Theme.hairline }
@@ -338,33 +341,12 @@ Rectangle {
                 spacing: 10
                 LayoutMirroring.enabled: Theme.rtl
                 Item { Layout.fillWidth: true }
-                Rectangle {
-                    Layout.preferredHeight: 38
-                    Layout.preferredWidth: fwdRow.implicitWidth + 28
-                    radius: Theme.radius.pill
-                    color: fwdMouse.containsMouse ? Qt.lighter(Theme.accent, 1.1) : Theme.accent
-                    Behavior on color { ColorAnimation { duration: Theme.animFast } }
-                    Row {
-                        id: fwdRow
-                        anchors.centerIn: parent
-                        spacing: 8
-                        Icon { anchors.verticalCenter: parent.verticalCenter; name: "send"; size: 17; color: Theme.accentText }
-                        Text {
-                            anchors.verticalCenter: parent.verticalCenter
-                            text: qsTr("Forward channel to Telegram")
-                            color: Theme.accentText
-                            font.family: Theme.fontFamily
-                            font.pixelSize: 14
-                            font.bold: true
-                        }
-                    }
-                    MouseArea {
-                        id: fwdMouse
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        cursorShape: Qt.PointingHandCursor
-                        onClicked: root.forwardChannelRequested(root.channelId)
-                    }
+                AppButton {
+                    Layout.alignment: Qt.AlignVCenter
+                    variant: "primary"
+                    iconName: "send"
+                    label: qsTr("Forward channel to Telegram")
+                    onClicked: root.forwardChannelRequested(root.channelId)
                 }
             }
         }

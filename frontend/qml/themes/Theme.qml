@@ -39,6 +39,18 @@ QtObject {
     // Item 8: file URI of a user-chosen wallpaper image (used when mode=="image")
     property string wallpaperImage: ""
 
+    // ----- Post media layout (image legibility scrim) -----
+    // ADDITIVE (06_image_overlay_scrim): controls how a post's title + meta are
+    // laid out relative to its image.
+    //   "below"   -> caption sits in the bubble UNDER the image (ORIGINAL
+    //                behavior — this is the safe, non-breaking default).
+    //   "overlay" -> title + meta are drawn ON the image, lifted above a
+    //                bottom gradient scrim so they stay legible on bright
+    //                images (Telegram-style). See MessageBubble.qml.
+    // Flip this ONE value to switch the whole app, or set `overlayMode` on an
+    // individual MessageBubble. Default stays "below" so existing UI is intact.
+    property string postOverlayMode: "overlay"
+
     // ---------------------------------------------------------------------
     //  Palettes — exact Telegram Desktop tokens
     //  NOTE: the per-palette "selection", "badge", "tick" and "link" entries
@@ -225,6 +237,17 @@ QtObject {
     // accent for ANY accent value (selection ~15%, hover ~8% in dark).
     readonly property color selection: Qt.rgba(accent.r, accent.g, accent.b, isDark ? 0.15 : 0.12)
     readonly property color hover:     Qt.rgba(accent.r, accent.g, accent.b, isDark ? 0.08 : 0.06)
+
+    // ----- Media overlay tokens (image legibility scrim) -----
+    // ADDITIVE (06_image_overlay_scrim). Text drawn ON media is ALWAYS light,
+    // independent of the light/dark variant, because it sits over a dark scrim
+    // (never the theme background). `scrim`/`scrimMid` are the gradient stops
+    // used by the bottom-anchored scrim in MessageBubble.qml; keeping them here
+    // means a single place tunes media-overlay legibility app-wide.
+    readonly property color onMedia:      "#ffffff"                  // overlaid title (max contrast)
+    readonly property color onMediaMuted: Qt.rgba(1, 1, 1, 0.72)    // overlaid meta (muted but legible)
+    readonly property color scrim:        Qt.rgba(0, 0, 0, 0.78)    // strongest stop, at the very bottom
+    readonly property color scrimMid:     Qt.rgba(0, 0, 0, 0.55)    // mid stop, fades up to transparent
 
     // ----- Accent / blend helpers (the single accent pipeline) -----
     // tint(base, accent, amount): linear blend of `base` toward `accent`.
