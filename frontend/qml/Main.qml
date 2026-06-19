@@ -65,6 +65,9 @@ ApplicationWindow {
                     onSettingsRequested: bridge.setTab("settings")
                 }
 
+                // Hairline seam between the folder rail and the chat list.
+                Rectangle { width: 1; height: parent.height; color: Theme.hairline }
+
                 // Master list (hidden when Settings is active to give it full width)
                 ChatList {
                     id: chatList
@@ -84,11 +87,11 @@ ApplicationWindow {
                     }
                 }
 
-                Rectangle { width: 1; height: parent.height; color: Theme.divider; visible: chatList.visible }
+                Rectangle { width: 1; height: parent.height; color: Theme.hairline; visible: chatList.visible }
 
                 // Detail pane swaps between the chat view and the Settings page.
                 Item {
-                    width: parent.width - rail.width - (chatList.visible ? Theme.chatListWidth + 1 : 0)
+                    width: parent.width - rail.width - 1 - (chatList.visible ? Theme.chatListWidth + 1 : 0)
                     height: parent.height
 
                     ChatView {

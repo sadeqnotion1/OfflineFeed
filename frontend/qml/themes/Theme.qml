@@ -3,6 +3,15 @@ import QtQuick
 
 // Central design-token singleton. Holds the exact Telegram Desktop color
 // palette for every variant, plus shared metrics, fonts and animation timings.
+//
+// ─────────────────────────────────────────────────────────────────────────
+//  RED-ACCENT RETINT (this revision)
+//  The neutral DARK surfaces used to be read straight from the stock blue
+//  `night` palette, so a red accent looked bolted-on. They are now DERIVED by
+//  tinting a hue-free grayscale anchor toward `accent` via tint(), and
+//  selection/hover are expressed as accent-at-low-alpha. Change the single
+//  `accentOverride` hex below and the ENTIRE dark UI re-tints coherently.
+// ─────────────────────────────────────────────────────────────────────────
 QtObject {
     id: theme
 
@@ -18,8 +27,13 @@ QtObject {
     // Ultimate safe default used by the Font Family picker when a previously
     // saved font is no longer installed on this machine.
     property string fallbackFontFamily: "Roboto"
-    // user-selectable accent override (empty = use the palette's accent)
-    property string accentOverride: ""
+    // ★ SINGLE SOURCE OF TRUTH ★ — user-selectable accent override.
+    //   Empty string ('') falls back to the palette's stock accent.
+    //   Set to one hex here (or from Settings) and the whole UI re-tints:
+    //   accent, selection, hover, badge, tick, link, outBubble AND every
+    //   neutral surface (bg/panel/panelAlt/inBubble/divider/wallpaper/
+    //   textSecondary) are all derived from it.
+    property string accentOverride: "#e0534f"   // Telegram-red (assumed; change me)
     // chat wallpaper mode: "pattern", "solid", "none", "image"
     property string wallpaperMode: "pattern"
     // Item 8: file URI of a user-chosen wallpaper image (used when mode=="image")
@@ -32,6 +46,9 @@ QtObject {
     //  values. They are NO LONGER read directly by the UI — the accent-driven
     //  accessors further down derive those tokens from the single canonical
     //  `accent` so a custom accent recolors the whole app. (See ACCENT note.)
+    //  In DARK variants the NEUTRAL surfaces are likewise no longer read from
+    //  here; they are derived from `darkNeutral` + `accent` (see below). The
+    //  light "day" variant still reads its neutrals straight from this table.
     // ---------------------------------------------------------------------
     readonly property var palettes: ({
         "night": {
@@ -114,14 +131,39 @@ QtObject {
 
     readonly property var p: palettes[variant] ? palettes[variant] : palettes["night"]
 
+    // ---------------------------------------------------------------------
+    //  DARK neutral anchors — a HUE-FREE grayscale lightness ladder.
+    //  Because these carry no hue, tinting them toward a warm accent yields
+    //  warm near-neutrals (never a bluish/purple cast — there is no competing
+    //  blue base). The tint* amounts are intentionally subtle (comms-style,
+    //  not neon). Used only for isDark variants.
+    // ---------------------------------------------------------------------
+    readonly property var darkNeutral: ({
+        "bg":        "#161616",
+        "panelAlt":  "#1c1c1c",
+        "panel":     "#242424",
+        "inBubble":  "#1e1e1e",
+        "divider":   "#0f0f0f",
+        "wallpaper": "#0d0d0d",
+        "secondary": "#8a8a8a"
+    })
+    readonly property real tintBg:        0.08
+    readonly property real tintPanel:     0.10
+    readonly property real tintPanelAlt:  0.09
+    readonly property real tintInBubble:  0.08
+    readonly property real tintDivider:   0.10
+    readonly property real tintWallpaper: 0.07
+    readonly property real tintSecondary: 0.10
+
     // =====================================================================
     //  ★ CANONICAL ACCENT — SINGLE SOURCE OF TRUTH FOR THE ENTIRE QML UI ★
     //  -------------------------------------------------------------------
     //  `accent` is the ONE accent value for the whole app. Every accent-
-    //  driven token below (accentText, selection, badge, tick, link and the
-    //  accent* variants) is DERIVED from it, so changing the accent — either
-    //  by switching theme variant OR by picking a custom `accentOverride` in
-    //  Settings — recolors the UI coherently everywhere.
+    //  driven token below (accentText, selection, hover, badge, tick, link,
+    //  outBubble and the accent* variants) AND every dark neutral surface is
+    //  DERIVED from it, so changing the accent — either by switching theme
+    //  variant OR by picking a custom `accentOverride` in Settings — recolors
+    //  the UI coherently everywhere.
     //
     //  GUARD (do not regress): never hard-code an accent-equivalent hex in a
     //  component. Bind to Theme.accent / Theme.accentText / Theme.selection /
@@ -142,28 +184,58 @@ QtObject {
     readonly property color accentFill:    Qt.rgba(accent.r, accent.g, accent.b, 0.15) // translucent fill
     readonly property color accentBorder:  Qt.rgba(accent.r, accent.g, accent.b, 0.45) // focus/border tint
 
+    // List-row state washes — subtle accent tints layered over the panel so the
+    // active/hover row reads as a soft accent wash instead of a solid band.
+    // Both are accent-derived (selection ~15% alpha, hover ~8% alpha), so a
+    // custom accent recolors them automatically (stays on the accent pipeline).
+    readonly property color selectionFill: Qt.rgba(accent.r, accent.g, accent.b, 0.15)
+    readonly property color hoverFill:     Qt.rgba(accent.r, accent.g, accent.b, 0.08)
+
     // Accent-derived semantic tokens (previously static per-palette hexes).
-    // selection blends the accent toward the background so it reads as a
-    // muted accent tint in both dark and light modes.
-    readonly property color selection: _mix(accent, bg, isDark ? 0.62 : 0.86)
     readonly property color badge:     accent
     readonly property color tick:      isDark ? Qt.lighter(accent, 1.25) : accent
     readonly property color link:      isDark ? Qt.lighter(accent, 1.12) : Qt.darker(accent, 1.06)
 
-    // ----- Neutral / non-accent tokens (intentionally palette-driven) -----
-    readonly property color bg:            p.bg
-    readonly property color panel:         p.panel
-    readonly property color panelAlt:      p.panelAlt
-    readonly property color hover:         p.hover
-    readonly property color inBubble:      p.inBubble
-    readonly property color outBubble:     p.outBubble
+    // ----- Neutral / near-neutral tokens -----
+    //  DARK variants: derived by tinting the hue-free `darkNeutral` anchors
+    //  toward `accent`, so a warm accent => warm surfaces. The light "day"
+    //  variant keeps its stock palette so the bright theme stays intact.
+    //  Token NAMES are unchanged so every component keeps binding correctly.
+    readonly property color bg:            isDark ? tint(darkNeutral.bg,        accent, tintBg)        : p.bg
+    readonly property color panel:         isDark ? tint(darkNeutral.panel,     accent, tintPanel)     : p.panel
+    readonly property color panelAlt:      isDark ? tint(darkNeutral.panelAlt,  accent, tintPanelAlt)  : p.panelAlt
+    readonly property color inBubble:      isDark ? tint(darkNeutral.inBubble,  accent, tintInBubble)  : p.inBubble
+    // Outgoing bubble reads as a muted accent surface (Telegram-style).
+    readonly property color outBubble:     _mix(accent, bg, isDark ? 0.55 : 0.80)
     readonly property color text:          p.text
-    readonly property color textSecondary: p.secondary
-    readonly property color divider:       p.divider
+    readonly property color textSecondary: isDark ? tint(darkNeutral.secondary, accent, tintSecondary) : p.secondary
+    readonly property color divider:       isDark ? tint(darkNeutral.divider,   accent, tintDivider)   : p.divider
     readonly property color badgeMuted:    p.badgeMuted
-    readonly property color wallpaper:     p.wallpaper
+    readonly property color wallpaper:     isDark ? tint(darkNeutral.wallpaper, accent, tintWallpaper) : p.wallpaper
 
-    // ----- Accent helpers (the single accent pipeline) -----
+    // ----- Surface elevation tokens (plane separation for the 3-pane shell) -----
+    readonly property color railBg:    panel       // folder rail (top chrome)
+    readonly property color listBg:    panelAlt     // chat list (mid plane)
+    readonly property color contentBg: bg           // chat view (base plane)
+    readonly property color hairline:  isDark ? Qt.rgba(1, 1, 1, 0.06)
+                                              : Qt.rgba(0, 0, 0, 0.08)
+
+    // selection & hover: accent at LOW ALPHA instead of hard-coded blue.
+    // Drawn over `bg`, these read as a subtle accent wash that matches the
+    // accent for ANY accent value (selection ~15%, hover ~8% in dark).
+    readonly property color selection: Qt.rgba(accent.r, accent.g, accent.b, isDark ? 0.15 : 0.12)
+    readonly property color hover:     Qt.rgba(accent.r, accent.g, accent.b, isDark ? 0.08 : 0.06)
+
+    // ----- Accent / blend helpers (the single accent pipeline) -----
+    // tint(base, accent, amount): linear blend of `base` toward `accent`.
+    //   amount=0 -> base, amount=1 -> accent. Returns an OPAQUE color.
+    //   This is the reusable warm-neutral derivation helper.
+    function tint(base, accent, amount) {
+        return Qt.rgba(base.r + (accent.r - base.r) * amount,
+                       base.g + (accent.g - base.g) * amount,
+                       base.b + (accent.b - base.b) * amount,
+                       1.0)
+    }
     // Linear blend of two colors. t=0 -> c1, t=1 -> c2. Returns opaque color.
     function _mix(c1, c2, t) {
         return Qt.rgba(c1.r + (c2.r - c1.r) * t,

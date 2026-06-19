@@ -22,10 +22,38 @@ Item {
     width: ListView.view ? ListView.view.width : 320
     height: Theme.rowHeight
 
+    // Row-state background: subtle accent washes layered over the panel.
+    // Precedence (selected > hover > default) is encoded in the conditional;
+    // colour changes are eased so states fade in/out instead of snapping.
     Rectangle {
         anchors.fill: parent
-        color: row.selected ? Theme.selection : (mouse.containsMouse ? Theme.hover : "transparent")
-        Behavior on color { ColorAnimation { duration: Theme.animFast } }
+        color: row.selected ? Theme.selectionFill
+                            : (mouse.containsMouse ? Theme.hoverFill : "transparent")
+        Behavior on color { ColorAnimation { duration: Theme.animFast; easing.type: Theme.easing } }
+
+        // Accent left-edge indicator on the active row (flips side for RTL).
+        Rectangle {
+            width: 3
+            color: Theme.accent
+            opacity: row.selected ? 1 : 0
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: Theme.rtl ? undefined : parent.left
+            anchors.right: Theme.rtl ? parent.right : undefined
+            Behavior on opacity { NumberAnimation { duration: Theme.animFast; easing.type: Theme.easing } }
+        }
+    }
+
+    // Keyboard-focus ring — visible only while the list has active focus and
+    // this is the current item, so keyboard navigation is always visible.
+    Rectangle {
+        anchors.fill: parent
+        color: "transparent"
+        border.width: 2
+        border.color: Theme.accentBorder
+        visible: row.ListView.isCurrentItem
+                 && row.ListView.view !== null
+                 && row.ListView.view.activeFocus
     }
 
     RowLayout {
@@ -63,7 +91,7 @@ Item {
                         if (n.endsWith("(X)")) return n.substring(0, n.length - 3);
                         return n;
                     }
-                    color: row.selected ? Theme.accentText : Theme.text
+                    color: Theme.text
                     font.family: Theme.fontFamily
                     font.pixelSize: 15
                     font.bold: true
@@ -74,12 +102,12 @@ Item {
                     visible: row.name.endsWith("(X)") || row.name.endsWith(" (X)")
                     name: "brand-x"
                     size: 13
-                    color: row.selected ? Theme.accentText : Theme.textSecondary
+                    color: Theme.textSecondary
                     Layout.alignment: Qt.AlignVCenter
                 }
                 Text {
                     text: row.time
-                    color: row.selected ? Theme.accentText : Theme.textSecondary
+                    color: Theme.textSecondary
                     font.family: Theme.fontFamily
                     font.pixelSize: 12
                 }
@@ -91,7 +119,7 @@ Item {
                 Text {
                     Layout.fillWidth: true
                     text: row.lastMessage
-                    color: row.selected ? Qt.rgba(1,1,1,0.85) : Theme.textSecondary
+                    color: Theme.textSecondary
                     font.family: Theme.fontFamily
                     font.pixelSize: 14
                     elide: Text.ElideRight
@@ -103,21 +131,9 @@ Item {
                     name: "mute"; size: 14; color: Theme.textSecondary
                 }
                 // Match count or Unread badge
-                Rectangle {
-                    visible: row.matchCount > 0 || (row.matchCount === 0 && row.unread > 0)
-                    radius: height / 2
-                    height: 20
-                    width: Math.max(20, badgeText.implicitWidth + 12)
-                    color: row.matchCount > 0 ? Theme.accent : (row.muted ? Theme.badgeMuted : Theme.badge)
-                    Text {
-                        id: badgeText
-                        anchors.centerIn: parent
-                        text: row.matchCount > 0 ? row.matchCount : row.unread
-                        color: "#ffffff"
-                        font.family: Theme.fontFamily
-                        font.pixelSize: 12
-                        font.bold: true
-                    }
+                Badge {
+                    count: row.matchCount > 0 ? row.matchCount : row.unread
+                    muted: row.matchCount > 0 ? false : row.muted
                 }
             }
         }

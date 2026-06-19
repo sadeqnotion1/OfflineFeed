@@ -6,7 +6,7 @@ import "../themes"
 // folder rail — fixing known issue #5) + the scrollable list of channels.
 Rectangle {
     id: root
-    color: Theme.panelAlt
+    color: Theme.listBg
 
     Timer {
         id: searchDebounceTimer
@@ -65,6 +65,9 @@ Rectangle {
                     }
                 }
             }
+            // Hairline under the sticky search header so it separates crisply
+            // from the scrolling channel list below.
+            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: Theme.hairline }
         }
 
         // ---- Channel list ----
@@ -77,6 +80,15 @@ Rectangle {
             boundsBehavior: Flickable.StopAtBounds
             ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
 
+            // Keyboard navigation: let the list take focus so arrow keys move the
+            // current item (which draws the focus ring in ChatRow) and Enter opens
+            // it. Mouse selection still drives `selected` via bridge.currentChannelId.
+            focus: true
+            keyNavigationEnabled: true
+            highlightFollowsCurrentItem: true
+            Keys.onReturnPressed: if (list.currentItem) root.openChat(list.currentItem.channelId)
+            Keys.onEnterPressed: if (list.currentItem) root.openChat(list.currentItem.channelId)
+
             delegate: ChatRow {
                 channelId: model.channelId
                 name: model.name
@@ -86,8 +98,12 @@ Rectangle {
                 matchCount: model.matchCount || 0
                 avatarPath: model.avatarPath
                 selected: bridge.currentChannelId === model.channelId
-                onClicked: root.openChat(model.channelId)
+                onClicked: {
+                    list.currentIndex = index
+                    root.openChat(model.channelId)
+                }
                 onRightClicked: function(gx, gy) {
+                    list.currentIndex = index
                     root.chatContextMenu(model.channelId, model.name,
                                          model.pinned === true, model.muted === true,
                                          mapToItem(root, gx, gy).x,

@@ -8,7 +8,7 @@ import "../themes"
 // day-separator pills, and a bottom action bar (forward channel to Telegram).
 Rectangle {
     id: root
-    color: Theme.bg
+    color: Theme.contentBg
 
     property string channelId: ""
     property string channelName: ""
@@ -167,7 +167,7 @@ Rectangle {
                     }
                 }
             }
-            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: Theme.divider }
+            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: Theme.hairline }
         }
 
         // ---- Item 2: pinned posts bar (sits below the header) ----
@@ -224,7 +224,7 @@ Rectangle {
                     }
                 }
             }
-            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: Theme.divider }
+            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: Theme.hairline }
         }
 
         // ---- In-channel search bar (toggled by the header search icon) ----
@@ -255,7 +255,7 @@ Rectangle {
                     }
                 }
             }
-            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: Theme.divider }
+            Rectangle { anchors.bottom: parent.bottom; width: parent.width; height: 1; color: Theme.hairline }
         }
 
         // ---- Messages ----
@@ -331,7 +331,7 @@ Rectangle {
             Layout.preferredHeight: visible ? 58 : 0
             visible: root.channelId !== "" && root.channelId !== "SavedMessages" && root.channelId !== "ArchivedMessages" && root.channelId !== "SystemLogs" && root.channelId !== "BinMessages"
             color: Theme.panel
-            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: Theme.divider }
+            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: Theme.hairline }
             RowLayout {
                 anchors.fill: parent
                 anchors.margins: 10
@@ -375,7 +375,7 @@ Rectangle {
             Layout.preferredHeight: visible ? 58 : 0
             visible: root.channelId === "BinMessages" && messages.count > 0
             color: Theme.panel
-            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: Theme.divider }
+            Rectangle { anchors.top: parent.top; width: parent.width; height: 1; color: Theme.hairline }
             RowLayout {
                 anchors.fill: parent
                 anchors.margins: 10

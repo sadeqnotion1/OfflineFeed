@@ -6,7 +6,7 @@ import "../themes"
 // entry (consolidation fix, issue #5). Telegram's vertical folder strip.
 Rectangle {
     id: root
-    color: Theme.panel
+    color: Theme.railBg
 
     property string activeTab: "entertainment"
     signal tabSelected(string tab)
@@ -69,25 +69,13 @@ Rectangle {
                 }
 
                 // Unread badge
-                Rectangle {
-                    visible: (root.unreadByTab[modelData.id] || 0) > 0
+                Badge {
                     anchors.top: parent.top
                     anchors.right: parent.right
                     anchors.topMargin: 8
                     anchors.rightMargin: 14
-                    radius: height / 2
-                    height: 18
-                    width: Math.max(18, b.implicitWidth + 10)
-                    color: Theme.badge
-                    Text {
-                        id: b
-                        anchors.centerIn: parent
-                        text: root.unreadByTab[modelData.id] || 0
-                        color: Theme.accentText
-                        font.pixelSize: 11
-                        font.bold: true
-                        font.family: Theme.fontFamily
-                    }
+                    count: root.unreadByTab[modelData.id] || 0
+                    muted: false
                 }
 
                 MouseArea {
@@ -184,5 +172,15 @@ Rectangle {
                 onClicked: root.settingsRequested()
             }
         }
+    }
+
+    // Right-edge hairline so the rail still reads as a distinct plane even when
+    // the chat list is collapsed (e.g. Settings is open).
+    Rectangle {
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        width: 1
+        color: Theme.hairline
     }
 }
