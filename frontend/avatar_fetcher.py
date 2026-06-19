@@ -31,6 +31,24 @@ def slugify(name: str) -> str:
     slug = re.sub(r'_+', '_', slug).strip('_')
     return slug or "channel"
 
+def twitter_handle_from_url(url: str) -> str:
+    """Phase 2 - Task 4: extract the @handle from an x.com / twitter.com URL.
+
+    The avatar for an X source must be resolved per-handle; deriving it from the
+    site domain (x.com) returns the same generic logo for every account.
+    """
+    try:
+        parsed = urllib.parse.urlparse(url)
+        netloc = (parsed.netloc or "").lower()
+        if "x.com" in netloc or "twitter.com" in netloc:
+            parts = [p for p in parsed.path.split("/") if p]
+            if parts and parts[0].lower() not in ("i", "home", "search", "hashtag"):
+                return parts[0].lstrip("@")
+    except Exception:
+        pass
+    return ""
+
+
 def load_sources_file() -> list:
     """Load sources from custom_sources.json."""
     filepath = REPO_ROOT / "offline_viewer" / "assets" / "custom_sources.json"
@@ -137,6 +155,15 @@ def fetch_avatar(source: dict, force: bool = False) -> Path | None:
             return out_path
         except Exception:
             return None
+
+    # Phase 2 - Task 4: for X/Twitter sources, resolve the avatar from the @handle
+    # first (deterministic real profile image) before falling back to the generic
+    # per-domain favicon path below.
+    x_handle = twitter_handle_from_url(feed_url)
+    if x_handle:
+        p = try_download(f"https://unavatar.io/x/{x_handle}")
+        if p:
+            return p
 
     # (a) RSS <image> / channel image
     try:

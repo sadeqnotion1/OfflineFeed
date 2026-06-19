@@ -70,7 +70,7 @@ Item {
                     Field { id: srcName;    label: qsTr("Name");      placeholder: qsTr("e.g. Variety") }
                     Field { id: srcUrl;     label: qsTr("Feed URL");  placeholder: qsTr("https://...") }
                     LabeledCombo { id: srcSection;  label: qsTr("Section");  options: ["Entertainment", "Sports", "Technology"] }
-                    Field { id: srcCategory; label: qsTr("Category"); placeholder: qsTr("e.g. Movies") }
+                    Field { id: srcCategory; label: qsTr("Category"); placeholder: qsTr("e.g. Entertainment") }
                 }
 
                 RowLayout {

@@ -56,7 +56,7 @@ Item {
                     id: card
                     width: parent.width
                     SettingsTextField { id: tfBot;    label: qsTr("Bot token");                placeholder: "123456:ABC-DEF..."; password: true }
-                    SettingsTextField { id: tfEnt;    label: qsTr("Movies chat ID (default)"); placeholder: "-1001234567890" }
+                    SettingsTextField { id: tfEnt;    label: qsTr("Entertainment chat ID (default)"); placeholder: "-1001234567890" }
                     SettingsTextField { id: tfSports; label: qsTr("Sports chat ID");           placeholder: "-1001234567890" }
                     SettingsTextField { id: tfTech;   label: qsTr("Tech chat ID");             placeholder: "-1001234567890" }
                 }

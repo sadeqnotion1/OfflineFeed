@@ -109,11 +109,16 @@ Item {
             }
 
             // Article image (optional) with rounded top corners and fixed aspect ratio
+            // Phase 2 - Task 3 (missing thumbnail fallback): always render the
+            // media slot; when a post has no thumbnail (or it fails to load) we
+            // show a bundled placeholder instead of an empty/broken box. Mirrors
+            // the web viewer for cross-client consistency.
             Item {
                 id: imageContainer
-                visible: root.thumbnail !== ""
+                readonly property string placeholderSource: Qt.resolvedUrl("../assets/placeholder-thumb.svg")
+                visible: true
                 width: mediaWidth
-                height: visible ? mediaHeight : 0
+                height: mediaHeight
                 clip: true
 
                 Rectangle {
@@ -126,10 +131,10 @@ Item {
 
                     Image {
                         id: image
-                        visible: root.thumbnail !== ""
-                        source: root.thumbnail
+                        visible: true
+                        source: root.thumbnail !== "" ? root.thumbnail : imageContainer.placeholderSource
                         width: mediaWidth
-                        height: visible ? mediaHeight : 0
+                        height: mediaHeight
                         fillMode: Image.PreserveAspectCrop
                         clip: true
                         asynchronous: true
@@ -137,6 +142,8 @@ Item {
                         smooth: true
                         sourceSize.width: mediaWidth
                         sourceSize.height: mediaHeight
+                        // Swap to the placeholder if the real thumbnail 404s / fails to load.
+                        onStatusChanged: if (status === Image.Error) source = imageContainer.placeholderSource
                     }
                 }
             }
@@ -193,7 +200,7 @@ Item {
                 // NEW: open this single post in the offline viewer (browser)
                 Icon {
                     visible: root.url !== ""
-                    name: "window"
+                    name: "browser"
                     size: 14
                     color: Theme.textSecondary
                     MouseArea {

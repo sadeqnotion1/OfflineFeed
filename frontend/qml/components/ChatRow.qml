@@ -55,14 +55,27 @@ Item {
                     name: "pin"; size: 13; color: Theme.textSecondary
                 }
                 Text {
+                    id: nameText
                     Layout.fillWidth: true
-                    text: row.name
+                    text: {
+                        var n = row.name;
+                        if (n.endsWith(" (X)")) return n.substring(0, n.length - 4);
+                        if (n.endsWith("(X)")) return n.substring(0, n.length - 3);
+                        return n;
+                    }
                     color: row.selected ? Theme.accentText : Theme.text
                     font.family: Theme.fontFamily
                     font.pixelSize: 15
                     font.bold: true
                     elide: Text.ElideRight
                     horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+                }
+                Icon {
+                    visible: row.name.endsWith("(X)") || row.name.endsWith(" (X)")
+                    name: "brand-x"
+                    size: 13
+                    color: row.selected ? Theme.accentText : Theme.textSecondary
+                    Layout.alignment: Qt.AlignVCenter
                 }
                 Text {
                     text: row.time

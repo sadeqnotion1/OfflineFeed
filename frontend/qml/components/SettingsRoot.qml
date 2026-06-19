@@ -81,6 +81,13 @@ Item {
                 onClicked: root.sectionSelected("feed")
             }
 
+            // --- News Sources (custom feeds: single / batch / OPML) ---
+            SettingsRow {
+                iconName: "external"
+                label: qsTr("News Sources")
+                onClicked: root.sectionSelected("sources")
+            }
+
             SettingsRow {
                 iconName: "folder"
                 label: qsTr("Folders & News Sources")

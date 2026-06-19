@@ -14,9 +14,9 @@ Rectangle {
 
     // tab metadata
     property var tabs: [
-        { id: "entertainment", label: qsTr("Movies"),     icon: "film"   },
-        { id: "sports",        label: qsTr("Sports"),     icon: "soccer" },
-        { id: "technology",    label: qsTr("Tech"),       icon: "cpu"    }
+        { id: "entertainment", label: qsTr("Entertainment"),     icon: "film"   },
+        { id: "sports",        label: qsTr("Sports"),            icon: "soccer" },
+        { id: "technology",    label: qsTr("Tech"),              icon: "cpu"    }
     ]
     property var unreadByTab: ({})
 

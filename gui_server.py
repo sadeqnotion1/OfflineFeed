@@ -920,10 +920,17 @@ def fetch_single_source(source_tuple):
         screen_name = twitter_screen_name(fetch_url)
         items = fetch_twitter_timeline(screen_name, headers, category_default)
         clean_name = get_clean_site_name(name)
+        # Phase 2 - Task 4 (correct X/Twitter avatar): resolve the avatar from the
+        # specific @handle rather than the generic x.com site favicon. unavatar
+        # maps a handle deterministically to its real profile image.
+        avatar_url = f"https://unavatar.io/x/{screen_name}" if screen_name else ""
         for item in items:
             item["source"] = clean_name
             item["topic"] = item.get("category") or category_default
             item["section"] = section
+            if avatar_url:
+                item["handle"] = screen_name
+                item["avatar"] = avatar_url
         status_type = "Twitter" if items else "Failed (no tweets)"
         return {"source": clean_name, "status": status_type, "items": items}
             
@@ -1773,6 +1780,94 @@ def get_article_content_blocks(article_url):
         print(f"Error scraping article content: {e}")
         return []
 
+def _detect_and_build_source(raw, defaults=None):
+    """
+    Normalize ONE source definition into the on-disk record schema used
+    everywhere: {name, url, category, avatar_path, is_rss, section}.
+
+    `raw` may be a dict or a bare string (a single line / URL / @handle).
+    Accepts BOTH key spellings: url|feed_url and avatar_base64|logo_base64.
+    Auto-detects the source type:
+      * bare "@handle" (or a single bare token) -> Twitter/X
+      * twitter.com / x.com URL                 -> Twitter/X
+      * t.me / t.me/s/ URL                      -> Telegram
+      * anything else                           -> RSS / site feed
+
+    Twitter/X handles are stored in the canonical https://x.com/<handle> form
+    (is_rss=False), identical to the existing built-in X channels, so they are
+    resolved by the EXISTING fetch_twitter_timeline()/scrape_twitter_syndication()
+    path and each becomes its own channel.
+
+    Returns (record, error). On failure record is None and error is a str.
+    """
+    defaults = defaults or {}
+    if not isinstance(raw, dict):
+        raw = {"url": str(raw or "")}
+
+    name = (raw.get("name") or "").strip()
+    url = (raw.get("url") or raw.get("feed_url") or "").strip()
+    category = (raw.get("category") or defaults.get("category") or "General").strip()
+    section = (raw.get("section") or defaults.get("section") or "Entertainment").strip()
+    is_rss = raw.get("is_rss", None)
+
+    if not url:
+        return None, "URL is required"
+
+    lower = url.lower()
+
+    if url.startswith("@") or ("." not in url and "/" not in url and ":" not in url):
+        # Bare @handle (or a single bare token) -> Twitter/X
+        handle = url.lstrip("@").strip().strip("/")
+        if not handle:
+            return None, "Empty Twitter/X handle"
+        url = "https://x.com/" + handle
+        if not name:
+            name = handle + " (X)"
+        is_rss = False
+    elif "twitter.com/" in lower or "x.com/" in lower:
+        normalized = url if lower.startswith("http") else "https://" + url
+        handle = twitter_screen_name(normalized)
+        if handle:
+            url = "https://x.com/" + handle
+            if not name:
+                name = handle + " (X)"
+        elif not name:
+            name = "X feed"
+        is_rss = False
+    elif "t.me/" in lower:
+        if not lower.startswith("http"):
+            url = "https://" + url
+            lower = url.lower()
+        if "t.me/s/" not in lower:
+            url = url.replace("t.me/", "t.me/s/", 1)
+        if not name:
+            channel = url.rstrip("/").split("/")[-1]
+            name = (channel + " (Telegram)") if channel else "Telegram"
+        is_rss = False
+    else:
+        if not lower.startswith("http://") and not lower.startswith("https://"):
+            url = "https://" + url
+        if is_rss is None:
+            is_rss = True
+        if not name:
+            name = clean_site_name("", url)
+
+    if is_rss is None:
+        is_rss = True
+    if not name:
+        name = url
+
+    record = {
+        "name": name,
+        "url": url,
+        "category": category,
+        "avatar_path": "",
+        "is_rss": bool(is_rss),
+        "section": section,
+    }
+    return record, None
+
+
 def fetch_and_aggregate_news():
     global news_cache
     sources = [
@@ -2159,10 +2254,16 @@ class GUIHandler(SimpleHTTPRequestHandler):
         print(f"[GUI Server] Incoming POST request to {self.path}")
         if self.path == "/api/news/sources/add":
             self.handle_add_news_source()
+        elif self.path == "/api/news/sources/update":
+            self.handle_update_news_source()
         elif self.path == "/api/news/sources/delete":
             self.handle_delete_news_source()
         elif self.path == "/api/news/sources/analyze":
             self.handle_analyze_news_source()
+        elif self.path == "/api/news/sources/add_batch":
+            self.handle_add_news_sources_batch()
+        elif self.path == "/api/news/sources/import_opml":
+            self.handle_import_opml()
         elif self.path == "/api/cache/clear":
             self.handle_clear_cache()
         elif self.path == "/api/news/ignore":
@@ -2715,19 +2816,33 @@ class GUIHandler(SimpleHTTPRequestHandler):
             post_data = self.rfile.read(content_length)
             params = json.loads(post_data.decode('utf-8'))
             
-            name = params.get("name", "").strip()
-            url = params.get("url", "").strip()
-            category = params.get("category", "General").strip()
-            section = params.get("section", "Entertainment").strip()
-            avatar_base64 = params.get("avatar_base64", "").strip()
+            name = (params.get("name") or "").strip()
+            url = (params.get("url") or params.get("feed_url") or "").strip()
+            category = (params.get("category") or "General").strip()
+            section = (params.get("section") or "Entertainment").strip()
+            avatar_base64 = (params.get("avatar_base64") or params.get("logo_base64") or "").strip()
+
+            _record, _err = _detect_and_build_source(
+                {"name": name, "url": url, "category": category,
+                 "section": section, "is_rss": params.get("is_rss", True)},
+                {"category": "General", "section": "Entertainment"})
+            if _err or not _record:
+                self.send_json_response(400, {"error": _err or "Could not parse source"})
+                return
+            name = _record["name"]
+            url = _record["url"]
+            category = _record["category"]
+            section = _record["section"]
             
             if not name or not url:
                 self.send_json_response(400, {"error": "Name and URL are required"})
                 return
                 
             sources = load_custom_sources()
-            if any(s["name"].lower() == name.lower() for s in sources):
-                self.send_json_response(400, {"error": "A news source with this name already exists"})
+            _dup = any(s.get("name", "").lower() == name.lower() for s in sources)
+            _dup = _dup or any(s.get("url", "").lower() == url.lower() for s in sources)
+            if _dup:
+                self.send_json_response(400, {"error": "A news source with this name or URL already exists"})
                 return
                 
             avatar_path = ""
@@ -2753,14 +2868,15 @@ class GUIHandler(SimpleHTTPRequestHandler):
                 except Exception as e:
                     print(f"Error saving custom avatar: {e}")
                     
-            sources.append({
+            record = {
                 "name": name,
                 "url": url,
                 "category": category,
                 "avatar_path": avatar_path,
-                "is_rss": params.get("is_rss", True),
+                "is_rss": _record.get("is_rss", params.get("is_rss", True)),
                 "section": section
-            })
+            }
+            sources.append(record)
             save_custom_sources(sources)
             
             global news_cache
@@ -2768,7 +2884,199 @@ class GUIHandler(SimpleHTTPRequestHandler):
                 news_cache["last_fetched"] = 0
                 
             log_system_activity("Custom Feeds", f"Added custom feed '{name}' ({url})")
-            self.send_json_response(200, {"success": True, "details": f"Custom news source '{name}' added successfully."})
+            self.send_json_response(200, {"success": True, "source": record, "details": f"Custom news source '{name}' added successfully."})
+        except Exception as e:
+            self.send_json_response(500, {"error": str(e)})
+
+    def handle_update_news_source(self):
+        try:
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            params = json.loads(post_data.decode('utf-8'))
+
+            # The source being edited is identified by its CURRENT (original) name.
+            original_name = (params.get("original_name") or params.get("name") or "").strip()
+            if not original_name:
+                self.send_json_response(400, {"error": "Missing source name"})
+                return
+
+            sources = load_custom_sources()
+            target = next((s for s in sources if s["name"].lower() == original_name.lower()), None)
+            if target is None:
+                self.send_json_response(404, {"error": "News source not found"})
+                return
+
+            # New values; fall back to existing ones when a field is omitted.
+            # Accept both "url"/"avatar_base64" and "feed_url"/"logo_base64" key styles.
+            new_name = (params.get("new_name") or params.get("name") or target.get("name", "")).strip()
+            new_url = (params.get("url") or params.get("feed_url") or target.get("url", "")).strip()
+            new_category = (params.get("category") or target.get("category", "General")).strip()
+            new_section = (params.get("section") or target.get("section", "Entertainment")).strip()
+            avatar_base64 = (params.get("avatar_base64") or params.get("logo_base64") or "").strip()
+
+            if not new_name or not new_url:
+                self.send_json_response(400, {"error": "Name and URL are required"})
+                return
+
+            # Prevent renaming onto another existing source's name.
+            if new_name.lower() != original_name.lower() and any(
+                s["name"].lower() == new_name.lower() for s in sources
+            ):
+                self.send_json_response(400, {"error": "A news source with this name already exists"})
+                return
+
+            # Optionally replace the avatar (same logic as handle_add_news_source).
+            if avatar_base64:
+                try:
+                    import base64
+                    header, encoded = avatar_base64.split(",", 1)
+                    file_ext = "png"
+                    if "image/jpeg" in header or "image/jpg" in header:
+                        file_ext = "jpg"
+                    elif "image/svg" in header:
+                        file_ext = "svg"
+
+                    avatar_filename = f"{hashlib.md5(new_name.encode('utf-8')).hexdigest()}.{file_ext}"
+                    avatar_dir = os.path.join(DIRECTORY, "assets", "custom_avatars")
+                    os.makedirs(avatar_dir, exist_ok=True)
+                    avatar_fullpath = os.path.join(avatar_dir, avatar_filename)
+
+                    with open(avatar_fullpath, "wb") as fh:
+                        fh.write(base64.b64decode(encoded))
+
+                    target["avatar_path"] = f"assets/custom_avatars/{avatar_filename}"
+                except Exception as e:
+                    print(f"Error saving custom avatar: {e}")
+
+            # Apply the edits in place.
+            target["name"] = new_name
+            target["url"] = new_url
+            target["category"] = new_category
+            target["section"] = new_section
+            if "is_rss" in params:
+                target["is_rss"] = params.get("is_rss", True)
+
+            save_custom_sources(sources)
+
+            global news_cache
+            with news_cache_lock:
+                news_cache["last_fetched"] = 0
+
+            log_system_activity("Custom Feeds", f"Updated custom feed '{original_name}' -> '{new_name}'")
+            self.send_json_response(200, {"success": True, "details": f"Custom news source '{new_name}' updated successfully."})
+        except Exception as e:
+            self.send_json_response(500, {"error": str(e)})
+
+    def handle_add_news_sources_batch(self):
+        try:
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            params = json.loads(post_data.decode('utf-8'))
+
+            text = params.get("text", "") or ""
+            defaults = {
+                "category": params.get("category") or "General",
+                "section": params.get("section") or "Entertainment",
+            }
+
+            sources = load_custom_sources()
+            existing_names = {s.get("name", "").lower() for s in sources}
+            existing_urls = {s.get("url", "").lower() for s in sources}
+
+            added = 0
+            failed = 0
+            errors = []
+
+            for line in text.splitlines():
+                line = line.strip()
+                if not line or line.startswith("#"):
+                    continue
+
+                if "|" in line:
+                    nm, _, u = line.partition("|")
+                    raw = {"name": nm.strip(), "url": u.strip()}
+                elif "," in line and not line.lstrip().startswith("@"):
+                    nm, _, u = line.partition(",")
+                    raw = {"name": nm.strip(), "url": u.strip()}
+                else:
+                    raw = {"url": line}
+
+                record, error = _detect_and_build_source(raw, defaults)
+                if error or not record:
+                    failed += 1
+                    errors.append("%s: %s" % (line, error or "could not parse"))
+                    continue
+                if record["name"].lower() in existing_names or record["url"].lower() in existing_urls:
+                    failed += 1
+                    errors.append("%s: duplicate" % line)
+                    continue
+
+                sources.append(record)
+                existing_names.add(record["name"].lower())
+                existing_urls.add(record["url"].lower())
+                added += 1
+
+            if added:
+                save_custom_sources(sources)
+                with news_cache_lock:
+                    news_cache["last_fetched"] = 0
+                log_system_activity("Custom Feeds", f"Batch added {added} custom feed(s)")
+
+            self.send_json_response(200, {"success": True, "added": added, "failed": failed, "errors": errors})
+        except Exception as e:
+            self.send_json_response(500, {"error": str(e)})
+
+    def handle_import_opml(self):
+        try:
+            content_length = int(self.headers['Content-Length'])
+            post_data = self.rfile.read(content_length)
+            params = json.loads(post_data.decode('utf-8'))
+
+            opml_text = params.get("opml", "") or ""
+            defaults = {
+                "category": params.get("category") or "General",
+                "section": params.get("section") or "Entertainment",
+            }
+
+            import xml.etree.ElementTree as ET
+            try:
+                root = ET.fromstring(opml_text)
+            except Exception as parse_err:
+                self.send_json_response(400, {"error": f"Invalid OPML: {parse_err}"})
+                return
+
+            sources = load_custom_sources()
+            existing_names = {s.get("name", "").lower() for s in sources}
+            existing_urls = {s.get("url", "").lower() for s in sources}
+
+            added = 0
+            failed = 0
+
+            for outline in root.iter("outline"):
+                xml_url = (outline.get("xmlUrl") or outline.get("xmlurl") or "").strip()
+                if not xml_url:
+                    continue
+                title = (outline.get("title") or outline.get("text") or "").strip()
+                record, error = _detect_and_build_source(
+                    {"name": title, "url": xml_url, "is_rss": True}, defaults)
+                if error or not record:
+                    failed += 1
+                    continue
+                if record["name"].lower() in existing_names or record["url"].lower() in existing_urls:
+                    failed += 1
+                    continue
+                sources.append(record)
+                existing_names.add(record["name"].lower())
+                existing_urls.add(record["url"].lower())
+                added += 1
+
+            if added:
+                save_custom_sources(sources)
+                with news_cache_lock:
+                    news_cache["last_fetched"] = 0
+                log_system_activity("Custom Feeds", f"Imported {added} source(s) from OPML")
+
+            self.send_json_response(200, {"success": True, "added": added, "failed": failed})
         except Exception as e:
             self.send_json_response(500, {"error": str(e)})
 

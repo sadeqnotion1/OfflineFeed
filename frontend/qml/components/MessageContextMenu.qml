@@ -68,7 +68,7 @@ Menu {
     }
 
     MenuRow { text: qsTr("Read offline");            iconName: "eye";      onTriggered: menu.readArticle(menu.url, menu.messageTitle) }
-    MenuRow { text: qsTr("Open in offline viewer");  iconName: "window";   onTriggered: menu.openInViewer(menu.url) }
+    MenuRow { text: qsTr("Open in offline viewer");  iconName: "browser";  onTriggered: menu.openInViewer(menu.url) }
     MenuRow { text: qsTr("Open original link");      iconName: "external"; onTriggered: menu.openLink(menu.url) }
     MenuRow {
         // Item 2: pin / unpin this individual post. The pinned state is keyed by

@@ -157,6 +157,17 @@ function getChannelAvatarHtml(source, size = 44, id = '') {
   const idAttr = id ? `id="${id}"` : '';
   const style = `width: ${size}px; height: ${size}px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; user-select: none; box-shadow: 0 2px 5px rgba(0,0,0,0.25); overflow: hidden; background: #fff; border: 1.5px solid rgba(0,0,0,0.1); margin-right: 12px;`;
   
+  // Phase 2 - Task 4: prefer an explicit per-handle avatar (e.g. an X/Twitter
+  // profile image supplied by the backend) over the generic site favicon.
+  const mappedAvatar = (window.sourceAvatarMap && window.sourceAvatarMap[s]) || '';
+  if (mappedAvatar) {
+    return `
+      <div ${idAttr} style="${style}" class="telegram-avatar telegram-avatar-container">
+        <img src="${mappedAvatar}" style="width: 100%; height: 100%; object-fit: cover; display: block;" alt="${source}" onerror="this.parentNode.innerHTML='<span style=&quot;font-weight: 800; font-size: ${size * 0.5}px;&quot;>${initial}</span>'; this.parentNode.className='telegram-avatar ${avatarClass}';" />
+      </div>
+    `;
+  }
+
   if (s.includes('system logs') || s.includes('app logs')) {
     return `
       <div ${idAttr} style="${style} background: #202b36; border-color: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;" class="telegram-avatar telegram-avatar-container">
@@ -767,6 +778,24 @@ function renderNewsArticles(articles) {
     reactionsHtml += `</div>`;
     
     const avatarHtml = getChannelAvatarHtml(art.source, 32);
+
+    // Phase 2 - Task 2 (Twitter title == body): when an X/Twitter post's title is
+    // just the first line (or all) of its body, render the body only so the text
+    // is not duplicated.
+    const titleText = (art.title || '').trim();
+    const bodyText = (art.description || '').trim();
+    const normForDupe = (t) => t.replace(/\u2026/g, '').replace(/\.\.\.$/, '').replace(/\s+/g, ' ').trim().toLowerCase();
+    const nTitle = normForDupe(titleText);
+    const nBody = normForDupe(bodyText);
+    const titleDupesBody = nTitle.length > 0 && nBody.length > 0 && (nTitle === nBody || nBody.startsWith(nTitle));
+    const showTitle = titleText.length > 0 && !titleDupesBody;
+    const showBody = bodyText.length > 0;
+
+    // Phase 2 - Task 3 (missing thumbnail fallback, render-time): show a bundled
+    // placeholder graphic when a post has no thumbnail, and swap to it if a
+    // thumbnail URL fails to load (instead of leaving an empty/broken box).
+    const PLACEHOLDER_THUMB = 'assets/placeholder-thumb.svg';
+    const thumbSrc = (art.thumbnail && art.thumbnail.trim()) ? art.thumbnail : PLACEHOLDER_THUMB;
     const forwardedHeader = isSavedFeed ? `
       <div style="font-size: 11px; color: #5288c1; margin-bottom: 6px; font-style: italic; font-weight: 600;">
         Forwarded from ${art.source}
@@ -794,15 +823,13 @@ function renderNewsArticles(articles) {
         ${avatarHtml}
         <div class="telegram-message-container">
           <div class="telegram-message-bubble">
-            ${art.thumbnail ? `
-              <div class="telegram-bubble-image-wrapper">
-                <img src="${art.thumbnail}" class="telegram-bubble-image" alt="" loading="lazy" onerror="this.parentNode.style.display='none';" />
-              </div>
-            ` : ''}
+            <div class="telegram-bubble-image-wrapper">
+              <img src="${thumbSrc}" class="telegram-bubble-image" alt="" loading="lazy" onerror="this.onerror=null; this.src='${PLACEHOLDER_THUMB}';" />
+            </div>
             <div class="telegram-bubble-body">
               ${forwardedHeader}
-              <h4 class="telegram-bubble-title">${art.title}</h4>
-              ${art.description ? `<p class="telegram-bubble-description">${art.description}</p>` : ''}
+              ${showTitle ? `<h4 class="telegram-bubble-title">${titleText}</h4>` : ''}
+              ${showBody ? `<p class="telegram-bubble-description">${bodyText}</p>` : ''}
               <div class="topic-hashtag-container">
                 <span class="topic-hashtag">#${art.topic || art.category || 'General'}</span>
               </div>
@@ -854,6 +881,14 @@ function filterNews() {
     const channelId = info.channelId;
     const source = info.sourceName;
     const category = info.categoryName;
+
+    // Phase 2 - Task 4 (correct X/Twitter avatar): the backend now stamps each X
+    // post with its handle's real avatar URL. Index it by source name so every
+    // avatar surface (chat list, header, bubbles) shows the right image.
+    if (art.avatar) {
+      window.sourceAvatarMap = window.sourceAvatarMap || {};
+      window.sourceAvatarMap[(art.source || source || '').toLowerCase()] = art.avatar;
+    }
     
     let matches = true;
     if (query) {

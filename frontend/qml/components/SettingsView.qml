@@ -17,6 +17,7 @@ Item {
         { sid: "notifications", label: qsTr("Notifications & Sounds"), icon: "bell",    page: "NotificationsPage.qml" },
         { sid: "privacy",       label: qsTr("Privacy & Security"),     icon: "shield",  page: "PrivacyPage.qml" },
         { sid: "feed",          label: qsTr("Feed & Chat Settings"),   icon: "chat",    page: "FeedPage.qml" },
+        { sid: "sources",      label: qsTr("News Sources"),           icon: "external", page: "SourcesPage.qml" },
         { sid: "folders",       label: qsTr("Folders"),                icon: "folder",  page: "FoldersPage.qml" },
         { sid: "advanced",      label: qsTr("Advanced"),               icon: "wrench",  page: "AdvancedPage.qml" },
         { sid: "appearance",    label: qsTr("Appearance"),             icon: "palette", page: "AppearancePage.qml" },

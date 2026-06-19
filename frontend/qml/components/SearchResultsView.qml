@@ -88,14 +88,23 @@ Rectangle {
                         // Channel source pill
                         Rectangle {
                             height: 20
-                            width: sourceLabel.implicitWidth + 16
+                            width: sourceIcon.visible ? 28 : (sourceLabel.implicitWidth + 16)
                             radius: 10
                             color: Theme.panelAlt
                             border.width: 1
                             border.color: Theme.divider
+                            Icon {
+                                id: sourceIcon
+                                anchors.centerIn: parent
+                                visible: model.source === "Twitter" || model.source === "(X)" || model.source === "x.com" || model.source.endsWith("(X)") || model.source.endsWith(" (X)")
+                                name: "brand-x"
+                                size: 12
+                                color: Theme.accent
+                            }
                             Text {
                                 id: sourceLabel
                                 anchors.centerIn: parent
+                                visible: !sourceIcon.visible
                                 text: model.source
                                 color: Theme.accent
                                 font.family: Theme.fontFamily; font.pixelSize: 11; font.bold: true
@@ -197,7 +206,7 @@ Rectangle {
                                 id: btnRow2
                                 anchors.centerIn: parent
                                 spacing: 6
-                                Icon { anchors.verticalCenter: parent.verticalCenter; name: "window"; size: 13; color: Theme.textSecondary }
+                                Icon { anchors.verticalCenter: parent.verticalCenter; name: "browser"; size: 13; color: Theme.textSecondary }
                                 Text { anchors.verticalCenter: parent.verticalCenter; text: qsTr("Open in offline viewer"); color: Theme.text; font.family: Theme.fontFamily; font.pixelSize: 12 }
                             }
                             MouseArea {

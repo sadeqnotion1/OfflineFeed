@@ -84,14 +84,31 @@ Rectangle {
                     Layout.leftMargin: 10        // the single avatar -> name gap
                     Layout.alignment: Qt.AlignVCenter
                     spacing: 0
-                    Text {
+                    RowLayout {
                         Layout.fillWidth: true
-                        text: root.channelName !== "" ? root.channelName : qsTr("OfflineFeed")
-                        color: Theme.text
-                        font.family: Theme.fontFamily
-                        font.pixelSize: 16
-                        font.bold: true
-                        elide: Text.ElideRight
+                        spacing: 6
+                        Text {
+                            id: headerTitleText
+                            Layout.fillWidth: true
+                            text: {
+                                var n = root.channelName;
+                                if (n.endsWith(" (X)")) return n.substring(0, n.length - 4);
+                                if (n.endsWith("(X)")) return n.substring(0, n.length - 3);
+                                return n !== "" ? n : qsTr("OfflineFeed");
+                            }
+                            color: Theme.text
+                            font.family: Theme.fontFamily
+                            font.pixelSize: 16
+                            font.bold: true
+                            elide: Text.ElideRight
+                        }
+                        Icon {
+                            visible: root.channelName.endsWith("(X)") || root.channelName.endsWith(" (X)")
+                            name: "brand-x"
+                            size: 15
+                            color: Theme.textSecondary
+                            Layout.alignment: Qt.AlignVCenter
+                        }
                     }
                     Text {
                         // Telegram shows a live status line under the title.

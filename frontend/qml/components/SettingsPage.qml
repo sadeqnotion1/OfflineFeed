@@ -22,6 +22,8 @@ Rectangle {
                     settingsStack.push(privacyComponent)
                 } else if (sectionId === "feed") {
                     settingsStack.push(feedComponent)
+                } else if (sectionId === "sources") {
+                    settingsStack.push(sourcesComponent)
                 } else if (sectionId === "folders") {
                     settingsStack.push(foldersComponent)
                 } else if (sectionId === "advanced") {
@@ -41,6 +43,7 @@ Rectangle {
     Component { id: notificationsComponent; SettingsNotifications {} }
     Component { id: privacyComponent; SettingsPrivacy {} }
     Component { id: feedComponent; SettingsFeed {} }
+    Component { id: sourcesComponent; SettingsSources {} }
     Component { id: foldersComponent; SettingsFolders {} }
     Component { id: advancedComponent; SettingsAdvanced {} }
     Component { id: appearanceComponent; SettingsAppearance {} }

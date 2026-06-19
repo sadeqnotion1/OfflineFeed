@@ -1,0 +1,13 @@
+{
+  "web-viewer": "world-www",
+  "twitter-x": "brand-x",
+  "field-link": "link",
+  "field-rss": "rss",
+  "field-date": "calendar-event",
+  "field-time": "clock",
+  "field-tag": "tag",
+  "field-author": "user",
+  "field-title": "heading",
+  "source-web": "world",
+  "source-telegram": "brand-telegram"
+}

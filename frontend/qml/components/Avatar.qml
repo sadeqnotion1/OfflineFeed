@@ -20,6 +20,7 @@ Item {
                                     && avatarPath !== "bookmark"
                                     && avatarPath !== "logs"
                                     && avatarPath !== "trash"
+                                    && avatarPath !== "archive"
     readonly property var grad: Theme.gradientFor(seed)
 
     function initials(n) {
@@ -43,7 +44,7 @@ Item {
 
         Text {
             anchors.centerIn: parent
-            visible: root.avatarPath !== "bookmark" && root.avatarPath !== "logs" && root.avatarPath !== "trash"
+            visible: root.avatarPath !== "bookmark" && root.avatarPath !== "logs" && root.avatarPath !== "trash" && root.avatarPath !== "archive"
             text: root.initials(root.name)
             color: "#ffffff"
             font.family: Theme.fontFamily
@@ -53,8 +54,8 @@ Item {
 
         Icon {
             anchors.centerIn: parent
-            visible: root.avatarPath === "bookmark" || root.avatarPath === "logs" || root.avatarPath === "trash"
-            name: root.avatarPath === "bookmark" ? "bookmark" : (root.avatarPath === "logs" ? "logs" : "trash")
+            visible: root.avatarPath === "bookmark" || root.avatarPath === "logs" || root.avatarPath === "trash" || root.avatarPath === "archive"
+            name: root.avatarPath === "bookmark" ? "bookmark" : (root.avatarPath === "logs" ? "logs" : (root.avatarPath === "trash" ? "trash" : "archive"))
             color: "#ffffff"
             size: root.size * 0.5
         }

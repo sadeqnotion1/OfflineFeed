@@ -50,7 +50,7 @@ Item {
                 width: parent.width; radius: 10; color: Theme.panel; clip: true; height: c1.implicitHeight
                 Column {
                     id: c1; width: parent.width
-                    SettingsToggle { id: tgMovies; label: qsTr("Movies")
+                    SettingsToggle { id: tgEntertainment; label: qsTr("Entertainment")
                         onToggled: bridge.settingsSetValue("folders", "show_entertainment", value) }
                     SettingsToggle { id: tgSports; label: qsTr("Sports")
                         onToggled: bridge.settingsSetValue("folders", "show_sports", value) }
@@ -209,7 +209,7 @@ Item {
 
     Component.onCompleted: {
         var g = bridge.settingsGetGroup("folders")
-        tgMovies.checked = (g.show_entertainment === undefined) ? true : g.show_entertainment
+        tgEntertainment.checked = (g.show_entertainment === undefined) ? true : g.show_entertainment
         tgSports.checked = (g.show_sports === undefined) ? true : g.show_sports
         tgTech.checked   = (g.show_technology === undefined) ? true : g.show_technology
         page.refreshFolders()

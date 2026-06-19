@@ -42,7 +42,7 @@ from PySide6.QtCore import (
 )
 
 _cached_backend_port = None
-HTTP_TIMEOUT = 20
+HTTP_TIMEOUT = 120
 
 def get_backend_port() -> int:
     global _cached_backend_port
@@ -1162,7 +1162,42 @@ class ChatBridge(QObject):
             if isinstance(result, Exception):
                 self.toastMessage.emit("error", "Could not add source")
                 return
-            self.toastMessage.emit("ok", f"Added {name}")
+            if isinstance(result, dict) and result.get("error"):
+                self.toastMessage.emit("error", result.get("error"))
+                return
+            saved = result.get("source") if isinstance(result, dict) else None
+            self.toastMessage.emit("ok", "Added %s" % ((saved or {}).get("name", name)))
+            self.refreshNews(True)
+
+        self._run(work, done)
+
+    @Slot(str, str, str, str, str)
+    @Slot(str, str, str, str, str, str)
+    def updateCustomSource(self, original_name, new_name, feed_url, section, category, avatar_base64=""):
+        payload = {
+            "original_name": original_name,
+            "new_name": new_name or original_name,
+            "name": new_name or original_name,
+            "url": feed_url,
+            "feed_url": feed_url,
+            "section": section or "Entertainment",
+            "category": category or "",
+            "avatar_base64": avatar_base64,
+            "logo_base64": avatar_base64,
+            "is_rss": True,
+        }
+
+        def work():
+            return _post("/api/news/sources/update", payload)
+
+        def done(result):
+            if isinstance(result, Exception):
+                self.toastMessage.emit("error", "Could not update source")
+                return
+            if isinstance(result, dict) and result.get("error"):
+                self.toastMessage.emit("error", result.get("error"))
+                return
+            self.toastMessage.emit("ok", f"Updated {new_name or original_name}")
             self.refreshNews(False)
 
         self._run(work, done)
@@ -1178,6 +1213,68 @@ class ChatBridge(QObject):
                 return
             self.toastMessage.emit("ok", f"Removed {name}")
             self.refreshNews(False)
+
+        self._run(work, done)
+
+    @Slot(str, str, str)
+    def addCustomSourcesBatch(self, blob, section, category):
+        payload = {"text": blob, "section": section or "", "category": category or ""}
+
+        def work():
+            return _post("/api/news/sources/add_batch", payload)
+
+        def done(result):
+            if isinstance(result, Exception):
+                self.toastMessage.emit("error", "Batch add failed")
+                return
+            if isinstance(result, dict) and result.get("error"):
+                self.toastMessage.emit("error", result.get("error"))
+                return
+            added = (result or {}).get("added", 0)
+            failed = (result or {}).get("failed", 0)
+            self.toastMessage.emit("ok" if added else "info",
+                                   "Added %d, skipped %d" % (added, failed))
+            self.refreshNews(True)
+
+        self._run(work, done)
+
+    @Slot(str)
+    def importOpml(self, file_url):
+        path = file_url or ""
+        if path.startswith("file:///"):
+            path = urllib.parse.unquote(path[8:])
+            if re.match(r"^/[A-Za-z]:", path):
+                path = path[1:]
+            path = os.path.normpath(path)
+        elif path.startswith("file://"):
+            path = urllib.parse.unquote(path[7:])
+        elif path.startswith("file:"):
+            path = urllib.parse.unquote(path[5:])
+
+        try:
+            with open(path, "r", encoding="utf-8") as fh:
+                opml_text = fh.read()
+        except Exception as exc:
+            self.toastMessage.emit("error", "Could not read OPML: %s" % exc)
+            return
+
+        payload = {"opml": opml_text}
+
+        def work():
+            return _post("/api/news/sources/import_opml", payload)
+
+        def done(result):
+            if isinstance(result, Exception):
+                self.toastMessage.emit("error", "OPML import failed")
+                return
+            if isinstance(result, dict) and result.get("error"):
+                self.toastMessage.emit("error", result.get("error"))
+                return
+            added = (result or {}).get("added", 0)
+            failed = (result or {}).get("failed", 0)
+            self.toastMessage.emit("ok" if added else "info",
+                                   "Imported %d, skipped %d" % (added, failed))
+            self.refreshNews(True)
 
         self._run(work, done)
 
