@@ -1,7 +1,7 @@
 [
     {
         "appearance": {
-            "theme": "night",
+            "theme": "day",
             "font_family": "TikTok Sans",
             "accent_override": "#f5a623",
             "wallpaper_mode": "image",

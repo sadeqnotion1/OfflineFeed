@@ -56,8 +56,8 @@ Rectangle {
                     Icon {
                         anchors.horizontalCenter: parent.horizontalCenter
                         name: modelData.icon
-                        size: 26
-                        color: parent.parent.active ? Theme.accentText : Theme.textSecondary
+                        size: Icon.Size.Large
+                        tint: parent.parent.active ? Icon.Tint.Active : Icon.Tint.Default
                     }
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -110,8 +110,8 @@ Rectangle {
                     Icon {
                         anchors.horizontalCenter: parent.horizontalCenter
                         name: "folder"
-                        size: 26
-                        color: parent.parent.active ? Theme.accentText : Theme.textSecondary
+                        size: Icon.Size.Large
+                        tint: parent.parent.active ? Icon.Tint.Active : Icon.Tint.Default
                     }
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
@@ -153,8 +153,8 @@ Rectangle {
                 spacing: 4
                 Icon {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    name: "settings"; size: 26
-                    color: parent.parent.active ? Theme.accentText : Theme.textSecondary
+                    name: "settings"; size: Icon.Size.Large
+                    tint: parent.parent.active ? Icon.Tint.Active : Icon.Tint.Default
                 }
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter

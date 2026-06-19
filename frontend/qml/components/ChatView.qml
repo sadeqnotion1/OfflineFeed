@@ -129,8 +129,8 @@ Rectangle {
                     LayoutMirroring.enabled: Theme.rtl
 
                     Icon {
-                        name: "refresh"; size: 19
-                        color: bridge.newsRefreshing ? Theme.accent : Theme.textSecondary
+                        name: "refresh"; size: Icon.Size.Medium
+                        tint: bridge.newsRefreshing ? Icon.Tint.Active : Icon.Tint.Default
                         // Spin while a refresh is in flight (loading state).
                         RotationAnimation on rotation {
                             from: 0; to: 360; duration: 900
@@ -145,8 +145,8 @@ Rectangle {
                         }
                     }
                     Icon {
-                        name: "search"; size: 20
-                        color: root.searchActive ? Theme.accent : Theme.textSecondary
+                        name: "search"; size: Icon.Size.Medium
+                        tint: root.searchActive ? Icon.Tint.Active : Icon.Tint.Default
                         MouseArea {
                             anchors.fill: parent; anchors.margins: -6
                             cursorShape: Qt.PointingHandCursor
@@ -158,7 +158,7 @@ Rectangle {
                         }
                     }
                     Icon {
-                        name: "menu"; size: 20; color: Theme.textSecondary
+                        name: "menu"; size: Icon.Size.Medium; tint: Icon.Tint.Default
                         MouseArea {
                             anchors.fill: parent; anchors.margins: -10
                             cursorShape: Qt.PointingHandCursor
