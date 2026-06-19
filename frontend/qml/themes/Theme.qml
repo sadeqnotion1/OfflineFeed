@@ -254,9 +254,18 @@ QtObject {
     //   amount=0 -> base, amount=1 -> accent. Returns an OPAQUE color.
     //   This is the reusable warm-neutral derivation helper.
     function tint(base, accent, amount) {
-        return Qt.rgba(base.r + (accent.r - base.r) * amount,
-                       base.g + (accent.g - base.g) * amount,
-                       base.b + (accent.b - base.b) * amount,
+        // FIX (dark-mode visibility): `base` arrives as a hex STRING (the
+        // darkNeutral.* anchors are a JS object of strings). "#8a8a8a".r is
+        // undefined -> NaN -> Qt.rgba clamps to BLACK, which made every
+        // tint()-derived token (textSecondary, divider, dark surfaces) render
+        // black in dark mode. Coerce both args to real colors first;
+        // Qt.lighter(x, 1.0) is a no-op that returns a proper color for a
+        // STRING or a color.
+        var b = Qt.lighter(base, 1.0)
+        var a = Qt.lighter(accent, 1.0)
+        return Qt.rgba(b.r + (a.r - b.r) * amount,
+                       b.g + (a.g - b.g) * amount,
+                       b.b + (a.b - b.b) * amount,
                        1.0)
     }
     // Linear blend of two colors. t=0 -> c1, t=1 -> c2. Returns opaque color.

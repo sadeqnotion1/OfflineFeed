@@ -77,6 +77,24 @@ Item {
     // requested AND there is a title to place on the image; otherwise we fall
     // back to the safe below-image caption so a post never loses its title.
     readonly property bool overlayActive: overlayMode === "overlay" && root.title !== ""
+    // FIX (twitter/telegram duplicate text): the backend uses the
+    // first line of the body as the post `title`, so for tweets the
+    // title equals (or is a prefix of) the body and the post would
+    // render twice. Detect that and suppress the separate title; the
+    // full text still shows once in the body below.
+    function _plain(s) {
+        return String(s).replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim().toLowerCase()
+    }
+    readonly property bool titleRedundant: {
+        if (root.title === "" || root.text === "")
+            return false
+        var t = _plain(root.title).replace(/(\.\.\.|…)$/, "").trim()
+        if (t === "")
+            return false
+        var b = _plain(root.text)
+        return b === t || b.indexOf(t) === 0
+    }
+
 
     // ---- The height fix: implicitHeight follows the content Column ----
     implicitHeight: bubble.height + (lastInGroup ? 10 : 3)
@@ -214,7 +232,7 @@ Item {
                     Text {
                         id: overlayTitle
                         width: parent.width
-                        visible: root.title !== ""
+                        visible: root.title !== "" && !root.titleRedundant
                         text: root.title
                         color: Theme.onMedia                 // always-light, reuse theme token
                         font.family: Theme.fontFamily
@@ -264,7 +282,7 @@ Item {
             // so hide the below-image copy to avoid duplication.
             Text {
                 id: titleText
-                visible: root.title !== "" && !root.overlayActive
+                visible: root.title !== "" && !root.overlayActive && !root.titleRedundant
                 text: root.title
                 width: parent.width
                 wrapMode: Text.WordWrap

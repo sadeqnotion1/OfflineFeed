@@ -3,9 +3,9 @@
         "appearance": {
             "theme": "night",
             "font_family": "TikTok Sans",
-            "accent_override": "#f5a623",
+            "accent_override": "#4dcd5e",
             "wallpaper_mode": "image",
-            "interface_scale": 1.1,
+            "interface_scale": 1.0,
             "auto_night": false,
             "reader_font_family": "TikTok Sans",
             "wallpaper_image": "file:///E:/Projects/OfflineFeed-master/data/wallpapers/wallpaper.jpg"
