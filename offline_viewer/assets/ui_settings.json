@@ -5,7 +5,7 @@
             "font_family": "TikTok Sans",
             "accent_override": "#f5a623",
             "wallpaper_mode": "image",
-            "interface_scale": 0.8,
+            "interface_scale": 1.1,
             "auto_night": false,
             "reader_font_family": "TikTok Sans",
             "wallpaper_image": "file:///E:/Projects/OfflineFeed-master/data/wallpapers/wallpaper.jpg"
