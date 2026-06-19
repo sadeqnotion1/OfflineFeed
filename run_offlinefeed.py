@@ -53,7 +53,19 @@ def main() -> int:
     debug.install_excepthooks()
     log.info("Launcher starting (cwd=%s)", Path.cwd())
 
-    report = debug.run_diagnostics()
+    # Load configured port for diagnostics check
+    port = 8080
+    try:
+        settings_path = REPO_ROOT / "offline_viewer" / "assets" / "ui_settings.json"
+        if settings_path.exists():
+            import json
+            data = json.loads(settings_path.read_text(encoding="utf-8"))
+            loaded = data[0] if (isinstance(data, list) and len(data) > 0) else (data if isinstance(data, dict) else {})
+            port = loaded.get("advanced", {}).get("backend_port", 8080)
+    except Exception:
+        pass
+
+    report = debug.run_diagnostics(port=port)
     print(debug.format_report(report))
 
     if doctor_only:

@@ -27,7 +27,7 @@
             "rtl": false
         },
         "advanced": {
-            "backend_port": 8080,
+            "backend_port": 8081,
             "cache_limit_mb": 500
         },
         "account": {

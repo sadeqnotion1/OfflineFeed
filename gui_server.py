@@ -577,6 +577,84 @@ def scrape_twitter_syndication(content, category_default):
         })
     return items
 
+# ---------------------------------------------------------------------------
+# X / Twitter timeline resolver
+#
+# The legacy syndication profile endpoint
+# (syndication.twitter.com/srv/timeline-profile/screen-name/<user>) is
+# deprecated and almost always returns 0 tweets. We keep it as a best-effort
+# first attempt, then fall back to a self-hosted Nitter instance's RSS feed,
+# which we parse with the EXISTING parse_xml_rss() helper.
+# ---------------------------------------------------------------------------
+NITTER_HOSTS = [
+    h.strip().rstrip('/')
+    for h in os.environ.get("OFFLINEFEED_NITTER_HOSTS", "http://127.0.0.1:8081,https://nitter.net").split(",")
+    if h.strip()
+]
+
+def twitter_screen_name(url):
+    """Extract the @handle (screen name) from a twitter.com / x.com URL."""
+    try:
+        parsed = urllib.parse.urlparse(url)
+        parts = [p for p in parsed.path.split('/') if p]
+        return parts[0] if parts else ""
+    except Exception:
+        return ""
+
+def fetch_twitter_timeline(screen_name, headers, category_default):
+    """
+    Resolve an X timeline into the standard article-dict list.
+
+    Strategy:
+      (a) best-effort: legacy syndication endpoint + scrape_twitter_syndication()
+      (b) fallback:    <nitter_host>/<handle>/rss for each configured host,
+                       parsed with the EXISTING parse_xml_rss(); nitter links
+                       are rewritten back to https://x.com so the UI links to
+                       the real post.
+    Returns [] (with a log line) if every source fails.
+    """
+    import requests
+
+    if not screen_name:
+        return []
+
+    # (a) Nitter RSS first (for live, up-to-date tweets).
+    for host in NITTER_HOSTS:
+        rss_url = f"{host}/{screen_name}/rss"
+        try:
+            r = requests.get(rss_url, headers=headers, timeout=8)
+            if r.status_code != 200:
+                print(f"[Twitter] Nitter {rss_url} -> HTTP {r.status_code}")
+                continue
+            items = parse_xml_rss(r.text, f"{screen_name} (X)", category_default, feed_url=rss_url)
+            # Rewrite nitter permalinks back to the canonical x.com URL.
+            for it in items:
+                link = it.get("url", "")
+                if link:
+                    parsed = urllib.parse.urlparse(link)
+                    it["url"] = "https://x.com" + parsed.path
+            if items:
+                print(f"[Twitter] Resolved @{screen_name} via Nitter {host} ({len(items)} tweets)")
+                return items
+        except Exception as e:
+            print(f"[Twitter] Nitter host {host} failed for @{screen_name}: {e}")
+            continue
+
+    # (b) Legacy syndication endpoint -- fallback best effort (may be stale).
+    try:
+        syn_url = f"https://syndication.twitter.com/srv/timeline-profile/screen-name/{screen_name}"
+        r = requests.get(syn_url, headers=headers, timeout=8)
+        if r.status_code == 200:
+            items = scrape_twitter_syndication(r.text, category_default)
+            if items:
+                print(f"[Twitter] Resolved @{screen_name} via syndication endpoint ({len(items)} tweets)")
+                return items
+    except Exception as e:
+        print(f"[Twitter] Syndication endpoint failed for @{screen_name}: {e}")
+
+    print(f"[Twitter] All sources failed for @{screen_name}; returning no items.")
+    return []
+
 def scrape_thr_html(content, category_default):
     from bs4 import BeautifulSoup
     soup = BeautifulSoup(content, 'html.parser')
@@ -836,12 +914,18 @@ def fetch_single_source(source_tuple):
     }
     
     fetch_url = url
+    # X / Twitter sources are resolved through fetch_twitter_timeline(), which
+    # tries the legacy syndication endpoint and then falls back to Nitter RSS.
     if "twitter.com/" in fetch_url or "x.com/" in fetch_url:
-        parsed_url = urllib.parse.urlparse(fetch_url)
-        path_parts = [p for p in parsed_url.path.split('/') if p]
-        if path_parts:
-            screen_name = path_parts[0]
-            fetch_url = f"https://syndication.twitter.com/srv/timeline-profile/screen-name/{screen_name}"
+        screen_name = twitter_screen_name(fetch_url)
+        items = fetch_twitter_timeline(screen_name, headers, category_default)
+        clean_name = get_clean_site_name(name)
+        for item in items:
+            item["source"] = clean_name
+            item["topic"] = item.get("category") or category_default
+            item["section"] = section
+        status_type = "Twitter" if items else "Failed (no tweets)"
+        return {"source": clean_name, "status": status_type, "items": items}
             
     if name == "Vulture main feed" and url == "https://www.vulture.com/feed/":
         fetch_url = "https://feeds.feedburner.com/nymag/vulture"
@@ -858,13 +942,11 @@ def fetch_single_source(source_tuple):
             return {"source": clean_name, "status": f"Failed (HTTP {r.status_code})", "items": []}
             
         content_str = r.text
-        if is_rss and "syndication.twitter.com" not in fetch_url:
+        if is_rss:
             items = parse_xml_rss(content_str, name, category_default, feed_url=fetch_url)
             status_type = "RSS"
         else:
-            if "syndication.twitter.com" in fetch_url:
-                items = scrape_twitter_syndication(content_str, category_default)
-            elif "t.me/s/" in fetch_url:
+            if "t.me/s/" in fetch_url:
                 items = scrape_telegram_html(content_str, category_default)
             elif "vulture.com" in fetch_url:
                 items = scrape_vulture_html(content_str, category_default)
@@ -1751,6 +1833,10 @@ def fetch_and_aggregate_news():
         ("Sky Sports News", "https://www.skysports.com/rss/12040", "News", True, "Sports"),
         ("Sky Sports Football", "https://www.skysports.com/rss/11095", "Sports", True, "Sports"),
         ("Fabrizio Romano", "https://t.me/s/fabrizioromanotg", "Transfers", False, "Sports"),
+        # --- X / Twitter channels (resolved via Nitter RSS in fetch_twitter_timeline) ---
+        ("Fabrizio Romano (X)", "https://x.com/FabrizioRomano", "Transfers", False, "Sports"),
+        ("The Athletic (X)", "https://x.com/TheAthletic", "News", False, "Sports"),
+        ("The Madrid Zone (X)", "https://x.com/theMadridZone", "News", False, "Sports"),
         
         # Technology
         ("TechCrunch", "https://techcrunch.com/feed/", "Tech", True, "Technology"),
@@ -2920,9 +3006,64 @@ class SafeThreadingHTTPServer(ThreadingHTTPServer):
 
 _server_instance = None
 
+def is_port_in_use(port):
+    import socket
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        try:
+            s.connect(("127.0.0.1", port))
+            return True
+        except ConnectionRefusedError:
+            return False
+        except Exception:
+            return True
+
 def start_server():
-    global _server_instance
-    _server_instance = SafeThreadingHTTPServer(("127.0.0.1", PORT), GUIHandler)
+    global _server_instance, PORT
+    
+    settings_path = os.path.join(DIRECTORY, "assets", "ui_settings.json")
+    if os.path.exists(settings_path):
+        try:
+            with open(settings_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            loaded = data[0] if (isinstance(data, list) and len(data) > 0) else (data if isinstance(data, dict) else {})
+            initial_port = loaded.get("advanced", {}).get("backend_port")
+            if initial_port:
+                PORT = int(initial_port)
+        except Exception:
+            pass
+
+    max_attempts = 50
+    for attempt in range(max_attempts):
+        if is_port_in_use(PORT):
+            print(f"[Server] Port {PORT} is already in use (active listener), trying next port...")
+            PORT += 1
+            continue
+        try:
+            _server_instance = SafeThreadingHTTPServer(("127.0.0.1", PORT), GUIHandler)
+            break
+        except OSError:
+            if attempt < max_attempts - 1:
+                print(f"[Server] Port {PORT} is already in use (bind failed), trying next port...")
+                PORT += 1
+            else:
+                raise
+
+    # Save the actual bound port back to ui_settings.json
+    if os.path.exists(settings_path):
+        try:
+            with open(settings_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            is_list = isinstance(data, list)
+            loaded = data[0] if (is_list and len(data) > 0) else (data if isinstance(data, dict) else {})
+            if "advanced" not in loaded:
+                loaded["advanced"] = {}
+            loaded["advanced"]["backend_port"] = PORT
+            with open(settings_path, 'w', encoding='utf-8') as f:
+                json.dump([loaded] if is_list else loaded, f, indent=4, ensure_ascii=False)
+            print(f"[Server] Updated ui_settings.json backend_port to {PORT}")
+        except Exception as e:
+            print(f"[Server] Failed to write back new port to ui_settings.json: {e}")
+
     print(f"=====================================================")
     print(f"            OFFLINEFEED SERVER IS ONLINE             ")
     print(f"=====================================================")

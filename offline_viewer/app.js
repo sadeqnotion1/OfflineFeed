@@ -114,6 +114,7 @@ function getAvatarClass(source) {
 
 function getChannelDomain(sourceName) {
   const s = sourceName.toLowerCase();
+  if (s.includes('(x)') || s.includes('twitter') || s.includes('x.com')) return 'x.com';
   if (s.includes('variety')) return 'variety.com';
   if (s.includes('hollywood reporter') || s.includes('thr')) return 'hollywoodreporter.com';
   if (s.includes('vulture')) return 'vulture.com';
@@ -165,7 +166,41 @@ function getChannelAvatarHtml(source, size = 44, id = '') {
   }
 
   // Check if there is a custom avatar mapped to this source
-  const customAvatarPath = window.customNewsSourcesMap && window.customNewsSourcesMap[s];
+  let customAvatarPath = window.customNewsSourcesMap && window.customNewsSourcesMap[s];
+  if (!customAvatarPath && window.customNewsSourcesMap) {
+    const keys = Object.keys(window.customNewsSourcesMap);
+    for (const key of keys) {
+      if (s === key) {
+        customAvatarPath = window.customNewsSourcesMap[key];
+        break;
+      }
+      // Substring check for brand sub-channels
+      if (s.includes(key) || key.includes(s)) {
+        customAvatarPath = window.customNewsSourcesMap[key];
+        break;
+      }
+      // Prefix matching for networks/brands with slightly different sub-channel naming
+      if ((s.startsWith('espn') && key.startsWith('espn')) ||
+          (s.startsWith('bbc sport') && key.startsWith('bbc sport')) ||
+          (s.startsWith('sky sports') && key.startsWith('sky sports')) ||
+          (s.startsWith('techcrunch') && key.startsWith('techcrunch')) ||
+          (s.startsWith('wired') && key.startsWith('wired')) ||
+          (s.startsWith('the verge') && key.startsWith('the verge')) ||
+          (s.startsWith('collider') && key.startsWith('collider')) ||
+          (s.startsWith('deadline') && key.startsWith('deadline')) ||
+          (s.startsWith('variety') && key.startsWith('variety')) ||
+          (s.startsWith('vulture') && key.startsWith('vulture')) ||
+          (s.startsWith('entertainment weekly') && key.startsWith('entertainment weekly')) ||
+          (s.startsWith('rotten tomatoes') && key.startsWith('rotten tomatoes')) ||
+          (s.startsWith('fabrizio romano') && key.startsWith('fabrizio romano')) ||
+          (s.startsWith('the athletic') && key.startsWith('the athletic')) ||
+          (s.startsWith('the madrid zone') && key.startsWith('the madrid zone'))) {
+        customAvatarPath = window.customNewsSourcesMap[key];
+        break;
+      }
+    }
+  }
+
   if (customAvatarPath) {
     return `
       <div ${idAttr} style="${style} padding: ${size * 0.08}px;" class="telegram-avatar telegram-avatar-container">

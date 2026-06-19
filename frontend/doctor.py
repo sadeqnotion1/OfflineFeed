@@ -36,6 +36,16 @@ def main(argv=None) -> int:
     argv = list(sys.argv[1:] if argv is None else argv)
     # Optional: `--port 9000` to check a non-default backend port.
     port = 8080
+    try:
+        settings_path = _HERE.parent / "offline_viewer" / "assets" / "ui_settings.json"
+        if settings_path.exists():
+            import json
+            data = json.loads(settings_path.read_text(encoding="utf-8"))
+            loaded = data[0] if (isinstance(data, list) and len(data) > 0) else (data if isinstance(data, dict) else {})
+            port = loaded.get("advanced", {}).get("backend_port", 8080)
+    except Exception:
+        pass
+
     if "--port" in argv:
         try:
             port = int(argv[argv.index("--port") + 1])

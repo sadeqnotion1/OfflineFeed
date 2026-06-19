@@ -1,5 +1,10 @@
 [
     {
+        "timestamp": 1781842086.3896224,
+        "type": "Feed Harvester",
+        "details": "Archived 13 posts removed from the feed"
+    },
+    {
         "timestamp": 1781840117.610935,
         "type": "Telegram poster",
         "details": "Finished broadcast for Deadline Hollywood: Sent 47 successfully, 0 failed."
@@ -493,10 +498,5 @@
         "timestamp": 1781839753.7028973,
         "type": "Telegram poster",
         "details": "Saved markdown backup for 'Las Culturistas Culture Awards...' to backups"
-    },
-    {
-        "timestamp": 1781839753.6804578,
-        "type": "Telegram poster",
-        "details": "Sent post as media group with 2 images: 'Las Culturistas Culture Awards 2026: \u2018He...'"
     }
 ]

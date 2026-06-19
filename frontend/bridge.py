@@ -41,29 +41,71 @@ from PySide6.QtCore import (
     QRunnable,
 )
 
-API_BASE = "http://127.0.0.1:8080"
+_cached_backend_port = None
 HTTP_TIMEOUT = 20
+
+def get_backend_port() -> int:
+    global _cached_backend_port
+    if _cached_backend_port is not None:
+        return _cached_backend_port
+    try:
+        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "offline_viewer", "assets", "ui_settings.json")
+        if os.path.exists(path):
+            with open(path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            loaded = data[0] if (isinstance(data, list) and len(data) > 0) else (data if isinstance(data, dict) else {})
+            _cached_backend_port = loaded.get("advanced", {}).get("backend_port", 8080)
+            return _cached_backend_port
+    except Exception:
+        pass
+    return 8080
+
+def reset_backend_port():
+    global _cached_backend_port
+    _cached_backend_port = None
+
+def get_api_base() -> str:
+    return f"http://127.0.0.1:{get_backend_port()}"
 
 
 # --------------------------------------------------------------------------- #
 #  HTTP helpers (thin wrappers around the existing backend API)
 # --------------------------------------------------------------------------- #
 def _get(path: str) -> Any:
-    url = API_BASE + path
-    req = urllib.request.Request(url, headers={"Accept": "application/json"})
-    with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
-        return json.loads(resp.read().decode("utf-8"))
+    try:
+        url = get_api_base() + path
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except Exception:
+        # Retry once after reloading the port in case it shifted
+        reset_backend_port()
+        url = get_api_base() + path
+        req = urllib.request.Request(url, headers={"Accept": "application/json"})
+        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
+            return json.loads(resp.read().decode("utf-8"))
 
 
 def _post(path: str, payload: Optional[dict] = None) -> Any:
-    url = API_BASE + path
     data = json.dumps(payload or {}).encode("utf-8")
-    req = urllib.request.Request(
-        url, data=data, headers={"Content-Type": "application/json"}, method="POST"
-    )
-    with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
-        body = resp.read().decode("utf-8")
-        return json.loads(body) if body else {}
+    try:
+        url = get_api_base() + path
+        req = urllib.request.Request(
+            url, data=data, headers={"Content-Type": "application/json"}, method="POST"
+        )
+        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
+            body = resp.read().decode("utf-8")
+            return json.loads(body) if body else {}
+    except Exception:
+        # Retry once after reloading the port in case it shifted
+        reset_backend_port()
+        url = get_api_base() + path
+        req = urllib.request.Request(
+            url, data=data, headers={"Content-Type": "application/json"}, method="POST"
+        )
+        with urllib.request.urlopen(req, timeout=HTTP_TIMEOUT) as resp:
+            body = resp.read().decode("utf-8")
+            return json.loads(body) if body else {}
 
 
 def _hash_code(text: str) -> int:
@@ -973,7 +1015,7 @@ class ChatBridge(QObject):
         """
         if not url:
             return
-        target = API_BASE + "/?reader=" + urllib.parse.quote(url, safe="")
+        target = get_api_base() + "/?reader=" + urllib.parse.quote(url, safe="")
         if title:
             target += "&title=" + urllib.parse.quote(title, safe="")
         try:

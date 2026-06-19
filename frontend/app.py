@@ -48,8 +48,20 @@ QML_DIR = HERE / "qml"
 ASSETS = QML_DIR / "assets"
 FONTS = ASSETS / "fonts"
 LOGO = ASSETS / "logo.svg"
-BACKEND_PORT = 8080
-BACKEND_BASE = f"http://127.0.0.1:{BACKEND_PORT}"
+
+def get_backend_port() -> int:
+    try:
+        path = REPO_ROOT / "offline_viewer" / "assets" / "ui_settings.json"
+        if path.exists():
+            data = json.loads(path.read_text(encoding="utf-8"))
+            loaded = data[0] if (isinstance(data, list) and len(data) > 0) else (data if isinstance(data, dict) else {})
+            return loaded.get("advanced", {}).get("backend_port", 8080)
+    except Exception:
+        pass
+    return 8080
+
+def get_backend_base() -> str:
+    return f"http://127.0.0.1:{get_backend_port()}"
 
 # When True, private/hidden font families (names starting with ".") are excluded
 # from the system font list exposed to the desktop UI. Flip to False to show
@@ -89,7 +101,7 @@ def _log_exc(section, message):
 # --------------------------------------------------------------------------- #
 def _backend_alive() -> bool:
     try:
-        urllib.request.urlopen(BACKEND_BASE + "/api/status", timeout=1.5)
+        urllib.request.urlopen(get_backend_base() + "/api/status", timeout=1.5)
         return True
     except Exception:  # noqa: BLE001
         return False
@@ -132,7 +144,7 @@ def start_backend() -> None:
                     return
                 except TypeError:
                     try:
-                        fn(BACKEND_PORT)
+                        fn(get_backend_port())
                         return
                     except Exception as exc:  # noqa: BLE001
                         _log_exc("Backend", f"Backend entry failed: {exc}")
@@ -144,11 +156,11 @@ def start_backend() -> None:
     # Give the server a moment to bind the port.
     for _ in range(20):
         if _backend_alive():
-            _log_event("Backend", f"Feed Server is up on {BACKEND_BASE}")
+            _log_event("Backend", f"Feed Server is up on {get_backend_base()}")
             break
         time.sleep(0.25)
     else:
-        _log_event("Backend", f"Feed Server did not respond on {BACKEND_BASE} "
+        _log_event("Backend", f"Feed Server did not respond on {get_backend_base()} "
                    "after startup; run `python -m frontend.doctor` to see why.")
 
 

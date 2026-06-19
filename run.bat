@@ -7,8 +7,8 @@ REM ====================================================================
 setlocal
 cd /d "%~dp0"
 
-REM Prefer the Python launcher, fall back to python on PATH.
-where py >nul 2>nul && (set PY=py) || (set PY=python)
+REM Force python on PATH (Python 3.9) to bypass Python 3.12 TLS fingerprint rate limits
+set PY=python
 
 %PY% run_offlinefeed.py %*
 set EXITCODE=%ERRORLEVEL%
