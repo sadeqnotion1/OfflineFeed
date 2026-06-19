@@ -50,6 +50,34 @@ def get_clean_site_name(name: str) -> str:
         return "Screen Daily"
     if "rotten tomatoes" in name_lower:
         return "Rotten Tomatoes"
+    if "deadline" in name_lower:
+        return "Deadline Hollywood"
+    if "collider" in name_lower:
+        return "Collider"
+    if "rogerebert" in name_lower or "roger ebert" in name_lower:
+        return "RogerEbert.com"
+    if "avclub" in name_lower or "av club" in name_lower or "a.v. club" in name_lower:
+        return "The A.V. Club"
+    if "letterboxd" in name_lower:
+        return "Letterboxd Journal"
+    if "little white lies" in name_lower or "lwlies" in name_lower:
+        return "Little White Lies"
+    if "empireonline" in name_lower or "empire magazine" in name_lower:
+        return "Empire Magazine"
+    if "cinemablend" in name_lower:
+        return "CinemaBlend"
+    if "espn" in name_lower:
+        return "ESPN News"
+    if "bbc" in name_lower:
+        return "BBC Sport"
+    if "sky sports" in name_lower:
+        return "Sky Sports News"
+    if "techcrunch" in name_lower:
+        return "TechCrunch"
+    if "wired" in name_lower:
+        return "Wired Tech"
+    if "the verge" in name_lower:
+        return "The Verge"
     return name
 
 def get_default_sources_ast() -> list:

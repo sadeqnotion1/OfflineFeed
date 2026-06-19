@@ -122,6 +122,20 @@ function getChannelDomain(sourceName) {
   if (s.includes('rotten tomatoes')) return 'rottentomatoes.com';
   if (s.includes('indiewire')) return 'indiewire.com';
   if (s.includes('slashfilm')) return 'slashfilm.com';
+  if (s.includes('deadline')) return 'deadline.com';
+  if (s.includes('collider')) return 'collider.com';
+  if (s.includes('rogerebert')) return 'rogerebert.com';
+  if (s.includes('av club') || s.includes('avclub')) return 'avclub.com';
+  if (s.includes('letterboxd')) return 'letterboxd.com';
+  if (s.includes('little white lies') || s.includes('lwlies')) return 'lwlies.com';
+  if (s.includes('empireonline') || s.includes('empire magazine')) return 'empireonline.com';
+  if (s.includes('cinemablend')) return 'cinemablend.com';
+  if (s.includes('espn')) return 'espn.com';
+  if (s.includes('bbc')) return 'bbc.co.uk';
+  if (s.includes('sky sports')) return 'skysports.com';
+  if (s.includes('techcrunch')) return 'techcrunch.com';
+  if (s.includes('wired')) return 'wired.com';
+  if (s.includes('the verge')) return 'theverge.com';
   
   if (window.customNewsSourcesList) {
     const found = window.customNewsSourcesList.find(src => src.name.toLowerCase() === s);
@@ -236,6 +250,34 @@ function getCleanChannelInfo(art) {
     site = 'Screen Daily';
   } else if (src.includes('rotten tomatoes')) {
     site = 'Rotten Tomatoes';
+  } else if (src.includes('deadline')) {
+    site = 'Deadline Hollywood';
+  } else if (src.includes('collider')) {
+    site = 'Collider';
+  } else if (src.includes('rogerebert')) {
+    site = 'RogerEbert.com';
+  } else if (src.includes('av club') || src.includes('avclub') || src.includes('a.v. club')) {
+    site = 'The A.V. Club';
+  } else if (src.includes('letterboxd')) {
+    site = 'Letterboxd Journal';
+  } else if (src.includes('little white lies') || src.includes('lwlies')) {
+    site = 'Little White Lies';
+  } else if (src.includes('empireonline') || src.includes('empire magazine')) {
+    site = 'Empire Magazine';
+  } else if (src.includes('cinemablend')) {
+    site = 'CinemaBlend';
+  } else if (src.includes('espn')) {
+    site = 'ESPN News';
+  } else if (src.includes('bbc')) {
+    site = 'BBC Sport';
+  } else if (src.includes('sky sports')) {
+    site = 'Sky Sports News';
+  } else if (src.includes('techcrunch')) {
+    site = 'TechCrunch';
+  } else if (src.includes('wired')) {
+    site = 'Wired Tech';
+  } else if (src.includes('the verge')) {
+    site = 'The Verge';
   }
   
   let cat = art.topic || art.category || 'General';

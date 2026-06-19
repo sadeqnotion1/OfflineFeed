@@ -17,7 +17,23 @@ Item {
     function getFontOptions() {
         var arr = bridge.systemFonts || []
         var out = []
-        for (var i = 0; i < arr.length; i++) out.push({ value: String(arr[i]), label: String(arr[i]) })
+        var hasCurrentFamily = false
+        var hasCurrentReaderFamily = false
+        for (var i = 0; i < arr.length; i++) {
+            var f = String(arr[i])
+            out.push({ value: f, label: f })
+            if (f === bridge.fontFamily) hasCurrentFamily = true
+            if (f === bridge.readerFontFamily) hasCurrentReaderFamily = true
+        }
+        if (!hasCurrentFamily && bridge.fontFamily) {
+            out.push({ value: bridge.fontFamily, label: bridge.fontFamily })
+        }
+        if (!hasCurrentReaderFamily && bridge.readerFontFamily && bridge.readerFontFamily !== bridge.fontFamily) {
+            out.push({ value: bridge.readerFontFamily, label: bridge.readerFontFamily })
+        }
+        out.sort(function(a, b) {
+            return a.label.localeCompare(b.label, undefined, { sensitivity: 'base' })
+        })
         return out
     }
 

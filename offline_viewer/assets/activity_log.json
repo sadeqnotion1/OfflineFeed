@@ -1,502 +1,502 @@
 [
     {
-        "timestamp": 1781772197.6252468,
-        "type": "Feed Harvester",
-        "details": "Archived 2 posts removed from the feed"
+        "timestamp": 1781840117.610935,
+        "type": "Telegram poster",
+        "details": "Finished broadcast for Deadline Hollywood: Sent 47 successfully, 0 failed."
     },
     {
-        "timestamp": 1781771148.6107538,
-        "type": "Feed Harvester",
-        "details": "Archived 6 posts removed from the feed"
+        "timestamp": 1781840117.0904546,
+        "type": "Telegram poster",
+        "details": "Saved markdown backup for 'Curry Barker Sets Third Film W...' to backups"
     },
     {
-        "timestamp": 1781770785.5033789,
-        "type": "Saved Messages",
-        "details": "Saved article: Emmy Predictions: Writing \u2014 Where the Scribes Behind \u2018The Pitt,\u2019 \u2018Widow\u2019s Bay\u2019 and \u2018Love Story\u2019 Make Their Case"
+        "timestamp": 1781840117.0724142,
+        "type": "Telegram poster",
+        "details": "Sent post (text fallback): 'Curry Barker Sets Third Film With Univer...'"
     },
     {
-        "timestamp": 1781769886.0417187,
-        "type": "Saved Messages",
-        "details": "Saved article: \u2018The Lost Children of Tuam,\u2019 Element Pictures Feature Produced by Liam Neeson, to World Premiere at Galway Film Fleadh (EXCLUSIVE)"
+        "timestamp": 1781840081.2875106,
+        "type": "Telegram poster",
+        "details": "sendMediaGroup failed for 'Curry Barker Sets Third Film With Univer...': Bad Request: failed to send message #1 with the error message \"WEBPAGE_MEDIA_EMPTY\". Retrying with sendPhoto fallback..."
     },
     {
-        "timestamp": 1781709872.4624305,
-        "type": "Feed Harvester",
-        "details": "Archived 19 posts removed from the feed"
+        "timestamp": 1781840078.455528,
+        "type": "Telegram poster",
+        "details": "Fetching full offline content for 'Curry Barker Sets Third Film With Univer...'"
     },
     {
-        "timestamp": 1781707202.6726575,
-        "type": "Feed Harvester",
-        "details": "Archived 9 posts removed from the feed"
+        "timestamp": 1781840077.9342375,
+        "type": "Telegram poster",
+        "details": "Saved markdown backup for '\u2018Dungeon Crawler Carl\u2019 TV Seri...' to backups"
     },
     {
-        "timestamp": 1781685175.9401045,
-        "type": "Feed Harvester",
-        "details": "Archived 2 posts removed from the feed"
+        "timestamp": 1781840077.9112105,
+        "type": "Telegram poster",
+        "details": "Sent post as media group with 2 images: '\u2018Dungeon Crawler Carl\u2019 TV Series Based O...'"
     },
     {
-        "timestamp": 1781682539.330608,
-        "type": "Saved Messages",
-        "details": "Removed article from Saved Messages"
+        "timestamp": 1781840075.4687743,
+        "type": "Telegram poster",
+        "details": "Fetching full offline content for '\u2018Dungeon Crawler Carl\u2019 TV Series Based O...'"
     },
     {
-        "timestamp": 1781682535.1317546,
-        "type": "Saved Messages",
-        "details": "Saved article: Toronto Film Festival Reveals More Than 130 Buyers to Attend First Edition of Market"
+        "timestamp": 1781840074.9442127,
+        "type": "Telegram poster",
+        "details": "Saved markdown backup for 'World Cup 2026 Ratings: USMNT ...' to backups"
     },
     {
-        "timestamp": 1781682242.4342353,
-        "type": "Feed Harvester",
-        "details": "Archived 2 posts removed from the feed"
+        "timestamp": 1781840074.9154713,
+        "type": "Telegram poster",
+        "details": "Sent post (text fallback): 'World Cup 2026 Ratings: USMNT Leads Grou...'"
     },
     {
-        "timestamp": 1781682226.9132335,
-        "type": "Feed Harvester",
-        "details": "Archived 2 posts removed from the feed"
+        "timestamp": 1781840070.7267501,
+        "type": "Telegram poster",
+        "details": "sendMediaGroup failed for 'World Cup 2026 Ratings: USMNT Leads Grou...': Bad Request: failed to send message #1 with the error message \"WEBPAGE_CURL_FAILED\". Retrying with sendPhoto fallback..."
     },
     {
-        "timestamp": 1781679801.5835586,
+        "timestamp": 1781840067.8447552,
         "type": "Telegram poster",
-        "details": "Finished broadcast for SavedMessages: Sent 1 successfully, 0 failed."
+        "details": "Fetching full offline content for 'World Cup 2026 Ratings: USMNT Leads Grou...'"
     },
     {
-        "timestamp": 1781679800.5344834,
+        "timestamp": 1781840067.32321,
         "type": "Telegram poster",
-        "details": "Sent content part 5/5 (2299 chars) for 'Widow\u2019s Bay Season-Finale Recap: That\u2019s ...'"
+        "details": "Saved markdown backup for 'John Waters Would Use AI To \u201cC...' to backups"
     },
     {
-        "timestamp": 1781679799.3378704,
+        "timestamp": 1781840067.306096,
         "type": "Telegram poster",
-        "details": "Sent content part 4/5 (3447 chars) for 'Widow\u2019s Bay Season-Finale Recap: That\u2019s ...'"
+        "details": "Sent post as media group with 2 images: 'John Waters Would Use AI To \u201cCure Cancer...'"
     },
     {
-        "timestamp": 1781679797.7247515,
+        "timestamp": 1781840061.3217416,
         "type": "Telegram poster",
-        "details": "Sent content part 3/5 (3371 chars) for 'Widow\u2019s Bay Season-Finale Recap: That\u2019s ...'"
+        "details": "Fetching full offline content for 'John Waters Would Use AI To \u201cCure Cancer...'"
     },
     {
-        "timestamp": 1781679796.1047535,
+        "timestamp": 1781840060.8002071,
         "type": "Telegram poster",
-        "details": "Sent content part 2/5 (3030 chars) for 'Widow\u2019s Bay Season-Finale Recap: That\u2019s ...'"
+        "details": "Saved markdown backup for '\u2018All My Children\u2019 Actor Paul A...' to backups"
     },
     {
-        "timestamp": 1781679791.9709914,
+        "timestamp": 1781840060.7768378,
         "type": "Telegram poster",
-        "details": "Sent content part 1/5 (3053 chars) for 'Widow\u2019s Bay Season-Finale Recap: That\u2019s ...'"
+        "details": "Sent post as media group with 2 images: '\u2018All My Children\u2019 Actor Paul Avery & Wif...'"
     },
     {
-        "timestamp": 1781679791.4685102,
+        "timestamp": 1781840058.368689,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'Widow\u2019s Bay Season-Finale Reca...' to backups"
+        "details": "Fetching full offline content for '\u2018All My Children\u2019 Actor Paul Avery & Wif...'"
     },
     {
-        "timestamp": 1781679791.4343708,
+        "timestamp": 1781840057.8462136,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 2 images: 'Widow\u2019s Bay Season-Finale Recap: That\u2019s ...'"
+        "details": "Saved markdown backup for 'Movie Industry Execs Say They\u2019...' to backups"
     },
     {
-        "timestamp": 1781679788.4992583,
+        "timestamp": 1781840057.8304932,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'Widow\u2019s Bay Season-Finale Recap: That\u2019s ...'"
+        "details": "Sent post with single image: 'Movie Industry Execs Say They\u2019re In \u201cWai...'"
     },
     {
-        "timestamp": 1781679788.465823,
+        "timestamp": 1781840055.3524747,
         "type": "Telegram poster",
-        "details": "Starting broadcast of 1 new posts from SavedMessages (0 skipped as already sent)"
+        "details": "Fetching full offline content for 'Movie Industry Execs Say They\u2019re In \u201cWai...'"
     },
     {
-        "timestamp": 1781534242.3361654,
+        "timestamp": 1781840054.8269176,
         "type": "Telegram poster",
-        "details": "Starting broadcast of 1 new posts from SavedMessages (0 skipped as already sent)"
+        "details": "Saved markdown backup for 'Comic & Ex-\u2018Mind Of Mencia\u2019 Ho...' to backups"
     },
     {
-        "timestamp": 1781530413.7562997,
+        "timestamp": 1781840054.8097932,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for '15 Greatest Best Picture Oscar Nominees ...'"
+        "details": "Sent post as media group with 2 images: 'Comic & Ex-\u2018Mind Of Mencia\u2019 Host Carlos ...'"
     },
     {
-        "timestamp": 1781530412.7131147,
+        "timestamp": 1781840017.1716974,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (2443 chars) for 'J.R.R. Tolkien Didn't Mince Words About ...'"
+        "details": "Fetching full offline content for 'Comic & Ex-\u2018Mind Of Mencia\u2019 Host Carlos ...'"
     },
     {
-        "timestamp": 1781530411.6397197,
+        "timestamp": 1781840016.645506,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3072 chars) for 'J.R.R. Tolkien Didn't Mince Words About ...'"
+        "details": "Saved markdown backup for 'Paramount Dates \u2018Tomorrow, And...' to backups"
     },
     {
-        "timestamp": 1781530404.0144415,
+        "timestamp": 1781840016.628722,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'J.R.R. Tolkien Didn't Mince Wo...' to backups"
+        "details": "Sent post as media group with 2 images: 'Paramount Dates \u2018Tomorrow, And Tomorrow,...'"
     },
     {
-        "timestamp": 1781530403.9750316,
+        "timestamp": 1781840013.600329,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 3 images: 'J.R.R. Tolkien Didn't Mince Words About ...'"
+        "details": "Fetching full offline content for 'Paramount Dates \u2018Tomorrow, And Tomorrow,...'"
     },
     {
-        "timestamp": 1781530399.4082417,
+        "timestamp": 1781840013.0783722,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'J.R.R. Tolkien Didn't Mince Words About ...'"
+        "details": "Saved markdown backup for 'Tay Keith Dies: Music Producer...' to backups"
     },
     {
-        "timestamp": 1781530398.3464324,
+        "timestamp": 1781840013.0637786,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (2489 chars) for 'Disclosure Day's Most Surprising Perform...'"
+        "details": "Sent post as media group with 2 images: 'Tay Keith Dies: Music Producer For Beyon...'"
     },
     {
-        "timestamp": 1781530397.3056993,
+        "timestamp": 1781840007.6053824,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3156 chars) for 'Disclosure Day's Most Surprising Perform...'"
+        "details": "Fetching full offline content for 'Tay Keith Dies: Music Producer For Beyon...'"
     },
     {
-        "timestamp": 1781530396.6666133,
+        "timestamp": 1781840007.0803392,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'Disclosure Day's Most Surprisi...' to backups"
+        "details": "Saved markdown backup for 'Photos: Hollywood And D.C Heav...' to backups"
     },
     {
-        "timestamp": 1781530396.6493309,
+        "timestamp": 1781840007.0584502,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 3 images: 'Disclosure Day's Most Surprising Perform...'"
+        "details": "Sent post as media group with 3 images: 'Photos: Hollywood And D.C Heavyweights M...'"
     },
     {
-        "timestamp": 1781530392.3208566,
+        "timestamp": 1781840000.0241678,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'Disclosure Day's Most Surprising Perform...'"
+        "details": "Fetching full offline content for 'Photos: Hollywood And D.C Heavyweights M...'"
     },
     {
-        "timestamp": 1781530391.2601342,
+        "timestamp": 1781839999.5094585,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (2540 chars) for 'This Time Travel Movie From The '50s Had...'"
+        "details": "Saved markdown backup for 'Kyle Cooke Clarifies \u2018Summer H...' to backups"
     },
     {
-        "timestamp": 1781530390.164434,
+        "timestamp": 1781839999.4828694,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3055 chars) for 'This Time Travel Movie From The '50s Had...'"
+        "details": "Sent post as media group with 2 images: 'Kyle Cooke Clarifies \u2018Summer House\u2019 \u201cIsn...'"
     },
     {
-        "timestamp": 1781530386.4764082,
+        "timestamp": 1781839993.97494,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'This Time Travel Movie From Th...' to backups"
+        "details": "Fetching full offline content for 'Kyle Cooke Clarifies \u2018Summer House\u2019 \u201cIsn...'"
     },
     {
-        "timestamp": 1781530386.4373906,
+        "timestamp": 1781839993.455744,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 3 images: 'This Time Travel Movie From The '50s Had...'"
+        "details": "Saved markdown backup for 'Joseph Gordon-Levitt & Sophia ...' to backups"
     },
     {
-        "timestamp": 1781530384.9875185,
+        "timestamp": 1781839993.4293494,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'This Time Travel Movie From The '50s Had...'"
+        "details": "Sent post as media group with 2 images: 'Joseph Gordon-Levitt & Sophia Bush Addre...'"
     },
     {
-        "timestamp": 1781530383.9346383,
+        "timestamp": 1781839959.4061046,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (2356 chars) for 'What Is Subspace Communication On Star T...'"
+        "details": "Fetching full offline content for 'Joseph Gordon-Levitt & Sophia Bush Addre...'"
     },
     {
-        "timestamp": 1781530346.284752,
+        "timestamp": 1781839958.8753252,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3172 chars) for 'What Is Subspace Communication On Star T...'"
+        "details": "Saved markdown backup for '\u2018Voicemails For Isabelle\u2019 Revi...' to backups"
     },
     {
-        "timestamp": 1781530342.7300296,
+        "timestamp": 1781839958.8526263,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'What Is Subspace Communication...' to backups"
+        "details": "Sent post as media group with 2 images: '\u2018Voicemails For Isabelle\u2019 Review: Zoey D...'"
     },
     {
-        "timestamp": 1781530342.7134428,
+        "timestamp": 1781839952.0163999,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 3 images: 'What Is Subspace Communication On Star T...'"
+        "details": "Fetching full offline content for '\u2018Voicemails For Isabelle\u2019 Review: Zoey D...'"
     },
     {
-        "timestamp": 1781530341.4061813,
+        "timestamp": 1781839951.4932196,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'What Is Subspace Communication On Star T...'"
+        "details": "Saved markdown backup for 'Peter Bart: With \u2018Disclosure D...' to backups"
     },
     {
-        "timestamp": 1781530340.358778,
+        "timestamp": 1781839951.4758928,
         "type": "Telegram poster",
-        "details": "Sent content part 1/1 (3333 chars) for 'Will Ferrell Is Taking Over Hulu's Strea...'"
+        "details": "Sent post as media group with 2 images: 'Peter Bart: With \u2018Disclosure Day\u2019, Steve...'"
     },
     {
-        "timestamp": 1781530336.5670557,
+        "timestamp": 1781839944.955853,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'Will Ferrell Is Taking Over Hu...' to backups"
+        "details": "Fetching full offline content for 'Peter Bart: With \u2018Disclosure Day\u2019, Steve...'"
     },
     {
-        "timestamp": 1781530336.5431294,
+        "timestamp": 1781839944.4338386,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 2 images: 'Will Ferrell Is Taking Over Hulu's Strea...'"
+        "details": "Saved markdown backup for 'Druski Does Whiteface In New B...' to backups"
     },
     {
-        "timestamp": 1781530335.3080406,
+        "timestamp": 1781839944.4149022,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'Will Ferrell Is Taking Over Hulu's Strea...'"
+        "details": "Sent post as media group with 2 images: 'Druski Does Whiteface In New BET Awards ...'"
     },
     {
-        "timestamp": 1781530334.2737894,
+        "timestamp": 1781839939.2246463,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (240 chars) for 'One Wizard Of Oz Movie Decision Changed ...'"
+        "details": "Fetching full offline content for 'Druski Does Whiteface In New BET Awards ...'"
     },
     {
-        "timestamp": 1781530330.1471376,
+        "timestamp": 1781839938.7035854,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3262 chars) for 'One Wizard Of Oz Movie Decision Changed ...'"
+        "details": "Saved markdown backup for 'Saweetie Joins Season 2 Of Net...' to backups"
     },
     {
-        "timestamp": 1781530329.367992,
+        "timestamp": 1781839938.6814115,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'One Wizard Of Oz Movie Decisio...' to backups"
+        "details": "Sent post as media group with 2 images: 'Saweetie Joins Season 2 Of Netflix Teen ...'"
     },
     {
-        "timestamp": 1781530329.3472824,
+        "timestamp": 1781839932.1961257,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 2 images: 'One Wizard Of Oz Movie Decision Changed ...'"
+        "details": "Fetching full offline content for 'Saweetie Joins Season 2 Of Netflix Teen ...'"
     },
     {
-        "timestamp": 1781530325.076218,
+        "timestamp": 1781839931.675076,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'One Wizard Of Oz Movie Decision Changed ...'"
+        "details": "Saved markdown backup for '\u2018Police Academy\u2019 Reboot With K...' to backups"
     },
     {
-        "timestamp": 1781530324.0347486,
+        "timestamp": 1781839931.6531618,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (2295 chars) for 'Warren Beatty And Diane Keaton's Forgott...'"
+        "details": "Sent post as media group with 2 images: '\u2018Police Academy\u2019 Reboot With Key & Peele...'"
     },
     {
-        "timestamp": 1781530322.9465075,
+        "timestamp": 1781839897.5006342,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3287 chars) for 'Warren Beatty And Diane Keaton's Forgott...'"
+        "details": "Fetching full offline content for '\u2018Police Academy\u2019 Reboot With Key & Peele...'"
     },
     {
-        "timestamp": 1781530322.4243398,
+        "timestamp": 1781839896.9722667,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'Warren Beatty And Diane Keaton...' to backups"
+        "details": "Saved markdown backup for 'UFC Freedom 250 Fight Averages...' to backups"
     },
     {
-        "timestamp": 1781530322.3930085,
+        "timestamp": 1781839896.9460888,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 3 images: 'Warren Beatty And Diane Keaton's Forgott...'"
+        "details": "Sent post (text fallback): 'UFC Freedom 250 Fight Averages 8.2M View...'"
     },
     {
-        "timestamp": 1781530290.3871393,
+        "timestamp": 1781839895.3433268,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'Warren Beatty And Diane Keaton's Forgott...'"
+        "details": "sendMediaGroup failed for 'UFC Freedom 250 Fight Averages 8.2M View...': Bad Request: failed to send message #1 with the error message \"WEBPAGE_MEDIA_EMPTY\". Retrying with sendPhoto fallback..."
     },
     {
-        "timestamp": 1781530289.3404279,
+        "timestamp": 1781839891.3145127,
         "type": "Telegram poster",
-        "details": "Sent content part 4/4 (1911 chars) for '5 Sci-Fi Movie Remakes That Should Have ...'"
+        "details": "Fetching full offline content for 'UFC Freedom 250 Fight Averages 8.2M View...'"
     },
     {
-        "timestamp": 1781530285.2791,
+        "timestamp": 1781839890.7949731,
         "type": "Telegram poster",
-        "details": "Sent content part 3/4 (2789 chars) for '5 Sci-Fi Movie Remakes That Should Have ...'"
+        "details": "Saved markdown backup for '\u2018Love Island USA\u2019 Season 8 Con...' to backups"
     },
     {
-        "timestamp": 1781530284.268384,
+        "timestamp": 1781839890.7731433,
         "type": "Telegram poster",
-        "details": "Sent content part 2/4 (3370 chars) for '5 Sci-Fi Movie Remakes That Should Have ...'"
+        "details": "Sent post as media group with 2 images: '\u2018Love Island USA\u2019 Season 8 Continues Rat...'"
     },
     {
-        "timestamp": 1781530283.1547127,
+        "timestamp": 1781839884.3136926,
         "type": "Telegram poster",
-        "details": "Sent content part 1/4 (3221 chars) for '5 Sci-Fi Movie Remakes That Should Have ...'"
+        "details": "Fetching full offline content for '\u2018Love Island USA\u2019 Season 8 Continues Rat...'"
     },
     {
-        "timestamp": 1781530275.4106183,
+        "timestamp": 1781839883.7982361,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for '5 Sci-Fi Movie Remakes That Sh...' to backups"
+        "details": "Saved markdown backup for 'Jeff Daniels To Star Opposite ...' to backups"
     },
     {
-        "timestamp": 1781530275.391711,
+        "timestamp": 1781839883.7803385,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 6 images: '5 Sci-Fi Movie Remakes That Should Have ...'"
+        "details": "Sent post as media group with 2 images: 'Jeff Daniels To Star Opposite Brendan Fr...'"
     },
     {
-        "timestamp": 1781530270.7257597,
+        "timestamp": 1781839878.030134,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for '5 Sci-Fi Movie Remakes That Should Have ...'"
+        "details": "Fetching full offline content for 'Jeff Daniels To Star Opposite Brendan Fr...'"
     },
     {
-        "timestamp": 1781530269.675048,
+        "timestamp": 1781839877.5104904,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (687 chars) for 'Tom Hanks Had Harsh Words For A Critic W...'"
+        "details": "Saved markdown backup for 'Taylor Swift Wrote & Recorded ...' to backups"
     },
     {
-        "timestamp": 1781530268.622044,
+        "timestamp": 1781839877.485917,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3140 chars) for 'Tom Hanks Had Harsh Words For A Critic W...'"
+        "details": "Sent post as media group with 2 images: 'Taylor Swift Wrote & Recorded \u2018Toy Story...'"
     },
     {
-        "timestamp": 1781530265.0750165,
+        "timestamp": 1781839872.3985233,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'Tom Hanks Had Harsh Words For ...' to backups"
+        "details": "Fetching full offline content for 'Taylor Swift Wrote & Recorded \u2018Toy Story...'"
     },
     {
-        "timestamp": 1781530265.0445502,
+        "timestamp": 1781839871.8777997,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 2 images: 'Tom Hanks Had Harsh Words For A Critic W...'"
+        "details": "Saved markdown backup for 'Knicks Victory Parade: Celebri...' to backups"
     },
     {
-        "timestamp": 1781530263.7375324,
+        "timestamp": 1781839871.8470924,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'Tom Hanks Had Harsh Words For A Critic W...'"
+        "details": "Sent post (text fallback): 'Knicks Victory Parade: Celebrities, Play...'"
     },
     {
-        "timestamp": 1781530262.6877542,
+        "timestamp": 1781839870.316383,
         "type": "Telegram poster",
-        "details": "Sent content part 6/6 (2581 chars) for '15 Best Disney Star Wars Characters, Ran...'"
+        "details": "sendMediaGroup failed for 'Knicks Victory Parade: Celebrities, Play...': Bad Request: failed to send message #1 with the error message \"WEBPAGE_CURL_FAILED\". Retrying with sendPhoto fallback..."
     },
     {
-        "timestamp": 1781530261.6681652,
+        "timestamp": 1781839837.5346665,
         "type": "Telegram poster",
-        "details": "Sent content part 5/6 (3428 chars) for '15 Best Disney Star Wars Characters, Ran...'"
+        "details": "Fetching full offline content for 'Knicks Victory Parade: Celebrities, Play...'"
     },
     {
-        "timestamp": 1781530234.014906,
+        "timestamp": 1781839837.0168757,
         "type": "Telegram poster",
-        "details": "Sent content part 4/6 (3183 chars) for '15 Best Disney Star Wars Characters, Ran...'"
+        "details": "Saved markdown backup for 'A+E Global Media Veteran Mark ...' to backups"
     },
     {
-        "timestamp": 1781530229.9174984,
+        "timestamp": 1781839836.9878469,
         "type": "Telegram poster",
-        "details": "Sent content part 3/6 (3332 chars) for '15 Best Disney Star Wars Characters, Ran...'"
+        "details": "Sent post as media group with 2 images: 'A+E Global Media Veteran Mark Garner Seg...'"
     },
     {
-        "timestamp": 1781530228.8681295,
+        "timestamp": 1781839832.0521398,
         "type": "Telegram poster",
-        "details": "Sent content part 2/6 (3376 chars) for '15 Best Disney Star Wars Characters, Ran...'"
+        "details": "Fetching full offline content for 'A+E Global Media Veteran Mark Garner Seg...'"
     },
     {
-        "timestamp": 1781530227.8038173,
+        "timestamp": 1781839831.5271547,
         "type": "Telegram poster",
-        "details": "Sent content part 1/6 (3346 chars) for '15 Best Disney Star Wars Characters, Ran...'"
+        "details": "Saved markdown backup for 'Chris Elliott & Michael Ian Bl...' to backups"
     },
     {
-        "timestamp": 1781530220.18552,
+        "timestamp": 1781839831.4956918,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for '15 Best Disney Star Wars Chara...' to backups"
+        "details": "Sent post as media group with 2 images: 'Chris Elliott & Michael Ian Black Set Fo...'"
     },
     {
-        "timestamp": 1781530220.1619873,
+        "timestamp": 1781839828.826543,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 10 images: '15 Best Disney Star Wars Characters, Ran...'"
+        "details": "Fetching full offline content for 'Chris Elliott & Michael Ian Black Set Fo...'"
     },
     {
-        "timestamp": 1781530210.4421244,
+        "timestamp": 1781839828.307772,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for '15 Best Disney Star Wars Characters, Ran...'"
+        "details": "Saved markdown backup for 'Matthew Rhys Balances Two New ...' to backups"
     },
     {
-        "timestamp": 1781530209.3961334,
+        "timestamp": 1781839828.287571,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (2601 chars) for 'Before The Terminator, Arnold Schwarzene...'"
+        "details": "Sent post with single image: 'Matthew Rhys Balances Two New Shots At E...'"
     },
     {
-        "timestamp": 1781530208.353903,
+        "timestamp": 1781839824.394258,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (2936 chars) for 'Before The Terminator, Arnold Schwarzene...'"
+        "details": "Fetching full offline content for 'Matthew Rhys Balances Two New Shots At E...'"
     },
     {
-        "timestamp": 1781530200.6316319,
+        "timestamp": 1781839823.847927,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'Before The Terminator, Arnold ...' to backups"
+        "details": "Saved markdown backup for '\u2018Spider-Man: Brand New Day\u2019 Sn...' to backups"
     },
     {
-        "timestamp": 1781530200.6118162,
+        "timestamp": 1781839823.8259566,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 3 images: 'Before The Terminator, Arnold Schwarzene...'"
+        "details": "Sent post as media group with 2 images: '\u2018Spider-Man: Brand New Day\u2019 Snares Best ...'"
     },
     {
-        "timestamp": 1781530169.8075805,
+        "timestamp": 1781839817.0469394,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'Before The Terminator, Arnold Schwarzene...'"
+        "details": "Fetching full offline content for '\u2018Spider-Man: Brand New Day\u2019 Snares Best ...'"
     },
     {
-        "timestamp": 1781530168.7643526,
+        "timestamp": 1781839816.5018072,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (2479 chars) for 'The Forgotten Cost-Saving TV Show Trend ...'"
+        "details": "Saved markdown backup for 'Black Bear Sets Fall Release F...' to backups"
     },
     {
-        "timestamp": 1781530167.7416644,
+        "timestamp": 1781839816.4680645,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3210 chars) for 'The Forgotten Cost-Saving TV Show Trend ...'"
+        "details": "Sent post as media group with 2 images: 'Black Bear Sets Fall Release For Sundanc...'"
     },
     {
-        "timestamp": 1781530167.2354891,
+        "timestamp": 1781839809.6740623,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'The Forgotten Cost-Saving TV S...' to backups"
+        "details": "Fetching full offline content for 'Black Bear Sets Fall Release For Sundanc...'"
     },
     {
-        "timestamp": 1781530167.2053678,
+        "timestamp": 1781839809.1533988,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 3 images: 'The Forgotten Cost-Saving TV Show Trend ...'"
+        "details": "Saved markdown backup for '\u2018Moana\u2019: Disney Live-Action Ta...' to backups"
     },
     {
-        "timestamp": 1781530162.1934326,
+        "timestamp": 1781839809.1215267,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'The Forgotten Cost-Saving TV Show Trend ...'"
+        "details": "Sent post as media group with 2 images: '\u2018Moana\u2019: Disney Live-Action Take Of Anim...'"
     },
     {
-        "timestamp": 1781530162.1739926,
+        "timestamp": 1781839774.5590112,
         "type": "Telegram poster",
-        "details": "Starting broadcast of 20 new posts from SlashFilm (0 skipped as already sent)"
+        "details": "Fetching full offline content for '\u2018Moana\u2019: Disney Live-Action Take Of Anim...'"
     },
     {
-        "timestamp": 1781530162.1529706,
+        "timestamp": 1781839774.0336547,
         "type": "Telegram poster",
-        "details": "Finished broadcast for MovieWeb: Sent 10 successfully, 0 failed."
+        "details": "Saved markdown backup for '\u2018Ironheart\u2019 & Netflix Lead Bla...' to backups"
     },
     {
-        "timestamp": 1781530161.1074543,
+        "timestamp": 1781839774.007185,
         "type": "Telegram poster",
-        "details": "Sent content part 2/2 (1805 chars) for 'The Perfect 'Peaky Blinders' Replacement...'"
+        "details": "Sent post as media group with 2 images: '\u2018Ironheart\u2019 & Netflix Lead Black Reel TV...'"
     },
     {
-        "timestamp": 1781530160.041044,
+        "timestamp": 1781839767.169689,
         "type": "Telegram poster",
-        "details": "Sent content part 1/2 (3247 chars) for 'The Perfect 'Peaky Blinders' Replacement...'"
+        "details": "Fetching full offline content for '\u2018Ironheart\u2019 & Netflix Lead Black Reel TV...'"
     },
     {
-        "timestamp": 1781530152.4402747,
+        "timestamp": 1781839766.6419008,
         "type": "Telegram poster",
-        "details": "Saved markdown backup for 'The Perfect 'Peaky Blinders' R...' to backups"
+        "details": "Saved markdown backup for 'Liza Col\u00f3n-Zayas & Jeff Hiller...' to backups"
     },
     {
-        "timestamp": 1781530152.4165196,
+        "timestamp": 1781839766.6144636,
         "type": "Telegram poster",
-        "details": "Sent post as media group with 10 images: 'The Perfect 'Peaky Blinders' Replacement...'"
+        "details": "Sent post as media group with 2 images: 'Liza Col\u00f3n-Zayas & Jeff Hiller To Announ...'"
     },
     {
-        "timestamp": 1781530101.0272489,
+        "timestamp": 1781839759.9400122,
         "type": "Telegram poster",
-        "details": "Fetching full offline content for 'The Perfect 'Peaky Blinders' Replacement...'"
+        "details": "Fetching full offline content for 'Liza Col\u00f3n-Zayas & Jeff Hiller To Announ...'"
     },
     {
-        "timestamp": 1781530099.9711082,
+        "timestamp": 1781839759.4207346,
         "type": "Telegram poster",
-        "details": "Sent inline image for 'Adam Sandler Franchise Sequel Heads to S...' in broadcast"
+        "details": "Saved markdown backup for 'The 61 Movies That Have Made M...' to backups"
     },
     {
-        "timestamp": 1781530098.9332135,
+        "timestamp": 1781839759.4042606,
         "type": "Telegram poster",
-        "details": "Sent content part 4/4 (65 chars) for 'Adam Sandler Franchise Sequel Heads to S...'"
+        "details": "Sent post as media group with 3 images: 'The 61 Movies That Have Made More Than $...'"
     },
     {
-        "timestamp": 1781530097.9112735,
+        "timestamp": 1781839754.2423096,
         "type": "Telegram poster",
-        "details": "Sent inline image for 'Adam Sandler Franchise Sequel Heads to S...' in broadcast"
+        "details": "Fetching full offline content for 'The 61 Movies That Have Made More Than $...'"
     },
     {
-        "timestamp": 1781530093.847928,
+        "timestamp": 1781839753.7028973,
         "type": "Telegram poster",
-        "details": "Sent image link fallback for 'Adam Sandler Franchise Sequel Heads to S...' (sendPhoto failed: Bad Request: wrong type of the web page content)"
+        "details": "Saved markdown backup for 'Las Culturistas Culture Awards...' to backups"
     },
     {
-        "timestamp": 1781530092.3577921,
+        "timestamp": 1781839753.6804578,
         "type": "Telegram poster",
-        "details": "Sent content part 3/4 (1974 chars) for 'Adam Sandler Franchise Sequel Heads to S...'"
+        "details": "Sent post as media group with 2 images: 'Las Culturistas Culture Awards 2026: \u2018He...'"
     }
 ]

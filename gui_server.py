@@ -397,7 +397,7 @@ def scrape_ew_html(content, category_default):
     items_by_url = {}
     for a in soup.find_all('a', href=True):
         href = a['href']
-        if any(p in href for p in ['/article/', '/movies/', '/tv/']) and len(href) > 30:
+        if any(p in href for p in ['/article/', '/movies/', '/tv/', '/music/', '/celebrity/']) and len(href) > 30:
             url = href
             if url.startswith('/'):
                 url = 'https://ew.com' + url
@@ -784,6 +784,34 @@ def get_clean_site_name(name):
         return "Screen Daily"
     if "rotten tomatoes" in name_lower:
         return "Rotten Tomatoes"
+    if "deadline" in name_lower:
+        return "Deadline Hollywood"
+    if "collider" in name_lower:
+        return "Collider"
+    if "rogerebert" in name_lower or "roger ebert" in name_lower:
+        return "RogerEbert.com"
+    if "avclub" in name_lower or "av club" in name_lower or "a.v. club" in name_lower:
+        return "The A.V. Club"
+    if "letterboxd" in name_lower:
+        return "Letterboxd Journal"
+    if "little white lies" in name_lower or "lwlies" in name_lower:
+        return "Little White Lies"
+    if "empireonline" in name_lower or "empire magazine" in name_lower:
+        return "Empire Magazine"
+    if "cinemablend" in name_lower:
+        return "CinemaBlend"
+    if "espn" in name_lower:
+        return "ESPN News"
+    if "bbc" in name_lower:
+        return "BBC Sport"
+    if "sky sports" in name_lower:
+        return "Sky Sports News"
+    if "techcrunch" in name_lower:
+        return "TechCrunch"
+    if "wired" in name_lower:
+        return "Wired Tech"
+    if "the verge" in name_lower:
+        return "The Verge"
     return name
 
 def fetch_single_source(source_tuple):
@@ -1079,6 +1107,130 @@ telegram_job_queue = queue.Queue()
 telegram_worker_thread = None
 telegram_queue_lock = threading.Lock()
 
+TELEGRAPH_API = "https://api.telegra.ph"
+_telegraph_token = None
+
+def get_telegraph_token():
+    global _telegraph_token
+    if _telegraph_token:
+        return _telegraph_token
+    
+    token_file = os.path.join(DIRECTORY, "assets", "telegraph_token.json")
+    if os.path.exists(token_file):
+        try:
+            with open(token_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                _telegraph_token = data.get("access_token")
+                if _telegraph_token:
+                    return _telegraph_token
+        except Exception as e:
+            log_system_activity("Telegraph", f"Failed to load telegraph token from file: {e}")
+            
+    import requests
+    try:
+        url = f"{TELEGRAPH_API}/createAccount"
+        payload = {
+            "short_name": "OfflineFeed",
+            "author_name": "OfflineFeed"
+        }
+        r = requests.post(url, json=payload, timeout=15)
+        res = r.json()
+        if res.get("ok"):
+            _telegraph_token = res["result"].get("access_token")
+            try:
+                os.makedirs(os.path.dirname(token_file), exist_ok=True)
+                with open(token_file, 'w', encoding='utf-8') as f:
+                    json.dump({"access_token": _telegraph_token}, f, indent=4)
+            except Exception as e:
+                log_system_activity("Telegraph", f"Failed to save telegraph token to file: {e}")
+            return _telegraph_token
+        else:
+            log_system_activity("Telegraph", f"createAccount API error: {res.get('description')}")
+    except Exception as e:
+        log_system_activity("Telegraph", f"Network error during telegraph createAccount: {str(e)}")
+        
+    return None
+
+def blocks_to_telegraph_nodes(blocks, source_url=""):
+    nodes = []
+    if blocks:
+        for b in blocks:
+            b_type = b.get("type")
+            b_content = b.get("content", "").strip()
+            if not b_content:
+                continue
+                
+            if b_type == "p":
+                nodes.append({"tag": "p", "children": [b_content]})
+            elif b_type == "h":
+                nodes.append({"tag": "h3", "children": [b_content]})
+            elif b_type == "quote":
+                nodes.append({"tag": "blockquote", "children": [b_content]})
+            elif b_type == "img":
+                nodes.append({
+                    "tag": "figure",
+                    "children": [
+                        {
+                            "tag": "img",
+                            "attrs": {"src": b_content}
+                        }
+                    ]
+                })
+                
+    if source_url:
+        nodes.append({
+            "tag": "p",
+            "children": [
+                {
+                    "tag": "a",
+                    "attrs": {"href": source_url},
+                    "children": ["Original Article"]
+                }
+            ]
+        })
+    return nodes
+
+def create_telegraph_page(title, blocks, author_name, source_url):
+    token = get_telegraph_token()
+    if not token:
+        log_system_activity("Telegraph", "Cannot create page: no access token available")
+        return None
+        
+    nodes = blocks_to_telegraph_nodes(blocks, source_url)
+    
+    # Check if nodes is empty or only contains the source_url link
+    has_content = False
+    if blocks:
+        for b in blocks:
+            if b.get("content", "").strip():
+                has_content = True
+                break
+    if not has_content or not nodes:
+        log_system_activity("Telegraph", "Cannot create page: empty content nodes")
+        return None
+        
+    import requests
+    try:
+        if len(title) > 256:
+            title = title[:256]
+            
+        payload = {
+            "access_token": token,
+            "title": title,
+            "author_name": author_name or "OfflineFeed",
+            "content": json.dumps(nodes),
+            "return_content": False
+        }
+        r = requests.post(f"{TELEGRAPH_API}/createPage", json=payload, timeout=15)
+        res = r.json()
+        if res.get("ok"):
+            return res["result"].get("url")
+        else:
+            log_system_activity("Telegraph", f"Failed to create page '{title[:40]}...': {res.get('description')}")
+    except Exception as e:
+        log_system_activity("Telegraph", f"Network error creating page '{title[:40]}...': {str(e)}")
+    return None
+
 def process_channel_send_job(channel_name, to_send, bot_token, default_chat_id, sports_chat_id, technology_chat_id, channel_threads, already_sent_count):
     log_system_activity("Telegram poster", f"Starting broadcast of {len(to_send)} new posts from {channel_name} ({already_sent_count} skipped as already sent)")
     sent_count = 0
@@ -1118,12 +1270,20 @@ def process_channel_send_job(channel_name, to_send, bot_token, default_chat_id, 
             caption += f"{description_esc}\n\n"
         caption += f"🔗 <a href=\"{url_esc}\">Read Article</a>"
         
-        if len(caption) > 1024:
-            caption = caption[:1020] + "..."
-            
         # Fetch the offline content blocks first to collect all inline images
         log_system_activity("Telegram poster", f"Fetching full offline content for '{title[:40]}...'")
         blocks = get_article_content_blocks(url)
+        
+        # Create telegraph page and append link
+        telegraph_url = create_telegraph_page(title, blocks, author_name=channel_name, source_url=url)
+        if telegraph_url:
+            telegraph_html = f"\n\n <a href=\"{telegraph_url}\">Read full post</a>"
+            if len(caption) + len(telegraph_html) > 1024:
+                caption = caption[:(1020 - len(telegraph_html))] + "..."
+            caption += telegraph_html
+        else:
+            if len(caption) > 1024:
+                caption = caption[:1020] + "..."
         
         # Collect all unique images
         inline_images = []
@@ -1135,11 +1295,20 @@ def process_channel_send_job(channel_name, to_send, bot_token, default_chat_id, 
                         inline_images.append(img_url)
                         
         all_images = []
+        seen_clean = set()
         if thumbnail_url and thumbnail_url.startswith("http"):
-            all_images.append(thumbnail_url.strip())
+            thumb_strip = thumbnail_url.strip()
+            all_images.append(thumb_strip)
+            parsed = urllib.parse.urlparse(thumb_strip)
+            clean_url = (parsed.netloc + parsed.path).lower()
+            seen_clean.add(clean_url)
+            
         for img in inline_images:
-            if img not in all_images:
+            parsed = urllib.parse.urlparse(img)
+            clean_url = (parsed.netloc + parsed.path).lower()
+            if clean_url not in seen_clean:
                 all_images.append(img)
+                seen_clean.add(clean_url)
                 
         # Limit to 10 photos max (Telegram sendMediaGroup limit)
         all_images = all_images[:10]
@@ -1252,133 +1421,6 @@ def process_channel_send_job(channel_name, to_send, bot_token, default_chat_id, 
         if sent_successfully:
             # Save markdown backup locally
             save_markdown_backup(channel_name, title, url, thumbnail_url, blocks)
-            
-            if blocks:
-                messages_to_send = []
-                current_text = ""
-                max_chunk_size = 3500
-                
-                for b in blocks:
-                    b_type = b.get("type")
-                    b_content = b.get("content", "").strip()
-                    if not b_content:
-                        continue
-                    
-                    b_content_esc = html.escape(b_content)
-                    
-                    if b_type == "p":
-                        snippet = f"{b_content_esc}\n\n"
-                    elif b_type == "h":
-                        snippet = f"\n<b>{b_content_esc}</b>\n\n"
-                    elif b_type == "quote":
-                        snippet = f"<i>“{b_content_esc}”</i>\n\n"
-                    elif b_type == "img":
-                        if sent_as_media_group:
-                            # Already sent in the media group!
-                            continue
-                        if current_text.strip():
-                            messages_to_send.append(('text', current_text.strip()))
-                            current_text = ""
-                        messages_to_send.append(('img', b_content))
-                        continue
-                    else:
-                        continue
-                        
-                    if len(snippet) > max_chunk_size:
-                        if current_text:
-                            messages_to_send.append(('text', current_text.strip()))
-                            current_text = ""
-                        
-                        sentences = re.split(r'(?<=\. )', b_content_esc)
-                        temp_snippet = ""
-                        for s in sentences:
-                            if len(temp_snippet) + len(s) > max_chunk_size:
-                                if temp_snippet:
-                                    messages_to_send.append(('text', temp_snippet.strip()))
-                                temp_snippet = s
-                            else:
-                                temp_snippet += s
-                        if temp_snippet:
-                            current_text = temp_snippet + "\n\n"
-                    else:
-                        if len(current_text) + len(snippet) > max_chunk_size:
-                            if current_text:
-                                messages_to_send.append(('text', current_text.strip()))
-                            current_text = snippet
-                        else:
-                            current_text += snippet
-                            
-                if current_text.strip():
-                    messages_to_send.append(('text', current_text.strip()))
-                    
-                if messages_to_send:
-                    text_parts_count = sum(1 for m_type, _ in messages_to_send if m_type == 'text')
-                    text_idx = 0
-                    
-                    for idx, (m_type, m_content) in enumerate(messages_to_send):
-                        if m_type == 'text':
-                            text_idx += 1
-                            chunk_payload = {
-                                "chat_id": chat_id,
-                                "text": f"📖 <b>{title_esc[:50]}... (Part {text_idx}/{text_parts_count})</b>\n\n<blockquote expandable>{m_content}</blockquote>",
-                                "parse_mode": "HTML"
-                            }
-                            if thread_id:
-                                try:
-                                    chunk_payload["message_thread_id"] = int(thread_id)
-                                except ValueError:
-                                    pass
-                            if main_message_id:
-                                chunk_payload["reply_to_message_id"] = main_message_id
-                                    
-                            try:
-                                res_chunk = telegram_post_request(f"https://api.telegram.org/bot{bot_token}/sendMessage", chunk_payload)
-                                if not res_chunk.get("ok"):
-                                    log_system_activity("Telegram poster", f"Failed to send content part {text_idx}: {res_chunk.get('description', 'Unknown error')}")
-                                else:
-                                    log_system_activity("Telegram poster", f"Sent content part {text_idx}/{text_parts_count} ({len(m_content)} chars) for '{title[:40]}...'")
-                            except Exception as e:
-                                log_system_activity("Telegram poster", f"Network error sending content part {text_idx}: {str(e)}")
-                                
-                        elif m_type == 'img':
-                            img_payload = {
-                                "chat_id": chat_id,
-                                "photo": m_content,
-                                "caption": f"🖼️ <b>{title_esc[:50]}... (Image)</b>",
-                                "parse_mode": "HTML"
-                            }
-                            if thread_id:
-                                try:
-                                    img_payload["message_thread_id"] = int(thread_id)
-                                except ValueError:
-                                    pass
-                            if main_message_id:
-                                img_payload["reply_to_message_id"] = main_message_id
-                                    
-                            try:
-                                res_img = telegram_post_request(f"https://api.telegram.org/bot{bot_token}/sendPhoto", img_payload)
-                                if not res_img.get("ok"):
-                                    fallback_payload = {
-                                        "chat_id": chat_id,
-                                        "text": f"🔗 <a href=\"{m_content}\">View Image</a>\n\n🖼️ <b>{title_esc[:50]}... (Image Link)</b>",
-                                        "parse_mode": "HTML"
-                                    }
-                                    if thread_id:
-                                        fallback_payload["message_thread_id"] = int(thread_id)
-                                    if main_message_id:
-                                        fallback_payload["reply_to_message_id"] = main_message_id
-                                    telegram_post_request(f"https://api.telegram.org/bot{bot_token}/sendMessage", fallback_payload)
-                                    log_system_activity("Telegram poster", f"Sent image link fallback for '{title[:40]}...' (sendPhoto failed: {res_img.get('description')})")
-                                else:
-                                    log_system_activity("Telegram poster", f"Sent inline image for '{title[:40]}...' in broadcast")
-                            except Exception as e:
-                                log_system_activity("Telegram poster", f"Network error sending inline image for '{title[:40]}...': {str(e)}")
-                                
-                        time.sleep(0.5)
-            else:
-                log_system_activity("Telegram poster", f"No readable offline content text blocks found for '{title[:40]}...'")
-        else:
-            log_system_activity("Telegram poster", f"Could not scrape/load offline content blocks for '{title[:40]}...'")
         time.sleep(0.5)
         
     log_system_activity("Telegram poster", f"Finished broadcast for {channel_name}: Sent {sent_count} successfully, {error_count} failed.")
@@ -1651,36 +1693,80 @@ def get_article_content_blocks(article_url):
 
 def fetch_and_aggregate_news():
     global news_cache
-    
     sources = [
-        # Entertainment
         ("Variety main feed", "https://variety.com/feed", "General", True, "Entertainment"),
         ("Variety TV", "https://variety.com/v/tv/feed", "TV", True, "Entertainment"),
         ("Variety Film", "https://variety.com/v/film/feed", "Movies", True, "Entertainment"),
+        ("Variety Music", "https://variety.com/v/music/feed/", "Music", True, "Entertainment"),
+        ("Variety Digital", "https://variety.com/v/digital/feed/", "Digital", True, "Entertainment"),
+        ("Variety Awards", "https://variety.com/v/awards/feed/", "Awards", True, "Entertainment"),
         ("The Hollywood Reporter main feed", "https://www.hollywoodreporter.com/feed", "General", True, "Entertainment"),
-        ("The Hollywood Reporter Movies section", "https://www.hollywoodreporter.com/c/movies/", "Movies", False, "Entertainment"),
-        ("The Hollywood Reporter TV section", "https://www.hollywoodreporter.com/c/tv/", "TV", False, "Entertainment"),
+        ("The Hollywood Reporter Movies section", "https://www.hollywoodreporter.com/c/movies/feed/", "Movies", True, "Entertainment"),
+        ("The Hollywood Reporter TV section", "https://www.hollywoodreporter.com/c/tv/feed/", "TV", True, "Entertainment"),
+        ("The Hollywood Reporter Business section", "https://www.hollywoodreporter.com/c/business/feed/", "General", True, "Entertainment"),
+        ("The Hollywood Reporter Lifestyle section", "https://www.hollywoodreporter.com/c/lifestyle/feed/", "General", True, "Entertainment"),
+        ("The Hollywood Reporter Awards section", "https://www.hollywoodreporter.com/c/awards/feed/", "General", True, "Entertainment"),
         ("Vulture main feed", "https://www.vulture.com/feed/", "General", True, "Entertainment"),
         ("Vulture TV section", "https://www.vulture.com/tv/", "TV", False, "Entertainment"),
         ("Vulture Movies section", "https://www.vulture.com/movies/", "Movies", False, "Entertainment"),
+        ("Vulture Music section", "https://www.vulture.com/music/", "General", False, "Entertainment"),
+        ("Vulture Books section", "https://www.vulture.com/books/", "General", False, "Entertainment"),
+        ("Vulture Comedy section", "https://www.vulture.com/comedy/", "General", False, "Entertainment"),
         ("Entertainment Weekly main site", "https://ew.com", "General", False, "Entertainment"),
         ("Entertainment Weekly TV", "https://ew.com/tv/", "TV", False, "Entertainment"),
         ("Entertainment Weekly Movies", "https://ew.com/movies/", "Movies", False, "Entertainment"),
+        ("Entertainment Weekly Music", "https://ew.com/music/", "General", False, "Entertainment"),
+        ("Entertainment Weekly Celebrity", "https://ew.com/celebrity/", "General", False, "Entertainment"),
         ("Screen Daily RSS/start page", "https://www.screendaily.com/full-rss", "Movies", False, "Entertainment"),
+        ("Deadline Hollywood main feed", "https://deadline.com/feed/", "General", True, "Entertainment"),
+        ("Deadline Hollywood Film", "https://deadline.com/v/film/feed/", "Movies", True, "Entertainment"),
+        ("Deadline Hollywood TV", "https://deadline.com/v/tv/feed/", "TV", True, "Entertainment"),
+        ("Deadline Hollywood Box Office", "https://deadline.com/v/box-office/feed/", "Movies", True, "Entertainment"),
+        ("Deadline Hollywood Awards", "https://deadline.com/v/awards/feed/", "General", True, "Entertainment"),
+        ("Deadline Hollywood Celebrity", "https://deadline.com/v/celebrity/feed/", "General", True, "Entertainment"),
+        ("Collider main feed", "https://collider.com/feed/", "General", True, "Entertainment"),
+        ("Collider TV", "https://collider.com/television/feed/", "TV", True, "Entertainment"),
+        ("RogerEbert.com", "https://www.rogerebert.com/feed", "Movies", True, "Entertainment"),
+        ("The A.V. Club main feed", "https://www.avclub.com/rss", "General", True, "Entertainment"),
+        ("Letterboxd Journal", "https://letterboxd.com/journal/feed/", "Movies", True, "Entertainment"),
+        ("Little White Lies", "https://lwlies.com/feed/", "Movies", True, "Entertainment"),
+        ("Empire Magazine", "https://www.empireonline.com/movies/feed/", "Movies", True, "Entertainment"),
+        ("CinemaBlend main news", "https://www.cinemablend.com/rss/topic/news", "General", True, "Entertainment"),
         ("Rotten Tomatoes News/editorial", "https://editorial.rottentomatoes.com/news", "News", False, "Entertainment"),
         ("Rotten Tomatoes scorecards/editorial", "https://editorial.rottentomatoes.com/movie-tv-scorecards", "Scorecards", False, "Entertainment"),
         ("Rotten Tomatoes binge guide/editorial", "https://editorial.rottentomatoes.com/binge-guide", "Binge Guide", False, "Entertainment"),
         
         # Sports
         ("ESPN News", "https://www.espn.com/espn/rss/news", "Sports", True, "Sports"),
+        ("ESPN NFL", "https://www.espn.com/espn/rss/nfl/news", "Sports", True, "Sports"),
+        ("ESPN NBA", "https://www.espn.com/espn/rss/nba/news", "Sports", True, "Sports"),
+        ("ESPN MLB", "https://www.espn.com/espn/rss/mlb/news", "Sports", True, "Sports"),
+        ("ESPN Soccer", "https://www.espn.com/espn/rss/soccer/news", "Sports", True, "Sports"),
+        ("ESPN NHL", "https://www.espn.com/espn/rss/nhl/news", "Sports", True, "Sports"),
         ("BBC Sport", "https://feeds.bbci.co.uk/sport/rss.xml", "Sports", True, "Sports"),
+        ("BBC Sport Football", "https://feeds.bbci.co.uk/sport/football/rss.xml", "Sports", True, "Sports"),
+        ("BBC Sport Formula 1", "https://feeds.bbci.co.uk/sport/formula1/rss.xml", "Sports", True, "Sports"),
+        ("BBC Sport Cricket", "https://feeds.bbci.co.uk/sport/cricket/rss.xml", "Sports", True, "Sports"),
+        ("BBC Sport Rugby Union", "https://feeds.bbci.co.uk/sport/rugby-union/rss.xml", "Sports", True, "Sports"),
         ("Sky Sports News", "https://www.skysports.com/rss/12040", "News", True, "Sports"),
+        ("Sky Sports Football", "https://www.skysports.com/rss/11095", "Sports", True, "Sports"),
         ("Fabrizio Romano", "https://t.me/s/fabrizioromanotg", "Transfers", False, "Sports"),
         
         # Technology
         ("TechCrunch", "https://techcrunch.com/feed/", "Tech", True, "Technology"),
+        ("TechCrunch Startups", "https://techcrunch.com/category/startups/feed/", "Tech", True, "Technology"),
+        ("TechCrunch Venture", "https://techcrunch.com/category/venture/feed/", "Tech", True, "Technology"),
+        ("TechCrunch Apps", "https://techcrunch.com/category/apps/feed/", "Tech", True, "Technology"),
         ("Wired Tech", "https://www.wired.com/feed/category/gear/latest/rss", "Gear", True, "Technology"),
-        ("The Verge", "https://www.theverge.com/rss/index.xml", "General", True, "Technology")
+        ("Wired Science", "https://www.wired.com/feed/category/science/latest/rss", "Science", True, "Technology"),
+        ("Wired Business", "https://www.wired.com/feed/category/business/latest/rss", "Business", True, "Technology"),
+        ("Wired Culture", "https://www.wired.com/feed/category/culture/latest/rss", "Culture", True, "Technology"),
+        ("Wired Security", "https://www.wired.com/feed/category/security/latest/rss", "Security", True, "Technology"),
+        ("The Verge", "https://www.theverge.com/rss/index.xml", "General", True, "Technology"),
+        ("The Verge Tech", "https://www.theverge.com/rss/tech/index.xml", "Tech", True, "Technology"),
+        ("The Verge Reviews", "https://www.theverge.com/rss/reviews/index.xml", "Reviews", True, "Technology"),
+        ("The Verge Science", "https://www.theverge.com/rss/science/index.xml", "Science", True, "Technology"),
+        ("The Verge Entertainment", "https://www.theverge.com/rss/entertainment/index.xml", "Entertainment", True, "Technology")
     ]
     
     custom_sources = load_custom_sources()

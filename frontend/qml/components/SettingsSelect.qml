@@ -4,9 +4,10 @@ import QtQuick.Layouts
 import "../themes"
 
 // Labelled dropdown. `options` is an array of { value, label } objects.
-// The closed box has a FIXED compact width so long labels (e.g. font names)
-// never stretch it; the open list can be wider and shows a live search box
-// when the option list is long.
+// The closed box "hugs" the CURRENT selection's text + chevron, measured by a
+// hidden, unconstrained Text node (so it resolves the same fallback fonts as
+// the visible label and never enters a layout/elision feedback loop). The open
+// list is wider (popupWidth) and shows a live search box for long lists.
 Rectangle {
     id: ctl
 
@@ -14,10 +15,18 @@ Rectangle {
     property var options: []
     property string value: ""
 
-    // Fixed closed-box width (compact + consistent across every dropdown).
-    property int comboWidth: 200
+    // Closed-box clamp range.
+    property int minComboWidth: 84
+    property int maxComboWidth: 220
     // Open-list width (independent of the closed box, so long names fit).
     property int popupWidth: 300
+
+    // Box layout constants: leftpad + text + gap + chevron + edge margin.
+    readonly property int boxLeftPad: 10
+    readonly property int boxTextGap: 6
+    readonly property int boxChevron: 14
+    readonly property int boxRightPad: 8
+    readonly property int boxExtra: boxLeftPad + boxTextGap + boxChevron + boxRightPad
 
     // Show the in-popup search box once the list gets long.
     property int searchThreshold: 8
@@ -46,6 +55,18 @@ Rectangle {
         return out
     }
 
+    // --- Hidden measuring node ---------------------------------------------
+    // Not in any Layout, no width cap, no elision -> reports the TRUE rendered
+    // width of the current value using the SAME resolved font as the visible
+    // label. The visible contentItem's (eliding) width is never read, so there
+    // is no shrink-to-min binding loop.
+    Text {
+        id: measureText
+        visible: false
+        text: combo.displayText
+        font: combo.font
+    }
+
     RowLayout {
         anchors.fill: parent
         anchors.leftMargin: 16
@@ -64,9 +85,12 @@ Rectangle {
 
         ComboBox {
             id: combo
-            // FIXED width  no longer grows with content.
-            Layout.preferredWidth: ctl.comboWidth
-            Layout.maximumWidth: ctl.comboWidth
+            padding: 0
+            // Hug the current value (measured offscreen) clamped to [min,max].
+            Layout.preferredWidth: Math.min(
+                ctl.maxComboWidth,
+                Math.max(ctl.minComboWidth, Math.ceil(measureText.contentWidth) + ctl.boxExtra))
+            Layout.maximumWidth: ctl.maxComboWidth
             Layout.alignment: Qt.AlignVCenter
             model: ctl.options
             textRole: "label"
@@ -75,9 +99,10 @@ Rectangle {
             font.family: Theme.fontFamily
             font.pixelSize: 14
 
+            // Visual label: elides ONLY when the value exceeds maxComboWidth.
             contentItem: Text {
-                leftPadding: 10
-                rightPadding: 28
+                leftPadding: ctl.boxLeftPad
+                rightPadding: ctl.boxTextGap + ctl.boxChevron + ctl.boxRightPad
                 text: combo.displayText
                 color: Theme.text
                 font: combo.font
@@ -95,16 +120,15 @@ Rectangle {
 
             indicator: Icon {
                 name: "chevron"
-                size: 14
+                size: ctl.boxChevron
                 rotation: 90
                 color: Theme.textSecondary
-                x: Theme.rtl ? 8 : combo.width - width - 8
+                x: Theme.rtl ? ctl.boxRightPad : combo.width - width - ctl.boxRightPad
                 y: (combo.height - height) / 2
             }
 
             popup: Popup {
                 id: comboPopup
-                // Align the (wider) list to the box, kept on-screen for RTL.
                 x: Theme.rtl ? (combo.width - width) : 0
                 y: combo.height + 2
                 width: Math.max(combo.width, ctl.popupWidth)

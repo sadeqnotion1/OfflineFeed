@@ -1,0 +1,15 @@
+# Hollywood Radio and Television Society Partners With Easterseals Disability Services to Relaunch  Darcy Awards
+
+- **Original URL:** https://variety.com/2026/awards/news/hrts-easterseals-darcy-awards-disability-arts-culture-1236784519/
+- **Backup Date:** 2026-06-19 06:49:07
+
+![Cover Image](https://variety.com/wp-content/uploads/2026/05/Easterseals_TheDarcyAwards_Logo_Master_Disability-Arts-Culture-Awards-FULL-LOGO.png)
+
+## Article Content
+
+![Article Image](https://variety.com/wp-content/uploads/2026/05/Easterseals_TheDarcyAwards_Logo_Master_Disability-Arts-Culture-Awards-FULL-LOGO.png?crop=281px%2C0px%2C1360px%2C906px&resize=1000%2C667)
+
+The Hollywood Radio and Television Society will extend its long-standing relationship with Easterseals Disability Services, partnering with the nonprofit organization for the upcoming Easterseals Disability Arts & Culture Awards, also known as the Darcys.Founded in 1979 by producer Norman Lear, the kudos were previously known as the Media Access Awards. HRTS will serve as a community partner for the 2026 Darcys, set to take place Oct. 10 in Santa Monica.Additionally, the two organizations will co-sponsor the afterparty, which will include an announcement of the HRTS Access Leadership Award, honoring an executive or producer “whose efforts to provide and showcase access in the entertainment industry have demonstrated the positive business impact of accessible storytelling, be it narratively, behind-the-scenes, or all of the above.” The nomination process for the HRTS Access Leadership Award will be announced at a later date.The new partnership marks the most ambitious collaboration between HRTS and Easterseals Disability Services to date, with the organizations previously joining forces on numerous initiatives aiming to improve accessibility in the entertainment industry and authentic representation on screen.The news was announced by Tim McNeal, president of the HRTS board of directors, HRTS chair David Madden and HRTS CEO and HRTS Foundation chair Melissa Grego, along with Nancy Weintraub, Easterseals’ Southern California chief advancement officer.“We are honored to extend our long-standing relationship with Easterseals and join forces with them on the newly reimagined Darcys, which stand to take the recognition of disability representation and authentic filmmaking in our industry to the next level,” said McNeal.
+
+“We are truly excited to grow our relationship with the HRTS community, which has helped lay the groundwork for this broad cultural moment, as we relaunch the Media Access Awards as the Darcys,” Weintraub said.HRTS board members JoAnn Alfano, Vivian Cannon, Cliff Decatrel, DJ Nurre and HRTS advisory council member Kelly Goode will co-chair the Darcys after-party.
+
