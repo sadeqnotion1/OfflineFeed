@@ -35,7 +35,7 @@ Popup {
     padding: 0
     closePolicy: Popup.CloseOnEscape | Popup.CloseOnPressOutside
 
-    background: Rectangle { radius: 12; color: Theme.panel; border.width: 1; border.color: Theme.divider }
+    background: Rectangle { radius: Theme.radius.lg; color: Theme.panel; border.width: 1; border.color: Theme.divider }
 
     Connections { target: bridge; function onCustomFoldersChanged() { dlg._refresh() } }
 
@@ -136,7 +136,7 @@ Popup {
                 LayoutMirroring.enabled: Theme.rtl
                 Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
-                    width: parent.width - 92; height: 34; radius: 6
+                    width: parent.width - 92; height: 34; radius: Theme.radius.md
                     color: "transparent"; border.width: 1
                     border.color: newField.activeFocus ? Theme.accent : Theme.divider
                     Behavior on border.color { ColorAnimation { duration: Theme.animFast } }
@@ -155,7 +155,7 @@ Popup {
                 }
                 Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
-                    width: 76; height: 34; radius: 8
+                    width: 76; height: 34; radius: Theme.radius.sm
                     color: createMouse.containsMouse ? Theme.accent : Theme.bg
                     border.width: 1; border.color: Theme.accent
                     Behavior on color { ColorAnimation { duration: Theme.animFast } }

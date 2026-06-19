@@ -43,7 +43,7 @@ Rectangle {
     implicitWidth: Math.max(badgeHeight, label.implicitWidth + hPadding * 2)
     height: implicitHeight
     width: implicitWidth
-    radius: height / 2
+    radius: Theme.radius.pill
 
     // Hide (and take no row space) when there is nothing to show.
     visible: count > 0

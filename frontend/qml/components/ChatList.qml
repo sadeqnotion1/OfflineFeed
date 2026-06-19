@@ -35,7 +35,7 @@ Rectangle {
             Rectangle {
                 anchors.fill: parent
                 anchors.margins: 8
-                radius: 18
+                radius: Theme.radius.md
                 color: Theme.panelAlt
                 Row {
                     anchors.fill: parent

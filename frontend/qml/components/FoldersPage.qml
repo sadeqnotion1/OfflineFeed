@@ -47,7 +47,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; clip: true; height: c1.implicitHeight
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c1.implicitHeight
                 Column {
                     id: c1; width: parent.width
                     SettingsToggle { id: tgEntertainment; label: qsTr("Entertainment")
@@ -76,7 +76,7 @@ Item {
 
             // Create-folder row
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; height: 56
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: 56
                 Row {
                     anchors.fill: parent
                     anchors.leftMargin: 16; anchors.rightMargin: 12
@@ -84,7 +84,7 @@ Item {
                     LayoutMirroring.enabled: Theme.rtl
                     Rectangle {
                         anchors.verticalCenter: parent.verticalCenter
-                        width: parent.width - 118; height: 34; radius: 6
+                        width: parent.width - 118; height: 34; radius: Theme.radius.md
                         color: "transparent"; border.width: 1
                         border.color: newFolderField.activeFocus ? Theme.accent : Theme.divider
                         Behavior on border.color { ColorAnimation { duration: Theme.animFast } }
@@ -103,7 +103,7 @@ Item {
                     }
                     Rectangle {
                         anchors.verticalCenter: parent.verticalCenter
-                        width: 96; height: 34; radius: 8
+                        width: 96; height: 34; radius: Theme.radius.sm
                         color: createFolderMouse.containsMouse ? Theme.accent : Theme.bg
                         border.width: 1; border.color: Theme.accent
                         Behavior on color { ColorAnimation { duration: Theme.animFast } }
@@ -120,7 +120,7 @@ Item {
             // Existing custom folders
             Rectangle {
                 visible: page.customFolders.length > 0
-                width: parent.width; radius: 10; color: Theme.panel; clip: true
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true
                 height: folderCol.implicitHeight
                 Column {
                     id: folderCol; width: parent.width
@@ -143,7 +143,7 @@ Item {
                                     Icon { anchors.verticalCenter: parent.verticalCenter; name: "folder"; size: 18; color: Theme.accent }
                                     Rectangle {
                                         anchors.verticalCenter: parent.verticalCenter
-                                        width: parent.width - 70; height: 32; radius: 6
+                                        width: parent.width - 70; height: 32; radius: Theme.radius.md
                                         color: "transparent"; border.width: 1
                                         border.color: nameField.activeFocus ? Theme.accent : Theme.divider
                                         Behavior on border.color { ColorAnimation { duration: Theme.animFast } }
@@ -173,7 +173,7 @@ Item {
                                         model: folder.channels || []
                                         delegate: Rectangle {
                                             required property var modelData
-                                            height: 26; radius: 13
+                                            height: 26; radius: Theme.radius.pill
                                             width: chipRow.implicitWidth + 18
                                             color: Theme.bg; border.width: 1; border.color: Theme.divider
                                             Row {

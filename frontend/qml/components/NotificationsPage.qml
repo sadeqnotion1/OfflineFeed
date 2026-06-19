@@ -26,7 +26,7 @@ Item {
             spacing: 8
 
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; clip: true; height: card.implicitHeight
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: card.implicitHeight
                 Column {
                     id: card; width: parent.width
                     SettingsToggle { id: tgEnabled; label: qsTr("Enable notifications");  description: qsTr("Show alerts when new feed items are reposted")

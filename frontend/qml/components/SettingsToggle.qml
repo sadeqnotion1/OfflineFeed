@@ -53,14 +53,14 @@ Rectangle {
             Layout.alignment: Qt.AlignVCenter
             width: 42
             height: 24
-            radius: 12
+            radius: Theme.radius.pill
             color: ctl.checked ? Theme.accent : Theme.divider
             Behavior on color { ColorAnimation { duration: Theme.animFast } }
 
             Rectangle {
                 width: 18
                 height: 18
-                radius: 9
+                radius: Theme.radius.pill
                 color: Theme.accentText
                 y: 3
                 // Knob slides to the trailing edge when checked, mirrored under RTL.

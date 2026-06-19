@@ -20,7 +20,7 @@ Flow {
             required property int index
             height: 26
             width: chip.implicitWidth + 18
-            radius: 13
+            radius: Theme.radius.pill
             color: modelData.active
                    ? Theme.accent
                    : (root.outgoing ? Qt.lighter(Theme.outBubble, 1.25)

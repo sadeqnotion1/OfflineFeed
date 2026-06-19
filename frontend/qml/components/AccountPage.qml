@@ -48,7 +48,7 @@ Item {
 
             Rectangle {
                 width: parent.width
-                radius: 10
+                radius: Theme.radius.lg
                 color: Theme.panel
                 clip: true
                 height: card.implicitHeight

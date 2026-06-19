@@ -248,7 +248,7 @@ Rectangle {
                                 width: parent.width
                                 spacing: 12
                                 visible: block && block.type === "quote"
-                                Rectangle { width: 3; height: parent.height; radius: 2; color: Theme.accent }
+                                Rectangle { width: 3; height: parent.height; radius: Theme.radius.pill; color: Theme.accent }
                                 Text {
                                     width: parent.width - 15
                                     text: block ? (block.content || "") : ""

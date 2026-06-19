@@ -110,7 +110,7 @@ Item {
                         delegate: Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 54
-                            radius: 10
+                            radius: Theme.radius.lg
                             color: Theme.panel
                             RowLayout {
                                 anchors.fill: parent

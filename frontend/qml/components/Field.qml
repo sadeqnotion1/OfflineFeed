@@ -13,7 +13,7 @@ ColumnLayout {
     Rectangle {
         Layout.fillWidth: true
         implicitWidth: 240
-        height: 40; radius: 9
+        height: 40; radius: Theme.radius.md
         color: Theme.panel
         border.width: input.activeFocus ? 1 : 0
         border.color: Theme.accent

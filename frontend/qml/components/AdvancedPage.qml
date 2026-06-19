@@ -31,7 +31,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; clip: true; height: c1.implicitHeight
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c1.implicitHeight
                 Column {
                     id: c1; width: parent.width
                     SettingsTextField {
@@ -54,7 +54,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; height: diagCol.implicitHeight + 24
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: diagCol.implicitHeight + 24
                 Column {
                     id: diagCol
                     x: 16; y: 12; width: parent.width - 32; spacing: 12

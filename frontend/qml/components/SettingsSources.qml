@@ -109,7 +109,7 @@ Item {
                         color: Theme.text
                         selectByMouse: true
                         font.family: Theme.fontFamily; font.pixelSize: 14
-                        background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                        background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                     }
                 }
 
@@ -132,7 +132,7 @@ Item {
                     color: Theme.text
                     selectByMouse: true
                     font.family: Theme.fontFamily; font.pixelSize: 14
-                    background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                    background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                 }
                 RowLayout {
                     Layout.fillWidth: true
@@ -144,7 +144,7 @@ Item {
                         color: Theme.text
                         selectByMouse: true
                         font.family: Theme.fontFamily; font.pixelSize: 14
-                        background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                        background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                         onAccepted: root.addSingle()
                     }
                     PillButton {
@@ -168,7 +168,7 @@ Item {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 150
-                    color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1
+                    color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1
                     ScrollView {
                         anchors.fill: parent
                         anchors.margins: 6
@@ -227,7 +227,7 @@ Item {
                         delegate: Rectangle {
                             Layout.fillWidth: true
                             Layout.preferredHeight: 54
-                            color: Theme.panel; radius: 8
+                            color: Theme.panel; radius: Theme.radius.lg
                             RowLayout {
                                 anchors.fill: parent
                                 anchors.leftMargin: 12

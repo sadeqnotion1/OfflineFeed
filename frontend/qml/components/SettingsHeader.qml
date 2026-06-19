@@ -24,7 +24,7 @@ Rectangle {
             Layout.preferredWidth: 40
             Layout.preferredHeight: 40
             Layout.alignment: Qt.AlignVCenter
-            radius: 8
+            radius: Theme.radius.sm
             color: backMouse.containsMouse ? Theme.hover : "transparent"
             Behavior on color { ColorAnimation { duration: Theme.animFast } }
 

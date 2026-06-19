@@ -150,7 +150,7 @@ Item {
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 220
-                    radius: 10
+                    radius: Theme.radius.lg
                     color: Theme.panel
                     ListView {
                         id: logList

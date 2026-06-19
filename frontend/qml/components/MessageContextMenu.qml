@@ -26,7 +26,7 @@ Menu {
 
     background: Rectangle {
         color: Theme.panel
-        radius: 10
+        radius: Theme.radius.lg
         border.width: 1
         border.color: Theme.divider
         layer.enabled: true
@@ -62,7 +62,7 @@ Menu {
             }
         }
         background: Rectangle {
-            radius: 7
+            radius: Theme.radius.sm
             color: mi.highlighted ? Theme.hover : "transparent"
         }
     }

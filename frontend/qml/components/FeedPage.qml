@@ -32,7 +32,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; clip: true; height: c1.implicitHeight
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c1.implicitHeight
                 Column {
                     id: c1; width: parent.width
                     SettingsSelect {
@@ -65,7 +65,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; clip: true; height: c2.implicitHeight
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c2.implicitHeight
                 Column {
                     id: c2; width: parent.width
                     SettingsSelect {
@@ -83,7 +83,7 @@ Item {
             // bridge.wallpaperImage backing state used by Appearance, so any
             // wallpaper chosen in either place keeps applying identically.
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; height: wallRow.implicitHeight + 24
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: wallRow.implicitHeight + 24
                 Row {
                     id: wallRow
                     x: 16; y: 12
@@ -111,7 +111,7 @@ Item {
                     }
                     Rectangle {
                         anchors.verticalCenter: parent.verticalCenter
-                        width: 130; height: 34; radius: 8
+                        width: 130; height: 34; radius: Theme.radius.sm
                         color: chooseMouse.containsMouse ? Theme.accent : Theme.bg
                         border.width: 1; border.color: Theme.accent
                         Behavior on color { ColorAnimation { duration: Theme.animFast } }

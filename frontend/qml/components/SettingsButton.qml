@@ -13,7 +13,7 @@ Rectangle {
 
     implicitWidth: Math.max(120, t.implicitWidth + 32)
     implicitHeight: 38
-    radius: 8
+    radius: Theme.radius.sm
     color: primary ? (mouse.containsMouse ? Theme.accentHover : Theme.accent)
                    : (mouse.containsMouse ? Theme.hover : Theme.panel)
     border.width: primary ? 0 : 1

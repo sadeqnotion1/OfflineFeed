@@ -9,7 +9,7 @@ Rectangle {
     signal clicked()
     implicitHeight: 40
     implicitWidth: lbl.implicitWidth + 36
-    radius: 20
+    radius: Theme.radius.pill
     color: outline ? "transparent" : (danger ? "#ec3942" : Theme.accent)
     border.width: outline ? 1 : 0
     border.color: danger ? "#ec3942" : Theme.divider

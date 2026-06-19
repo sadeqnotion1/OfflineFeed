@@ -62,12 +62,12 @@ Rectangle {
                 y: slider.topPadding + slider.availableHeight / 2 - height / 2
                 width: slider.availableWidth
                 height: 4
-                radius: 2
+                radius: Theme.radius.pill
                 color: Theme.divider
                 Rectangle {
                     width: slider.visualPosition * parent.width
                     height: parent.height
-                    radius: 2
+                    radius: Theme.radius.pill
                     color: Theme.accent
                     x: Theme.rtl ? parent.width - width : 0
                 }
@@ -78,7 +78,7 @@ Rectangle {
                 y: slider.topPadding + slider.availableHeight / 2 - height / 2
                 width: 18
                 height: 18
-                radius: 9
+                radius: Theme.radius.pill
                 color: Theme.accent
                 border.width: 2
                 border.color: Theme.accentText

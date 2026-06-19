@@ -66,7 +66,7 @@ Item {
             }
             Rectangle {
                 width: parent.width
-                radius: 10
+                radius: Theme.radius.lg
                 color: Theme.panel
                 height: defaultsCol.implicitHeight + 24
                 Column {
@@ -97,7 +97,7 @@ Item {
                             color: Theme.text
                             selectByMouse: true
                             font.family: Theme.fontFamily; font.pixelSize: 14
-                            background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                            background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                         }
                     }
                 }
@@ -112,7 +112,7 @@ Item {
             }
             Rectangle {
                 width: parent.width
-                radius: 10
+                radius: Theme.radius.lg
                 color: Theme.panel
                 height: singleCol.implicitHeight + 24
                 Column {
@@ -135,7 +135,7 @@ Item {
                         color: Theme.text
                         selectByMouse: true
                         font.family: Theme.fontFamily; font.pixelSize: 14
-                        background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                        background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                     }
 
                     RowLayout {
@@ -148,7 +148,7 @@ Item {
                             color: Theme.text
                             selectByMouse: true
                             font.family: Theme.fontFamily; font.pixelSize: 14
-                            background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                            background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                             onAccepted: page.addSingle()
                         }
                         PillButton {
@@ -168,7 +168,7 @@ Item {
             }
             Rectangle {
                 width: parent.width
-                radius: 10
+                radius: Theme.radius.lg
                 color: Theme.panel
                 height: batchCol.implicitHeight + 24
                 Column {
@@ -187,7 +187,7 @@ Item {
                     Rectangle {
                         width: parent.width
                         height: 120
-                        color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1
+                        color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1
                         ScrollView {
                             anchors.fill: parent
                             anchors.margins: 6
@@ -220,7 +220,7 @@ Item {
             }
             Rectangle {
                 width: parent.width
-                radius: 10
+                radius: Theme.radius.lg
                 color: Theme.panel
                 height: opmlCol.implicitHeight + 24
                 Column {
@@ -269,7 +269,7 @@ Item {
                     delegate: Rectangle {
                         id: row
                         width: page.width - 32 > 620 ? 620 : page.width - 32
-                        color: Theme.panel; radius: 10
+                        color: Theme.panel; radius: Theme.radius.lg
                         implicitHeight: rowStack.implicitHeight + 20
 
                         property bool editing: false
@@ -285,7 +285,7 @@ Item {
                                 spacing: 10
                                 Rectangle {
                                     Layout.preferredWidth: 36; Layout.preferredHeight: 36
-                                    radius: 18; color: Theme.accent
+                                    radius: Theme.radius.pill; color: Theme.accent
                                     Text {
                                         anchors.centerIn: parent
                                         text: model.name ? model.name.charAt(0).toUpperCase() : "?"
@@ -338,7 +338,7 @@ Item {
                                         color: Theme.text
                                         selectByMouse: true
                                         font.family: Theme.fontFamily; font.pixelSize: 14
-                                        background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                                        background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                                     }
                                     TextField {
                                         id: editUrl
@@ -347,7 +347,7 @@ Item {
                                         color: Theme.text
                                         selectByMouse: true
                                         font.family: Theme.fontFamily; font.pixelSize: 14
-                                        background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                                        background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                                     }
                                 }
                                 RowLayout {
@@ -364,7 +364,7 @@ Item {
                                         color: Theme.text
                                         selectByMouse: true
                                         font.family: Theme.fontFamily; font.pixelSize: 14
-                                        background: Rectangle { color: Theme.bg; radius: 6; border.color: Theme.divider; border.width: 1 }
+                                        background: Rectangle { color: Theme.bg; radius: Theme.radius.md; border.color: Theme.divider; border.width: 1 }
                                     }
                                     PillButton {
                                         text: qsTr("Save")

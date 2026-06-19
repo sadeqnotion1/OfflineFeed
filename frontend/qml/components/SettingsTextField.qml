@@ -36,7 +36,7 @@ Rectangle {
         Rectangle {
             width: parent.width
             height: 30
-            radius: 6
+            radius: Theme.radius.md
             color: "transparent"
             border.width: 1
             border.color: field.activeFocus ? Theme.accent : Theme.divider

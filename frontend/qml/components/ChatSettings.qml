@@ -46,7 +46,7 @@ Rectangle {
                         readonly property var pal: Theme.palettes[modelData.id]
                         Layout.preferredWidth: 92
                         Layout.preferredHeight: 116
-                        radius: 12
+                        radius: Theme.radius.lg
                         color: pal.bg
                         border.width: Theme.variant === modelData.id ? 2 : 1
                         border.color: Theme.variant === modelData.id ? Theme.accent : Theme.divider
@@ -55,9 +55,9 @@ Rectangle {
                             anchors.fill: parent
                             anchors.margins: 10
                             spacing: 6
-                            Rectangle { width: parent.width * 0.7; height: 16; radius: 8; color: pal.inBubble }
-                            Rectangle { width: parent.width * 0.85; height: 16; radius: 8; color: pal.inBubble; anchors.right: parent.right }
-                            Rectangle { width: parent.width * 0.7; height: 16; radius: 8; color: pal.outBubble; anchors.right: parent.right }
+                            Rectangle { width: parent.width * 0.7; height: 16; radius: Theme.radius.sm; color: pal.inBubble }
+                            Rectangle { width: parent.width * 0.85; height: 16; radius: Theme.radius.sm; color: pal.inBubble; anchors.right: parent.right }
+                            Rectangle { width: parent.width * 0.7; height: 16; radius: Theme.radius.sm; color: pal.outBubble; anchors.right: parent.right }
                             Item { height: 4; width: 1 }
                             Text {
                                 anchors.horizontalCenter: parent.horizontalCenter
@@ -92,7 +92,7 @@ Rectangle {
                 spacing: 10
                 // First swatch resets to the theme's default accent.
                 Rectangle {
-                    width: 30; height: 30; radius: 15; color: "transparent"
+                    width: 30; height: 30; radius: Theme.radius.pill; color: "transparent"
                     border.width: Theme.accentOverride === "" ? 3 : 1
                     border.color: Theme.accentOverride === "" ? Theme.text : Theme.divider
                     Icon { anchors.centerIn: parent; name: "refresh"; size: 14; color: Theme.textSecondary }
@@ -105,7 +105,7 @@ Rectangle {
                     model: ["#e0565b", "#e8a23d", "#4fae4e", "#3390ec", "#8a6df0", "#d669ed", "#37b6c4"]
                     delegate: Rectangle {
                         required property var modelData
-                        width: 30; height: 30; radius: 15; color: modelData
+                        width: 30; height: 30; radius: Theme.radius.pill; color: modelData
                         border.width: Theme.accentOverride === modelData ? 3 : 0
                         border.color: Theme.text
                         MouseArea {
@@ -193,7 +193,7 @@ Rectangle {
                     id: fontField
                     Layout.preferredWidth: 260
                     Layout.preferredHeight: 40
-                    radius: 8
+                    radius: Theme.radius.md
                     color: Theme.panelAlt
                     border.width: 1
                     border.color: fontPopup.visible ? Theme.accent : Theme.divider
@@ -247,7 +247,7 @@ Rectangle {
                         color: Theme.panel
                         border.color: Theme.divider
                         border.width: 1
-                        radius: 10
+                        radius: Theme.radius.lg
                     }
 
                     contentItem: ColumnLayout {
@@ -263,7 +263,7 @@ Rectangle {
                             font.pixelSize: 14
                             background: Rectangle {
                                 color: Theme.panelAlt
-                                radius: 6
+                                radius: Theme.radius.md
                                 border.color: Theme.divider
                                 border.width: 1
                             }
@@ -291,7 +291,7 @@ Rectangle {
                                 required property var modelData
                                 width: fontList.width
                                 height: 36
-                                radius: 6
+                                radius: Theme.radius.sm
                                 color: modelData === fontPicker.safeCurrent ? Theme.hover : "transparent"
                                 Text {
                                     anchors.verticalCenter: parent.verticalCenter
@@ -341,7 +341,7 @@ Rectangle {
                     delegate: Rectangle {
                         required property var modelData
                         Layout.preferredWidth: 80; Layout.preferredHeight: 56
-                        radius: 10
+                        radius: Theme.radius.lg
                         color: Theme.wallpaper
                         border.width: Theme.wallpaperMode === modelData.id ? 2 : 1
                         border.color: Theme.wallpaperMode === modelData.id ? Theme.accent : Theme.divider

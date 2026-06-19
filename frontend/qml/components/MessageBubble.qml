@@ -74,7 +74,7 @@ Item {
 
         // Telegram tail / grouping: square the corner nearest the tail only on
         // the last bubble of a group.
-        radius: Theme.bubbleRadius
+        radius: Theme.radius.lg
         anchors.right: root.outgoing ? parent.right : undefined
         anchors.left: root.outgoing ? undefined : parent.left
         anchors.rightMargin: root.outgoing ? 14 : 0
@@ -125,7 +125,7 @@ Item {
                     id: imageClipContainer
                     width: parent.width
                     height: mediaHeight + Theme.bubbleRadius
-                    radius: Theme.bubbleRadius
+                    radius: Theme.radius.lg
                     color: Qt.darker(Theme.inBubble, 1.15)
                     clip: true
 

@@ -25,7 +25,7 @@ Item {
             spacing: 8
 
             Rectangle {
-                width: parent.width; radius: 10; color: Theme.panel; clip: true; height: card.implicitHeight
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: card.implicitHeight
                 Column {
                     id: card; width: parent.width
                     SettingsToggle { id: tgHistory; label: qsTr("Keep read/article history"); description: qsTr("Remember which items you have already opened")

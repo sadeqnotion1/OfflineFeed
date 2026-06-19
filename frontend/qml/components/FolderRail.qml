@@ -45,7 +45,7 @@ Rectangle {
                 Rectangle {
                     anchors.fill: parent
                     anchors.margins: 4
-                    radius: 10
+                    radius: Theme.radius.md
                     color: parent.active ? Theme.selection : (tabMouse.containsMouse ? Theme.hover : "transparent")
                     Behavior on color { ColorAnimation { duration: Theme.animFast } }
                 }
@@ -100,7 +100,7 @@ Rectangle {
                 Rectangle {
                     anchors.fill: parent
                     anchors.margins: 4
-                    radius: 10
+                    radius: Theme.radius.md
                     color: parent.active ? Theme.selection : (folderMouse.containsMouse ? Theme.hover : "transparent")
                     Behavior on color { ColorAnimation { duration: Theme.animFast } }
                 }
@@ -144,7 +144,7 @@ Rectangle {
             Rectangle {
                 anchors.fill: parent
                 anchors.margins: 4
-                radius: 10
+                radius: Theme.radius.md
                 color: parent.active ? Theme.selection : (setMouse.containsMouse ? Theme.hover : "transparent")
                 Behavior on color { ColorAnimation { duration: Theme.animFast } }
             }

@@ -258,7 +258,19 @@ QtObject {
     readonly property int infoPanelWidth: 340
     readonly property int titleBarHeight: 44
     readonly property int headerHeight: 56
-    readonly property int bubbleRadius: 13
+    readonly property int bubbleRadius: radius.lg
+
+    // ----- Corner radius scale (single source of truth) -----
+    // Bind components to these tokens instead of hard-coding literal radius
+    // numbers, so corner rounding stays consistent across cards, inputs,
+    // chips, badges and avatars. (Sizes are unchanged - only corner radii.)
+    //   sm   -> small chips / tags
+    //   md   -> inputs / search fields
+    //   lg   -> cards / message bubbles
+    //   pill -> fully rounded (badges, avatars, pill buttons, toasts)
+    // `pill` is a large constant; Qt clamps radius to min(w,h)/2, so it
+    // yields a perfect pill for any height and a circle for square items.
+    readonly property var radius: ({ "sm": 8, "md": 12, "lg": 18, "pill": 9999 })
     readonly property int avatarSize: 46
     readonly property int rowHeight: 70
 

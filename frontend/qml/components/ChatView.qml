@@ -197,7 +197,7 @@ Rectangle {
                             anchors.fill: parent
                             spacing: 8
                             LayoutMirroring.enabled: Theme.rtl
-                            Rectangle { width: 2; height: 18; radius: 1; color: Theme.accent; anchors.verticalCenter: parent.verticalCenter }
+                            Rectangle { width: 2; height: 18; radius: Theme.radius.pill; color: Theme.accent; anchors.verticalCenter: parent.verticalCenter }
                             Icon { anchors.verticalCenter: parent.verticalCenter; name: "pin"; size: 14; color: Theme.accent }
                             Text {
                                 anchors.verticalCenter: parent.verticalCenter
@@ -235,7 +235,7 @@ Rectangle {
             color: Theme.panel
             Rectangle {
                 anchors.fill: parent; anchors.margins: 8
-                radius: 18; color: Theme.panelAlt
+                radius: Theme.radius.md; color: Theme.panelAlt
                 Row {
                     anchors.fill: parent
                     anchors.leftMargin: 12; anchors.rightMargin: 12; spacing: 8
@@ -341,7 +341,7 @@ Rectangle {
                 Rectangle {
                     Layout.preferredHeight: 38
                     Layout.preferredWidth: fwdRow.implicitWidth + 28
-                    radius: 19
+                    radius: Theme.radius.pill
                     color: fwdMouse.containsMouse ? Qt.lighter(Theme.accent, 1.1) : Theme.accent
                     Behavior on color { ColorAnimation { duration: Theme.animFast } }
                     Row {
@@ -385,7 +385,7 @@ Rectangle {
                 Rectangle {
                     Layout.preferredHeight: 38
                     Layout.preferredWidth: binRow.implicitWidth + 28
-                    radius: 19
+                    radius: Theme.radius.pill
                     color: binMouse.containsMouse ? "#d34b52" : "#ec3942"
                     Behavior on color { ColorAnimation { duration: Theme.animFast } }
                     Row {

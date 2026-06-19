@@ -89,7 +89,7 @@ Rectangle {
                         Rectangle {
                             height: 20
                             width: sourceIcon.visible ? 28 : (sourceLabel.implicitWidth + 16)
-                            radius: 10
+                            radius: Theme.radius.sm
                             color: Theme.panelAlt
                             border.width: 1
                             border.color: Theme.divider
@@ -115,7 +115,7 @@ Rectangle {
                         Rectangle {
                             height: 20
                             width: sectionLabel.implicitWidth + 16
-                            radius: 10
+                            radius: Theme.radius.sm
                             color: Theme.panelAlt
                             border.width: 1
                             border.color: Theme.divider
@@ -175,7 +175,7 @@ Rectangle {
                         Rectangle {
                             height: 28
                             width: btnRow1.implicitWidth + 16
-                            radius: 14
+                            radius: Theme.radius.pill
                             color: btnMouse1.containsMouse ? Theme.panelAlt : "transparent"
                             border.width: 1
                             border.color: Theme.divider
@@ -198,7 +198,7 @@ Rectangle {
                         Rectangle {
                             height: 28
                             width: btnRow2.implicitWidth + 16
-                            radius: 14
+                            radius: Theme.radius.pill
                             color: btnMouse2.containsMouse ? Theme.panelAlt : "transparent"
                             border.width: 1
                             border.color: Theme.divider
@@ -221,7 +221,7 @@ Rectangle {
                         Rectangle {
                             height: 28
                             width: btnRow3.implicitWidth + 16
-                            radius: 14
+                            radius: Theme.radius.pill
                             color: btnMouse3.containsMouse ? Theme.panelAlt : "transparent"
                             border.width: 1
                             border.color: Theme.divider

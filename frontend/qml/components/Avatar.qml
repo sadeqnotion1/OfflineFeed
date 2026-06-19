@@ -34,7 +34,7 @@ Item {
     Rectangle {
         id: disc
         anchors.fill: parent
-        radius: width / 2
+        radius: Theme.radius.pill
         visible: !root.isImage || avatarImg.status !== Image.Ready
         gradient: Gradient {
             orientation: Gradient.Vertical
@@ -64,7 +64,7 @@ Item {
     // Real image avatar, clipped to a circle
     Rectangle {
         anchors.fill: parent
-        radius: width / 2
+        radius: Theme.radius.pill
         visible: root.isImage && avatarImg.status === Image.Ready
         clip: true
         color: "transparent"

@@ -47,7 +47,7 @@ Item {
     // Graceful fallback glyph when the SVG can't load.
     Rectangle {
         anchors.fill: parent
-        radius: 3
+        radius: Theme.radius.sm
         color: "transparent"
         border.width: 1
         border.color: root.color
