@@ -3,6 +3,11 @@ import QtQuick.Layouts
 import "../themes"
 
 // A single row in the chat list (one feed channel / Saved / Logs).
+//
+// 09_spacing_density: every margin / gap / avatar size here is now driven by
+// the Theme spacing scale (Theme.space.*) and the list-row density tokens
+// (Theme.row*). There are NO stray literal margins or spacings left in this
+// delegate. Colors and radii are untouched.
 Item {
     id: row
     property string channelId: ""
@@ -19,7 +24,7 @@ Item {
     signal clicked()
     signal rightClicked(real gx, real gy)
 
-    width: ListView.view ? ListView.view.width : 320
+    width: ListView.view ? ListView.view.width : Theme.chatListWidth
     height: Theme.rowHeight
 
     // Row-state background: subtle accent washes layered over the panel.
@@ -58,26 +63,28 @@ Item {
 
     RowLayout {
         anchors.fill: parent
-        anchors.leftMargin: 12
-        anchors.rightMargin: 12
-        spacing: 11
+        anchors.leftMargin: Theme.rowPadding      // leading inset (12)
+        anchors.rightMargin: Theme.rowPadding     // trailing inset (12)
+        spacing: Theme.rowGap                     // avatar <-> text gap (12)
         LayoutMirroring.enabled: Theme.rtl
 
         Avatar {
             name: row.name
             avatarPath: row.avatarPath
             seed: row.channelId
-            size: Theme.avatarSize
+            size: Theme.rowAvatarSize             // list-row avatar (54)
             Layout.alignment: Qt.AlignVCenter
         }
 
         ColumnLayout {
             Layout.fillWidth: true
-            spacing: 3
+            Layout.alignment: Qt.AlignVCenter
+            spacing: Theme.rowLineGap             // name <-> preview vertical gap (4)
 
+            // Top line: name (left, grows) + timestamp pinned top-right.
             RowLayout {
                 Layout.fillWidth: true
-                spacing: 6
+                spacing: Theme.rowInlineGap       // inline gap (8)
                 Icon {
                     visible: row.pinned
                     name: "pin"; size: 13; color: Theme.textSecondary
@@ -113,9 +120,10 @@ Item {
                 }
             }
 
+            // Bottom line: preview (left, grows) + mute/badge pinned bottom-right.
             RowLayout {
                 Layout.fillWidth: true
-                spacing: 6
+                spacing: Theme.rowInlineGap       // inline gap (8)
                 Text {
                     Layout.fillWidth: true
                     text: row.lastMessage
@@ -139,12 +147,13 @@ Item {
         }
     }
 
-    // Bottom divider
+    // Bottom divider — starts under the text block (aligned to the text inset)
+    // so it never runs under the avatar.
     Rectangle {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.leftMargin: 70
+        anchors.leftMargin: Theme.rowTextInset    // = rowPadding + rowAvatarSize + rowGap (78)
         height: 1
         color: Theme.divider
         opacity: 0.5

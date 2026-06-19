@@ -297,6 +297,35 @@ QtObject {
     readonly property int avatarSize: 46
     readonly property int rowHeight: 70
 
+    // ----- Spacing scale (09_spacing_density) -----
+    // ★ SINGLE SOURCE OF TRUTH for margins & gaps ★. One 4px-based ladder used
+    // app-wide so paddings/gaps line up on a consistent grid. Bind components
+    // to these tokens instead of hard-coding literal margins/spacings.
+    //   xs -> 4    tight inner gaps (stacked text lines)
+    //   sm -> 8    small paddings / inline gaps (icon <-> text)
+    //   md -> 12   standard row padding & avatar <-> text gap
+    //   lg -> 16   section padding
+    //   xl -> 20   large padding
+    readonly property var space: ({ "xs": 4, "sm": 8, "md": 12, "lg": 16, "xl": 20 })
+
+    // ----- List-row density (Telegram Desktop dialog-row spec) -----
+    // Fixed geometry so every channel row is the same height and the avatar /
+    // paddings / gaps all sit on the spacing grid above. rowHeight stays 70
+    // (within the 64-72 Telegram range); the list-row avatar is its OWN token
+    // (54) so other surfaces still using avatarSize (46) are left untouched.
+    readonly property int rowAvatarSize: 54            // list-row avatar
+    readonly property int rowPadding:    space.md       // leading / trailing inset = 12
+    readonly property int rowGap:        space.md       // avatar <-> text gap      = 12
+    readonly property int rowLineGap:    space.xs       // name <-> preview (vertical) = 4
+    readonly property int rowInlineGap:  space.sm       // text <-> trailing meta (icons/time/badge) = 8
+    // Text-block left edge — used by the row divider so it starts under the text.
+    readonly property int rowTextInset:  rowPadding + rowAvatarSize + rowGap   // = 78
+
+    // ----- Search header height (09_spacing_density) -----
+    // Match the chat-list search header to the chat header so both top bars
+    // align on the same scale (Telegram-style). Was a literal 54.
+    readonly property int searchBarHeight: headerHeight   // = 56
+
     // ----- Animation -----
     readonly property int anim: 180
     readonly property int animFast: 140
@@ -322,5 +351,32 @@ QtObject {
             h = (s.charCodeAt(i) + ((h << 5) - h)) | 0;
         var idx = Math.abs(h) % avatarGradients.length;
         return avatarGradients[idx];
+    }
+
+    // ----- System-entry icon-avatar gradients -----
+    // Dedicated, STABLE gradients for the special system entries so they render
+    // as a purposeful TINTED gradient + glyph (see Avatar.qml) instead of a
+    // flat single-color circle or a random hash color. Keyed by the avatarPath
+    // sentinel Avatar.qml uses. Intentionally fixed (NOT accent-driven and NOT
+    // hash-derived) so these rows look identical on every launch.
+    readonly property var systemAvatarGradients: ({
+        "bookmark": ["#4f8ff7", "#2a5fd0"],  // Saved Messages    - Telegram blue
+        "archive":  ["#9aa7b6", "#5d6b7d"],  // Archived Messages - muted slate
+        "logs":     ["#4db6ac", "#2a8f86"],  // System & App Logs - teal
+        "trash":    ["#ff7a6b", "#e0534f"]   // Bin               - soft red
+    })
+
+    // True when `key` denotes a system icon-avatar (not a per-peer gradient).
+    function isSystemAvatar(key) {
+        return key === "bookmark" || key === "archive"
+            || key === "logs" || key === "trash";
+    }
+
+    // Deterministic gradient for an icon-avatar key. Falls back to the regular
+    // per-peer gradient set if an unknown key is passed (defensive - never
+    // returns undefined, so the disc always has a valid 2-stop gradient).
+    function iconGradientFor(key) {
+        return systemAvatarGradients[key] ? systemAvatarGradients[key]
+                                          : gradientFor(key);
     }
 }

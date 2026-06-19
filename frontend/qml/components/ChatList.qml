@@ -4,6 +4,10 @@ import "../themes"
 
 // Middle pane: search field (single, consolidated settings access lives in the
 // folder rail — fixing known issue #5) + the scrollable list of channels.
+//
+// 09_spacing_density: the search header height is normalized to the same scale
+// as the chat header (Theme.searchBarHeight === Theme.headerHeight), and the
+// search field paddings now use the Theme spacing tokens instead of literals.
 Rectangle {
     id: root
     color: Theme.listBg
@@ -30,18 +34,18 @@ Rectangle {
         // ---- Search bar ----
         Rectangle {
             width: parent.width
-            height: 54
+            height: Theme.searchBarHeight          // normalized to chat header (56)
             color: Theme.panel
             Rectangle {
                 anchors.fill: parent
-                anchors.margins: 8
+                anchors.margins: Theme.space.sm    // inset (8)
                 radius: Theme.radius.md
                 color: Theme.panelAlt
                 Row {
                     anchors.fill: parent
-                    anchors.leftMargin: 12
-                    anchors.rightMargin: 12
-                    spacing: 8
+                    anchors.leftMargin: Theme.space.md   // (12)
+                    anchors.rightMargin: Theme.space.md  // (12)
+                    spacing: Theme.space.sm              // (8)
                     LayoutMirroring.enabled: Theme.rtl
                     Icon {
                         anchors.verticalCenter: parent.verticalCenter
@@ -74,7 +78,7 @@ Rectangle {
         ListView {
             id: list
             width: parent.width
-            height: parent.height - 54
+            height: parent.height - Theme.searchBarHeight   // fill below the search header
             clip: true
             model: chatModel
             boundsBehavior: Flickable.StopAtBounds
