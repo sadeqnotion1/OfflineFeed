@@ -26,3 +26,9 @@ Thumbs.db
 # Agent
 .agent/
 .agents/
+
+# Offline cache and runtime folders
+offline_viewer/assets/cached_images/
+offline_viewer/assets/cached_articles/
+frontend/qml/assets/icons_backup/
+*.bak

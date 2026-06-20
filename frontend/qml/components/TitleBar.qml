@@ -12,6 +12,15 @@ Rectangle {
     height: Theme.titleBarHeight
     color: Theme.panel
 
+    // ---- Single source of truth for the window-control cluster ----------
+    // ICON SIZE FIX: minimize / maximize / close ALL consume these tokens so
+    // the close button can never drift from its siblings in icon size, hit-
+    // area width or padding. windowIconSize binds to the shared Icon.Size
+    // enum (Small = 18 -> the title-bar / window-controls tier) instead of a
+    // bare magic number, keeping it on the one icon scale used app-wide.
+    readonly property int windowIconSize: Icon.Size.Small   // 18px (title-bar tier)
+    readonly property int windowButtonWidth: 46
+
     signal requestMinimize()
     signal requestToggleMaximize()
     signal requestClose()
@@ -62,14 +71,16 @@ Rectangle {
         property string iconName: ""
         property color hoverColor: Theme.hover
         signal clicked()
-        Layout.preferredWidth: 46
+        // Consume the bar-level tokens so all three controls share one width
+        // and one icon size (the close button included).
+        Layout.preferredWidth: bar.windowButtonWidth
         Layout.fillHeight: true
         color: hover.containsMouse ? hoverColor : "transparent"
         Behavior on color { ColorAnimation { duration: Theme.animFast } }
         Icon {
             anchors.centerIn: parent
             name: parent.iconName
-            size: 18
+            size: bar.windowIconSize
             color: (parent.iconName === "close" && hover.containsMouse) ? "#ffffff" : Theme.textSecondary
         }
         MouseArea {

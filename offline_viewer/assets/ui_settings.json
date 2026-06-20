@@ -3,12 +3,12 @@
         "appearance": {
             "theme": "night",
             "font_family": "TikTok Sans",
-            "accent_override": "#4dcd5e",
-            "wallpaper_mode": "image",
+            "accent_override": "#e8506e",
+            "wallpaper_mode": "pattern",
             "interface_scale": 1.0,
             "auto_night": false,
             "reader_font_family": "TikTok Sans",
-            "wallpaper_image": "file:///E:/Projects/OfflineFeed-master/data/wallpapers/wallpaper.jpg"
+            "wallpaper_image": ""
         },
         "notifications": {
             "enabled": true,
@@ -27,43 +27,21 @@
             "rtl": false
         },
         "advanced": {
-            "backend_port": 8081,
+            "backend_port": 8080,
             "cache_limit_mb": 500
         },
         "account": {
             "api_id": "",
             "api_hash": "",
-            "bot_token": "8633830760:AAG3_g78kxSE2n4q2Cjm2u1Y2rlCWOG9HFI",
-            "default_chat_id": "-1003866441602",
+            "bot_token": "",
+            "default_chat_id": "",
             "sports_chat_id": "",
             "technology_chat_id": "",
-            "channel_threads": {
-                "MovieWeb": "8",
-                "SlashFilm": "10",
-                "Variety": "2",
-                "The Hollywood Reporter": "4",
-                "Vulture": "6",
-                "IndieWire": "12",
-                "Rotten Tomatoes": "14",
-                "Screen Daily": "16"
-            }
+            "channel_threads": {}
         },
-        "folders": {
-            "custom": [
-                {
-                    "id": "folder:vic:1",
-                    "name": "VIC",
-                    "channels": []
-                }
-            ]
-        },
-        "pins": {
-            "channels": [],
-            "messages": []
-        },
-        "bin": {},
-        "archive": {
-            "channels": []
-        }
+        "pins": {},
+        "folders": {},
+        "archive": {},
+        "bin": {}
     }
 ]

@@ -11,6 +11,8 @@ import datetime
 import concurrent.futures
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import feed_store
+import media_cache       # NEW: caches in-article images for true offline reading
+import cache_retention   # NEW: 14-day cached-post archiver
 
 PORT = 8080
 DIRECTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "offline_viewer")
@@ -81,7 +83,7 @@ def download_feed_thumbnails_async(articles, status_map):
         for art in articles:
             thumb = art.get("thumbnail")
             if thumb and thumb.startswith("http"):
-                local_thumb = download_and_cache_image(thumb)
+                local_thumb = media_cache.download_and_cache_image(thumb)
                 if local_thumb != thumb:
                     art["thumbnail"] = local_thumb
                     updated = True
@@ -1656,6 +1658,11 @@ def get_article_content_blocks(article_url):
     url_hash = hashlib.md5(article_url.encode('utf-8')).hexdigest()
     cache_path = os.path.join(cache_dir, f"{url_hash}.json")
     
+    try:
+        cache_retention.restore_article(article_url)  # NEW: re-inflate if archived
+    except Exception:
+        pass
+    
     if os.path.exists(cache_path):
         try:
             with open(cache_path, 'r', encoding='utf-8') as f:
@@ -1825,6 +1832,10 @@ def get_article_content_blocks(article_url):
         if not title and soup.title:
             title = soup.title.string
             
+        try:
+            content_blocks = media_cache.localize_article_blocks(content_blocks)  # NEW
+        except Exception as _e:
+            print(f"[Image Cache] article image localize failed: {_e}")
         try:
             os.makedirs(cache_dir, exist_ok=True)
             with open(cache_path, 'w', encoding='utf-8') as f:
@@ -2064,6 +2075,14 @@ def fetch_and_aggregate_news():
 
     # Start background downloading of feed thumbnails
     download_feed_thumbnails_async(final_list, status_map)
+
+    # NEW: archive (zip) cached posts older than 14 days, then free disk space.
+    def _retention_worker():
+        try:
+            cache_retention.run_retention(max_age_days=14, log=log_system_activity)
+        except Exception as e:
+            log_system_activity("Cache Retention", f"Retention run failed: {e}")
+    threading.Thread(target=_retention_worker, daemon=True).start()
 
     return final_list, status_map
 
