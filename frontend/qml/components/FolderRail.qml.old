@@ -61,10 +61,16 @@ Rectangle {
                     }
                     Text {
                         anchors.horizontalCenter: parent.horizontalCenter
+                        // Bug #5: built-in tab labels (Entertainment/Sports/Tech) had no
+                        // width/elide, so they overflowed the 72px rail. Mirror the
+                        // custom-folder label treatment so they fit Theme.railWidth.
+                        width: root.width - 8
                         text: modelData.label
                         color: parent.parent.active ? Theme.accentText : Theme.textSecondary
                         font.family: Theme.fontFamily
                         font.pixelSize: 11
+                        elide: Text.ElideRight
+                        horizontalAlignment: Text.AlignHCenter
                     }
                 }
 

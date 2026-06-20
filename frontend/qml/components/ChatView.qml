@@ -85,11 +85,13 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter
                     spacing: 0
                     RowLayout {
+                        id: titleRow
                         Layout.fillWidth: true
                         spacing: 6
                         Text {
                             id: headerTitleText
-                            Layout.fillWidth: true
+                            Layout.fillWidth: false
+                            Layout.maximumWidth: titleRow.width - (brandX.visible ? brandX.width + titleRow.spacing : 0)
                             text: {
                                 var n = root.channelName;
                                 if (n.endsWith(" (X)")) return n.substring(0, n.length - 4);
@@ -103,12 +105,14 @@ Rectangle {
                             elide: Text.ElideRight
                         }
                         Icon {
+                            id: brandX
                             visible: root.channelName.endsWith("(X)") || root.channelName.endsWith(" (X)")
                             name: "brand-x"
                             size: 15
                             color: Theme.textSecondary
                             Layout.alignment: Qt.AlignVCenter
                         }
+                        Item { Layout.fillWidth: true }   //  spacer keeps the icon glued to the title
                     }
                     Text {
                         // Telegram shows a live status line under the title.

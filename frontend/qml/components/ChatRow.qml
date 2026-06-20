@@ -83,15 +83,22 @@ Item {
 
             // Top line: name (left, grows) + timestamp pinned top-right.
             RowLayout {
+                id: topLine
                 Layout.fillWidth: true
                 spacing: Theme.rowInlineGap       // inline gap (8)
                 Icon {
+                    id: pinIcon
                     visible: row.pinned
                     name: "pin"; size: 13; color: Theme.textSecondary
                 }
                 Text {
                     id: nameText
-                    Layout.fillWidth: true
+                    Layout.fillWidth: false
+                    Layout.maximumWidth: topLine.width
+                        - (pinIcon.visible ? pinIcon.width + topLine.spacing : 0)
+                        - (brandX.visible ? brandX.width + topLine.spacing : 0)
+                        - (timeText.width + topLine.spacing)
+                        - topLine.spacing            // reserve the spacer's gap (conservative)
                     text: {
                         var n = row.name;
                         if (n.endsWith(" (X)")) return n.substring(0, n.length - 4);
@@ -106,13 +113,16 @@ Item {
                     horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
                 }
                 Icon {
+                    id: brandX
                     visible: row.name.endsWith("(X)") || row.name.endsWith(" (X)")
                     name: "brand-x"
                     size: 13
                     color: Theme.textSecondary
                     Layout.alignment: Qt.AlignVCenter
                 }
+                Item { Layout.fillWidth: true }   //  spacer keeps brand-x next to the name, time stays right
                 Text {
+                    id: timeText
                     text: row.time
                     color: Theme.textSecondary
                     font.family: Theme.fontFamily

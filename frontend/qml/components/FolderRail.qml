@@ -82,7 +82,7 @@ Rectangle {
  width: root.width - 8
  text: modelData.label
  // Bug #6: inactive label was Theme.textSecondary (invisible).
- color: parent.parent.active ? Theme.accentText : root.inactiveRail
+ color: parent.parent.active ? Theme.accent : root.inactiveRail
  font.family: Theme.fontFamily
  font.pixelSize: 11
  elide: Text.ElideRight
@@ -142,7 +142,7 @@ Rectangle {
  width: root.width - 8
  text: modelData.name || qsTr("Folder")
  // Bug #6: legible inactive label (was Theme.textSecondary).
- color: parent.parent.active ? Theme.accentText : root.inactiveRail
+ color: parent.parent.active ? Theme.accent : root.inactiveRail
  font.family: Theme.fontFamily
  font.pixelSize: 11
  elide: Text.ElideRight
@@ -190,7 +190,7 @@ Rectangle {
  // Theme.textSecondary, which made "Settings" invisible).
  width: root.width - 8
  text: qsTr("Settings")
- color: parent.parent.active ? Theme.accentText : root.inactiveRail
+ color: parent.parent.active ? Theme.accent : root.inactiveRail
  font.family: Theme.fontFamily
  font.pixelSize: 11
  elide: Text.ElideRight

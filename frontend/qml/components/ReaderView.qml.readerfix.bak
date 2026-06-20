@@ -24,27 +24,6 @@ Rectangle {
     property string errorText: ""
     property var blocks: []
 
-    // FIX (twitter duplicate text in reader): when a page can't be
-    // scraped the reader falls back to the post's own text as a single
-    // paragraph. For tweets the title equals (or is a prefix of) that
-    // text, so the big body title would duplicate the body. Detect that
-    // and hide the body title; the header bar still shows the title.
-    function _plain(s) {
-        return String(s).replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim().toLowerCase()
-    }
-    readonly property bool titleInBody: {
-        if (reader.articleTitle === "" || !reader.blocks || reader.blocks.length === 0)
-            return false
-        var first = reader.blocks[0]
-        if (!first || (first.type !== "p" && first.type !== "h"))
-            return false
-        var t = _plain(reader.articleTitle).replace(/(\.\.\.|…)$/, "").trim()
-        if (t === "")
-            return false
-        var b = _plain(first.content || "")
-        return b === t || b.indexOf(t) === 0
-    }
-
     function open(url, title, fallback) {
         reader.currentUrl = url
         reader.articleTitle = title || ""
@@ -212,7 +191,7 @@ Rectangle {
 
                     Text {
                         width: parent.width
-                        visible: reader.articleTitle !== "" && !reader.titleInBody
+                        visible: reader.articleTitle !== ""
                         text: reader.articleTitle
                         color: Theme.text
                         font.family: Theme.readerFontFamily

@@ -165,7 +165,7 @@ ApplicationWindow {
         Behavior on y { NumberAnimation { duration: Theme.anim; easing.type: Theme.easing } }
         width: toastText.implicitWidth + 36
         height: 40
-        radius: 20
+        radius: Theme.radius.pill
         color: Theme.panel
         border.width: 1; border.color: Theme.divider
         opacity: 0

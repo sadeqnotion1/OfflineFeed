@@ -441,6 +441,7 @@ class ChatBridge(QObject):
     currentChannelAvatarChanged = Signal(str)  # item 5: open-channel header avatar
     pinnedPostsChanged = Signal()              # item 2: pinned posts in open channel
     customFoldersChanged = Signal()            # item 7: user-defined folders
+    archiveOpenChanged = Signal(bool)          # Telegram-style Archive folder open/closed
 
     def __init__(self, chat_model: ChatListModel, message_model: MessageModel,
                  sources_model: SourcesModel, search_results_model: Optional[SearchResultsModel] = None, parent=None, system_fonts=None):
@@ -491,6 +492,11 @@ class ChatBridge(QObject):
         self._custom_folders: list = list((self._ui_settings.setdefault("folders", {}) or {}).get("custom", []) or [])
         self._read_unread: set = set()
         self._hidden: set = set()  # archived / deleted channels
+        # Telegram-style Archive folder: the channels the user has archived.
+        # Stored separately from _hidden (delete) and persisted across restarts.
+        _arch = self._ui_settings.setdefault("archive", {})
+        self._archived_channels: set = set(_arch.get("channels", []) or [])
+        self._archive_open: bool = False
         self._msg_search: str = ""  # in-channel message search
         self._news_refreshing = False  # backs the newsRefreshing property
 
@@ -624,6 +630,9 @@ class ChatBridge(QObject):
         if value != self._active_tab:
             self._active_tab = value
             self.activeTabChanged.emit(value)
+            if self._archive_open:
+                self._archive_open = False
+                self.archiveOpenChanged.emit(False)
             if value not in ("settings",):
                 self._rebuild_chat_list()
 
@@ -654,6 +663,31 @@ class ChatBridge(QObject):
         return self._news_refreshing
 
     newsRefreshing = Property(bool, _get_news_refreshing, notify=newsRefreshingChanged)
+
+    # ----- Telegram-style Archive folder (open = showing archived channels) -----
+    def _get_archive_open(self):
+        return self._archive_open
+
+    archiveOpen = Property(bool, _get_archive_open, notify=archiveOpenChanged)
+
+    @Slot()
+    def openArchive(self):
+        if not self._archive_open:
+            self._archive_open = True
+            self.archiveOpenChanged.emit(True)
+        self._rebuild_chat_list()
+
+    @Slot()
+    def closeArchive(self):
+        if self._archive_open:
+            self._archive_open = False
+            self.archiveOpenChanged.emit(False)
+        self._rebuild_chat_list()
+
+    def _save_archive(self):
+        grp = self._ui_settings.setdefault("archive", {})
+        grp["channels"] = list(self._archived_channels)
+        self._save_ui_settings(self._ui_settings)
 
     # ===================== slots: navigation =====================
     @Slot(str)
@@ -859,7 +893,7 @@ class ChatBridge(QObject):
                         "source": a.get("source") or a.get("category") or "Feed",
                         "section": a.get("section") or "Entertainment",
                         "time": self._short_time(a.get("published") or a.get("timestamp") or ""),
-                        "thumbnail": a.get("thumbnail") or "",
+                        "thumbnail": self._resolve_image(a.get("thumbnail") or ""),
                     })
                 self._search_results_model.set_items(items)
             else:
@@ -966,6 +1000,10 @@ class ChatBridge(QObject):
                 # the in-app fallback text instead of spinning forever.
                 self.articleBlocksLoaded.emit(url, {"error": "Could not load this article offline."})
                 return
+            if isinstance(result, dict) and "blocks" in result:
+                for block in result["blocks"]:
+                    if block.get("type") == "img":
+                        block["content"] = self._resolve_image(block.get("content", ""))
             self.articleBlocksLoaded.emit(url, result)
 
         self._run(work, done)
@@ -1626,13 +1664,25 @@ class ChatBridge(QObject):
 
     @Slot(str)
     def archiveChat(self, channel_id):
-        self._hidden.add(channel_id)
+        # Telegram-style: toggle a channel in/out of the Archive folder.
+        if not channel_id or channel_id in (
+            SPECIAL_SAVED, SPECIAL_ARCHIVED, SPECIAL_SEARCH, SPECIAL_LOGS, SPECIAL_BIN
+        ):
+            return
+        if channel_id in self._archived_channels:
+            self._archived_channels.discard(channel_id)
+            self._save_archive()
+            self._rebuild_chat_list()
+            self.toastMessage.emit("ok", "Unarchived")
+            return
+        self._archived_channels.add(channel_id)
         if channel_id == self._current_channel_id:
             self._current_channel_id = ""
             self.currentChannelIdChanged.emit("")
             self._message_model.set_items([])
+        self._save_archive()
         self._rebuild_chat_list()
-        self.toastMessage.emit("ok", "Channel archived")
+        self.toastMessage.emit("ok", "Archived")
 
     @Slot(str)
     def togglePin(self, channel_id):
@@ -1994,6 +2044,35 @@ class ChatBridge(QObject):
     def _rebuild_chat_list(self):
         rows: List[Dict[str, Any]] = []
 
+        if self._archive_open:
+            # Telegram-style Archive folder: a LIST of the channels the user has
+            # archived (not a single merged channel). Selecting one opens it.
+            arch_rows = []
+            for cid in self._channels():
+                if cid not in self._archived_channels:
+                    continue
+                if not self._matches_search(cid):
+                    continue
+                arts = self._articles_for_channel(cid)
+                last = arts[0] if arts else {}
+                unread = 0 if cid in self._read_unread else (_hash_code(cid) % 9)
+                arch_rows.append({
+                    "channelId": cid,
+                    "name": cid,
+                    "lastMessage": last.get("title", ""),
+                    "time": self._short_time(last.get("published") or last.get("timestamp", "")),
+                    "unread": unread,
+                    "avatarPath": self._avatar_for(cid),
+                    "section": self._section_of(cid),
+                    "muted": cid in self._muted,
+                    "pinned": cid in self._pinned,
+                    "matchCount": 0
+                })
+            arch_rows.sort(key=lambda r: 0 if r.get("pinned") else 1)
+            rows.extend(arch_rows)
+            self._chat_model.set_items(rows)
+            return
+
         if self._search:
             rows.append(self._special_row(SPECIAL_SEARCH, "Search results", "search"))
             
@@ -2068,16 +2147,18 @@ class ChatBridge(QObject):
             rows.extend(channels_data)
             
         else:
+            if self._matches_search("Archived chats"):
+                rows.append(self._special_row(SPECIAL_ARCHIVED, "Archived chats", "archive"))
             if self._matches_search("Saved Messages"):
                 rows.append(self._special_row(SPECIAL_SAVED, "Saved Messages", "bookmark"))
-            if self._matches_search("Archived Messages"):
-                rows.append(self._special_row(SPECIAL_ARCHIVED, "Archived Messages", "archive"))
             if self._binned_items and self._matches_search("Bin"):
                 rows.append(self._special_row(SPECIAL_BIN, "Bin", "trash"))
 
             chan_rows = []
             for cid in self._channels():
                 if cid in self._hidden:
+                    continue
+                if cid in self._archived_channels:
                     continue
                 if not self._passes_active_filter(cid):
                     continue
@@ -2148,6 +2229,26 @@ class ChatBridge(QObject):
                 if p.exists():
                     return p.absolute().as_uri()
             return ap
+
+    def _resolve_image(self, ap):
+        if not ap:
+            return ""
+        if ap.startswith(("http:", "https:", "data:")):
+            return ap
+        try:
+            from pathlib import Path
+            repo_root = Path(__file__).resolve().parent.parent
+            p = Path(ap)
+            if not p.is_absolute():
+                if (repo_root / p).exists():
+                    p = repo_root / p
+                else:
+                    p = repo_root / "offline_viewer" / p
+            if p.exists():
+                return p.absolute().as_uri()
+        except Exception:
+            pass
+        return ap
         b64 = s.get("logo_base64") or ""
         if b64:
             return b64 if b64.startswith("data:") else ("data:image/png;base64," + b64)
@@ -2188,7 +2289,7 @@ class ChatBridge(QObject):
                 "title": a.get("title", ""),
                 "text": a.get("description", ""),
                 "url": url,
-                "thumbnail": a.get("thumbnail", ""),
+                "thumbnail": self._resolve_image(a.get("thumbnail", "")),
                 "time": self._abs_datetime(a.get("published") or a.get("timestamp", "")),
                 "outgoing": False,
                 "read": True,
@@ -2220,7 +2321,7 @@ class ChatBridge(QObject):
             "title": a.get("title", ""),
             "description": a.get("description", ""),
             "url": a.get("url", ""),
-            "thumbnail": a.get("thumbnail", ""),
+            "thumbnail": self._resolve_image(a.get("thumbnail", "")),
             "category": a.get("category", ""),
             "section": a.get("section", "Entertainment"),
         }

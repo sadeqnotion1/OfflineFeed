@@ -70,7 +70,7 @@ Menu {
     }
 
     MenuRow { text: qsTr("Open in new window"); iconName: "window";  onTriggered: menu.openInNewWindow(menu.channelId) }
-    MenuRow { text: qsTr("Archive");            iconName: "archive"; onTriggered: menu.archive(menu.channelId) }
+    MenuRow { text: bridge.archiveOpen ? qsTr("Unarchive") : qsTr("Archive");            iconName: "archive"; onTriggered: menu.archive(menu.channelId) }
     // D5: conditional verb + the action still toggles the real pin state via bridge.togglePin.
     MenuRow { text: menu.isPinned ? qsTr("Unpin") : qsTr("Pin");    iconName: "pin";  onTriggered: menu.togglePin(menu.channelId) }
     MenuRow { text: menu.isMuted ? qsTr("Unmute") : qsTr("Mute");   iconName: "mute"; onTriggered: menu.toggleMute(menu.channelId) }

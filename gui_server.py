@@ -10,6 +10,7 @@ import email.utils
 import datetime
 import concurrent.futures
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
+import feed_store
 
 PORT = 8080
 DIRECTORY = os.path.join(os.path.dirname(os.path.abspath(__file__)), "offline_viewer")
@@ -33,6 +34,62 @@ def resolve_image_url(url_str, base_host):
     if url_str.startswith('/'):
         return base_host.rstrip('/') + '/' + url_str.lstrip('/')
     return url_str
+
+
+def download_and_cache_image(url):
+    if not url or not url.startswith("http"):
+        return url
+    try:
+        import hashlib
+        import urllib.parse
+        import requests
+        url_hash = hashlib.md5(url.encode('utf-8')).hexdigest()
+        
+        # Determine extension
+        parsed = urllib.parse.urlparse(url)
+        ext = os.path.splitext(parsed.path)[1].lower()
+        if ext not in ['.jpg', '.jpeg', '.png', '.gif', '.webp', '.svg']:
+            ext = '.jpg'  # fallback
+            
+        filename = f"{url_hash}{ext}"
+        cache_dir = os.path.join(DIRECTORY, "assets", "cached_images")
+        os.makedirs(cache_dir, exist_ok=True)
+        local_path = os.path.join(cache_dir, filename)
+        
+        # If already exists, return local path
+        if os.path.exists(local_path):
+            return f"assets/cached_images/{filename}"
+            
+        # Download the image
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+            'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+        }
+        r = requests.get(url, headers=headers, timeout=10)
+        if r.status_code == 200:
+            with open(local_path, "wb") as f:
+                f.write(r.content)
+            return f"assets/cached_images/{filename}"
+    except Exception as e:
+        print(f"[Image Cache] Failed to download image {url}: {e}")
+    return url
+
+
+def download_feed_thumbnails_async(articles, status_map):
+    def worker():
+        updated = False
+        for art in articles:
+            thumb = art.get("thumbnail")
+            if thumb and thumb.startswith("http"):
+                local_thumb = download_and_cache_image(thumb)
+                if local_thumb != thumb:
+                    art["thumbnail"] = local_thumb
+                    updated = True
+        if updated:
+            feed_store.save_feed_snapshot(articles, status_map)
+            
+    threading.Thread(target=worker, daemon=True).start()
+
 
 def extract_img_url(img_el):
     if not img_el:
@@ -1988,13 +2045,26 @@ def fetch_and_aggregate_news():
     with news_cache_lock:
         old_list = list(news_cache["data"])
 
+    # Durability fix: the in-memory cache is empty on a fresh start, so fall
+    # back to the last on-disk snapshot. Without this, posts that leave the
+    # source feed between app restarts are never archived (lost forever).
+    if not old_list:
+        old_list = feed_store.load_feed_snapshot()
+
     archive_removed_posts(old_list, final_list)
 
     with news_cache_lock:
         news_cache["data"] = final_list
         news_cache["last_fetched"] = time.time()
         news_cache["source_status"] = status_map
-        
+
+    # Persist the fresh feed so the next run (even after a restart) has a
+    # durable baseline and the feed is available offline.
+    feed_store.save_feed_snapshot(final_list, status_map)
+
+    # Start background downloading of feed thumbnails
+    download_feed_thumbnails_async(final_list, status_map)
+
     return final_list, status_map
 
 def clean_site_name(title, url):
@@ -2397,6 +2467,23 @@ class GUIHandler(SimpleHTTPRequestHandler):
                 if not sys.is_finalizing() and not is_shutdown:
                     import traceback
                     traceback.print_exc()
+                # Offline fallback: if the network fetch failed but we have a
+                # persisted feed snapshot, serve it instead of erroring so the
+                # user can still read everything kept locally.
+                snapshot = feed_store.load_feed_snapshot()
+                if snapshot:
+                    filtered_snapshot = [art for art in snapshot if art.get("url", "").lower().strip() not in ignored_urls]
+                    self.send_json_response(200, {
+                        "status": "offline_cache",
+                        "last_fetched": last_fetched,
+                        "source_status": source_status,
+                        "articles": filtered_snapshot,
+                        "custom_sources": load_custom_sources(),
+                        "default_sources_avatars": load_default_sources_avatars_map(),
+                        "saved_articles": load_saved_posts(),
+                        "archived_articles": load_archived_posts()
+                    })
+                    return
                 self.send_json_response(500, {"error": str(e)})
 
     def handle_ignore_post(self):
@@ -2536,7 +2623,8 @@ class GUIHandler(SimpleHTTPRequestHandler):
         if matching_article and (any(domain in article_url.lower() for domain in ["t.me/", "x.com/", "twitter.com/"]) or matching_article.get("section") == "Sports" and matching_article.get("source") == "Fabrizio Romano"):
             blocks = []
             if matching_article.get("thumbnail"):
-                blocks.append({"type": "img", "content": matching_article["thumbnail"]})
+                local_thumb = download_and_cache_image(matching_article["thumbnail"])
+                blocks.append({"type": "img", "content": local_thumb})
             if matching_article.get("description"):
                 paragraphs = [p.strip() for p in matching_article["description"].split('\n') if p.strip()]
                 for p in paragraphs:
@@ -2753,7 +2841,8 @@ class GUIHandler(SimpleHTTPRequestHandler):
                             src = 'https:' + src
                         # Skip placeholder/fallback images
                         if not any(p in src.lower() for p in ['fallback.gif', 'placeholder.gif', 'placeholder.png', 'spacer.gif', 'pixel.gif', 'lazyload']):
-                            content_blocks.append({"type": "img", "content": src})
+                            local_src = download_and_cache_image(src)
+                            content_blocks.append({"type": "img", "content": local_src})
                 elif element.name == 'blockquote':
                     text = re.sub(r'\s+', ' ', element.text).strip()
                     if text and not is_junk_text(text):
@@ -2767,7 +2856,8 @@ class GUIHandler(SimpleHTTPRequestHandler):
                         
             if not content_blocks and matching_article:
                 if matching_article.get("thumbnail"):
-                    content_blocks.append({"type": "img", "content": matching_article["thumbnail"]})
+                    local_thumb = download_and_cache_image(matching_article["thumbnail"])
+                    content_blocks.append({"type": "img", "content": local_thumb})
                 if matching_article.get("description"):
                     paragraphs = [p.strip() for p in matching_article["description"].split('\n') if p.strip()]
                     for p in paragraphs:
@@ -3327,7 +3417,18 @@ def is_port_in_use(port):
 
 def start_server():
     global _server_instance, PORT
-    
+
+    # Hydrate the in-memory cache from disk so the first refresh has a correct
+    # "removed from feed" baseline and the feed is viewable offline at launch.
+    try:
+        snapshot = feed_store.load_feed_snapshot()
+        if snapshot:
+            with news_cache_lock:
+                if not news_cache["data"]:
+                    news_cache["data"] = snapshot
+    except Exception as _e:
+        print(f"[Server] Feed snapshot hydrate skipped: {_e}")
+
     settings_path = os.path.join(DIRECTORY, "assets", "ui_settings.json")
     if os.path.exists(settings_path):
         try:

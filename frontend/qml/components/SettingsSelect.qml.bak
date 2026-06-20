@@ -112,7 +112,7 @@ Rectangle {
             }
 
             background: Rectangle {
-                radius: 6
+                radius: Theme.radius.md
                 color: Theme.bg
                 border.width: 1
                 border.color: combo.activeFocus || comboPopup.visible ? Theme.accent : Theme.divider
@@ -140,7 +140,7 @@ Rectangle {
                 onOpened: { searchField.text = ""; if (ctl.searchable) searchField.forceActiveFocus() }
                 onClosed: searchField.text = ""
 
-                background: Rectangle { radius: 8; color: Theme.panel; border.width: 1; border.color: Theme.divider }
+                background: Rectangle { radius: Theme.radius.lg; color: Theme.panel; border.width: 1; border.color: Theme.divider }
 
                 contentItem: ColumnLayout {
                     spacing: 6
@@ -149,7 +149,7 @@ Rectangle {
                         visible: ctl.searchable
                         Layout.fillWidth: true
                         Layout.preferredHeight: visible ? 34 : 0
-                        radius: 6
+                        radius: Theme.radius.md
                         color: Theme.bg
                         border.width: 1
                         border.color: searchField.activeFocus ? Theme.accent : Theme.divider
@@ -195,7 +195,7 @@ Rectangle {
                                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
                                 elide: Text.ElideRight
                             }
-                            background: Rectangle { radius: 6; color: deleg.highlighted ? Theme.hover : "transparent" }
+                            background: Rectangle { radius: Theme.radius.sm; color: deleg.highlighted ? Theme.hover : "transparent" }
                             onClicked: { ctl.activatedValue(modelData.value); comboPopup.close() }
                         }
                     }
