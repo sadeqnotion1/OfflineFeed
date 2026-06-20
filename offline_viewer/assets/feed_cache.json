@@ -1,5 +1,5 @@
 {
-    "saved_at": "2026-06-20T13:39:45.744705",
+    "saved_at": "2026-06-20T17:35:28.259329",
     "source_status": {
         "Variety": "RSS",
         "The Hollywood Reporter": "RSS",
@@ -28,15 +28,701 @@
     },
     "articles": [
         {
-            "title": "Only 6 Teen Shows Are More Rewatchable Than 'Stranger Things'",
-            "url": "https://collider.com/best-teen-shows-more-rewatchable-stranger-things/",
-            "published": "Sat, 20 Jun 2026 09:18:13 GMT",
-            "timestamp": 1781947093,
+            "title": "Prime Video’s Steamy ‘Heated Rivalry’ Replacement Soars With Huge Week 2 Viewership Jump",
+            "url": "https://collider.com/off-campus-prime-video-viewership-increase-week-2/",
+            "published": "Sat, 20 Jun 2026 14:01:14 GMT",
+            "timestamp": 1781964074,
             "source": "Collider",
-            "category": "TV",
-            "thumbnail": "assets/cached_images/64f7e15807a801b641abacb8e87fa0cc.jpg",
-            "topic": "TV",
+            "category": "TV News",
+            "thumbnail": "assets/cached_images/e95ea06667f0f480a4a6d9056ecc4f10.jpeg",
+            "topic": "TV News",
             "section": "Entertainment"
+        },
+        {
+            "title": "From ‘Toy Story 5’ to Nancy Meyers, Tony Hale Is Just Happy to Be Here",
+            "url": "https://www.hollywoodreporter.com/movies/movie-features/tony-hale-toy-story-5-nancy-meyers-1236625717/",
+            "published": "Sat, 20 Jun 2026 14:00:00 +0000",
+            "timestamp": 1781964000,
+            "source": "The Hollywood Reporter",
+            "category": "Movie Features",
+            "thumbnail": "",
+            "topic": "Movie Features",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Moves of the Diamond Hand is an unfinished, irresistibly weird dice-based RPG",
+            "url": "https://www.theverge.com/games/949875/moves-of-the-diamond-hand-rpg-dice-jazz-noir",
+            "published": "2026-06-20T10:00:00-04:00",
+            "timestamp": 1781964000,
+            "source": "The Verge",
+            "category": "Games Review",
+            "thumbnail": "",
+            "topic": "Games Review",
+            "section": "Technology"
+        },
+        {
+            "title": "‘Atlantic Rhapsody’ Takes Best Film at Shanghai’s Golden Goblet Awards",
+            "url": "https://variety.com/2026/film/festivals/shanghai-film-festival-golden-goblet-awards-winners-2026-1236786365/",
+            "published": "Sat, 20 Jun 2026 13:44:54 +0000",
+            "timestamp": 1781963094,
+            "source": "Variety",
+            "category": "Asia",
+            "thumbnail": "assets/cached_images/c2eeb226691734d03d480cbc656446a3.jpg",
+            "topic": "Asia",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Casey LaLonde, Grandson of Joan Crawford, Dies at 54",
+            "url": "https://www.hollywoodreporter.com/movies/movie-news/casey-lalonde-dead-joan-crawford-grandson-1236626426/",
+            "published": "Sat, 20 Jun 2026 13:42:22 +0000",
+            "timestamp": 1781962942,
+            "source": "The Hollywood Reporter",
+            "category": "Movie News",
+            "thumbnail": "",
+            "topic": "Movie News",
+            "section": "Entertainment"
+        },
+        {
+            "title": "ENDRICK x VINI JR. \n\nWHAT A PIC! 🥶",
+            "url": "https://x.com/theMadridZone/status/2068326584138997803",
+            "published": "Sat, 20 Jun 2026 13:34:19 GMT",
+            "timestamp": 1781962459,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/1aca73fb2a22e83f4cc764f1dbf2c57a.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "POV: You’re on a parade float celebrating your team’s first title in 53 years with two million fans in attendance.\n\nThe Athletic had exclusive access to film Mikal Bridges and Tyler Kolek's float during the Knicks' championship parade.",
+            "url": "https://x.com/TheAthletic/status/2068325494680953158",
+            "published": "Sat, 20 Jun 2026 13:30:00 GMT",
+            "timestamp": 1781962200,
+            "source": "The Athletic (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/773b46bbe70720c299a463138364fd74.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "TheAthletic",
+            "avatar": "https://unavatar.io/x/TheAthletic"
+        },
+        {
+            "title": "Why Kane is different at this World Cup",
+            "url": "https://www.bbc.com/sport/football/articles/crr87vwrwwlo?at_medium=RSS&at_campaign=rss",
+            "published": "Sat, 20 Jun 2026 13:24:12 GMT",
+            "timestamp": 1781961852,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/9e06e87a344a2b383291092cfe55aa3f.jpg",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "10 Most Universally Beloved Video Games of All Time",
+            "url": "https://collider.com/most-universally-beloved-video-games-all-time-ranked/",
+            "published": "Sat, 20 Jun 2026 13:23:14 GMT",
+            "timestamp": 1781961794,
+            "source": "Collider",
+            "category": "Movie",
+            "thumbnail": "assets/cached_images/d0f1a4a09d74af6706d3f485a489fdb4.jpg",
+            "topic": "Movie",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Taylor Sheridan’s Divisive ‘Yellowstone’ Spin-Off Soars After Its Season 1 Finale",
+            "url": "https://collider.com/marshals-taylor-sheridan-yellowstone-spinoff-streaming-hit-june-2026/",
+            "published": "Sat, 20 Jun 2026 13:15:13 GMT",
+            "timestamp": 1781961313,
+            "source": "Collider",
+            "category": "TV News",
+            "thumbnail": "assets/cached_images/cdd1e11e36eea8e13bc59c132f817038.jpg",
+            "topic": "TV News",
+            "section": "Entertainment"
+        },
+        {
+            "title": "James Bradley Dies: ‘Flags Of Our Fathers’ Co-Author Was 72",
+            "url": "https://deadline.com/2026/06/james-bradley-dead-1236963192/",
+            "published": "Sat, 20 Jun 2026 13:13:02 +0000",
+            "timestamp": 1781961182,
+            "source": "Deadline Hollywood",
+            "category": "News",
+            "thumbnail": "assets/cached_images/becdc9aa9f752ab6082b86a3feb6e71a.jpg",
+            "topic": "News",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Women's T20 World Cup schedule, fixtures, times & results",
+            "url": "https://www.bbc.com/sport/cricket/articles/c7942709g43o?at_medium=RSS&at_campaign=rss",
+            "published": "Sat, 20 Jun 2026 12:57:02 GMT",
+            "timestamp": 1781960222,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/453e14b00453e8cd63473a6f9d462297.jpg",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "Injury concern for Mooney as Australia beat Netherlands",
+            "url": "https://www.bbc.com/sport/cricket/articles/czrxyvjr0lvo?at_medium=RSS&at_campaign=rss",
+            "published": "Sat, 20 Jun 2026 12:54:38 GMT",
+            "timestamp": 1781960078,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/4d862f4c167fffb155e74224c3829257.jpg",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "‘The Bear’ Star’s Devastating Masterpiece Gets a Second Chance on Streaming",
+            "url": "https://collider.com/after-everything-streaming-success-netflix-june-2026/",
+            "published": "Sat, 20 Jun 2026 12:45:13 GMT",
+            "timestamp": 1781959513,
+            "source": "Collider",
+            "category": "Movie News",
+            "thumbnail": "assets/cached_images/ad4d01e053f4c2448d21c3868e810246.jpg",
+            "topic": "Movie News",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Curacao's trailblazer doctor on football's big stage",
+            "url": "https://www.bbc.com/sport/football/articles/ckg08ewg9l2o?at_medium=RSS&at_campaign=rss",
+            "published": "Sat, 20 Jun 2026 12:35:17 GMT",
+            "timestamp": 1781958917,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/8e670b184a71cc3b7a705b1bc0dd79fe.jpg",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "The Biggest Movie Event of the Decade Arrives in Less Than 200 Days",
+            "url": "https://collider.com/avengers-doomsday-biggest-movie-of-2026-less-than-200-days/",
+            "published": "Sat, 20 Jun 2026 12:31:13 GMT",
+            "timestamp": 1781958673,
+            "source": "Collider",
+            "category": "Movie News",
+            "thumbnail": "assets/cached_images/c02994b7720ba4323fad74415081a1b8.png",
+            "topic": "Movie News",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The USMNT has changed minds. Two straight World Cup wins. \n\nA coach who has them “flowing like never before.” A path that could open up. \n\nBut can they actually win it all?\n\nRead for free: https://nyti.ms/4aMPOFh",
+            "url": "https://x.com/TheAthletic/status/2068310457027375565",
+            "published": "Sat, 20 Jun 2026 12:30:14 GMT",
+            "timestamp": 1781958614,
+            "source": "The Athletic (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/a37f9914acc52832b8d686c6f306b06d.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "TheAthletic",
+            "avatar": "https://unavatar.io/x/TheAthletic"
+        },
+        {
+            "title": "10 Greatest Animated Sci-Fi Movies of the Last 50 Years",
+            "url": "https://collider.com/best-animated-sci-fi-movies-last-50-years-ranked/",
+            "published": "Sat, 20 Jun 2026 12:29:14 GMT",
+            "timestamp": 1781958554,
+            "source": "Collider",
+            "category": "Movie",
+            "thumbnail": "assets/cached_images/0da1db23bddc6107ebe9a1758b89b8d1.jpg",
+            "topic": "Movie",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Hungarian Composer Mihály Víg Reflects on Four Decades of Scoring Béla Tarr’s Films at Shanghai Masterclass",
+            "url": "https://variety.com/2026/film/festivals/mihaly-vig-bela-tarr-shanghai-masterclass-1236786330/",
+            "published": "Sat, 20 Jun 2026 12:25:11 +0000",
+            "timestamp": 1781958311,
+            "source": "Variety",
+            "category": "Asia",
+            "thumbnail": "assets/cached_images/9073f494ca7ea73c824229fa02b1ec4c.jpg",
+            "topic": "Asia",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Apple TV’s 8-Part Conspiracy Thriller Is Worth Revisiting 4 Years After Its Cancellation",
+            "url": "https://collider.com/apple-tv-suspicion-worth-watching-after-cancellation/",
+            "published": "Sat, 20 Jun 2026 12:17:14 GMT",
+            "timestamp": 1781957834,
+            "source": "Collider",
+            "category": "TV Features",
+            "thumbnail": "assets/cached_images/12251fadbb3341b0d1a738211b0e4795.jpg",
+            "topic": "TV Features",
+            "section": "Entertainment"
+        },
+        {
+            "title": "10 Best Legal Thriller Books of All Time",
+            "url": "https://collider.com/best-legal-thriller-books-all-time-ranked/",
+            "published": "Sat, 20 Jun 2026 12:14:14 GMT",
+            "timestamp": 1781957654,
+            "source": "Collider",
+            "category": "Movie",
+            "thumbnail": "assets/cached_images/e72ccaa67bab66abc4bc8c120498fcc2.jpg",
+            "topic": "Movie",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Cristiano Ronaldo 🐐",
+            "url": "https://x.com/theMadridZone/status/2068304826136424767",
+            "published": "Sat, 20 Jun 2026 12:07:52 GMT",
+            "timestamp": 1781957272,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/0a23cbb4b2e85b6e5fa295a2f0d47b03.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "This 'Star Trek' Quote Changes the Entire Franchise, and No One Talks About It",
+            "url": "https://collider.com/star-trek-next-generation-quote-borg-resistance-is-futile/",
+            "published": "Sat, 20 Jun 2026 12:03:13 GMT",
+            "timestamp": 1781956993,
+            "source": "Collider",
+            "category": "TV Features",
+            "thumbnail": "assets/cached_images/d7cc24da92fd37772ea27bbf90e84c0b.jpg",
+            "topic": "TV Features",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Sydney Sweeney Beats Jason Statham in Prime Video’s Biggest Streaming Battle Yet",
+            "url": "https://collider.com/the-housemaid-prime-video-streaming-success-june-2026/",
+            "published": "Sat, 20 Jun 2026 12:00:13 GMT",
+            "timestamp": 1781956813,
+            "source": "Collider",
+            "category": "Movie News",
+            "thumbnail": "assets/cached_images/986266df269ded0f9fa87f889346b8da.jpg",
+            "topic": "Movie News",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Toy Story has the right take on tech",
+            "url": "https://www.theverge.com/tech/952547/toy-story-5-tech-android-17-snap-specs-installer",
+            "published": "2026-06-20T08:00:00-04:00",
+            "timestamp": 1781956800,
+            "source": "The Verge",
+            "category": "Gadgets",
+            "thumbnail": "",
+            "topic": "Gadgets",
+            "section": "Technology"
+        },
+        {
+            "title": "‘Sumpa Kingdom’ Screens at Shanghai, Director Lhapal Gyal and Cast Discuss Sacred Mountain Landscapes",
+            "url": "https://variety.com/2026/film/festivals/sumpa-kingdom-shanghai-film-festival-belt-road-film-week-1236786326/",
+            "published": "Sat, 20 Jun 2026 11:58:18 +0000",
+            "timestamp": 1781956698,
+            "source": "Variety",
+            "category": "Asia",
+            "thumbnail": "assets/cached_images/3bffa00f40f1686279559da5819e4c12.jpg",
+            "topic": "Asia",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Oh, brother! The sibling rivals lining up for different World Cup teams",
+            "url": "https://www.bbc.com/sport/football/articles/ce3ev0v7ge4o?at_medium=RSS&at_campaign=rss",
+            "published": "Sat, 20 Jun 2026 11:55:37 GMT",
+            "timestamp": 1781956537,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/7a732cd7b174b541f99dbed1eb1c7e20.jpg",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "Shanghai TV Market Debuts Dual-Venue Format to Drive Chinese Content Sales Overseas",
+            "url": "https://variety.com/2026/tv/markets-festivals/shanghai-tv-market-dual-venue-chinese-content-global-sales-1236786305/",
+            "published": "Sat, 20 Jun 2026 11:48:25 +0000",
+            "timestamp": 1781956105,
+            "source": "Variety",
+            "category": "Asia",
+            "thumbnail": "assets/cached_images/366c6c6784c2b98f643c30f0bd1ce516.jpg",
+            "topic": "Asia",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Oxford United sack head coach Bloomfield",
+            "url": "https://www.bbc.com/sport/football/articles/cly8nq5ee11o?at_medium=RSS&at_campaign=rss",
+            "published": "Sat, 20 Jun 2026 11:40:40 GMT",
+            "timestamp": 1781955640,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/ee46bfb196f285fbf27098f07c97b5d6.jpg",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "Why are so many World Cup goals being scored late?",
+            "url": "https://www.bbc.com/sport/football/articles/cly9q9nrgdxo?at_medium=RSS&at_campaign=rss",
+            "published": "Sat, 20 Jun 2026 11:39:00 GMT",
+            "timestamp": 1781955540,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/6fed6f7cbb9b7b001d5c768f7c775d9a.jpg",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "🚨 JUST IN: Casemiro to Inter Miami, here we go. @FabrizioRomano",
+            "url": "https://x.com/theMadridZone/status/2068296864152342837",
+            "published": "Sat, 20 Jun 2026 11:36:14 GMT",
+            "timestamp": 1781955374,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/0ec054620365bd4688ef4ae107eca4a6.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 EXCLUSIVE: Inter Miami complete deal to sign Casemiro as new midfielder, here we go!\n\nVerbal agreement sealed with all parties involved and all formal steps resolved, now waiting to sign and announce the Brazilian.\n\nCasemiro wants to play with Messi. Future in MLS. 🇺🇸",
+            "url": "https://x.com/FabrizioRomano/status/2068295942483198454",
+            "published": "Sat, 20 Jun 2026 11:32:34 GMT",
+            "timestamp": 1781955154,
+            "source": "Fabrizio Romano (X)",
+            "category": "Transfers",
+            "thumbnail": "assets/cached_images/b318aba4588dcfb4f97033c89608a563.jpg",
+            "topic": "Transfers",
+            "section": "Sports",
+            "handle": "FabrizioRomano",
+            "avatar": "https://unavatar.io/x/FabrizioRomano"
+        },
+        {
+            "title": "🤍",
+            "url": "https://x.com/theMadridZone/status/2068295130961125411",
+            "published": "Sat, 20 Jun 2026 11:29:20 GMT",
+            "timestamp": 1781954960,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/d18bf5c20b3479912aaeece6acda44ef.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 JUST IN: Many at Valdebebas are CONVINCED that Jose Mourinho’s team will REVOLVE around JUDE BELLINGHAM. @jfelixdiaz",
+            "url": "https://x.com/theMadridZone/status/2068293305230926314",
+            "published": "Sat, 20 Jun 2026 11:22:05 GMT",
+            "timestamp": 1781954525,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/b224e8efcd96bd902f2e7ed2471037c3.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 Jude Bellingham is a FRANCHISE PLAYER at Real Madrid.\n\nHe is an ESSENTIAL part of Jose Mourinho’s project, and many at Valdebebas are rubbing their hands with GLEE. @jfelixdiaz",
+            "url": "https://x.com/theMadridZone/status/2068293020404076940",
+            "published": "Sat, 20 Jun 2026 11:20:57 GMT",
+            "timestamp": 1781954457,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/1537b533a269bdbea2c6da59df92d09c.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 NEW: Jude Bellingham had called Carlo Ancelotti for advice after the difficult season with Real Madrid, and problems with the national team.\n\nThe call helped him reconsider and reflect, and find the best way out of his difficult situation. \n\nFrom there, he began his way back to the elite level he is experiencing now. @jfelixdiaz",
+            "url": "https://x.com/theMadridZone/status/2068292628593115212",
+            "published": "Sat, 20 Jun 2026 11:19:24 GMT",
+            "timestamp": 1781954364,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/95e7ece7133935375c53722b9556f766.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "Home Batteries: How They're Installed and How Much They Cost",
+            "url": "https://www.wired.com/story/how-to-buy-a-home-battery/",
+            "published": "Sat, 20 Jun 2026 11:00:00 +0000",
+            "timestamp": 1781953200,
+            "source": "Wired Tech",
+            "category": "Gear",
+            "thumbnail": "assets/cached_images/e928400ff2a454d9dd17fe0278568adc.jpg",
+            "topic": "Gear",
+            "section": "Technology"
+        },
+        {
+            "title": "I Found 29 Early Prime Day Deals That Are Worth Shopping Now (2026)",
+            "url": "https://www.wired.com/story/early-prime-day-deals-june-2026-2/",
+            "published": "Sat, 20 Jun 2026 10:38:00 +0000",
+            "timestamp": 1781951880,
+            "source": "Wired Tech",
+            "category": "Gear",
+            "thumbnail": "assets/cached_images/60161c45b0a2ae55b8eb8daf59ca9ad4.png",
+            "topic": "Gear",
+            "section": "Technology"
+        },
+        {
+            "title": "📲 Alvaro Carreras on IG.",
+            "url": "https://x.com/theMadridZone/status/2068281576094380405",
+            "published": "Sat, 20 Jun 2026 10:35:29 GMT",
+            "timestamp": 1781951729,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/8b012da163f919a465d00114f9e69e9b.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨NEW: Nothing is 100% decided yet between Real Madrid, Como and Nico Paz. @MarioCortegana",
+            "url": "https://x.com/theMadridZone/status/2068280801595449511",
+            "published": "Sat, 20 Jun 2026 10:32:24 GMT",
+            "timestamp": 1781951544,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/422dc790db8e4a4f03a27bd01927054e.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 A few weeks ago, Real Madrid told Como that they will TRIGGER the BUY-BACK clause for Nico Paz. \n\nBut, since then, many things happened including a conversation between Nico Paz and Jose Mourinho. @MarioCortegana",
+            "url": "https://x.com/theMadridZone/status/2068280521101373940",
+            "published": "Sat, 20 Jun 2026 10:31:17 GMT",
+            "timestamp": 1781951477,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/824c7cb98057fe8ab54b32d3b6e3c208.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "16 Best Greens Powders (2026): Taste-Tested for Months",
+            "url": "https://www.wired.com/gallery/best-greens-powders/",
+            "published": "Sat, 20 Jun 2026 10:31:00 +0000",
+            "timestamp": 1781951460,
+            "source": "Wired Tech",
+            "category": "Gear",
+            "thumbnail": "assets/cached_images/e6e06efc57877a8d19912cc5ba1b76a2.png",
+            "topic": "Gear",
+            "section": "Technology"
+        },
+        {
+            "title": "Australia extend winning World Cup start in big Netherlands win",
+            "url": "https://www.skysports.com/cricket/news/12040/13556022/womens-t20-world-cup-australia-in-98-run-win-over-netherlands-to-continue-unbeaten-start-to-tournament",
+            "published": "Sat, 20 Jun 2026 14:00:00 BST",
+            "timestamp": 1781951400,
+            "source": "Sky Sports News",
+            "category": "News Story",
+            "thumbnail": "assets/cached_images/ea241b50834d1d8e1764732db93c5987.jpg",
+            "topic": "News Story",
+            "section": "Sports"
+        },
+        {
+            "title": "🚨 JUST IN: Jose Mourinho wants a left-footed centerback. \n\nThe names most mentioned at the club are Nico Schlotterbeck and Piero Hincapié. @benfeerr",
+            "url": "https://x.com/theMadridZone/status/2068279017497882706",
+            "published": "Sat, 20 Jun 2026 10:25:19 GMT",
+            "timestamp": 1781951119,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/ba5d5ede1084f9762db63fd8b006b819.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 CONFIRMED: Jose Mourinho and Real Madrid want ANOTHER centerback. \n\nFor this, sales like Victor Muñoz were required. @MarioCortegana",
+            "url": "https://x.com/theMadridZone/status/2068276312062759355",
+            "published": "Sat, 20 Jun 2026 10:14:34 GMT",
+            "timestamp": 1781950474,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/dec8f41fcaab9733732e0263f04dfbb8.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "‘Game of Thrones’ Star Aidan Gillen on Golden Age of ‘F—ing Brilliant’ British Drama and Why There’s ‘Too Much’ Stuff on TV",
+            "url": "https://variety.com/2026/tv/global/game-of-thrones-aidan-gillen-golden-age-british-drama-1236786197/",
+            "published": "Sat, 20 Jun 2026 10:13:31 +0000",
+            "timestamp": 1781950411,
+            "source": "Variety",
+            "category": "Global",
+            "thumbnail": "assets/cached_images/b266affc1b63375bf2554d9527e74b85.jpg",
+            "topic": "Global",
+            "section": "Entertainment"
+        },
+        {
+            "title": "🚨 CONFIRMED: Jose Mourinho wants to try Endrick as BOTH a WINGER and a STRIKER. @MarioCortegana",
+            "url": "https://x.com/theMadridZone/status/2068275990481310077",
+            "published": "Sat, 20 Jun 2026 10:13:17 GMT",
+            "timestamp": 1781950397,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/3561f374117d56e386abe024eb95de1d.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 NEW: Real Madrid’s board believe that receiving €26 million (€5m + add ons from Osasuna, €20 million from Liverpool) for Victor Muñoz, a player who had only made 4 first team appearances, represents good business. @MarioCortegana",
+            "url": "https://x.com/theMadridZone/status/2068275740026839099",
+            "published": "Sat, 20 Jun 2026 10:12:17 GMT",
+            "timestamp": 1781950337,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/5b9720b79684566488736dee1f09123e.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 JUST IN: Sources close to Victor Muñoz say that he saw a more stable path to the top at BARCELONA over Real Madrid. \n\nHe had reservations over a return to Madrid as he is aware of how difficult it is for academy players to break into the team. @Mariocortegana",
+            "url": "https://x.com/theMadridZone/status/2068275383599005859",
+            "published": "Sat, 20 Jun 2026 10:10:52 GMT",
+            "timestamp": 1781950252,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/4699a0256956c90310f5d1d2cd85914d.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 NEW: There were voices at Real Madrid who were in favour of bringing back Victor Muñoz.\n\nThey liked the idea of bringing back an academy player, who was also Spanish and was a pure winger, a skillset not represented well in the squad. @MarioCortegana",
+            "url": "https://x.com/theMadridZone/status/2068275017272684654",
+            "published": "Sat, 20 Jun 2026 10:09:25 GMT",
+            "timestamp": 1781950165,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/7b853b1209af4fcd717782fb8b6b0905.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "Cooper on Wales' radar amid Bellamy's Burnley links",
+            "url": "https://www.bbc.com/sport/football/articles/cq81z0xn702o?at_medium=RSS&at_campaign=rss",
+            "published": "Sat, 20 Jun 2026 10:02:34 GMT",
+            "timestamp": 1781949754,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/9e86c5086afed83abba30007010dd547.png",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "🇨🇴 Luis Diaz is feeling it. Goal + assist on his FIRST World Cup game ever. \nHe’s telling those closest to him: Colombia can be the dark horse and do something special this summer. The confidence inside the camp is massive. \nWhat a start for Lucho…and this is just the beginning.",
+            "url": "https://x.com/FabrizioRomano/status/2068272652456689980",
+            "published": "Sat, 20 Jun 2026 10:00:01 GMT",
+            "timestamp": 1781949601,
+            "source": "Fabrizio Romano (X)",
+            "category": "Transfers",
+            "thumbnail": "assets/cached_images/f5dd4def40d199c5d782635391bce1e8.jpg",
+            "topic": "Transfers",
+            "section": "Sports",
+            "handle": "FabrizioRomano",
+            "avatar": "https://unavatar.io/x/FabrizioRomano"
+        },
+        {
+            "title": "Siri AI Hands On: A Smart, Helpful Assistant",
+            "url": "https://www.wired.com/story/siri-ai-hands-on-iphone/",
+            "published": "Sat, 20 Jun 2026 10:00:00 +0000",
+            "timestamp": 1781949600,
+            "source": "Wired Tech",
+            "category": "Gear",
+            "thumbnail": "assets/cached_images/4a0999afe9bd3609e75153fa994316a0.jpg",
+            "topic": "Gear",
+            "section": "Technology"
+        },
+        {
+            "title": "Prem Rugby final LIVE! Northampton Saints vs Exeter Chiefs at Twickenham",
+            "url": "https://www.skysports.com/rugby-union/live-blog/12040/13556092/prem-rugby-final-live-northampton-saints-vs-exeter-chiefs-updates-latest-scores-team-news-commentary-from-allianz-stadium-twickenham",
+            "published": "Sat, 20 Jun 2026 13:17:00 BST",
+            "timestamp": 1781948820,
+            "source": "Sky Sports News",
+            "category": "Liveblog",
+            "thumbnail": "assets/cached_images/79f127c1d87880760c12058beb717c7c.jpg",
+            "topic": "Liveblog",
+            "section": "Sports"
+        },
+        {
+            "title": "🚨NEW: Victor Muñoz and people at Real Madrid academy were surprised that the club did not bring him back. @MarioCortegana @TheAthleticFC",
+            "url": "https://x.com/theMadridZone/status/2068265841075060928",
+            "published": "Sat, 20 Jun 2026 09:32:57 GMT",
+            "timestamp": 1781947977,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/0f30e54bd3b0eb71b7842f600ea8281e.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "Hackers Claim to Leak Stolen Madison Square Garden Data",
+            "url": "https://www.wired.com/story/security-news-this-week-hackers-claim-to-leak-stolen-madison-square-garden-data/",
+            "published": "Sat, 20 Jun 2026 09:30:00 +0000",
+            "timestamp": 1781947800,
+            "source": "Wired Tech",
+            "category": "Security / Cyberattacks and Hacks",
+            "thumbnail": "assets/cached_images/cbe0d21534bc74f4e5318c7e6bbffdd4.jpg",
+            "topic": "Security / Cyberattacks and Hacks",
+            "section": "Technology"
+        },
+        {
+            "title": "🚨 BREAKING: Real Madrid scouts were in Boston to watch Ayyoub Bouaddi last night. @RubenMartinAS 🔎",
+            "url": "https://x.com/theMadridZone/status/2068264399681540398",
+            "published": "Sat, 20 Jun 2026 09:27:14 GMT",
+            "timestamp": 1781947634,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/01e6dcbb08e49d34a8f23bba8650e2c0.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 Álvaro Carreras expected to STAY at Real Madrid this summer. \n\nMarc Cucurella will be the starter. \n\nFran García could leave. @FabrizioRomano",
+            "url": "https://x.com/theMadridZone/status/2068263793885593852",
+            "published": "Sat, 20 Jun 2026 09:24:49 GMT",
+            "timestamp": 1781947489,
+            "source": "The Madrid Zone (X)",
+            "category": "News",
+            "thumbnail": "assets/cached_images/24866efcc6d5b588a3a3a4542e00e438.jpg",
+            "topic": "News",
+            "section": "Sports",
+            "handle": "theMadridZone",
+            "avatar": "https://unavatar.io/x/theMadridZone"
+        },
+        {
+            "title": "🚨 Álvaro Carreras expected to stay at Real Madrid this summer.\n\nJosé Mourinho open to keeping former Benfica LB as backup for Cucurella as Fran García can leave the club.\n\n🎥➕ http://youtu.be/fYCBVDae0Pw?is=PL0SuCGXOHTqWzc8",
+            "url": "https://x.com/FabrizioRomano/status/2068263335033016409",
+            "published": "Sat, 20 Jun 2026 09:23:00 GMT",
+            "timestamp": 1781947380,
+            "source": "Fabrizio Romano (X)",
+            "category": "Transfers",
+            "thumbnail": "assets/cached_images/7ff094dee242ce4bc7078f0c24da7f49.jpg",
+            "topic": "Transfers",
+            "section": "Sports",
+            "handle": "FabrizioRomano",
+            "avatar": "https://unavatar.io/x/FabrizioRomano"
         },
         {
             "title": "Why try-addict Grace cannot quit despite latest injury",
@@ -50,14 +736,14 @@
             "section": "Sports"
         },
         {
-            "title": "‘Reacher’ Star Alan Ritchson’s Sci-Fi Blockbuster Quietly Soars Up Netflix’s All-Time List",
-            "url": "https://collider.com/war-machine-alan-ritchson-overtakes-russo-brothers-gray-man-all-time-netflix-rankings/",
-            "published": "Sat, 20 Jun 2026 09:00:13 GMT",
-            "timestamp": 1781946013,
-            "source": "Collider",
-            "category": "Movie News",
-            "thumbnail": "assets/cached_images/d4ba2fe5a08abf21e37f5bc30046c22c.jpg",
-            "topic": "Movie News",
+            "title": "Cinematrix No. 816: June 20, 2026",
+            "url": "http://www.vulture.com/article/daily-movie-grid-trivia-game-cinematrix.html?utm_source=rss&utm_medium=social_acct&utm_campaign=feed-part",
+            "published": "Sat, 20 Jun 2026 05:00:00 -0400",
+            "timestamp": 1781946000,
+            "source": "Vulture",
+            "category": "paywall exclude",
+            "thumbnail": "assets/cached_images/8b7ccdf7322cf0ed65fa1baa1725b1c6.jpg",
+            "topic": "paywall exclude",
             "section": "Entertainment"
         },
         {
@@ -120,15 +806,48 @@
             "avatar": "https://unavatar.io/x/FabrizioRomano"
         },
         {
-            "title": "21 Years Later, Ridley Scott’s Criminally Underrated Historical Epic Is Finding a New Audience",
-            "url": "https://collider.com/ridley-scott-kingdom-of-heaven-streaming-success-vod-peacock-june-2026/",
-            "published": "Sat, 20 Jun 2026 08:40:13 GMT",
-            "timestamp": 1781944813,
-            "source": "Collider",
-            "category": "Movie News",
-            "thumbnail": "assets/cached_images/429104525899c8698fa738998d401cdd.jpg",
-            "topic": "Movie News",
-            "section": "Entertainment"
+            "title": "Who did it better? Rew recreates iconic Jones catch!",
+            "url": "https://www.skysports.com/watch/video/13556077/who-did-it-better-jason-rew-recreates-iconic-geraint-jones-catch",
+            "published": "Sat, 20 Jun 2026 12:16:00 BST",
+            "timestamp": 1781945160,
+            "source": "Sky Sports News",
+            "category": "Video",
+            "thumbnail": "assets/cached_images/5ccc3c1094ba683a8f6687013b673b2f.jpg",
+            "topic": "Video",
+            "section": "Sports"
+        },
+        {
+            "title": "Liverpool latest: '£87m bid for Diomande rejected'",
+            "url": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+            "published": "Sat, 20 Jun 2026 12:13:00 BST",
+            "timestamp": 1781944980,
+            "source": "Sky Sports News",
+            "category": "Liveblog",
+            "thumbnail": "assets/cached_images/e59708f27463f0a69c1c93631dde0d5f.jpg",
+            "topic": "Liveblog",
+            "section": "Sports"
+        },
+        {
+            "title": "England latest: Concerns over key trio ahead of Ghana clash",
+            "url": "https://www.skysports.com/football/live-blog/11095/13427059/england-football-news-live-updates-schedule-and-analysis-of-thomas-tuchels-three-lions",
+            "published": "Sat, 20 Jun 2026 12:10:00 BST",
+            "timestamp": 1781944800,
+            "source": "Sky Sports News",
+            "category": "Liveblog",
+            "thumbnail": "assets/cached_images/44ef394e9d3406f3f160dfd4848ebad1.jpg",
+            "topic": "Liveblog",
+            "section": "Sports"
+        },
+        {
+            "title": "Boyd: Scotland can’t concede early against Brazil",
+            "url": "https://www.skysports.com/football/news/12040/13556075/scotland-cannot-concede-early-again-against-brazil-says-kris-boyd",
+            "published": "Sat, 20 Jun 2026 12:00:00 BST",
+            "timestamp": 1781944200,
+            "source": "Sky Sports News",
+            "category": "News Story",
+            "thumbnail": "assets/cached_images/c67e2bac028dd995e55445e3ab8b0c10.jpg",
+            "topic": "News Story",
+            "section": "Sports"
         },
         {
             "title": "World Cup groups separated by head-to-head records for first time",
@@ -155,26 +874,16 @@
             "avatar": "https://unavatar.io/x/FabrizioRomano"
         },
         {
-            "title": "Theo James’ Forgotten ‘Twilight’ Replacement Is Finally Getting the Love It Deserves",
-            "url": "https://collider.com/underworld-blood-wars-streaming-success-hulu-june-2026/",
-            "published": "Sat, 20 Jun 2026 08:20:14 GMT",
-            "timestamp": 1781943614,
-            "source": "Collider",
-            "category": "Movie News",
-            "thumbnail": "assets/cached_images/6d3b21a4d0dd3093846c10d609da1d0b.jpg",
-            "topic": "Movie News",
-            "section": "Entertainment"
-        },
-        {
-            "title": "Netflix’s Divisive 2-Part Sci-Fi Saga Is Finally Getting a Second Chance",
-            "url": "https://collider.com/netflix-zack-snyder-rebel-moon-movies-streaming-success-june-2026/",
-            "published": "Sat, 20 Jun 2026 08:01:13 GMT",
-            "timestamp": 1781942473,
-            "source": "Collider",
-            "category": "Movie News",
-            "thumbnail": "assets/cached_images/4756a895a9218ff2c980f1132bdf7ff1.jpg",
-            "topic": "Movie News",
-            "section": "Entertainment"
+            "title": "🚨 EXCLUSIVE: Inter Miami complete deal to sign Casemiro as new midfielder, he...",
+            "description": "🚨 EXCLUSIVE: Inter Miami complete deal to sign Casemiro as new midfielder, here we go!Verbal agreement sealed with all parties involved and all formal steps resolved, now waiting to sign and announce the Brazilian.Casemiro wants to play with Messi. Future in MLS. 🇺🇸 https://t.co/gHty3SWAIM — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
+            "url": "https://t.me/FabrizioRomanoTG/61093",
+            "published": "2026-06-20T11:33:11+00:00",
+            "timestamp": 1781942591.0,
+            "source": "Fabrizio Romano",
+            "category": "Transfers",
+            "thumbnail": "assets/cached_images/caa380cf7429bfb5579a900fde6b0ae2.jpg",
+            "topic": "Transfers",
+            "section": "Sports"
         },
         {
             "title": "🚨🚜 Ipswich Town are set to seal the agreement with Gary O’Neill as new head coach.\n\nAll done with formal steps to follow as O’Neill and RC Strasbourg are set to part ways soon.\n\n#ITFC agreed terms with O’Neill.",
@@ -214,17 +923,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Football Daily",
-            "url": "https://www.bbc.co.uk/sounds/play/p0ns7wx2?at_medium=RSS&at_campaign=rss",
-            "published": "Sat, 20 Jun 2026 07:25:00 GMT",
-            "timestamp": 1781940300,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/6b6276c6015612d2fe3c87cc5ccbfea6.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Rousey and Paul taunt UFC over White House viewing figures",
             "url": "https://www.bbc.com/sport/mixed-martial-arts/articles/cjrgl80yerjo?at_medium=RSS&at_campaign=rss",
             "published": "Sat, 20 Jun 2026 07:16:37 GMT",
@@ -234,32 +932,6 @@
             "thumbnail": "assets/cached_images/ef72f581806daf38a15c5c609400409b.jpg",
             "topic": "Sports",
             "section": "Sports"
-        },
-        {
-            "title": "❗️Rodrygo creates his perfect player from players at the World Cup:\n\n• Passing: Bruno Fernandes\n• Shooting: Kevin de Bruyne\n• Dribbling: Neymar\n• Speed: Fede Valverde \n• Positioning: Bruno Guimarães \n• Decision making: Neymar\n• Set pieces: Kevin de Bruyne \n\n@ESPNBrasil",
-            "url": "https://x.com/theMadridZone/status/2068229820509737338",
-            "published": "Sat, 20 Jun 2026 07:09:49 GMT",
-            "timestamp": 1781939389,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/b5f5e00445b2a664a716cffaae142b7f.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
-            "title": "🚨 Real Madrid have currently overtaken Bayern Munich as the club whose players have scored the most goals at the World Cup.\n\nViní Jr., Kylian Mbappé and Jude Bellingham have scored 5 goals at the tournament so far.\n\nHarry Kane, Luis Diaz and Jamal Musiala have scored 4.",
-            "url": "https://x.com/theMadridZone/status/2068228234215645245",
-            "published": "Sat, 20 Jun 2026 07:03:31 GMT",
-            "timestamp": 1781939011,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/2fd3d44fb7752fb20c349ddb3eed7383.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
         },
         {
             "title": "🚨 Mateus Fernandes talks continue as Man United have been in direct contact with his camp and West Ham for weeks.\n\nTottenham also called player’s agent to try enter the deal, separate story from Tonali — for the Italian #THFC remain confident.\n\n🎥➕ http://youtu.be/fYCBVDae0Pw?is=PL0SuCGXOHTqWzc8",
@@ -286,52 +958,26 @@
             "section": "Technology"
         },
         {
-            "title": "🚨 Vinícius Jr. put an END to the debate regarding his defensive effort. \n\nHe lead by example, just like against Morocco, and started the match pressing high alongside Raphinha. @diarioas",
-            "url": "https://x.com/theMadridZone/status/2068226408745415064",
-            "published": "Sat, 20 Jun 2026 06:56:16 GMT",
-            "timestamp": 1781938576,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/c339fcb754f71a641404094cca2cd538.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
-            "title": "🚨 RECORD: Only four Brazilian players who have played 5+ World Cup games have an average of one goal contribution per game or more:\n\n🇧🇷 Ronaldo (19 in 19) \n🇧🇷 Pele (11 in 8)\n🇧🇷 Tostao (7 in 7) \n🇧🇷 VINÍCIUS JR. (6 in 6) \n\nLegend. @OptaJoe ⭐️",
-            "url": "https://x.com/theMadridZone/status/2068224551750926698",
-            "published": "Sat, 20 Jun 2026 06:48:53 GMT",
-            "timestamp": 1781938133,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "https://nitter.net/pic/media%2FHLPPJtNbQAAnyh6.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
             "title": "🚨🇹🇷 Vincenzo Montella: “We had 65 shots in 2 games. Zero goals. If I have to learn how to let the ball enter, here I’m for it”.",
             "url": "https://x.com/FabrizioRomano/status/2068223604433584609",
             "published": "Sat, 20 Jun 2026 06:45:07 GMT",
             "timestamp": 1781937907,
             "source": "Fabrizio Romano (X)",
             "category": "Transfers",
-            "thumbnail": "https://nitter.net/pic/media%2FHLPOaFfWUAAzFUP.jpg",
+            "thumbnail": "assets/cached_images/86f601d58766bb47c009261b7a03e718.jpg",
             "topic": "Transfers",
             "section": "Sports",
             "handle": "FabrizioRomano",
             "avatar": "https://unavatar.io/x/FabrizioRomano"
         },
         {
-            "title": "New Zealand look to increase big lead over England on day four LIVE!",
+            "title": "England tumble to 13-2 after being set record 463 to win by NZ LIVE!",
             "url": "https://www.skysports.com/cricket/live-blog/12040/13555962/england-vs-new-zealand-second-test-day-four-live-cricket-score-updates-video-and-analysis-as-joe-root-stands-in-as-captain-for-ben-stokes-at-the-oval",
             "published": "Sat, 20 Jun 2026 10:15:00 BST",
             "timestamp": 1781937900,
             "source": "Sky Sports News",
             "category": "Liveblog",
-            "thumbnail": "https://e1.365dm.com/26/06/1920x1080/skysports-henry-nicholls-new-zealand_7277971.jpg?20260619175146",
+            "thumbnail": "assets/cached_images/94f4c78d55f4cc66832a20ad4387d338.jpg",
             "topic": "Liveblog",
             "section": "Sports"
         },
@@ -347,6 +993,30 @@
             "section": "Sports",
             "handle": "FabrizioRomano",
             "avatar": "https://unavatar.io/x/FabrizioRomano"
+        },
+        {
+            "title": "@thespursweb on Tonali — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
+            "description": "@thespursweb on Tonali — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
+            "url": "https://t.me/FabrizioRomanoTG/61092",
+            "published": "2026-06-20T10:03:49+00:00",
+            "timestamp": 1781937229.0,
+            "source": "Fabrizio Romano",
+            "category": "Transfers",
+            "thumbnail": "",
+            "topic": "Transfers",
+            "section": "Sports"
+        },
+        {
+            "title": "🇨🇴 Luis Diaz is feeling it. Goal + assist on his FIRST World Cup game ever. H...",
+            "description": "🇨🇴 Luis Diaz is feeling it. Goal + assist on his FIRST World Cup game ever. He’s telling those closest to him: Colombia can be the dark horse and do something special this summer. The confidence inside the camp is massive. What a start for Lucho…and this is just the beginning. https://t.co/wLeaK8MhQu — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
+            "url": "https://t.me/FabrizioRomanoTG/61091",
+            "published": "2026-06-20T10:03:48+00:00",
+            "timestamp": 1781937228.0,
+            "source": "Fabrizio Romano",
+            "category": "Transfers",
+            "thumbnail": "assets/cached_images/be698be351a8ffb674444e70df1e9d65.jpg",
+            "topic": "Transfers",
+            "section": "Sports"
         },
         {
             "title": "😁🇧🇷 Vinicius Jr: “Carlo Ancelotti asked me to play deep between the CBs… he was right!”.\n\n“I score goals when I play there. I have to listen to Mister more often”.",
@@ -386,19 +1056,6 @@
             "section": "Sports"
         },
         {
-            "title": "🚨 Many staff members of the Haiti team wanted photos with Vinícius Jr. 🤍",
-            "url": "https://x.com/theMadridZone/status/2068212317360361482",
-            "published": "Sat, 20 Jun 2026 06:00:16 GMT",
-            "timestamp": 1781935216,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/158534a01baa9177de5c9d3704cc9ae1.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
             "title": "Spurs to enter Wharton chase - Saturday's gossip",
             "url": "https://www.bbc.com/sport/football/articles/cvgl9y9jdlwo?at_medium=RSS&at_campaign=rss",
             "published": "Sat, 20 Jun 2026 05:59:00 GMT",
@@ -410,43 +1067,16 @@
             "section": "Sports"
         },
         {
-            "title": "🗣️ Arda Güler: “We apologize to the entire Turkish people.\n\n I will do everything in my power throughout my career with the national team to make everyone forget this tournament.\n\nWe play for very big clubs, and we had to show that on the pitch.”",
-            "url": "https://x.com/theMadridZone/status/2068210370830025175",
-            "published": "Sat, 20 Jun 2026 05:52:32 GMT",
-            "timestamp": 1781934752,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/cf64e857092eb575fdc0a3d162cb3eed.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
-            "title": "Arda Güler consoling Demiral after the game. ❤️",
-            "url": "https://x.com/theMadridZone/status/2068210157281300545",
-            "published": "Sat, 20 Jun 2026 05:51:41 GMT",
-            "timestamp": 1781934701,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/334fd5dd30c53d96cb221e07ba5e9f7a.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
-            "title": "🗣️ Arda Güler: “There isn't much to say. We are extremely sad and ashamed.”",
-            "url": "https://x.com/theMadridZone/status/2068210052809601262",
-            "published": "Sat, 20 Jun 2026 05:51:16 GMT",
-            "timestamp": 1781934676,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/e022d86092cac19b9e6f1f602b374b6f.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
+            "title": "🚨 Álvaro Carreras expected to stay at Real Madrid this summer.José Mourinho o...",
+            "description": "🚨 Álvaro Carreras expected to stay at Real Madrid this summer.José Mourinho open to keeping former Benfica LB as backup for Cucurella as Fran García can leave the club.🎥➕ https://t.co/FHEJIeQaqa https://t.co/MlLeYMursN — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
+            "url": "https://t.me/FabrizioRomanoTG/61090",
+            "published": "2026-06-20T09:28:31+00:00",
+            "timestamp": 1781935111.0,
+            "source": "Fabrizio Romano",
+            "category": "Transfers",
+            "thumbnail": "assets/cached_images/542cd90901f2c1c0c186cef124d69c58.jpg",
+            "topic": "Transfers",
+            "section": "Sports"
         },
         {
             "title": "10-man Paraguay knock out Turkey despite Almiron red card",
@@ -492,7 +1122,7 @@
             "timestamp": 1781933940,
             "source": "Sky Sports News",
             "category": "News Story",
-            "thumbnail": "https://e2.365dm.com/26/06/1920x1080/skysports-george-russell-mercedes_7278413.jpg?20260620094310",
+            "thumbnail": "assets/cached_images/ee20ca080e2c8bad1805405f6226817e.jpg",
             "topic": "News Story",
             "section": "Sports"
         },
@@ -548,19 +1178,6 @@
             "avatar": "https://unavatar.io/x/TheAthletic"
         },
         {
-            "title": "Arda Güler and Türkiye are out of the World Cup. 💔",
-            "url": "https://x.com/theMadridZone/status/2068199540876869801",
-            "published": "Sat, 20 Jun 2026 05:09:30 GMT",
-            "timestamp": 1781932170,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/d284963ba0895904d57efbd65568303b.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
             "title": "RT by @TheAthletic: Turkey had 62 shots across two games and zero goals.",
             "url": "https://x.com/ChrisVannini/status/2068199480160043275",
             "published": "Sat, 20 Jun 2026 05:09:16 GMT",
@@ -580,24 +1197,11 @@
             "timestamp": 1781932025,
             "source": "The Athletic (X)",
             "category": "News",
-            "thumbnail": "https://nitter.net/pic/media%2FHLO3-AQbgAAuMZK.jpg",
+            "thumbnail": "assets/cached_images/fc2ac52531e0c1ca2db2ae2168fecbea.jpg",
             "topic": "News",
             "section": "Sports",
             "handle": "TheAthletic",
             "avatar": "https://unavatar.io/x/TheAthletic"
-        },
-        {
-            "title": "🚨 FT: Turkey 0-1 Paraguay. \n\nTurkey are out of the World Cup. ❌",
-            "url": "https://x.com/theMadridZone/status/2068198798099468736",
-            "published": "Sat, 20 Jun 2026 05:06:33 GMT",
-            "timestamp": 1781931993,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
         },
         {
             "title": "🚨⛔️ OFFICIAL: Turkiye have been ELIMINATED from the 2026 World Cup.\n\nVerdict after 2 games at group stages, 0 goals scored and 2 defeats. ❌",
@@ -606,7 +1210,7 @@
             "timestamp": 1781931971,
             "source": "Fabrizio Romano (X)",
             "category": "Transfers",
-            "thumbnail": "https://nitter.net/pic/media%2FHLO3wb6WIAA48Gp.jpg",
+            "thumbnail": "assets/cached_images/18aed2ea9131257267a2955e44347b89.jpg",
             "topic": "Transfers",
             "section": "Sports",
             "handle": "FabrizioRomano",
@@ -619,7 +1223,7 @@
             "timestamp": 1781931964,
             "source": "Fabrizio Romano (X)",
             "category": "Transfers",
-            "thumbnail": "https://nitter.net/pic/media%2FHLO3vAgWAAAGrrW.jpg",
+            "thumbnail": "assets/cached_images/b85d7a327262dda7144924fadec3675f.jpg",
             "topic": "Transfers",
             "section": "Sports",
             "handle": "FabrizioRomano",
@@ -635,19 +1239,6 @@
             "thumbnail": "assets/cached_images/6995a9f3b3fd0a8bb01973167718d63d.jpg",
             "topic": "Sports",
             "section": "Sports"
-        },
-        {
-            "title": "🚨 ARDA GÜLER WITH A GREAT CROSS BUT DEMIRAL CANNOT CONVERT.",
-            "url": "https://x.com/theMadridZone/status/2068198269122130364",
-            "published": "Sat, 20 Jun 2026 05:04:27 GMT",
-            "timestamp": 1781931867,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
         },
         {
             "title": "🚨🇹🇷 Arda Güler: “There was no issue between us in the dressing room. Not at a...",
@@ -673,19 +1264,6 @@
             "section": "Sports"
         },
         {
-            "title": "🔙🗣️ Toni Kroos in 2025:\n\n“Cristiano Ronaldo has this ‘when the WORLD is AGAINST me, I’m at my BEST’ mentality. \n\nVinícius Jr has that gene.”\n\nShowed it again today. 🥶",
-            "url": "https://x.com/theMadridZone/status/2068194262861373918",
-            "published": "Sat, 20 Jun 2026 04:48:32 GMT",
-            "timestamp": 1781930912,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "https://nitter.net/pic/media%2FHLOzo67aMAAbjpe.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
             "title": "Almiron first player sent off for covering mouth",
             "url": "https://www.bbc.com/sport/football/articles/cvg58m7n1plo?at_medium=RSS&at_campaign=rss",
             "published": "Sat, 20 Jun 2026 04:45:25 GMT",
@@ -695,45 +1273,6 @@
             "thumbnail": "assets/cached_images/6f6f4018a48086ef6caf5f6cf7224dfe.jpg",
             "topic": "Sports",
             "section": "Sports"
-        },
-        {
-            "title": "Viní Jr. x Casemiro. \n\n🇧🇷🤍",
-            "url": "https://x.com/theMadridZone/status/2068193171394503078",
-            "published": "Sat, 20 Jun 2026 04:44:11 GMT",
-            "timestamp": 1781930651,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/845fee5cbeb725564adb4c6b3801d54c.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
-            "title": "📲 Endrick on IG: “Thank God for this moment, thank you nation for making this moment even more special, it will be marked in my history. We continue together with your support, I love you!” 🇧🇷",
-            "url": "https://x.com/theMadridZone/status/2068192189897970096",
-            "published": "Sat, 20 Jun 2026 04:40:17 GMT",
-            "timestamp": 1781930417,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/6742cfb7309b582ad3920453a7bb5ff4.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
-            "title": "🚨 Viní Jr. now has more World Cup goals (3) than: \n\n• Ronaldinho (2) \n• Kaka (1) \n• Adriano (2)\n• Zé Roberto (1)\n\nLegend. 🇧🇷",
-            "url": "https://x.com/theMadridZone/status/2068191699495800985",
-            "published": "Sat, 20 Jun 2026 04:38:20 GMT",
-            "timestamp": 1781930300,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "https://nitter.net/pic/media%2FHLOxXphaAAADFu9.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
         },
         {
             "title": "🚨🚜 Ipswich Town are set to seal the agreement with Gary O’Neill as new head c...",
@@ -760,19 +1299,6 @@
             "section": "Sports"
         },
         {
-            "title": "❗️Most World Cup goals scored by country. @Squawka",
-            "url": "https://x.com/theMadridZone/status/2068188441893081354",
-            "published": "Sat, 20 Jun 2026 04:25:24 GMT",
-            "timestamp": 1781929524,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/9a3a8def35f37487e93a62960124a8c7.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
             "title": "‘Finnegan’s Foursome’ Review: Edward Burns’ Spiky-Quaint Sports Dramedy Is a Tale of Family Therapy Through Golf",
             "url": "https://variety.com/2026/film/reviews/finnegans-foursome-review-edward-burns-1236786224/",
             "published": "Sat, 20 Jun 2026 04:15:30 +0000",
@@ -781,30 +1307,6 @@
             "category": "Reviews",
             "thumbnail": "assets/cached_images/3f73601a819895a004abbf0f1f36deec.jpg",
             "topic": "Reviews",
-            "section": "Entertainment"
-        },
-        {
-            "title": "🗣️ Reporter: “Was this goal dedicated to someone special? \n\n🗣️ Viní Jr.: “Goals are always for special people, and this was one of those days.”",
-            "url": "https://x.com/theMadridZone/status/2068185130989215837",
-            "published": "Sat, 20 Jun 2026 04:12:14 GMT",
-            "timestamp": 1781928734,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/cde6188a023188bd54a8c2d3e2f56768.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
-            "title": "10 Fantasy Books That Will Keep You Hooked From Start to Finish",
-            "url": "https://collider.com/fantasy-books-hooked-start-to-finish/",
-            "published": "Sat, 20 Jun 2026 04:08:13 GMT",
-            "timestamp": 1781928493,
-            "source": "Collider",
-            "category": "Movie",
-            "thumbnail": "assets/cached_images/5ebc4e8b904a9169ac626310d475e014.jpg",
-            "topic": "Movie",
             "section": "Entertainment"
         },
         {
@@ -821,50 +1323,13 @@
             "avatar": "https://unavatar.io/x/TheAthletic"
         },
         {
-            "title": "Netflix’s 7-Part Action-Packed Thriller Is the Perfect Weekend Binge for ‘Jack Ryan’ Fans",
-            "url": "https://collider.com/man-on-fire-netflix-action-thriller-perfect-binge-jack-ryan-fans/",
-            "published": "Sat, 20 Jun 2026 03:58:14 GMT",
-            "timestamp": 1781927894,
-            "source": "Collider",
-            "category": "TV Features",
-            "thumbnail": "assets/cached_images/755416e04bd0f0002b8b0bf51e22da8e.jpg",
-            "topic": "TV Features",
-            "section": "Entertainment"
-        },
-        {
-            "title": "The implementation of the 'Vinicius Jr law\" used tonight as Almiron gets sent off for covering his mouth while saying something to Mert Muldur.",
-            "url": "https://x.com/theMadridZone/status/2068181331767365700",
-            "published": "Sat, 20 Jun 2026 03:57:09 GMT",
-            "timestamp": 1781927829,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/160019f8fa1c19a593d780420893f099.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
-            "title": "🚨🗣️ Viní Jr.: “I didnt dance tonight? I'LL LEAVE THE DANCE FOR THE NEXT GAME.” 🥶",
-            "url": "https://x.com/theMadridZone/status/2068180896302379018",
-            "published": "Sat, 20 Jun 2026 03:55:25 GMT",
-            "timestamp": 1781927725,
-            "source": "The Madrid Zone (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/7ac166b18f28301462ec40fa9bf0c1df.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "theMadridZone",
-            "avatar": "https://unavatar.io/x/theMadridZone"
-        },
-        {
             "title": "Harsh or fair decisions? Scotland denied TWO penalties in Morocco defeat!",
             "url": "https://www.skysports.com/watch/video/13556024/world-cup-scotland-camp-react-to-mcginn-and-mctominays-denied-penalties-vs-morocco",
             "published": "Sat, 20 Jun 2026 07:25:00 BST",
             "timestamp": 1781927700,
             "source": "Sky Sports News",
             "category": "Video",
-            "thumbnail": "https://e0.365dm.com/26/06/1920x1080/skysports-football-pen_7278373.jpg?20260620075720",
+            "thumbnail": "assets/cached_images/f3981118724eebe8a658ce065064fef5.jpg",
             "topic": "Video",
             "section": "Sports"
         },
@@ -902,17 +1367,6 @@
             "section": "Sports",
             "handle": "TheAthletic",
             "avatar": "https://unavatar.io/x/TheAthletic"
-        },
-        {
-            "title": "‘Every Year After’s Finale Twist Just Set Up the Best Romance for Season 2",
-            "url": "https://collider.com/every-year-after-finale-season-2-charlie-heart-attack-one-golden-summer/",
-            "published": "Sat, 20 Jun 2026 03:43:18 GMT",
-            "timestamp": 1781926998,
-            "source": "Collider",
-            "category": "TV Features",
-            "thumbnail": "https://static0.colliderimages.com/wordpress/wp-content/uploads/2026/06/every-year-after-michael-bradway.jpg",
-            "topic": "TV Features",
-            "section": "Entertainment"
         },
         {
             "title": "🚨💣 OFFICIAL: Neymar Jr will be called up for Brazil next game against Scotland. 🇧🇷\n\n“Neymar will train individually tomorrow, then Sunday back training with the team and then called up against Scotland”, announces Carlo Ancelotti after Brazil win against Haiti.",
@@ -999,17 +1453,6 @@
             "avatar": "https://unavatar.io/x/TheAthletic"
         },
         {
-            "title": "10 Greatest Noir Thrillers of the Last 80 Years",
-            "url": "https://collider.com/best-noir-thrillers-last-80-years-ranked/",
-            "published": "Sat, 20 Jun 2026 03:09:17 GMT",
-            "timestamp": 1781924957,
-            "source": "Collider",
-            "category": "Movie",
-            "thumbnail": "assets/cached_images/c33027b899cbb767c247158a4307f823.jpg",
-            "topic": "Movie",
-            "section": "Entertainment"
-        },
-        {
             "title": "Cunha scores twice as Brazil beat Haiti",
             "url": "https://www.bbc.com/sport/football/videos/cy04ly9rk22o?at_medium=RSS&at_campaign=rss",
             "published": "Sat, 20 Jun 2026 03:06:22 GMT",
@@ -1072,17 +1515,6 @@
             "avatar": "https://unavatar.io/x/TheAthletic"
         },
         {
-            "title": "'Toy Story 5' Filmmakers Explain Taylor Swift's Role in the Pixar Sequel",
-            "url": "https://collider.com/toy-story-5-taylor-swift-song-i-knew-it-i-knew-you-jessie/",
-            "published": "Sat, 20 Jun 2026 02:46:13 GMT",
-            "timestamp": 1781923573,
-            "source": "Collider",
-            "category": "Interviews",
-            "thumbnail": "assets/cached_images/0e44bc59042c780a7425397e9b9c2411.jpg",
-            "topic": "Interviews",
-            "section": "Entertainment"
-        },
-        {
             "title": "🚨 Carlo Ancelotti confirms Raphinha will undergo tests in the next 24h to ass...",
             "description": "🚨 Carlo Ancelotti confirms Raphinha will undergo tests in the next 24h to assess his injury. https://t.co/bOTSt25vxq — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
             "url": "https://t.me/FabrizioRomanoTG/61081",
@@ -1093,19 +1525,6 @@
             "thumbnail": "assets/cached_images/5890fce11175aa86752233e345d44aef.jpg",
             "topic": "Transfers",
             "section": "Sports"
-        },
-        {
-            "title": "🚨🇭🇹 OFFICIAL: Haiti have been eliminated from the 2026 World Cup.",
-            "url": "https://x.com/FabrizioRomano/status/2068162531781202101",
-            "published": "Sat, 20 Jun 2026 02:42:26 GMT",
-            "timestamp": 1781923346,
-            "source": "Fabrizio Romano (X)",
-            "category": "Transfers",
-            "thumbnail": "",
-            "topic": "Transfers",
-            "section": "Sports",
-            "handle": "FabrizioRomano",
-            "avatar": "https://unavatar.io/x/FabrizioRomano"
         },
         {
             "title": "RT by @TheAthletic: Job done for Brazil. Matheus Cunha's double and Vinicius Junior's strike earn them a routine victory over Haiti.\n\nCarlo Ancelotti's team top Group C on goal difference ahead of their clash with Scotland in Miami — Haiti, who improved in the second half, are the first nation to be eliminated from the 2026 World Cup.",
@@ -1121,26 +1540,13 @@
             "avatar": "https://unavatar.io/x/TheAthletic"
         },
         {
-            "title": "🍿🇧🇷 Brazil beat Haiti with Cunha and Vini Jr delivering!\n\nWho’s been your Man of the Match?",
-            "url": "https://x.com/FabrizioRomano/status/2068159678215839817",
-            "published": "Sat, 20 Jun 2026 02:31:06 GMT",
-            "timestamp": 1781922666,
-            "source": "Fabrizio Romano (X)",
-            "category": "Transfers",
-            "thumbnail": "assets/cached_images/c4755c91e5eba7ab19616dfff3246500.jpg",
-            "topic": "Transfers",
-            "section": "Sports",
-            "handle": "FabrizioRomano",
-            "avatar": "https://unavatar.io/x/FabrizioRomano"
-        },
-        {
             "title": "RT by @TheAthletic: Canada’s been a soccer country for some time now but offers of free drinks for domestic soccer stars just drives it home. #CANMNT",
             "url": "https://x.com/joshuakloke/status/2068159618170155271",
             "published": "Sat, 20 Jun 2026 02:30:52 GMT",
             "timestamp": 1781922652,
             "source": "The Athletic (X)",
             "category": "News",
-            "thumbnail": "https://nitter.net/pic/media%2FHLOUNSNbcAAMNn8.jpg",
+            "thumbnail": "assets/cached_images/78329848c7cf364b6147dd12a8f531bd.jpg",
             "topic": "News",
             "section": "Sports",
             "handle": "TheAthletic",
@@ -1239,19 +1645,6 @@
             "thumbnail": "assets/cached_images/8e8841b08fb06de0ae7d86883a564498.jpg",
             "topic": "Transfers",
             "section": "Sports"
-        },
-        {
-            "title": "🇧🇷 Endrick makes his World Cup debut. 1️⃣",
-            "url": "https://x.com/FabrizioRomano/status/2068152306529431772",
-            "published": "Sat, 20 Jun 2026 02:01:48 GMT",
-            "timestamp": 1781920908,
-            "source": "Fabrizio Romano (X)",
-            "category": "Transfers",
-            "thumbnail": "assets/cached_images/7d2486910bdbeb1bce16af68d3739029.jpg",
-            "topic": "Transfers",
-            "section": "Sports",
-            "handle": "FabrizioRomano",
-            "avatar": "https://unavatar.io/x/FabrizioRomano"
         },
         {
             "title": "Clark in control of US Open as wind hinders McIlroy and Scheffler",
@@ -1353,7 +1746,7 @@
             "timestamp": 1781918501,
             "source": "Deadline Hollywood",
             "category": "News",
-            "thumbnail": "https://deadline.com/wp-content/uploads/2026/06/TCDEVYE_ZU008.jpg",
+            "thumbnail": "assets/cached_images/bb2d22bd00be392a34de29b8a99bbb10.jpg",
             "topic": "News",
             "section": "Entertainment"
         },
@@ -1367,17 +1760,6 @@
             "thumbnail": "",
             "topic": "Movie News",
             "section": "Entertainment"
-        },
-        {
-            "title": "Morocco 'got away with one' - McGinn",
-            "url": "https://www.bbc.com/sport/football/videos/c5yzl0jxkd3o?at_medium=RSS&at_campaign=rss",
-            "published": "Sat, 20 Jun 2026 01:19:36 GMT",
-            "timestamp": 1781918376,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/bb42f2b4be64b1eb7e156cc18f95749c.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Turkey supporters are ready for their team to take on Paraguay in Group D World Cup action 🇹🇷",
@@ -1522,18 +1904,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "🚨💣 OFFICIAL: Neymar Jr will be called up for Brazil next game against Scotlan...",
-            "description": "🚨💣 OFFICIAL: Neymar Jr will be called up for Brazil next game against Scotland. 🇧🇷“Neymar will train individually tomorrow, then Sunday back training with the team and then called up against Scotland”, announces Carlo Ancelotti after Brazil win against Haiti. https://t.co/F4cvWUDmrV — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
-            "url": "https://t.me/FabrizioRomanoTG/61073",
-            "published": "2026-06-20T03:38:23+00:00",
-            "timestamp": 1781914103.0,
-            "source": "Fabrizio Romano",
-            "category": "Transfers",
-            "thumbnail": "assets/cached_images/3e6405db4a661b4a7275ae79b1120c85.jpg",
-            "topic": "Transfers",
-            "section": "Sports"
-        },
-        {
             "title": "RT by @TheAthletic: Defeat for Scotland, who gave a good account of themselves against Morocco but were undone by Ismael Saibari's excellent strike after 71 seconds.\n\nSteve Clarke's side missed chances and had penalty claims waved away, but put in a performance that will be a source of encouragement ahead of their meeting with Brazil in Miami.\n\nMorocco are all but through to the last 32 with four points.",
             "url": "https://x.com/TheAthleticFC/status/2068121841487512053",
             "published": "Sat, 20 Jun 2026 00:00:45 GMT",
@@ -1577,18 +1947,6 @@
             "category": "Sports",
             "thumbnail": "assets/cached_images/e745efcb6d0f25760d4a74ff00b91a0a.jpg",
             "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "📺 New YouTube Video Uploaded!🎬 🚨 UNITED BATTLE! TWO DEALS! NICO PAZ BIG CASE!...",
-            "description": "📺 New YouTube Video Uploaded!🎬 🚨 UNITED BATTLE! TWO DEALS! NICO PAZ BIG CASE! TONALI, MATHEUS, DIOMANDE, REAL DECISIONS, CARRERAS…🔗 Watch Now",
-            "url": "https://t.me/FabrizioRomanoTG/61072",
-            "published": "2026-06-20T03:24:15+00:00",
-            "timestamp": 1781913255.0,
-            "source": "Fabrizio Romano",
-            "category": "Transfers",
-            "thumbnail": "assets/cached_images/bbc5bb4d25eb892bbc10c37b16d3cbea.jpg",
-            "topic": "Transfers",
             "section": "Sports"
         },
         {
@@ -1669,43 +2027,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "🚨🇧🇷 OFFICIAL: Vini Jr wins FIFA Man of the Match for Brazil vs Haiti.Back to ...",
-            "description": "🚨🇧🇷 OFFICIAL: Vini Jr wins FIFA Man of the Match for Brazil vs Haiti.Back to back. ⭐️⭐️ https://t.co/5RdyidXxSS — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
-            "url": "https://t.me/FabrizioRomanoTG/61071",
-            "published": "2026-06-20T02:53:21+00:00",
-            "timestamp": 1781911401.0,
-            "source": "Fabrizio Romano",
-            "category": "Transfers",
-            "thumbnail": "assets/cached_images/db464428b147fdfef6f6d1d474b24e56.jpg",
-            "topic": "Transfers",
-            "section": "Sports"
-        },
-        {
-            "title": "🚨🇭🇹 OFFICIAL: Haiti have been eliminated from the 2026 World Cup. — Fabrizio ...",
-            "description": "🚨🇭🇹 OFFICIAL: Haiti have been eliminated from the 2026 World Cup. — Fabrizio Romano (@FabrizioRomano) Jun 20, 2026",
-            "url": "https://t.me/FabrizioRomanoTG/61070",
-            "published": "2026-06-20T02:43:16+00:00",
-            "timestamp": 1781910796.0,
-            "source": "Fabrizio Romano",
-            "category": "Transfers",
-            "thumbnail": "",
-            "topic": "Transfers",
-            "section": "Sports"
-        },
-        {
-            "title": "RT by @TheAthletic: Cape Verde goalkeeper Vozinha says his mother will be in attendance for their second group-stage game, after she was unable to be in the United States for his man-of-the-match performance against Spain earlier this week.\n\nUnited States government officials said they were working to get her to the U.S. so that she can watch her son play at the World Cup, after Vozinha had said “visa issues” prevented her from watching the opener in person.\n\nMore from @Millar_Colin and @HenryBushnell ⬇️\n\nhttps://bit.ly/4eSuP6h",
-            "url": "https://x.com/TheAthleticFC/status/2068109725187641711",
-            "published": "Fri, 19 Jun 2026 23:12:36 GMT",
-            "timestamp": 1781910756,
-            "source": "The Athletic (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/b7390b56249d5a71c826476790f6cb99.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "TheAthletic",
-            "avatar": "https://unavatar.io/x/TheAthletic"
-        },
-        {
             "title": "‘Supergirl’ First Reactions: “Mixed” Reviews, Praise Milly Alcock & Jason Momoa’s Roles & Highlight David Corenswet’s Superman As “Peak Casting”",
             "url": "https://deadline.com/2026/06/supergirl-first-reactions-milly-alcock-jason-momoa-david-corenswet-1236963084/",
             "published": "Fri, 19 Jun 2026 23:06:58 +0000",
@@ -1734,7 +2055,7 @@
             "timestamp": 1781909820,
             "source": "Deadline Hollywood",
             "category": "News",
-            "thumbnail": "https://deadline.com/wp-content/uploads/2026/06/MCDTOST_WD035.jpg",
+            "thumbnail": "assets/cached_images/bfeb96ef85b2b08d2f9b5c926c350b58.jpg",
             "topic": "News",
             "section": "Entertainment"
         },
@@ -1745,7 +2066,7 @@
             "timestamp": 1781909485,
             "source": "Deadline Hollywood",
             "category": "Festivals",
-            "thumbnail": "https://deadline.com/wp-content/uploads/2026/06/Mistake-still.png",
+            "thumbnail": "assets/cached_images/16ea87469d6fc93575c6fede36160489.png",
             "topic": "Festivals",
             "section": "Entertainment"
         },
@@ -1772,17 +2093,6 @@
             "section": "Sports"
         },
         {
-            "title": "From PGP to Mythos: a brief history of export controls that didn’t stop anyone",
-            "url": "https://techcrunch.com/2026/06/19/encryption-spyware-and-now-mythos-history-shows-why-cyber-export-control-doesnt-work/",
-            "published": "Fri, 19 Jun 2026 22:40:14 +0000",
-            "timestamp": 1781908814,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
-            "section": "Technology"
-        },
-        {
             "title": "The Comedy World Remembers James Burrows",
             "url": "http://www.vulture.com/article/james-burrows-tributes.html?utm_source=rss&utm_medium=social_acct&utm_campaign=feed-part",
             "published": "Fri, 19 Jun 2026 18:35:59 -0400",
@@ -1802,17 +2112,6 @@
             "category": "Sports",
             "thumbnail": "assets/cached_images/076b53bf4cc651ee711deb467eba1b87.jpg",
             "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "'Proud but devastated' - Clarke backs Scotland to bounce back after Morocco defeat",
-            "url": "https://www.skysports.com/watch/video/13555999/scotland-at-world-cup-steve-clarke-backs-players-to-bounce-back-after-morocco-defeat-proud-but-devastated",
-            "published": "Sat, 20 Jun 2026 02:04:00 BST",
-            "timestamp": 1781908440,
-            "source": "Sky Sports News",
-            "category": "Video",
-            "thumbnail": "https://e0.365dm.com/26/06/1920x1080/skysports-steve-clarke-scotland_7278306.jpg?20260620014041",
-            "topic": "Video",
             "section": "Sports"
         },
         {
@@ -1904,19 +2203,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "RT by @TheAthletic: Morocco take the lead inside 80 seconds.\n\nIsmael Saibari scored a cracking goal against Brazil in Morocco's first group game — he may have just scored an even better one.\n\nThe worst possible start for Scotland.",
-            "url": "https://x.com/TheAthleticFC/status/2068093465368404429",
-            "published": "Fri, 19 Jun 2026 22:08:00 GMT",
-            "timestamp": 1781906880,
-            "source": "The Athletic (X)",
-            "category": "News",
-            "thumbnail": "assets/cached_images/64e5522dc16caa88b0f5418ab3b76b55.jpg",
-            "topic": "News",
-            "section": "Sports",
-            "handle": "TheAthletic",
-            "avatar": "https://unavatar.io/x/TheAthletic"
-        },
-        {
             "title": "‘Taxi’ Star Tony Danza Pays Tribute to Director James Burrows: ‘We Have Lost the Greatest of All Time’",
             "url": "https://variety.com/2026/tv/news/taxi-tony-danza-tribute-james-burrows-1236786169/",
             "published": "Fri, 19 Jun 2026 22:01:34 +0000",
@@ -1969,17 +2255,6 @@
             "category": "News Story",
             "thumbnail": "assets/cached_images/8ab886eec16fa52c697c3604d75aa14d.jpg",
             "topic": "News Story",
-            "section": "Sports"
-        },
-        {
-            "title": "Hull KR claim battling win over Leigh Leopards",
-            "url": "https://www.bbc.com/sport/rugby-league/articles/czrxv1x3l3zo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 21:33:47 GMT",
-            "timestamp": 1781904827,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/f88ff1590a57870a98abebe4ab7e790c.jpg",
-            "topic": "Sports",
             "section": "Sports"
         },
         {
@@ -2038,17 +2313,6 @@
             "section": "Sports"
         },
         {
-            "title": "Women's T20 World Cup schedule, fixtures, times & results",
-            "url": "https://www.bbc.com/sport/cricket/articles/c7942709g43o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 21:15:32 GMT",
-            "timestamp": 1781903732,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/453e14b00453e8cd63473a6f9d462297.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "5 Romance Novels to Read This Summer",
             "url": "http://www.vulture.com/article/best-new-romance-novels-to-read-this-summer.html?utm_source=rss&utm_medium=social_acct&utm_campaign=feed-part",
             "published": "Fri, 19 Jun 2026 17:00:34 -0400",
@@ -2060,24 +2324,13 @@
             "section": "Entertainment"
         },
         {
-            "title": "Aura’s impressive e-ink photo frame doesn’t even look digital",
-            "url": "https://techcrunch.com/2026/06/19/auras-impressive-e-ink-photo-frame-doesnt-even-look-digital/",
-            "published": "Fri, 19 Jun 2026 21:00:34 +0000",
-            "timestamp": 1781902834,
-            "source": "TechCrunch",
-            "category": "Hardware",
-            "thumbnail": "",
-            "topic": "Hardware",
-            "section": "Technology"
-        },
-        {
             "title": "George MacKay on Learning to Fish With Callum Turner for Time Travel Movie ‘Rose of Nevada’ and Why He’d Rather Play a Bond Villain: You ‘Get the Best Scenes and Then Get Killed!’",
             "url": "https://variety.com/2026/film/features/george-mackay-callum-turner-rose-of-nevada-bond-1236784233/",
             "published": "Fri, 19 Jun 2026 21:00:00 +0000",
             "timestamp": 1781902800,
             "source": "Variety",
             "category": "Features",
-            "thumbnail": "https://variety.com/wp-content/uploads/2026/06/RON-Production-124_Steve-Tanner-e1781734795591.jpg",
+            "thumbnail": "assets/cached_images/e4d808a19358b1a0192bfeaebba869ad.jpg",
             "topic": "Features",
             "section": "Entertainment"
         },
@@ -2159,17 +2412,6 @@
             "section": "Sports"
         },
         {
-            "title": "Ipswich close in on O'Neil as new head coach",
-            "url": "https://www.bbc.com/sport/football/articles/c3vy5g610yno?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 20:28:59 GMT",
-            "timestamp": 1781900939,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/b930a1f6a6a322436c8257cdc0947a18.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "I Bought a Breathalyzer and Drank Along With the Characters in ‘Spider-Noir’",
             "url": "https://www.hollywoodreporter.com/tv/tv-features/drinking-along-with-spider-noir-1236626266/",
             "published": "Fri, 19 Jun 2026 20:24:16 +0000",
@@ -2190,17 +2432,6 @@
             "thumbnail": "assets/cached_images/032ab0ebcb15233b26cb511f2ebc74fb.jpg",
             "topic": "Sports",
             "section": "Sports"
-        },
-        {
-            "title": "The Global Rush to Ban Kids From Social Media Has Begun. Will It Work?",
-            "url": "https://www.hollywoodreporter.com/news/general-news/social-media-bans-uk-canada-australia-1236625997/",
-            "published": "Fri, 19 Jun 2026 20:15:55 +0000",
-            "timestamp": 1781900155,
-            "source": "The Hollywood Reporter",
-            "category": "General News",
-            "thumbnail": "",
-            "topic": "General News",
-            "section": "Entertainment"
         },
         {
             "title": "Jack Thorne On Going From ‘Adolescence’ To ‘Lord Of The Flies & Why He Can’t Talk About The Four Beatles Biopics He Is Working On For Sam Mendes – Behind The Lens",
@@ -2234,17 +2465,6 @@
             "thumbnail": "assets/cached_images/33cd395659d3acc2b6006ec7a7eb6c77.jpg",
             "topic": "News",
             "section": "Entertainment"
-        },
-        {
-            "title": "Lampard & Coventry hold positive talks over new deal",
-            "url": "https://www.bbc.com/sport/football/articles/cwy06qvwlj2o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 19:49:53 GMT",
-            "timestamp": 1781898593,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/711e60e52367b0c505c1a9c0924c1f71.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Niall Horan Reacts to Superfan Zach from Love Island USA",
@@ -2368,17 +2588,6 @@
             "section": "Sports"
         },
         {
-            "title": "From Jordan’s Streets to Indian Mountains to Chinese Campuses, Asian New Talent Contenders Chart Their Creative Paths at Shanghai",
-            "url": "https://variety.com/2026/film/festivals/asian-new-talent-filmmakers-shanghai-2026-1236786110/",
-            "published": "Fri, 19 Jun 2026 18:51:03 +0000",
-            "timestamp": 1781895063,
-            "source": "Variety",
-            "category": "Asia",
-            "thumbnail": "assets/cached_images/cb878838380dc8016dc7e3787a47523b.jpg",
-            "topic": "Asia",
-            "section": "Entertainment"
-        },
-        {
             "title": "Shining in the sun - Nicholls' unbeaten century grinds England down",
             "url": "https://www.bbc.com/sport/cricket/videos/ce3ev6z6k3qo?at_medium=RSS&at_campaign=rss",
             "published": "Fri, 19 Jun 2026 18:43:27 GMT",
@@ -2423,17 +2632,6 @@
             "section": "Sports"
         },
         {
-            "title": "The TCA Awards Must Bring Back An In-Person Ceremony to Ensure Its Longevity",
-            "url": "https://variety.com/2026/tv/awards/tca-awards-must-bring-back-in-person-ceremony-1236786094/",
-            "published": "Fri, 19 Jun 2026 18:30:00 +0000",
-            "timestamp": 1781893800,
-            "source": "Variety",
-            "category": "Awards",
-            "thumbnail": "assets/cached_images/d68950bbd33577a374002b5eeaff7325.jpg",
-            "topic": "Awards",
-            "section": "Entertainment"
-        },
-        {
             "title": "Sussex dominate Hampshire on opening day at Hove",
             "url": "https://www.bbc.com/sport/cricket/articles/cvgj13g3016o?at_medium=RSS&at_campaign=rss",
             "published": "Fri, 19 Jun 2026 18:27:37 GMT",
@@ -2441,17 +2639,6 @@
             "source": "BBC Sport",
             "category": "Sports",
             "thumbnail": "assets/cached_images/8567225dac51d07786eceacfd5364b13.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "'Now I know how it feels to play me' - Sabalenka battles into Berlin semis",
-            "url": "https://www.bbc.com/sport/tennis/articles/clyegxzj01po?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 18:23:56 GMT",
-            "timestamp": 1781893436,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/462c833dac8c6b87ba47e9733ecca29c.jpg",
             "topic": "Sports",
             "section": "Sports"
         },
@@ -2464,17 +2651,6 @@
             "category": "Sports",
             "thumbnail": "assets/cached_images/cce2ad45be23d7da34142b2becaf6236.jpg",
             "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "USA secure World Cup knockout spot with win over Australia",
-            "url": "https://www.skysports.com/football/united-states-of-america-vs-australia/report/549797",
-            "published": "Fri, 19 Jun 2026 21:45:00 BST",
-            "timestamp": 1781892900,
-            "source": "Sky Sports News",
-            "category": "Report",
-            "thumbnail": "assets/cached_images/1a0f5c497e8849a6f5da708e77194577.jpg",
-            "topic": "Report",
             "section": "Sports"
         },
         {
@@ -2522,17 +2698,6 @@
             "section": "Sports"
         },
         {
-            "title": "Earps 'doesn't know' if she's ready for spotlight again",
-            "url": "https://www.bbc.com/sport/football/articles/c30y8ed8vdmo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 18:07:34 GMT",
-            "timestamp": 1781892454,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/4d02f5900f1b5f2a5c8b2e8146e71279.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Where to Watch USA vs. Australia World Cup Match Live Online",
             "url": "https://www.hollywoodreporter.com/tv/tv-news/watch-usa-australia-world-cup-2026-soccer-match-online-free-1236625817/",
             "published": "Fri, 19 Jun 2026 18:05:12 +0000",
@@ -2551,28 +2716,6 @@
             "source": "BBC Sport",
             "category": "Sports",
             "thumbnail": "assets/cached_images/a7270ff9ddc7950640479dc3c3f70d17.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Rosie O’Donnell ‘Would Be Up’ to Guest Host on ‘The View,’ But ‘They Haven’t Asked Me’: ‘Mommy Knows How to Hold a Grudge’",
-            "url": "https://variety.com/2026/tv/news/rosie-odonnell-guest-host-the-view-1236786082/",
-            "published": "Fri, 19 Jun 2026 18:03:48 +0000",
-            "timestamp": 1781892228,
-            "source": "Variety",
-            "category": "News",
-            "thumbnail": "assets/cached_images/8fd2c23bcfc2cd82ba530a10f68fdaa2.jpg",
-            "topic": "News",
-            "section": "Entertainment"
-        },
-        {
-            "title": "England's Barry to continue with half-time interviews",
-            "url": "https://www.bbc.com/sport/football/articles/cm2034enndpo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 18:01:16 GMT",
-            "timestamp": 1781892076,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/61c4ea9bcd19154526ce456cadd99676.jpg",
             "topic": "Sports",
             "section": "Sports"
         },
@@ -2599,17 +2742,6 @@
             "section": "Sports"
         },
         {
-            "title": "Looming ParaBros Merger Action By State AGs Boosted By L.A. County Report On Likely Big Job Losses And Lawsuits",
-            "url": "https://deadline.com/2026/06/paramount-warner-bros-job-losses-la-county-report-1236962892/",
-            "published": "Fri, 19 Jun 2026 17:55:31 +0000",
-            "timestamp": 1781891731,
-            "source": "Deadline Hollywood",
-            "category": "News",
-            "thumbnail": "assets/cached_images/6fa1881c785fe16e7b73e5df84ce627c.jpg",
-            "topic": "News",
-            "section": "Entertainment"
-        },
-        {
             "title": "‘Jimmy Kimmel Live!’ Reveals Summer Guest Hosts Including Rosie O’Donnell As Matt Damon Crashes Show In A Trojan Horse",
             "url": "https://deadline.com/2026/06/jimmy-kimmel-live-summer-hosts-rosie-odonnell-matt-damon-1236962906/",
             "published": "Fri, 19 Jun 2026 17:54:00 +0000",
@@ -2619,28 +2751,6 @@
             "thumbnail": "assets/cached_images/8bbcf7f1f4b9300bad489e1c6adccca6.jpg",
             "topic": "Late Night TV",
             "section": "Entertainment"
-        },
-        {
-            "title": "Canada's Kone grateful for support after surgery",
-            "url": "https://www.bbc.com/sport/football/articles/cql12n692rwo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 17:49:03 GMT",
-            "timestamp": 1781891343,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/07d785f56125ac640ada34b36f84cfab.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Brighton make improved offer for Spurs' Vuskovic",
-            "url": "https://www.skysports.com/football/news/12040/13555941/luka-vuskovic-brighton-make-improved-45m-bid-for-tottenham-defender",
-            "published": "Fri, 19 Jun 2026 21:16:00 BST",
-            "timestamp": 1781891160,
-            "source": "Sky Sports News",
-            "category": "News Story",
-            "thumbnail": "assets/cached_images/7a3c30d03ec47e27e5d991fa67d7fb0c.jpg",
-            "topic": "News Story",
-            "section": "Sports"
         },
         {
             "title": "‘The Bear’ Returns for Final Season, Harlan Coben’s ‘I Will Find You’ Premieres and This Week’s Best Events",
@@ -2674,17 +2784,6 @@
             "thumbnail": "assets/cached_images/07cc558a7ac33cce996a8b1ff3ffee1e.jpg",
             "topic": "Sports",
             "section": "Sports"
-        },
-        {
-            "title": "‘Leviticus’: How the Romantic Horror Movie Was Inspired by a ‘Regression’ of Gay Rights",
-            "url": "https://variety.com/2026/film/features/leviticus-queer-horror-movie-gay-rights-regression-1236780772/",
-            "published": "Fri, 19 Jun 2026 17:35:00 +0000",
-            "timestamp": 1781890500,
-            "source": "Variety",
-            "category": "Features",
-            "thumbnail": "assets/cached_images/9363da6989e1283b078ec6e435c035fc.jpg",
-            "topic": "Features",
-            "section": "Entertainment"
         },
         {
             "title": "Patterson-White takes 6-43 as Notts dominate Essex",
@@ -2742,17 +2841,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "McIlroy hits huge 393-yard drive to set-up early second round birdie!",
-            "url": "https://www.skysports.com/watch/video/13555935/us-open-rory-mcilroy-kickstarts-second-round-with-birdie-after-huge-393-yard-drive",
-            "published": "Fri, 19 Jun 2026 20:56:00 BST",
-            "timestamp": 1781889960,
-            "source": "Sky Sports News",
-            "category": "Video",
-            "thumbnail": "assets/cached_images/ebcb3ffbe5ac76a084789d674f96ae72.jpg",
-            "topic": "Video",
-            "section": "Sports"
-        },
-        {
             "title": "Hue’s wired wall modules bring non-smart lights into its ecosystem",
             "url": "https://www.theverge.com/tech/952953/phillips-hue-wired-wall-module-play-lamp-candle-bulb",
             "published": "2026-06-19T13:24:45-04:00",
@@ -2793,17 +2881,6 @@
             "source": "BBC Sport",
             "category": "Sports",
             "thumbnail": "assets/cached_images/f7c10be80ed15a828409fafdcd0255a7.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Fery's Queen's run ended by Cerundolo in narrow loss",
-            "url": "https://www.bbc.com/sport/tennis/articles/cy06kjyx726o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 17:07:08 GMT",
-            "timestamp": 1781888828,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/8a96e54df91528329e943026e68adf53.jpg",
             "topic": "Sports",
             "section": "Sports"
         },
@@ -2874,28 +2951,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Draper to return at Eastbourne with new coach Murray",
-            "url": "https://www.bbc.com/sport/tennis/articles/cx2wq1g56lqo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 16:31:37 GMT",
-            "timestamp": 1781886697,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/5d4fe31cb164955d4baab35f51739961.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Ecclestone backs Dean's return as captain after Sciver-Brunt injury",
-            "url": "https://www.skysports.com/cricket/news/12040/13555923/sophie-ecclestone-england-spinner-backs-charlie-deans-return-as-captain-vs-scotland-after-nat-sciver-brunt-injury",
-            "published": "Fri, 19 Jun 2026 20:01:00 BST",
-            "timestamp": 1781886660,
-            "source": "Sky Sports News",
-            "category": "News Story",
-            "thumbnail": "assets/cached_images/6f079171669f854c3ce3e694467e08f2.jpg",
-            "topic": "News Story",
-            "section": "Sports"
-        },
-        {
             "title": "19 Black Characters Who Changed TV and Film Forever",
             "url": "https://www.hollywoodreporter.com/lists/black-characters-who-changed-tv-film/",
             "published": "Fri, 19 Jun 2026 16:30:00 +0000",
@@ -2905,17 +2960,6 @@
             "thumbnail": "",
             "topic": "Movie Features",
             "section": "Entertainment"
-        },
-        {
-            "title": "Is the US government’s Anthropic ban accidentally helping the brand?",
-            "url": "https://techcrunch.com/video/is-the-us-governments-anthropic-ban-accidentally-helping-the-brand/",
-            "published": "Fri, 19 Jun 2026 16:08:17 +0000",
-            "timestamp": 1781885297,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
-            "section": "Technology"
         },
         {
             "title": "Amazon Drops Luca Guadagnino’s Sam Altman Movie After OpenAI Deal",
@@ -3039,17 +3083,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Africa's greatest World Cup kits - pick your favourite",
-            "url": "https://www.bbc.com/sport/football/articles/cvgz4pnjzlgo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 15:45:06 GMT",
-            "timestamp": 1781883906,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/ccda9aea45de27a622e339b70e4ad3fa.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Steven Spielberg “Scared the S*** Out” of Eve Hewson — and She Loved It",
             "url": "https://www.hollywoodreporter.com/movies/movie-features/eve-hewson-spielberg-disclosure-day-bono-1236624575/",
             "published": "Fri, 19 Jun 2026 15:45:00 +0000",
@@ -3125,17 +3158,6 @@
             "thumbnail": "assets/cached_images/90a72a3324dc08dedd68898a00928a9c.jpg",
             "topic": "News",
             "section": "Entertainment"
-        },
-        {
-            "title": "Billionaire Ambani wants AI in every call, app, and home",
-            "url": "https://techcrunch.com/2026/06/19/billionaire-ambani-wants-ai-in-every-call-app-and-home/",
-            "published": "Fri, 19 Jun 2026 15:23:28 +0000",
-            "timestamp": 1781882608,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
-            "section": "Technology"
         },
         {
             "title": "Alfonso Ribeiro on Social Media Fueling ‘Dancing With the Stars’ Success and Urging Contestants to Ignore the Trolls: ‘Why Are We So Mean to One Another?",
@@ -3237,17 +3259,6 @@
             "section": "Technology"
         },
         {
-            "title": "The Wayne Rooney Show",
-            "url": "https://www.bbc.co.uk/sounds/play/p0nsz8dv?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 14:04:00 GMT",
-            "timestamp": 1781877840,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/d9bcb23aa64cddca4157e128ed18e50e.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "30 Years After ‘Naked Acts’, Bridgett M. Davis Returns To Filmmaking With Crowdfunded Project ‘Helga’",
             "url": "https://deadline.com/2026/06/bridgett-m-davis-helga-naked-acts-maya-s-cade-1236959279/",
             "published": "Fri, 19 Jun 2026 14:01:17 +0000",
@@ -3325,17 +3336,6 @@
             "section": "Technology"
         },
         {
-            "title": "All done deals in June 2026",
-            "url": "https://www.bbc.com/sport/football/articles/ce9p91r771go?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 13:52:45 GMT",
-            "timestamp": 1781877165,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/ac70dcb41c50d2556473d1892acfe9c9.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Latest Hundred 2026 squads as wildcard signings announced",
             "url": "https://www.bbc.com/sport/cricket/articles/c07jxzp2vl7o?at_medium=RSS&at_campaign=rss",
             "published": "Fri, 19 Jun 2026 13:11:56 GMT",
@@ -3367,17 +3367,6 @@
             "thumbnail": "assets/cached_images/8b8ab79e9979275d381e5bc2ea82702d.png",
             "topic": "Sports",
             "section": "Sports"
-        },
-        {
-            "title": "15 Queer Coming-of-Age Movies to Watch After Girls Like Girls",
-            "url": "http://www.vulture.com/article/best-queer-lgbtq-coming-of-age-movies.html?utm_source=rss&utm_medium=social_acct&utm_campaign=feed-part",
-            "published": "Fri, 19 Jun 2026 09:00:08 -0400",
-            "timestamp": 1781874008,
-            "source": "Vulture",
-            "category": "girls like girls",
-            "thumbnail": "assets/cached_images/435d976e4e3aa294acc07daded0422c9.jpg",
-            "topic": "girls like girls",
-            "section": "Entertainment"
         },
         {
             "title": "Apple TV’s “Sugar” Reaches for the Stars in Grounded, Moving Second Season",
@@ -3435,17 +3424,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "The CEO of Allbirds’ new AI biz has a plan, but no team",
-            "url": "https://techcrunch.com/2026/06/19/the-ceo-of-allbirds-new-ai-biz-has-a-plan-but-no-employees/",
-            "published": "Fri, 19 Jun 2026 13:00:00 +0000",
-            "timestamp": 1781874000,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
-            "section": "Technology"
-        },
-        {
             "title": "T1 Phone PR firm is &#8216;not assisting Trump Mobile any further&#8217;",
             "url": "https://www.theverge.com/gadgets/952274/t1-phone-pr-firm-not-assisting-trump-mobile-any-further",
             "published": "2026-06-19T09:00:00-04:00",
@@ -3468,28 +3446,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Who's the Bos? - meet 2026 World Cup's fastest player",
-            "url": "https://www.bbc.com/sport/football/articles/cyv0m91942do?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 12:43:36 GMT",
-            "timestamp": 1781873016,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/d123c9e3bbdf3e802f5bfb2038d449b7.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Stick or twist? Rashford and Guehi are Tuchel's big dilemmas",
-            "url": "https://www.bbc.com/sport/football/articles/cpq3e1r2x8go?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 12:20:37 GMT",
-            "timestamp": 1781871637,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/ff1d2378ab74c28b1c2acf09bc894c5b.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "James takes over as Wales scrum coach",
             "url": "https://www.bbc.com/sport/rugby-union/articles/cp8rdr3yq5eo?at_medium=RSS&at_campaign=rss",
             "published": "Fri, 19 Jun 2026 12:18:04 GMT",
@@ -3497,17 +3453,6 @@
             "source": "BBC Sport",
             "category": "Sports",
             "thumbnail": "assets/cached_images/3fafdb21df0de188823903720460c77f.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Fifa bans football club's submarine badge on flag",
-            "url": "https://www.bbc.com/news/articles/cpwe7p7z0p1o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 12:11:13 GMT",
-            "timestamp": 1781871073,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/c5c82567f35f6e9998a6e7153530c0c1.jpg",
             "topic": "Sports",
             "section": "Sports"
         },
@@ -3540,7 +3485,7 @@
             "timestamp": 1781870400,
             "source": "Deadline Hollywood",
             "category": "News",
-            "thumbnail": "https://deadline.com/wp-content/uploads/2026/05/GettyImages-2276301941-e1779260315103.jpg",
+            "thumbnail": "assets/cached_images/a0704370e5a1b869fbe454155fb47436.jpg",
             "topic": "News",
             "section": "Entertainment"
         },
@@ -3576,17 +3521,6 @@
             "thumbnail": "",
             "topic": "Accessory Reviews",
             "section": "Technology"
-        },
-        {
-            "title": "Two-time Olympic medallist Philip retires",
-            "url": "https://www.bbc.com/sport/athletics/articles/c15yn20g3xdo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 11:52:32 GMT",
-            "timestamp": 1781869952,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/a199204e5868b0ea6d22dbf396d42320.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Gabrielle Faith Brown & Yolanthe Cabau Among Cast Of MuVpix Horizontal-Vertical Drama ‘Romeo & Juliet, Reimagined’",
@@ -3644,17 +3578,6 @@
             "section": "Sports"
         },
         {
-            "title": "London City Lionesses sign ex-England keeper Earps",
-            "url": "https://www.bbc.com/sport/football/articles/c8x2jjyl5kqo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 11:00:18 GMT",
-            "timestamp": 1781866818,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/78303accbb20fa545c476541e517a1cb.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "The Best Art TVs",
             "url": "https://www.wired.com/story/best-art-tvs/",
             "published": "Fri, 19 Jun 2026 11:00:00 +0000",
@@ -3677,14 +3600,14 @@
             "section": "Technology"
         },
         {
-            "title": "More than the Score",
-            "url": "https://www.bbc.co.uk/sounds/play/p0nsyqhb?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 10:41:00 GMT",
-            "timestamp": 1781865660,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/324ae68f08e32139c151c8c6ecaa5056.jpg",
-            "topic": "Sports",
+            "title": "Scotland's routes to World Cup knockouts: Qualification hopes still alive despite defeat",
+            "url": "https://www.skysports.com/football/news/11095/13546376/scotlands-world-cup-2026-fixtures-schedule-plus-routes-to-knock-out-stage-and-beyond-can-steve-clarkes-side-make-history",
+            "published": "Fri, 19 Jun 2026 14:00:00 BST",
+            "timestamp": 1781865000,
+            "source": "Sky Sports News",
+            "category": "News Story",
+            "thumbnail": "assets/cached_images/e00db18d072461d167afabacd30d8853.jpg",
+            "topic": "News Story",
             "section": "Sports"
         },
         {
@@ -3710,17 +3633,6 @@
             "section": "Technology"
         },
         {
-            "title": "Morocco captain Hakimi to stand trial for rape",
-            "url": "https://www.bbc.com/sport/football/articles/c20y18z7le1o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 10:28:22 GMT",
-            "timestamp": 1781864902,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/1bf3cbeb8a607edda1c075181126fd8f.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Luca Guadagnino’s Nearly Finished Sam Altman Movie ‘Artificial’ Dropped by Amazon After OpenAI Partnership",
             "url": "https://variety.com/2026/film/global/luca-guadagnino-sam-altman-movie-artificial-dropped-amazon-1236785830/",
             "published": "Fri, 19 Jun 2026 10:19:27 +0000",
@@ -3730,28 +3642,6 @@
             "thumbnail": "assets/cached_images/70be3f7b7da4927544ee93758fe74102.jpg",
             "topic": "Global",
             "section": "Entertainment"
-        },
-        {
-            "title": "A heavily jeered $250m goldmine - are hydration break ads here to stay?",
-            "url": "https://www.bbc.com/sport/football/articles/cp3xqn9zxdgo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 10:14:48 GMT",
-            "timestamp": 1781864088,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/461552fe3115c7947de807f410d8cf15.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Burnley target Bellamy in managerial hunt",
-            "url": "https://www.bbc.com/sport/football/articles/c33yz0nxj8do?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 10:03:09 GMT",
-            "timestamp": 1781863389,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/ed1da782716640cd8618d0b4f4c8be65.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "The Best Fitness Trackers of 2026: Garmin, Google Fitbit, and More",
@@ -3831,17 +3721,6 @@
             "section": "Sports"
         },
         {
-            "title": "Coventry play champions Arsenal in Premier League opener",
-            "url": "https://www.bbc.com/sport/football/articles/cdx7kyv92rjo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 09:00:40 GMT",
-            "timestamp": 1781859640,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/cdb8ba59732df9916a51f365c3b9d1ca.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Canada Missed Chances to Inspect Titan Before Fatal Implosion",
             "url": "https://www.wired.com/story/canada-missed-chances-titan-fatal-implosion/",
             "published": "Fri, 19 Jun 2026 09:00:00 +0000",
@@ -3861,6 +3740,17 @@
             "category": "Sports",
             "thumbnail": "assets/cached_images/42046996565fe2061034fefde113c444.jpg",
             "topic": "Sports",
+            "section": "Sports"
+        },
+        {
+            "title": "EFL latest: Bloomfield leaves Oxford United",
+            "url": "https://www.skysports.com/football/live-blog/11095/13163353/efl-transfer-news-rumours-and-gossip-for-championship-league-one-and-league-two",
+            "published": "Fri, 19 Jun 2026 12:10:00 BST",
+            "timestamp": 1781858400,
+            "source": "Sky Sports News",
+            "category": "Liveblog",
+            "thumbnail": "assets/cached_images/405be4ab8456e60b99aa64ccdd5a41db.jpg",
+            "topic": "Liveblog",
             "section": "Sports"
         },
         {
@@ -3897,47 +3787,14 @@
             "section": "Sports"
         },
         {
-            "title": "World Cup news: First two teams eliminated from 2026 World Cup",
+            "title": "World Cup news: Neymar available to feature against Scotland",
             "url": "https://www.skysports.com/football/live-blog/11095/13509050/world-cup-2026-news-and-live-updates-usa-canada-and-mexico-latest-including-trump-tickets-and-fans",
             "published": "Fri, 19 Jun 2026 11:42:00 BST",
             "timestamp": 1781856720,
             "source": "Sky Sports News",
             "category": "Liveblog",
-            "thumbnail": "https://e1.365dm.com/26/06/1920x1080/skysports-turkey-paraguay_7278352.jpg?20260620063047",
+            "thumbnail": "assets/cached_images/6356e7620c1194e0b4495f44e44039b5.jpg",
             "topic": "Liveblog",
-            "section": "Sports"
-        },
-        {
-            "title": "The US says ASML’s top chip tool may be in China, but how?",
-            "url": "https://techcrunch.com/2026/06/19/the-us-says-asmls-top-chip-tool-may-be-in-china-asml-says-it-isnt/",
-            "published": "Fri, 19 Jun 2026 07:59:12 +0000",
-            "timestamp": 1781855952,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
-            "section": "Technology"
-        },
-        {
-            "title": "Iran to lodge complaint over travel restrictions",
-            "url": "https://www.bbc.com/sport/football/articles/c4gy62p4e67o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 07:50:32 GMT",
-            "timestamp": 1781855432,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/f84e4bb2c0b8b39195a88d0408f0bf11.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Why Man Utd have 'easiest' start to new season... and Spurs' horror run-in!",
-            "url": "https://www.skysports.com/watch/video/13555721/premier-league-fixtures-why-manchester-united-have-easiest-start-to-the-season-and-tottenham-hotspurs-horror-run-in",
-            "published": "Fri, 19 Jun 2026 11:08:00 BST",
-            "timestamp": 1781854680,
-            "source": "Sky Sports News",
-            "category": "Video",
-            "thumbnail": "assets/cached_images/a0ee75763b7249eca6f441cb6679c6f2.jpg",
-            "topic": "Video",
             "section": "Sports"
         },
         {
@@ -3985,17 +3842,6 @@
             "section": "Technology"
         },
         {
-            "title": "‘A Whole Person Almost’ Is a Cinematic Odyssey. And Hey, Does This Cloud Look Like Trump?! (Exclusive Clips)",
-            "url": "https://www.hollywoodreporter.com/movies/movie-news/a-whole-person-almost-film-clip-trump-cloud-kviff-2026-1236621907/",
-            "published": "Fri, 19 Jun 2026 06:59:00 +0000",
-            "timestamp": 1781852340,
-            "source": "The Hollywood Reporter",
-            "category": "Movie News",
-            "thumbnail": "",
-            "topic": "Movie News",
-            "section": "Entertainment"
-        },
-        {
             "title": "Leeds latest: Club working on deals for Fulham's Wilson and Brandt",
             "url": "https://www.skysports.com/football/live-blog/11095/13353569/leeds-united-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
             "published": "Fri, 19 Jun 2026 10:09:00 BST",
@@ -4018,24 +3864,13 @@
             "section": "Sports"
         },
         {
-            "title": "Arsenal kick off 2026/27 Premier League season vs Coventry - live on Sky",
-            "url": "https://www.skysports.com/football/news/11095/13555675/premier-league-2026-27-fixtures-dates-schedule-arsenal-face-coventry-and-liverpool-at-newcastle-in-opening-round",
-            "published": "Fri, 19 Jun 2026 10:00:00 BST",
-            "timestamp": 1781850600,
-            "source": "Sky Sports News",
-            "category": "News Story",
-            "thumbnail": "assets/cached_images/8529beab4e2e0cbff345ae206b8a0e75.jpg",
-            "topic": "News Story",
-            "section": "Sports"
-        },
-        {
-            "title": "Liverpool latest: New signing Munoz has World Cup injury setback",
-            "url": "https://www.skysports.com/football/live-blog/11095/13025501/liverpool-transfer-news-rumours-and-gossip-live-updates-and-latest-on-deals-signings-loans-and-contracts",
+            "title": "Ipswich latest: Advanced talks to appoint O'Neil as manager",
+            "url": "https://www.skysports.com/football/live-blog/11095/13279317/ipswich-transfers-latest-news-rumours-and-gossip-live-updates-goals-and-highlights",
             "published": "Fri, 19 Jun 2026 10:00:00 BST",
             "timestamp": 1781850600,
             "source": "Sky Sports News",
             "category": "Liveblog",
-            "thumbnail": "assets/cached_images/e59708f27463f0a69c1c93631dde0d5f.jpg",
+            "thumbnail": "assets/cached_images/ee9f12ad018db9a0c59940b5cfdafe31.jpg",
             "topic": "Liveblog",
             "section": "Sports"
         },
@@ -4161,39 +3996,6 @@
             "section": "Technology"
         },
         {
-            "title": "Design Within Reach Promo Codes: 30% Off | June 2026",
-            "url": "https://www.wired.com/story/design-within-reach-promo-code/",
-            "published": "Fri, 19 Jun 2026 05:00:00 +0000",
-            "timestamp": 1781845200,
-            "source": "Wired Tech",
-            "category": "Gear",
-            "thumbnail": "assets/cached_images/1c3940aefba2cf7993275ceb61bd3aea.jpg",
-            "topic": "Gear",
-            "section": "Technology"
-        },
-        {
-            "title": "HP Coupon Codes and Deals June 2026",
-            "url": "https://www.wired.com/story/hp-coupon-code/",
-            "published": "Fri, 19 Jun 2026 05:00:00 +0000",
-            "timestamp": 1781845200,
-            "source": "Wired Tech",
-            "category": "Gear",
-            "thumbnail": "assets/cached_images/3207796696d3e3be86812ae6980c2c14.png",
-            "topic": "Gear",
-            "section": "Technology"
-        },
-        {
-            "title": "eBay Coupons: 20% Off in June 2026",
-            "url": "https://www.wired.com/story/ebay-coupon-code/",
-            "published": "Fri, 19 Jun 2026 05:00:00 +0000",
-            "timestamp": 1781845200,
-            "source": "Wired Tech",
-            "category": "Gear",
-            "thumbnail": "assets/cached_images/6e5fa52637ffdc14fd87378d2cfdea59.jpg",
-            "topic": "Gear",
-            "section": "Technology"
-        },
-        {
             "title": "Transfer Centre LIVE! Ronaldinho RETURNS in Italy at age of 46!",
             "url": "https://www.skysports.com/football/live-blog/11095/12476234/transfer-centre-live-football-transfer-news-updates-and-rumours",
             "published": "Fri, 19 Jun 2026 08:14:00 BST",
@@ -4238,17 +4040,6 @@
             "section": "Sports"
         },
         {
-            "title": "Ron Howard and Brian Grazer Tease ‘Grinch’ Sequel (“Something We’ve Thought About For a Long Time”) and Weigh in on Success of YouTube Filmmakers",
-            "url": "https://www.hollywoodreporter.com/movies/movie-news/ron-howard-brian-grazer-grinch-sequel-youtube-filmmakers-1236625869/",
-            "published": "Fri, 19 Jun 2026 03:05:20 +0000",
-            "timestamp": 1781838320,
-            "source": "The Hollywood Reporter",
-            "category": "Movie News",
-            "thumbnail": "",
-            "topic": "Movie News",
-            "section": "Entertainment"
-        },
-        {
             "title": "Cape Fear settles into a pattern with another bifurcated episode",
             "url": "https://www.avclub.com/cape-fear-review-episode-4-pierced",
             "published": "Fri, 19 Jun 2026 03:01:26 +0000",
@@ -4267,17 +4058,6 @@
             "source": "BBC Sport",
             "category": "Sports",
             "thumbnail": "assets/cached_images/347f58a0b6b27232219e7674200a483a.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Kone injury is a 'huge loss' - Marsch",
-            "url": "https://www.bbc.com/sport/football/videos/ckg0r24xk5wo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 19 Jun 2026 01:02:38 GMT",
-            "timestamp": 1781830958,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/5403ac9b5c37d3720e972855c9bb15d6.jpg",
             "topic": "Sports",
             "section": "Sports"
         },
@@ -4337,17 +4117,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Prime Day Early Deals 2026: Breville and Ninja Espresso Maker Deals",
-            "url": "https://www.wired.com/story/early-espresso-machine-deals-prime-day-2026/",
-            "published": "Thu, 18 Jun 2026 23:03:39 +0000",
-            "timestamp": 1781823819,
-            "source": "Wired Tech",
-            "category": "Gear",
-            "thumbnail": "assets/cached_images/9a8b66678b5f8671601767b909389996.jpg",
-            "topic": "Gear",
-            "section": "Technology"
-        },
-        {
             "title": "Peacock orders Seth MacFarlane's live-action Dungeon Crawler Carl show to series",
             "url": "https://www.avclub.com/peacock-orders-dungeon-crawler-carl-show-to-series-seth-macfarlane",
             "published": "Thu, 18 Jun 2026 23:01:28 +0000",
@@ -4403,17 +4172,6 @@
             "section": "Technology"
         },
         {
-            "title": "Manzambi double propels Switzerland to win against Bosnia",
-            "url": "https://www.bbc.com/sport/football/videos/c8x2e857755o?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 22:08:51 GMT",
-            "timestamp": 1781820531,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/685bfdfc14df8c817db41232c8e6c2a3.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Hey, c'mere, your old buddy Chris Pratt wants to tell you all about America's \"constitutional values\"",
             "url": "https://www.avclub.com/chris-pratt-constitution-video-series-doris-kearns-goodwin",
             "published": "Thu, 18 Jun 2026 21:45:53 +0000",
@@ -4423,17 +4181,6 @@
             "thumbnail": "assets/cached_images/7a6a3d354c45f27a1091edfce43ec6f4.jpg",
             "topic": "Auxnews",
             "section": "Entertainment"
-        },
-        {
-            "title": "Scotland fall short of famous win over Windies",
-            "url": "https://www.bbc.com/sport/cricket/articles/cly738qd150o?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 21:28:13 GMT",
-            "timestamp": 1781818093,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/6fbfe8b81e2492156396699019498c6c.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "AI inference startup Baseten reportedly raising $1.5B months after its last mega-round",
@@ -4456,17 +4203,6 @@
             "thumbnail": "",
             "topic": "Business",
             "section": "Entertainment"
-        },
-        {
-            "title": "Switzerland's Manzambi scores superb double against Bosnia",
-            "url": "https://www.bbc.com/sport/football/videos/ce3ey2ygl4zo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 21:10:52 GMT",
-            "timestamp": 1781817052,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/c7e9e4fdaecedd54afd0f3a05d4cc3c3.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "The White House Is Making Up Its Rules for AI in Real Time",
@@ -4502,17 +4238,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Snap spins off AI video team into new company, Dotmo, due to costs",
-            "url": "https://techcrunch.com/2026/06/18/snap-spins-off-ai-video-team-into-new-company-dotmo-due-to-costs/",
-            "published": "Thu, 18 Jun 2026 20:30:00 +0000",
-            "timestamp": 1781814600,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
-            "section": "Technology"
-        },
-        {
             "title": "Valve is so behind on Steam Controller orders that some won&#8217;t ship until 2027",
             "url": "https://www.theverge.com/games/952582/valve-steam-controller-reservations-orders-behind-estimated-date",
             "published": "2026-06-18T16:26:06-04:00",
@@ -4544,17 +4269,6 @@
             "thumbnail": "assets/cached_images/2f1410fdcb0abe95e6e9af5b8a65b88e.jpg",
             "topic": "Sports",
             "section": "Sports"
-        },
-        {
-            "title": "OpenAI is bringing on some big guns in the lead-up to its IPO",
-            "url": "https://techcrunch.com/2026/06/18/openai-is-bringing-on-some-big-guns-in-the-lead-up-to-its-ipo/",
-            "published": "Thu, 18 Jun 2026 19:59:22 +0000",
-            "timestamp": 1781812762,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
-            "section": "Technology"
         },
         {
             "title": "The 11 standout startups from YC’s Demo Day, according to VCs",
@@ -4590,17 +4304,6 @@
             "section": "Sports"
         },
         {
-            "title": "Rivian owners file lawsuit alleging false promises on self-driving features",
-            "url": "https://techcrunch.com/2026/06/18/rivian-owners-file-lawsuit-alleging-false-promises-on-self-driving-features/",
-            "published": "Thu, 18 Jun 2026 19:31:45 +0000",
-            "timestamp": 1781811105,
-            "source": "TechCrunch",
-            "category": "Transportation",
-            "thumbnail": "",
-            "topic": "Transportation",
-            "section": "Technology"
-        },
-        {
             "title": "Meta’s AI Workers Are Revolting, Peter Thiel’s Secret Society, and SBF’s Plea to Trump",
             "url": "https://www.wired.com/story/uncanny-valley-podcast-meta-ai-workers-revolting-peter-thiel-secret-society-sbf-plea-to-trump/",
             "published": "Thu, 18 Jun 2026 19:29:51 +0000",
@@ -4632,28 +4335,6 @@
             "thumbnail": "",
             "topic": "Deals",
             "section": "Technology"
-        },
-        {
-            "title": "Snap’s Specs look good on nobody",
-            "url": "https://www.theverge.com/podcast/952126/snap-specs-ar-glasses-vergecast",
-            "published": "2026-06-18T15:15:03-04:00",
-            "timestamp": 1781810103,
-            "source": "The Verge",
-            "category": "Gadgets",
-            "thumbnail": "",
-            "topic": "Gadgets",
-            "section": "Technology"
-        },
-        {
-            "title": "Crisis club or chance to reinvent - where does McInnes exit leave Hearts?",
-            "url": "https://www.bbc.com/sport/football/articles/cjwg45vql8qo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 19:11:34 GMT",
-            "timestamp": 1781809894,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/0ecb8037d96e5c8eaaa937f7d480bc27.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Matthew Rhys Balances Two New Shots At Emmy From Sociopath To Mayor In ‘The Beast In Me’ & ‘Widow’s Bay’; Plus, Why He’s Obsessed With ‘Jaws’ – The Actor’s Side",
@@ -4711,17 +4392,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Amazon hopes to challenge Nvidia more directly by selling its AI chips",
-            "url": "https://techcrunch.com/2026/06/18/amazon-hopes-to-challenge-nvidia-more-directly-by-selling-its-ai-chips/",
-            "published": "Thu, 18 Jun 2026 18:22:13 +0000",
-            "timestamp": 1781806933,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
-            "section": "Technology"
-        },
-        {
             "title": "Mivo’s new app takes a mindful approach to managing screen time",
             "url": "https://techcrunch.com/2026/06/18/mivos-new-app-takes-a-mindful-approach-to-managing-screen-time/",
             "published": "Thu, 18 Jun 2026 18:00:00 +0000",
@@ -4730,28 +4400,6 @@
             "category": "Apps",
             "thumbnail": "",
             "topic": "Apps",
-            "section": "Technology"
-        },
-        {
-            "title": "Beever-Jones set to sign new deal at Chelsea",
-            "url": "https://www.bbc.com/sport/football/articles/czrx8vd2yvdo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 17:56:08 GMT",
-            "timestamp": 1781805368,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/762bdaf23e2ff4890e6caf50db4802b1.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "AI data centers just got a government-mandated fast lane to the grid",
-            "url": "https://techcrunch.com/2026/06/18/ai-data-centers-just-got-a-government-mandated-fast-lane-to-the-grid/",
-            "published": "Thu, 18 Jun 2026 17:49:23 +0000",
-            "timestamp": 1781804963,
-            "source": "TechCrunch",
-            "category": "AI",
-            "thumbnail": "",
-            "topic": "AI",
             "section": "Technology"
         },
         {
@@ -4909,17 +4557,6 @@
             "section": "Technology"
         },
         {
-            "title": "Liverpool move on to top winger target Diomande after signing Munoz",
-            "url": "https://www.skysports.com/football/news/11095/13555469/yan-diomande-transfer-news-liverpool-sign-victor-munoz-and-move-on-to-rb-leipzig-winger",
-            "published": "Thu, 18 Jun 2026 19:10:00 BST",
-            "timestamp": 1781797200,
-            "source": "Sky Sports News",
-            "category": "News Story",
-            "thumbnail": "assets/cached_images/ad59ff0f3a7da126fd3be5fcd9e180b1.png",
-            "topic": "News Story",
-            "section": "Sports"
-        },
-        {
             "title": "Polymarket and Dear Media Team for Weekly Podcast ‘What Are the Odds?’ (EXCLUSIVE)",
             "url": "https://variety.com/2026/digital/columns/polymarket-dear-media-podcast-what-are-the-odds-1236785029/",
             "published": "Thu, 18 Jun 2026 15:38:42 +0000",
@@ -5030,17 +4667,6 @@
             "section": "Technology"
         },
         {
-            "title": "'I want courage not fear' - Wales boss on World Cup play-offs",
-            "url": "https://www.bbc.com/sport/football/articles/c4gyrpr1jyyo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 13:46:19 GMT",
-            "timestamp": 1781790379,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/6325fdd4a8a76149f8b2463260ebe53e.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Bangladesh make history with first ODI series win against Australia",
             "url": "https://www.bbc.co.uk/sounds/play/w3ct99fc?at_medium=RSS&at_campaign=rss",
             "published": "Thu, 18 Jun 2026 13:43:00 GMT",
@@ -5094,17 +4720,6 @@
             "thumbnail": "",
             "topic": "Tributes",
             "section": "Entertainment"
-        },
-        {
-            "title": "Motherwell appoint Johansson as Askou successor - who is he?",
-            "url": "https://www.bbc.com/sport/football/articles/ckg0r75ewlyo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 13:02:43 GMT",
-            "timestamp": 1781787763,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/d4d99ba07211aa410f3b2c79e0433146.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "John Early can do it all in the larger-than-life melodrama-comedy Maddie's Secret",
@@ -5184,17 +4799,6 @@
             "section": "Technology"
         },
         {
-            "title": "The celebration photo that sums up my relationship with Mbappe - Giroud",
-            "url": "https://www.bbc.com/sport/football/articles/cjrg7x4y975o?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 12:57:31 GMT",
-            "timestamp": 1781787451,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/46115a230f9abafa8a2ff091bdbc78d9.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "After Ferguson, Key and Peele's Police Academy reboot was quietly shuttered",
             "url": "https://www.avclub.com/key-and-peeles-police-academy-reboot-canceled-after-ferguson",
             "published": "Thu, 18 Jun 2026 12:38:19 +0000",
@@ -5215,17 +4819,6 @@
             "thumbnail": "",
             "topic": "Business",
             "section": "Entertainment"
-        },
-        {
-            "title": "Lionesses will face Greece in World Cup play-offs",
-            "url": "https://www.bbc.com/sport/football/articles/cvgl9xp2lgno?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 12:15:51 GMT",
-            "timestamp": 1781784951,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/1576dcf47798e06ce7fa8b0479d3d307.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Most shots? Best dribbler? World Cup so far in numbers",
@@ -5294,17 +4887,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Leicestershire's Hill to retire at season's end",
-            "url": "https://www.bbc.com/sport/cricket/articles/ce3evypgk9ko?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 11:35:55 GMT",
-            "timestamp": 1781782555,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/9f8e3d44fd9dc6028d11abb8299cb3bc.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "ReelShort Partners With Philippines’ Globe in Latest Step in Southeast Asia Expansion",
             "url": "https://www.hollywoodreporter.com/business/business-news/reelshort-partners-philippines-globe-southeast-asia-expansion-1236625035/",
             "published": "Thu, 18 Jun 2026 11:21:34 +0000",
@@ -5316,17 +4898,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Hydration boos and surprise results - World Cup talking points",
-            "url": "https://www.bbc.com/sport/football/articles/cj6g88ernggo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 11:13:59 GMT",
-            "timestamp": 1781781239,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/86dedc2bf74c6805e6e869736a1ca9a9.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Josh Brolin wonders \"what the fuck he got himself into\" at Peter Thiel's secret retreat",
             "url": "https://www.avclub.com/josh-brolin-peter-thiel-dialog-society",
             "published": "Thu, 18 Jun 2026 11:09:41 +0000",
@@ -5336,17 +4907,6 @@
             "thumbnail": "assets/cached_images/ac61fc0d64a5379446950af26ae89e0e.jpg",
             "topic": "News",
             "section": "Entertainment"
-        },
-        {
-            "title": "Calvin Harris & Commonwealths force Monday start to Celtic's title defence",
-            "url": "https://www.bbc.com/sport/football/articles/c1kyv7yjmdlo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 11:00:27 GMT",
-            "timestamp": 1781780427,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/aaa4e991524fd8f9ab2e6987c1a309c5.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Nino review – fails to pull its punches",
@@ -5380,17 +4940,6 @@
             "thumbnail": "assets/cached_images/687e83fa9c3125d195400e3b645455c4.jpg",
             "topic": "News",
             "section": "Entertainment"
-        },
-        {
-            "title": "Nearly man McInnes finally has Rangers job he really always wanted",
-            "url": "https://www.bbc.com/sport/football/articles/cdx7gq4wk1qo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 10:38:37 GMT",
-            "timestamp": 1781779117,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/52be6defec6f9214013439c7c37b0741.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Woody Harrelson and Matthew McConaughey's Brothers comes home this fall",
@@ -5514,17 +5063,6 @@
             "section": "Technology"
         },
         {
-            "title": "From one to 48 - every World Cup team ranked after first game",
-            "url": "https://www.bbc.com/sport/football/articles/cn4djkzxygjo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 04:28:17 GMT",
-            "timestamp": 1781756897,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/288dabce33a555f3af847352d619fe4c.png",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Midjourney goes from generating cat images to full-body ultrasound scans",
             "url": "https://www.theverge.com/ai-artificial-intelligence/952011/midjourney-medical-ai-ultrasound-scan",
             "published": "2026-06-17T23:12:31-04:00",
@@ -5600,17 +5138,6 @@
             "thumbnail": "assets/cached_images/4107cd77007c8a3a368510119411186f.png",
             "topic": "News",
             "section": "Entertainment"
-        },
-        {
-            "title": "This was an England we haven't seen for years - and it was fun",
-            "url": "https://www.bbc.com/sport/football/articles/cwylqvgne7lo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 18 Jun 2026 00:23:30 GMT",
-            "timestamp": 1781742210,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/b8a7dbccaee6cf1222059d9b22fbfdc2.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Sarah Jessica Parker, Jessica Alba and K-Pop Stars Debut in Fendi’s Baguette Campaign",
@@ -5910,17 +5437,6 @@
             "section": "Sports"
         },
         {
-            "title": "Australia and India earn big wins at T20 World Cup",
-            "url": "https://www.bbc.com/sport/cricket/articles/cx2w5dwv62do?at_medium=RSS&at_campaign=rss",
-            "published": "Wed, 17 Jun 2026 17:01:55 GMT",
-            "timestamp": 1781715715,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/8c59294245731a164f3d3388f597ec0c.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "NewFilmmakers LA Announces Nominees and Jury for 14th Annual Awards (EXCLUSIVE)",
             "url": "https://variety.com/2026/awards/news/newfilmmakers-la-nominees-jury-14th-annual-1236781788/",
             "published": "Wed, 17 Jun 2026 17:00:00 +0000",
@@ -6062,17 +5578,6 @@
             "thumbnail": "assets/cached_images/6d86e04dda2890a4fc5fd3a36fae4404.jpg",
             "topic": "Tv",
             "section": "Entertainment"
-        },
-        {
-            "title": "Leinster make three changes for Bulls URC final",
-            "url": "https://www.bbc.com/sport/rugby-union/articles/cx2k7rjpgldo?at_medium=RSS&at_campaign=rss",
-            "published": "Wed, 17 Jun 2026 14:12:43 GMT",
-            "timestamp": 1781705563,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/ca2252239a0b6b857d9ed7eeaf08bf63.png",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "CBS Television Studios facing new Matlock lawsuit over racial discrimination",
@@ -6317,17 +5822,6 @@
             "section": "Technology"
         },
         {
-            "title": "Mike Myers plans to defrost Austin Powers once again",
-            "url": "https://www.avclub.com/mike-myers-austin-powers-4-yes",
-            "published": "Wed, 17 Jun 2026 09:32:43 +0000",
-            "timestamp": 1781688763,
-            "source": "The A.V. Club",
-            "category": "Filmnews",
-            "thumbnail": "assets/cached_images/8a00a0f0555d100a02a195237d5dcd3d.jpg",
-            "topic": "Filmnews",
-            "section": "Entertainment"
-        },
-        {
             "title": "Fuels and freight put F1 on track for net zero by 2030",
             "url": "https://www.bbc.com/sport/formula1/articles/cvgjp4rj2p5o?at_medium=RSS&at_campaign=rss",
             "published": "Wed, 17 Jun 2026 09:02:27 GMT",
@@ -6339,14 +5833,14 @@
             "section": "Sports"
         },
         {
-            "title": "Tottenham sign Scotland forward Hanson from Villa",
-            "url": "https://www.bbc.com/sport/football/articles/cvgqrr8wknxo?at_medium=RSS&at_campaign=rss",
-            "published": "Wed, 17 Jun 2026 09:00:10 GMT",
-            "timestamp": 1781686810,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/9f3cfdd4320d6481f3d02e3dd07d5980.jpg",
-            "topic": "Sports",
+            "title": "Scorecard: England vs New Zealand, second Test, The Kia Oval",
+            "url": "https://www.skysports.com/cricket/england-v-new-zealand/scorecard/d08512c4-51bd-5660-b51d-53ba78f7e948",
+            "published": "Wed, 17 Jun 2026 11:20:00 BST",
+            "timestamp": 1781682600,
+            "source": "Sky Sports News",
+            "category": "News Story",
+            "thumbnail": "assets/cached_images/a2b8f7a67d99cac6314149fa3761a9e2.jpg",
+            "topic": "News Story",
             "section": "Sports"
         },
         {
@@ -6358,17 +5852,6 @@
             "category": "Big Shorts",
             "thumbnail": "assets/cached_images/14ab51a2e73109a3cee113664baddcb2.jpg",
             "topic": "Big Shorts",
-            "section": "Entertainment"
-        },
-        {
-            "title": "Were you satisfied with your stay on Widow’s Bay?",
-            "url": "https://www.avclub.com/widows-bay-finale-season-1-episode-10-we-hope-you-enjoyed-your-time",
-            "published": "Wed, 17 Jun 2026 06:00:50 +0000",
-            "timestamp": 1781676050,
-            "source": "The A.V. Club",
-            "category": "Tv",
-            "thumbnail": "assets/cached_images/985e9843f4391289f411c07442402039.jpg",
-            "topic": "Tv",
             "section": "Entertainment"
         },
         {
@@ -6427,17 +5910,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Project Mbappe - the road to becoming France's record scorer",
-            "url": "https://www.bbc.com/sport/football/articles/c62lp6xx6zdo?at_medium=RSS&at_campaign=rss",
-            "published": "Tue, 16 Jun 2026 21:07:54 GMT",
-            "timestamp": 1781644074,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/dff0d34aa1f3c5cf8fbed8e893b3747d.png",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Leak Exposes Members of Peter Thiel’s Secretive ‘Dialog’ Society",
             "url": "https://www.wired.com/story/leak-exposes-members-of-peter-thiels-secretive-dialog-society/",
             "published": "Tue, 16 Jun 2026 20:21:57 +0000",
@@ -6472,7 +5944,7 @@
         },
         {
             "title": "Papers: Rashford an injury worry for England",
-            "url": "https://www.skysports.com/football/news/12040/13555947/marcus-rashford-england-forward-an-injury-worry-ahead-of-world-cup-game-with-ghana-paper-talk",
+            "url": "https://www.skysports.com/football/news/11095/13555947/marcus-rashford-england-forward-an-injury-worry-ahead-of-world-cup-game-with-ghana-paper-talk",
             "published": "Tue, 16 Jun 2026 22:30:00 BST",
             "timestamp": 1781636400,
             "source": "Sky Sports News",
@@ -6601,17 +6073,6 @@
             "thumbnail": "assets/cached_images/8224becc6e2967058919a4fe3aeff7cb.jpg",
             "topic": "The Big Story",
             "section": "Technology"
-        },
-        {
-            "title": "Who are the oldest players to feature at a World Cup?",
-            "url": "https://www.bbc.com/sport/football/articles/cwy2x316jy0o?at_medium=RSS&at_campaign=rss",
-            "published": "Tue, 16 Jun 2026 13:50:06 GMT",
-            "timestamp": 1781617806,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/8297499fffdcb871bb66be7fabdbc1b4.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "England's Galligan returns to Quins from Saracens",
@@ -7175,17 +6636,6 @@
             "section": "Sports"
         },
         {
-            "title": "Poch reiterates World Cup win claim and gives Pulisic update after Australia victory",
-            "url": "https://www.skysports.com/football/united-states-of-america-vs-australia/live/549797",
-            "published": "Sat, 13 Jun 2026 11:45:00 BST",
-            "timestamp": 1781338500,
-            "source": "Sky Sports News",
-            "category": "Liveblog",
-            "thumbnail": "assets/cached_images/0893b7b4fda18eb998fc2e74994a0a66.jpg",
-            "topic": "Liveblog",
-            "section": "Sports"
-        },
-        {
             "title": "How do you read a cricket scorecard?",
             "url": "https://www.bbc.com/sport/cricket/articles/cr7x59p0px3o?at_medium=RSS&at_campaign=rss",
             "published": "Sat, 13 Jun 2026 08:11:22 GMT",
@@ -7217,17 +6667,6 @@
             "thumbnail": "assets/cached_images/2a4ac65eb72cba6f424cffeb220f73e5.jpg",
             "topic": "Business",
             "section": "Technology"
-        },
-        {
-            "title": "Six Lionesses made MBEs in King's Birthday Honours",
-            "url": "https://www.bbc.com/sport/articles/c07ygxxj0g3o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 12 Jun 2026 21:30:09 GMT",
-            "timestamp": 1781299809,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/85b87c7ec77f581877fc0df4a3b7f804.png",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "‘Tell Him He’s a Piece of Shit’: Meta’s New AI Unit Is a Total Mess",
@@ -7351,17 +6790,6 @@
             "section": "Technology"
         },
         {
-            "title": "Will three points guarantee a spot in World Cup knockouts?",
-            "url": "https://www.bbc.com/sport/football/articles/cd95xgl23y7o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 12 Jun 2026 12:11:46 GMT",
-            "timestamp": 1781266306,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/e4e373bf49f6dfceac659d806cdeeece.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "This portable light is great for way more than camping",
             "url": "https://www.theverge.com/tech/942932/portable-light-camping-work-travel",
             "published": "2026-06-12T07:30:00-04:00",
@@ -7406,17 +6834,6 @@
             "section": "Technology"
         },
         {
-            "title": "What are World Cup's red card suspension rules?",
-            "url": "https://www.bbc.com/sport/football/articles/cd95xz5xndlo?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 12 Jun 2026 07:56:43 GMT",
-            "timestamp": 1781251003,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/34877eeb64fae8174eda6e3b66263214.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Ospreys and Scarlets merger could have changed Welsh rugby",
             "url": "https://www.bbc.com/sport/rugby-union/videos/c0rynwleke4o?at_medium=RSS&at_campaign=rss",
             "published": "Fri, 12 Jun 2026 05:05:04 GMT",
@@ -7435,17 +6852,6 @@
             "source": "BBC Sport",
             "category": "Sports",
             "thumbnail": "assets/cached_images/09a58cc7f442d04bb9af54e6562ded46.png",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Why are footballers wearing pink boots at the World Cup?",
-            "url": "https://www.bbc.com/sport/football/articles/c0ryn5wqywgo?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 11 Jun 2026 22:04:51 GMT",
-            "timestamp": 1781215491,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/1154cfdb709347f872889e66650c3724.jpg",
             "topic": "Sports",
             "section": "Sports"
         },
@@ -7481,17 +6887,6 @@
             "thumbnail": "assets/cached_images/a26ce9a4a06320bec98deadf843f2549.jpg",
             "topic": "Science",
             "section": "Technology"
-        },
-        {
-            "title": "How to watch highlights of World Cup matches",
-            "url": "https://www.bbc.com/sport/football/articles/c992xx351d0o?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 11 Jun 2026 17:26:46 GMT",
-            "timestamp": 1781198806,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/39917f9de0a6f5b9f45a51fd4ea61f14.jpg",
-            "topic": "Sports",
-            "section": "Sports"
         },
         {
             "title": "Pirelli F1 tyre contract extended until 2028",
@@ -7967,17 +7362,6 @@
             "section": "Technology"
         },
         {
-            "title": "Crypto-Funded Chinese Peptide Labs Are Booming",
-            "url": "https://www.wired.com/story/security-news-this-week-crypto-funded-chinese-peptide-labs-are-booming/",
-            "published": "Sat, 06 Jun 2026 10:30:00 +0000",
-            "timestamp": 1780741800,
-            "source": "Wired Tech",
-            "category": "Security",
-            "thumbnail": "assets/cached_images/80545e956efba61145946e7b5c812010.jpg",
-            "topic": "Security",
-            "section": "Technology"
-        },
-        {
             "title": "‘It’s Not a Joke’: A ‘Simpsons’ Writer Holds His First Presidential Campaign Rally",
             "url": "https://www.wired.com/story/simpsons-writer-dan-greaney-holds-his-first-presidential-campaign-rally/",
             "published": "Sat, 06 Jun 2026 09:00:00 +0000",
@@ -8121,17 +7505,6 @@
             "section": "Technology"
         },
         {
-            "title": "What are the deadlines for World Cup squads?",
-            "url": "https://www.bbc.com/sport/football/articles/ckgp482v49xo?at_medium=RSS&at_campaign=rss",
-            "published": "Wed, 03 Jun 2026 08:12:18 GMT",
-            "timestamp": 1780474338,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/d5a731562dc6fa3d28911d23070bc122.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Will 2026's 'yo-yo racing' mean overtaking in Monaco?",
             "url": "https://www.bbc.com/sport/formula1/articles/cewpe9z7w09o?at_medium=RSS&at_campaign=rss",
             "published": "Wed, 03 Jun 2026 05:48:40 GMT",
@@ -8194,17 +7567,6 @@
             "source": "BBC Sport",
             "category": "Sports",
             "thumbnail": "assets/cached_images/bd5ec22fe811e936179ca336b0dbd528.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "How much prize money have Premier League teams earned in Europe?",
-            "url": "https://www.bbc.com/sport/football/articles/c3d2yd99pn8o?at_medium=RSS&at_campaign=rss",
-            "published": "Thu, 28 May 2026 15:14:40 GMT",
-            "timestamp": 1779981280,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/02cb56e06a65f253e122aca17f96289e.jpg",
             "topic": "Sports",
             "section": "Sports"
         },
@@ -8363,6 +7725,17 @@
             "section": "Sports"
         },
         {
+            "title": "More than the Score",
+            "url": "https://www.bbc.co.uk/sounds/play/p0nkkmgr?at_medium=RSS&at_campaign=rss",
+            "published": "Mon, 11 May 2026 10:56:00 GMT",
+            "timestamp": 1778496960,
+            "source": "BBC Sport",
+            "category": "Sports",
+            "thumbnail": "assets/cached_images/2a4996963a3e1f63186fa6f9658c6715.jpg",
+            "topic": "Sports",
+            "section": "Sports"
+        },
+        {
             "title": "The summer a golden generation lost its shine",
             "url": "https://www.bbc.co.uk/sport/extra/60s97qhdbf/the-golden-generation?at_medium=RSS&at_campaign=rss",
             "published": "Mon, 11 May 2026 00:00:00 GMT",
@@ -8462,17 +7835,6 @@
             "section": "Sports"
         },
         {
-            "title": "When football turned to penalties to end 'cruel' system",
-            "url": "https://www.bbc.com/sport/football/articles/cr71enxvrd3o?at_medium=RSS&at_campaign=rss",
-            "published": "Sat, 28 Mar 2026 06:15:22 GMT",
-            "timestamp": 1774678522,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/29e97d064438cdfc0db3a91249356226.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Why has Turn Six at Australian GP been renamed?",
             "url": "https://www.bbc.com/sport/formula1/articles/cn0zxv2vkj2o?at_medium=RSS&at_campaign=rss",
             "published": "Thu, 05 Mar 2026 09:21:21 GMT",
@@ -8561,17 +7923,6 @@
             "section": "Sports"
         },
         {
-            "title": "Frank's downfall: Inside his struggle to get players and fans onboard",
-            "url": "https://www.bbc.com/sport/football/articles/cgmlv9d3k7no?at_medium=RSS&at_campaign=rss",
-            "published": "Wed, 11 Feb 2026 19:51:53 GMT",
-            "timestamp": 1770839513,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/ecb91a8552b30867ce30a4e73564e1bd.png",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "Episode 6: A Clean Sheet",
             "url": "https://www.bbc.co.uk/sounds/play/p0mzx1fc?at_medium=RSS&at_campaign=rss",
             "published": "Wed, 11 Feb 2026 00:05:00 GMT",
@@ -8627,17 +7978,6 @@
             "section": "Sports"
         },
         {
-            "title": "Cages, crushes and stabbings - is European away safety getting worse?",
-            "url": "https://www.bbc.com/sport/football/articles/c2lg7kkqe11o?at_medium=RSS&at_campaign=rss",
-            "published": "Fri, 30 Jan 2026 06:07:36 GMT",
-            "timestamp": 1769753256,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/1e9a8a931fb26d9daebe4e0ffe503617.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
             "title": "What is Curran's ultra-slow 'moon ball' leaving batters in a spin?",
             "url": "https://www.bbc.com/sport/cricket/articles/c0q44le0z5wo?at_medium=RSS&at_campaign=rss",
             "published": "Thu, 22 Jan 2026 16:27:32 GMT",
@@ -8678,17 +8018,6 @@
             "source": "BBC Sport",
             "category": "Sports",
             "thumbnail": "assets/cached_images/32d938d15d258d02582c00f51c7c3266.jpg",
-            "topic": "Sports",
-            "section": "Sports"
-        },
-        {
-            "title": "Mo Salah: Never Give Up",
-            "url": "https://www.bbc.co.uk/iplayer/episode/m002p54c?at_medium=RSS&at_campaign=rss",
-            "published": "Wed, 10 Dec 2025 06:00:00 GMT",
-            "timestamp": 1765346400,
-            "source": "BBC Sport",
-            "category": "Sports",
-            "thumbnail": "assets/cached_images/7b94c0a72c8d56debebb386ec11ae7fe.jpg",
             "topic": "Sports",
             "section": "Sports"
         },
@@ -8759,13 +8088,442 @@
             "section": "Sports"
         },
         {
+            "title": "Unlocking the Secrets of the 2026 Emmys Ballot",
+            "url": "https://www.vulture.com/article/emmys-ballot-2026-analysis.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/0179aa9629ce342d2ee697e829f33ec2.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Love Island USA’s Beatriz Was Also Surprised by Gabriel’s Tears",
+            "url": "https://www.vulture.com/article/love-island-usa-beatriz-on-gabriel-tears-sincere-melanie-sol-drama.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/b52d5133f63503e6fb710d753e54686e.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Jacob Anderson Couldn’t Wait to Play Lestat’s Version of Louis",
+            "url": "https://www.vulture.com/article/jacob-anderson-louis-vampire-lestat-interview.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/7e5ee648a7ef3cd714cc0778334a7769.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Jesse Solomon Tried to Warn West",
+            "url": "https://www.vulture.com/article/jesse-solomon-summer-house-reunion-crying-west-amanda-scandal.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/9d73cb0917a6ed033afcad6d69f9287d.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
             "title": "The 10 Best Movies and TV Shows to Watch This Weekend",
             "url": "https://www.vulture.com/article/what-to-watch-this-weekend-best-new-movies-tv-shows-june-19-21.html",
             "published": "",
             "timestamp": 0,
             "source": "Vulture",
-            "category": "Movies",
+            "category": "TV",
             "thumbnail": "assets/cached_images/ac5a01685aa0dc3459832b9966258611.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Guillermo Takes a Shot at Dancing With the Stars",
+            "url": "https://www.vulture.com/article/guillermo-jimmy-kimmel-dancing-with-the-stars.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/7766279b6557eb0c17d74112de2f7a32.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The Widow’s Bay Tsunami",
+            "url": "https://www.vulture.com/article/widows-bay-apple-tv-success.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/ee9227394839797d25c7a64c1f79e3d1.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "House of the Dragon Finally Addresses the Dragon in the Room",
+            "url": "https://www.vulture.com/article/house-of-the-dragon-season-three-review.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/671e58f79abc3c640af4d47ec535606d.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Jason Bateman Just Wants to Keep Doing It All",
+            "url": "https://www.vulture.com/article/jason-bateman-just-wants-to-keep-doing-it-all.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/f07d4eb245d54580b80fb2cf286870e8.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The Valley Recap: Schwartzapo-Losers",
+            "url": "https://www.vulture.com/article/the-valley-recap-season-3-episode-12-bravo.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/d9d78e4670d0d70625e07b4dec688a03.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Katherine LaNasa Says She Was Haunted by Ex Dennis Hopper",
+            "url": "https://www.vulture.com/article/katherine-lanasa-haunted-dennis-hopper.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/08003286fcdccc027b260cbe6829992e.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Every TV Show Canceled in 2026 So Far",
+            "url": "https://www.vulture.com/article/tv-shows-canceled-2026.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/e9f6655cf14780fef107c4e8d8328914.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Daveigh Chase, Voice of Lilo and Chihiro, Dies at 35",
+            "url": "https://www.vulture.com/article/daviegh-chase-death-lilo-chihiro-samara.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/95548a1301267c20772aca28a27a9d0f.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Love Island USA Recap: The Islanders’ve Got Mail",
+            "url": "https://www.vulture.com/article/love-island-usa-recap-season-8-episode-13-peacock.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/fbfbb3db6496cc6f57dcc40a799954e2.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The Testaments Cast Turned to Medieval Times for Comfort",
+            "url": "https://www.vulture.com/article/testaments-handmaids-tale-elisabeth-moss-chase-infiniti-lucy-halliday-vulture-festival.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/df2cfe584e86884cdc4fee6a1eef7477.gif",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Kumail Nanjiani Is a Taskmaster Cautionary Tale",
+            "url": "https://www.vulture.com/article/kumail-nanjiani-is-a-taskmaster-cautionary-tale.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/914a212fddc9a967e7036a4402ac6887.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "What Lurks Beneath Widow’s Bay?",
+            "url": "https://www.vulture.com/article/widows-bay-ending-explained-season-2-questions-theories.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/a3c830d32b99ddd1578800b2daf6fdc2.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Maximum Pleasure Guaranteed Recap: I’ll Be Watching You",
+            "url": "https://www.vulture.com/article/maximum-pleasure-guaranteed-recap-episode-6-rosebuds.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/b51c75aa4167d19c2acf6bda9bf59a89.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "‘Make This Place Feel Real Even Though It’s Strange’",
+            "url": "https://www.vulture.com/article/hiro-murai-widows-bay-ending-interview.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/f25a0d44757ce929792df299f838b91d.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Widow’s Bay Is Built to Survive the Second-Season Curse",
+            "url": "https://www.vulture.com/article/widows-bay-finale-review-ending-season-2-explained.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/44d52b1c9d2df4f9b0b62638d15b0dbb.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Widow’s Bay Season-Finale Recap: That’s the Truth, Ruth",
+            "url": "https://www.vulture.com/article/widows-bay-finale-recap-episode-10-we-hope-you-enjoyed-your-time-apple-tv.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/086669d672af6876a6922ebcd7aeeb3f.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "In the City Recap: Homes Wrecked",
+            "url": "https://www.vulture.com/article/in-the-city-recap-season-1-episode-5-bravo.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/e697fa926215a5d4228f6deb9ea8fbf5.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Summer House Recap: The Aftermath Is Mathing",
+            "url": "https://www.vulture.com/article/summer-house-recap-the-aftermath-has-answers.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/d62cde3e614c13c581d009f2f5530435.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The Valley’s Michelle Saniei Is Still with Dr. Dre",
+            "url": "https://www.vulture.com/article/the-valleys-michelle-saniei-is-still-with-dr-dre.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/5c31b8ac357f3e3ef9454ce747758f05.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Why Fox Spent $22 Billion on Roku",
+            "url": "https://www.vulture.com/article/why-fox-is-buying-roku.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/bdbab82888188223c54a5e60141caba3.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Louis C.K.’s Ridiculous Looks Less Whimsical Than It Sounds",
+            "url": "https://www.vulture.com/article/louis-ck-ridiculous-trailer-netflix.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/c6a6b3e110e2d9bfd76b84aeaa721aea.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Love Island USA Recap: Things Are Getting Juicy",
+            "url": "https://www.vulture.com/article/love-island-usa-recap-season-8-episode-12-peacock.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/50c5974ab705f99ecd3a26cc9d51f36d.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Below Deck Mediterranean Recap: Slow Progress",
+            "url": "https://www.vulture.com/article/below-deck-mediterranean-recap-season-11-episode-2-bravo.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/90febc1c85f1bebd1a98123fe4c692ea.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Game Changer Recap: Factory Settings",
+            "url": "https://www.vulture.com/article/game-changer-recap-season-8-episode-3-dropout-tv.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/7167ac7de34314344f4286d761353f7b.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Love Island USA Producer James Barker Dead at 40",
+            "url": "https://www.vulture.com/article/love-island-usa-producer-james-barker-dead.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/bafbe9d6946ddd594560460e453ee603.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "West Wilson Locked Out of Summer House",
+            "url": "https://www.vulture.com/article/west-wilson-summer-house-exit.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/2c463abec5802f33ad9c07b7c76d1bff.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Two Tickets to Casa Amor, Please",
+            "url": "https://www.vulture.com/article/love-island-season-eight-casa-amor-theaters.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/7b2ff5cdf585f4c151a563312516b80e.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Love Island USA Recap: Sol Is Stuck in the Bermuda (Love) Triangle",
+            "url": "https://www.vulture.com/article/love-island-usa-recap-season-8-episodes-9-11-peacock.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/9c8dc034fa3b4201d2704cc9839d0a76.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "A Guide to the ‘Bad Things’ Haunting Widow’s Bay",
+            "url": "https://www.vulture.com/article/widows-bay-horror-movie-tv-influences-references-explained.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/6f3e8b12c00886eb243df5d7ef5fb400.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The Targaryens Are Back, and So Is House of the Dragon Club",
+            "url": "https://www.vulture.com/article/house-of-the-dragon-club-email-newsletter-launch.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/009237c6da595587212885268fe4a959.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The Real Housewives of Rhode Island Season-Finale Recap: Blocking Out The Haters",
+            "url": "https://www.vulture.com/article/real-housewives-of-rhode-island-rhori-episode-12-bravo.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/28e0f0f2f09b58d9ae875516ac6a2504.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The Vampire Lestat Recap: Regarding the Vampire Incest Factor",
+            "url": "https://www.vulture.com/article/the-vampire-lestat-episode-2-recap-amc.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/d7d112b939856dfd40d9ee1ccd405d74.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "The Real Housewives of Atlanta Recap: Peach Pride",
+            "url": "https://www.vulture.com/article/real-housewives-of-atlanta-recap-season-17-episode-11-bravo.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/c34ea469262e722e373175ef08dd4a98.png",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "Tyra Banks Sues Netflix Over America’s Next Top Model Documentary",
+            "url": "https://www.vulture.com/article/tyra-banks-lawsuit-netflix-americas-next-top-model-doc.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "TV",
+            "thumbnail": "assets/cached_images/410cdfb90571918de14f99ab7a743f8a.jpg",
+            "topic": "TV",
+            "section": "Entertainment"
+        },
+        {
+            "title": "15 Queer Coming-of-Age Movies to Watch After Girls Like Girls",
+            "url": "https://www.vulture.com/article/best-queer-lgbtq-coming-of-age-movies.html",
+            "published": "",
+            "timestamp": 0,
+            "source": "Vulture",
+            "category": "Movies",
+            "thumbnail": "assets/cached_images/0c2c462ef1dcd8f799de08420624a4fc.jpg",
             "topic": "Movies",
             "section": "Entertainment"
         },
@@ -8814,17 +8572,6 @@
             "section": "Entertainment"
         },
         {
-            "title": "Jason Bateman Just Wants to Keep Doing It All",
-            "url": "https://www.vulture.com/article/jason-bateman-just-wants-to-keep-doing-it-all.html",
-            "published": "",
-            "timestamp": 0,
-            "source": "Vulture",
-            "category": "Movies",
-            "thumbnail": "assets/cached_images/f07d4eb245d54580b80fb2cf286870e8.jpg",
-            "topic": "Movies",
-            "section": "Entertainment"
-        },
-        {
             "title": "Toy Story 5 Chickens Out on Its Critique of Our Tech Addictions",
             "url": "https://www.vulture.com/article/review-toy-story-5-chickens-out-on-its-tech-critique.html",
             "published": "",
@@ -8832,17 +8579,6 @@
             "source": "Vulture",
             "category": "Movies",
             "thumbnail": "assets/cached_images/8552fdcec18e2e0ea5ee16cf3c9a99cf.jpg",
-            "topic": "Movies",
-            "section": "Entertainment"
-        },
-        {
-            "title": "Daveigh Chase, Voice of Lilo and Chihiro, Dies at 35",
-            "url": "https://www.vulture.com/article/daviegh-chase-death-lilo-chihiro-samara.html",
-            "published": "",
-            "timestamp": 0,
-            "source": "Vulture",
-            "category": "Movies",
-            "thumbnail": "assets/cached_images/95548a1301267c20772aca28a27a9d0f.jpg",
             "topic": "Movies",
             "section": "Entertainment"
         },
@@ -10350,28 +10086,6 @@
             "source": "Vulture",
             "category": "General",
             "thumbnail": "assets/cached_images/798eb5d91aa10a872c4ba63052ba2efa.jpg",
-            "topic": "General",
-            "section": "Entertainment"
-        },
-        {
-            "title": "Louis C.K.’s Ridiculous Looks Less Whimsical Than It Sounds",
-            "url": "https://www.vulture.com/article/louis-ck-ridiculous-trailer-netflix.html",
-            "published": "",
-            "timestamp": 0,
-            "source": "Vulture",
-            "category": "General",
-            "thumbnail": "assets/cached_images/c6a6b3e110e2d9bfd76b84aeaa721aea.jpg",
-            "topic": "General",
-            "section": "Entertainment"
-        },
-        {
-            "title": "Game Changer Recap: Factory Settings",
-            "url": "https://www.vulture.com/article/game-changer-recap-season-8-episode-3-dropout-tv.html",
-            "published": "",
-            "timestamp": 0,
-            "source": "Vulture",
-            "category": "General",
-            "thumbnail": "assets/cached_images/7167ac7de34314344f4286d761353f7b.jpg",
             "topic": "General",
             "section": "Entertainment"
         },
