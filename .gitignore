@@ -5,7 +5,7 @@ __pycache__/
 .eggs/
 
 # Build artifacts
-build/
+build/*/
 dist/
 
 # Logs & runtime

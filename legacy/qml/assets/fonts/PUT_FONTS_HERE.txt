@@ -1,1 +1,0 @@
-Place Roboto-*.ttf and Vazirmatn-*.ttf here. app.py auto-loads every .ttf/.otf in this folder.
