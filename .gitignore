@@ -32,3 +32,7 @@ offline_viewer/assets/cached_images/
 offline_viewer/assets/cached_articles/
 frontend/qml/assets/icons_backup/
 *.bak
+
+# twscrape data
+twscrape/accounts.db
+twscrape/user_id_cache.json

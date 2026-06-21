@@ -639,17 +639,43 @@ def scrape_twitter_syndication(content, category_default):
 # ---------------------------------------------------------------------------
 # X / Twitter timeline resolver
 #
-# The legacy syndication profile endpoint
-# (syndication.twitter.com/srv/timeline-profile/screen-name/<user>) is
-# deprecated and almost always returns 0 tweets. We keep it as a best-effort
-# first attempt, then fall back to a self-hosted Nitter instance's RSS feed,
-# which we parse with the EXISTING parse_xml_rss() helper.
+# Execution order (this matches the code below -- read it literally):
+#   1. Nitter RSS FIRST: loop over each configured host and fetch
+#      <nitter_host>/<handle>/rss, parsed with the EXISTING parse_xml_rss().
+#      The first host that returns a non-empty feed wins; Nitter permalinks
+#      are rewritten back to https://x.com/<path>.
+#   2. Legacy syndication endpoint LAST (best-effort fallback only):
+#      syndication.twitter.com/srv/timeline-profile/screen-name/<user> is
+#      deprecated and almost always returns 0 tweets, so it is tried only
+#      after every Nitter host has failed.
+#
+# Hosts come from the env var OFFLINEFEED_NITTER_HOSTS (comma-separated).
+# Default = local self-hosted instance only; the public https://nitter.net is
+# permanently dead and is intentionally NOT included by default.
+# Per-host network timeout = OFFLINEFEED_NITTER_TIMEOUT seconds (default 8).
 # ---------------------------------------------------------------------------
-NITTER_HOSTS = [
-    h.strip().rstrip('/')
-    for h in os.environ.get("OFFLINEFEED_NITTER_HOSTS", "http://127.0.0.1:8081,https://nitter.net").split(",")
-    if h.strip()
-]
+DEFAULT_NITTER_HOSTS = "http://127.0.0.1:8081"
+
+def _parse_nitter_hosts(raw):
+    """Trim, strip trailing slashes, drop blanks, and de-duplicate
+    (order-preserving) a comma-separated list of Nitter hosts."""
+    seen = set()
+    hosts = []
+    for h in (raw or "").split(","):
+        h = h.strip().rstrip('/')
+        if h and h not in seen:
+            seen.add(h)
+            hosts.append(h)
+    return hosts
+
+NITTER_HOSTS = _parse_nitter_hosts(
+    os.environ.get("OFFLINEFEED_NITTER_HOSTS", DEFAULT_NITTER_HOSTS)
+)
+
+try:
+    NITTER_TIMEOUT = float(os.environ.get("OFFLINEFEED_NITTER_TIMEOUT", "8"))
+except (TypeError, ValueError):
+    NITTER_TIMEOUT = 8.0
 
 def twitter_screen_name(url):
     """Extract the @handle (screen name) from a twitter.com / x.com URL."""
@@ -664,26 +690,30 @@ def fetch_twitter_timeline(screen_name, headers, category_default):
     """
     Resolve an X timeline into the standard article-dict list.
 
-    Strategy:
-      (a) best-effort: legacy syndication endpoint + scrape_twitter_syndication()
-      (b) fallback:    <nitter_host>/<handle>/rss for each configured host,
-                       parsed with the EXISTING parse_xml_rss(); nitter links
-                       are rewritten back to https://x.com so the UI links to
-                       the real post.
-    Returns [] (with a log line) if every source fails.
+    Strategy (listed in the order actually executed below):
+      (a) PRIMARY  -- Nitter RSS: <nitter_host>/<handle>/rss for each configured
+                      host, parsed with the EXISTING parse_xml_rss(). Nitter
+                      permalinks are rewritten back to https://x.com so the UI
+                      links to the real post. First non-empty host wins.
+      (b) FALLBACK -- legacy syndication endpoint + scrape_twitter_syndication(),
+                      tried only as a last resort (deprecated; usually empty).
+
+    Each returned dict has keys: title, url, published, timestamp, source,
+    category, thumbnail. Returns [] (with one clear log line) if all sources fail.
     """
     import requests
 
     if not screen_name:
         return []
 
-    # (a) Nitter RSS first (for live, up-to-date tweets).
+    # (a) Nitter RSS FIRST (for live, up-to-date tweets).
     for host in NITTER_HOSTS:
         rss_url = f"{host}/{screen_name}/rss"
         try:
-            r = requests.get(rss_url, headers=headers, timeout=8)
+            r = requests.get(rss_url, headers=headers, timeout=NITTER_TIMEOUT)
+            # 429 / 403 / 5xx / any non-200 is NOT fatal -- just try the next host.
             if r.status_code != 200:
-                print(f"[Twitter] Nitter {rss_url} -> HTTP {r.status_code}")
+                print(f"[Twitter] {host} -> HTTP {r.status_code} (trying next host)")
                 continue
             items = parse_xml_rss(r.text, f"{screen_name} (X)", category_default, feed_url=rss_url)
             # Rewrite nitter permalinks back to the canonical x.com URL.
@@ -693,25 +723,31 @@ def fetch_twitter_timeline(screen_name, headers, category_default):
                     parsed = urllib.parse.urlparse(link)
                     it["url"] = "https://x.com" + parsed.path
             if items:
-                print(f"[Twitter] Resolved @{screen_name} via Nitter {host} ({len(items)} tweets)")
+                print(f"[Twitter] @{screen_name} -> {host}: OK ({len(items)} tweets)")
                 return items
+            # Reachable host but no posts -> treat like a failure, try next host.
+            print(f"[Twitter] {host} -> empty feed (trying next host)")
         except Exception as e:
-            print(f"[Twitter] Nitter host {host} failed for @{screen_name}: {e}")
+            print(f"[Twitter] {host} -> {e} (trying next host)")
             continue
 
     # (b) Legacy syndication endpoint -- fallback best effort (may be stale).
     try:
         syn_url = f"https://syndication.twitter.com/srv/timeline-profile/screen-name/{screen_name}"
-        r = requests.get(syn_url, headers=headers, timeout=8)
+        r = requests.get(syn_url, headers=headers, timeout=NITTER_TIMEOUT)
         if r.status_code == 200:
             items = scrape_twitter_syndication(r.text, category_default)
             if items:
-                print(f"[Twitter] Resolved @{screen_name} via syndication endpoint ({len(items)} tweets)")
+                print(f"[Twitter] @{screen_name} -> syndication (fallback): OK ({len(items)} tweets)")
                 return items
+            print("[Twitter] syndication -> empty (deprecated endpoint)")
+        else:
+            print(f"[Twitter] syndication -> HTTP {r.status_code}")
     except Exception as e:
-        print(f"[Twitter] Syndication endpoint failed for @{screen_name}: {e}")
+        print(f"[Twitter] syndication endpoint -> {e}")
 
-    print(f"[Twitter] All sources failed for @{screen_name}; returning no items.")
+    print(f"[Twitter] @{screen_name}: ALL sources FAILED "
+          f"(Nitter hosts tried: {NITTER_HOSTS or 'none configured'}); 0 tweets.")
     return []
 
 def scrape_thr_html(content, category_default):
@@ -2025,8 +2061,25 @@ def fetch_and_aggregate_news():
     all_articles = []
     status_map = {}
     
+    twitter_sources = []
+    other_sources = []
+    for s in sources:
+        url = s[1]
+        if "twitter.com/" in url or "x.com/" in url:
+            twitter_sources.append(s)
+        else:
+            other_sources.append(s)
+            
+    # Fetch non-Twitter sources concurrently
     with concurrent.futures.ThreadPoolExecutor(max_workers=16) as executor:
-        results = list(executor.map(fetch_single_source, sources))
+        results = list(executor.map(fetch_single_source, other_sources))
+        
+    # Fetch Twitter sources sequentially with a rate limit safety delay
+    import time
+    for ts in twitter_sources:
+        res = fetch_single_source(ts)
+        results.append(res)
+        time.sleep(0.5)
         
     for res in results:
         status_map[res["source"]] = res["status"]

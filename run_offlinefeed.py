@@ -42,7 +42,37 @@ def _tail(path: Path, lines: int = 25) -> str:
         return "(no log file yet)"
 
 
+def _get_python_310_executable() -> str | None:
+    import subprocess
+    import sys
+    import os
+    # 1. Try py -3.12, py -3.11, py -3.10
+    for ver in ["3.12", "3.11", "3.10"]:
+        try:
+            res = subprocess.run(["py", f"-{ver}", "-V"], capture_output=True, text=True)
+            if res.returncode == 0:
+                return f"py -{ver}"
+        except Exception:
+            pass
+    # 2. Check current interpreter
+    if sys.version_info >= (3, 10):
+        return sys.executable
+    # 3. Check common Windows program paths
+    local_appdata = os.environ.get("LOCALAPPDATA", "")
+    if local_appdata:
+        base_dir = os.path.join(local_appdata, "Programs", "Python")
+        for ver_folder in ["Python312", "Python311", "Python310"]:
+            p = os.path.join(base_dir, ver_folder, "python.exe")
+            if os.path.isfile(p):
+                return p
+    return None
+
+
 def main() -> int:
+    import os
+    os.environ["OFFLINEFEED_NITTER_HOSTS"] = "http://127.0.0.1:8081"
+    os.environ["OFFLINEFEED_NITTER_TIMEOUT"] = "10"
+
     args = sys.argv[1:]
     doctor_only = "--doctor" in args
     force = "--force" in args
@@ -84,6 +114,40 @@ def main() -> int:
         except Exception as e:
             log.error("Failed to run avatar backfill on launch: %s", e)
 
+    # Auto-start twscrape RSS shim if available
+    shim_proc = None
+    shim_path = REPO_ROOT / "twscrape" / "twscrape_rss_shim.py"
+    if shim_path.exists():
+        py_310 = _get_python_310_executable()
+        if py_310:
+            log.info("Auto-starting twscrape RSS shim using: %s", py_310)
+            print(f"Auto-starting twscrape RSS shim using: {py_310}...")
+            import os
+            env = os.environ.copy()
+            env["TWSCRAPE_ACCOUNTS_DB"] = str(REPO_ROOT / "twscrape" / "accounts.db")
+            if py_310.startswith("py "):
+                parts = py_310.split()
+                cmd = ["py", parts[1], str(shim_path)]
+            else:
+                cmd = [py_310, str(shim_path)]
+            try:
+                log_dir = REPO_ROOT / "logs"
+                log_dir.mkdir(exist_ok=True)
+                shim_log = open(log_dir / "twscrape_shim.log", "w", encoding="utf-8")
+                shim_proc = subprocess.Popen(
+                    cmd,
+                    cwd=str(REPO_ROOT / "twscrape"),
+                    env=env,
+                    stdout=shim_log,
+                    stderr=shim_log
+                )
+            except Exception as e:
+                log.error("Failed to auto-start twscrape RSS shim: %s", e)
+                print(f"Warning: Failed to auto-start twscrape RSS shim: {e}")
+        else:
+            log.warning("Python 3.10+ not found; cannot auto-start twscrape RSS shim.")
+            print("Warning: Python 3.10+ not found; cannot auto-start twscrape RSS shim.")
+
     # Launch the GUI as a child process so we can react to its exit code.
     print("\nStarting OfflineFeed...\n")
     log.info("Launching frontend.app")
@@ -92,10 +156,19 @@ def main() -> int:
                               cwd=str(REPO_ROOT))
         code = proc.returncode
     except KeyboardInterrupt:
-        return 0
+        code = 0
     except Exception:
         debug.log_exception("Launcher", "Failed to start frontend.app")
         code = 1
+    finally:
+        if shim_proc and shim_proc.poll() is None:
+            log.info("Stopping twscrape RSS shim...")
+            print("Stopping twscrape RSS shim...")
+            shim_proc.terminate()
+            try:
+                shim_proc.wait(timeout=3)
+            except subprocess.TimeoutExpired:
+                shim_proc.kill()
 
     if code != 0:
         log.error("OfflineFeed exited with code %s", code)

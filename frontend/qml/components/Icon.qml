@@ -70,7 +70,6 @@ Item {
         // Qt.resolvedUrl keeps paths relative to THIS file regardless of caller.
         source: root.name ? Qt.resolvedUrl("../assets/icons/" + root.name + ".svg") : ""
         sourceSize.width: root.size * 2
-        sourceSize.height: root.size * 2
         fillMode: Image.PreserveAspectFit
         smooth: true
         antialiasing: true

@@ -116,12 +116,111 @@ def find_source(root: Path, base: str, variant: str | None) -> Path | None:
     return matches[0] if matches else None
 
 
-def normalize_svg(text: str) -> str:
+def normalize_svg(text: str, logical_name: str = "") -> str:
     """Force a solid white stroke/fill so ColorOverlay in Icon.qml can recolor
     the glyph to any theme color. Tabler uses stroke="currentColor", which Qt's
     SVG renderer treats as black; white keeps the same convention as
-    gen_assets.py."""
-    return CURRENT_COLOR_RE.sub("#ffffff", text)
+    gen_assets.py.
+    Also forces width/height=24, enforces/repairs a square "0 0 24 24" viewBox
+    by padding non-square sources, and warns on any source it had to pad."""
+    import xml.etree.ElementTree as ET
+
+    # 1. Replace currentColor with #ffffff
+    text = CURRENT_COLOR_RE.sub("#ffffff", text)
+
+    # Register SVG namespace as default to prevent ns0: prefixes
+    ET.register_namespace('', 'http://www.w3.org/2000/svg')
+    ET.register_namespace('xlink', 'http://www.w3.org/1999/xlink')
+
+    # Parse SVG XML
+    try:
+        root = ET.fromstring(text)
+    except Exception as e:
+        print(f"[import_icons] ERROR parsing SVG XML for {logical_name}: {e}")
+        return text
+
+    viewBox = root.attrib.get('viewBox', '')
+    width_attr = root.attrib.get('width', '')
+    height_attr = root.attrib.get('height', '')
+
+    min_x, min_y, w, h = 0.0, 0.0, 24.0, 24.0
+    has_viewbox = False
+    if viewBox:
+        parts = re.split(r'[\s,]+', viewBox.strip())
+        if len(parts) == 4:
+            try:
+                min_x = float(parts[0])
+                min_y = float(parts[1])
+                w = float(parts[2])
+                h = float(parts[3])
+                has_viewbox = True
+            except ValueError:
+                pass
+
+    if not has_viewbox:
+        try:
+            def to_float(val):
+                val_clean = re.sub(r'[a-zA-Z%]', '', val).strip()
+                return float(val_clean)
+            w = to_float(width_attr)
+            h = to_float(height_attr)
+            min_x = 0.0
+            min_y = 0.0
+            has_viewbox = True
+        except Exception:
+            pass
+
+    is_std_viewbox = (abs(min_x) < 1e-3 and abs(min_y) < 1e-3 and abs(w - 24.0) < 1e-3 and abs(h - 24.0) < 1e-3)
+    is_std_dims = (width_attr == "24" and height_attr == "24")
+
+    if is_std_viewbox and is_std_dims:
+        return text
+
+    max_dim = max(w, h) if (w > 0 and h > 0) else 24.0
+    s = 24.0 / max_dim
+    w_scaled = w * s
+    h_scaled = h * s
+    px = (24.0 - w_scaled) / 2.0
+    py = (24.0 - h_scaled) / 2.0
+
+    tx = px - min_x * s
+    ty = py - min_y * s
+
+    needs_padding = abs(w - h) > 1e-3
+    if needs_padding:
+        print(f"[import_icons] WARN Non-square SVG {logical_name} (viewBox={viewBox}, width={width_attr}, height={height_attr}) - padding applied")
+
+    new_root = ET.Element('svg')
+
+    # Copy attributes from original root, except width, height, viewBox
+    for k, v in root.attrib.items():
+        if k not in ('width', 'height', 'viewBox'):
+            new_root.set(k, v)
+
+    new_root.set('width', '24')
+    new_root.set('height', '24')
+    new_root.set('viewBox', '0 0 24 24')
+
+    g = ET.SubElement(new_root, 'g')
+
+    def fmt(val):
+        return f"{val:.6g}"
+
+    transform_str = ""
+    if abs(tx) > 1e-5 or abs(ty) > 1e-5:
+        transform_str += f"translate({fmt(tx)}, {fmt(ty)}) "
+    if abs(s - 1.0) > 1e-5:
+        transform_str += f"scale({fmt(s)})"
+
+    transform_str = transform_str.strip()
+    if transform_str:
+        g.set('transform', transform_str)
+
+    for child in list(root):
+        g.append(child)
+
+    out = ET.tostring(new_root, encoding='unicode')
+    return out
 
 
 def main() -> int:
@@ -151,7 +250,7 @@ def main() -> int:
             missing.append((logical, base))
             continue
         if not args.dry_run:
-            svg = normalize_svg(src.read_text(encoding="utf-8"))
+            svg = normalize_svg(src.read_text(encoding="utf-8"), logical)
             (DEST_DIR / f"{logical}.svg").write_text(svg, encoding="utf-8")
         imported.append((logical, src.relative_to(root)))
 
