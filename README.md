@@ -17,16 +17,31 @@
 
 ## Overview
 
-OfflineFeed pulls articles from your RSS / news sources, stores them for offline reading, and lets you forward whole channels to Telegram. The interface is a TelegramDesktopstyle threepane layout built with PySide6 + QML, backed by a local Python HTTP server.
+OfflineFeed pulls articles from your RSS / news sources, stores them for offline
+reading, and lets you forward whole channels to Telegram. The interface is a
+Telegram-Desktop-style three-pane layout built with PySide6 + QML, backed by a
+local Python HTTP server.
 
-## Features
+## Running
 
-- Telegramstyle threepane UI (folder rail, chat list, conversation) with a slidein info panel
-- Offline article reader with graceful fallback when a page can't be scraped
-- Light and dark themes, custom accent color, and a customizable chat wallpaper
-- Full RTL / Persian support
-- Oneclick reposting of channels to Telegram
-- Builtin diagnostics (doctor) and an inapp System Logs panel
+```
+run.bat        # Windows
+./run.sh       # macOS / Linux
+```
+
+Both wrappers simply call `python backend/run_offlinefeed.py`, which runs a
+health check first and prints the real error if startup fails. The repo root is
+intentionally Python-free; all backend code lives under `backend/`.
+
+## Diagnostics
+
+If the app will not start:
+
+```
+python -m frontend.doctor
+```
+
+Logs are written to `logs/offlinefeed_debug.log`.
 
 ## Architecture
 
@@ -35,86 +50,40 @@ OfflineFeed pulls articles from your RSS / news sources, stores them for offline
 | Desktop UI | PySide6 + QML | `frontend/qml/` |
 | Bridge (UI to backend) | Python QObject slots / signals | `frontend/bridge.py` |
 | App entry / bootstrap | Python | `frontend/app.py` |
-| Feed Server (HTTP API, port 8080) | Python | `gui_server.py` |
+| Feed Server (HTTP API, port 8080) | Python | `backend/gui_server.py` |
+| Smart launcher | Python | `backend/run_offlinefeed.py` |
+| Offline web viewer + assets | HTML / JS + JSON | `backend/offline_viewer/` |
 | Diagnostics | Python | `frontend/debug.py`, `frontend/doctor.py` |
-
-## Requirements
-
-- Windows with Python 3.9 or newer
-- The packages in `requirements.txt` (PySide6, requests, feedparser, beautifulsoup4, lxml)
-- The backend `gui_server.py` present in the project root or in `frontend/`
-
-## Installation
-
-```
-
-cd /d E:ProjectsOfflineFeedOfflineFeed_fixed
-
-py -3.9 -m pip install -r requirements.txt
-
-```
-
-## Running
-
-```
-
-python run_[offlinefeed.py](http://offlinefeed.py)
-
-```
-
-Or doubleclick `run.bat`. The launcher runs a health check first and prints the real error if startup fails.
-
-## Diagnostics
-
-If the app will not start, run:
-
-```
-
-python -m [frontend.doctor](http://frontend.doctor)
-
-```
-
-It prints a PASS / WARN / FAIL line for the Python version, every dependency, the backend port, and the backend module  including the real traceback behind a "Code: 1" exit. See `DEBUG.md` for details. Logs are written to `logs/offlinefeed_debug.log`.
 
 ## Project structure
 
 ```
-
 OfflineFeed/
-
-frontend/
-
-[app.py](http://app.py)            entry point
-
-[bridge.py](http://bridge.py)         UI to backend bridge
-
-[debug.py](http://debug.py)          diagnostics + logging
-
-[doctor.py](http://doctor.py)         python -m [frontend.doctor](http://frontend.doctor)
-
-gen_[assets.py](http://assets.py)     regenerates SVG icons + logo
-
-qml/              QML UI and assets
-
-gui_[server.py](http://server.py)       backend Feed Server (copy from your original project)
-
-run_[offlinefeed.py](http://offlinefeed.py)  smart launcher
-
-run.bat             Windows launcher
-
-requirements.txt
-
-[DEBUG.md](http://DEBUG.md)
-
-OfflineFeed.spec    PyInstaller build spec
-
+  run.bat                  Windows launcher
+  run.sh                   macOS / Linux launcher
+  docker-compose.yml
+  nitter.conf
+  backend/
+    run_offlinefeed.py     smart launcher
+    gui_server.py          Feed Server (HTTP API, port 8080)
+    feed_store.py          durable live-feed snapshot
+    media_cache.py         in-article image cache
+    cache_retention.py     cached-post archiver
+    offline_viewer/        web viewer + assets (served by the backend)
+    tools/                 icon importer + helpers
+    twscrape/              optional X -> RSS shim (port 8081)
+  frontend/
+    app.py                 entry point
+    bridge.py              UI <-> backend bridge
+    debug.py               diagnostics + logging
+    doctor.py              python -m frontend.doctor
+    gen_assets.py          regenerates SVG icons + logo
+    qml/                   QML UI and assets
+  docs/
 ```
 
-## Troubleshooting
+## Requirements
 
-| Symptom | Cause | Fix |
-| --- | --- | --- |
-| `Feed Server exited ... Code: 1` | a dependency or the backend is missing | run `python -m frontend.doctor` |
-| `No module named 'feedparser'` | dependency not installed | `pip install -r requirements.txt` |
-| `Backend module 'gui_server' Not found` | backend file missing | copy `gui_server.py` into the project |
-| Icons or logo appear blank | Qt SVG plugin not loaded | reinstall PySide6 fully (the app imports QtSvg) |
+- Python 3.9 or newer
+- The packages in `requirements.txt` (PySide6, requests, feedparser,
+  beautifulsoup4, lxml)

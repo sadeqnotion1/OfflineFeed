@@ -1,3 +1,14 @@
+## 2026-06-21 - Root cleanup (Python-free root)
+
+- Moved all root-level Python modules into `backend/` (`gui_server.py`,
+  `run_offlinefeed.py`, `feed_store.py`, `media_cache.py`, `cache_retention.py`).
+- Moved `offline_viewer/`, `tools/`, and `twscrape/` under `backend/`.
+- Added thin `run.bat` / `run.sh` launchers at the root.
+- Repointed launcher + `frontend/app.py` paths/imports to `backend/`.
+- Deleted the stale `archive/` tree.
+- Result: the tracked root now contains only `backend/`, `frontend/`, `docs/`
+  plus config files and the run wrappers.
+
 # OfflineFeed — 8 Fixes (drop-in delivery)
 
 This ZIP mirrors the repository with all edits already applied. To use it:

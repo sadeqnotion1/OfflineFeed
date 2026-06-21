@@ -52,7 +52,7 @@ LOGO = ASSETS / "logo.svg"
 
 def get_backend_port() -> int:
     try:
-        path = REPO_ROOT / "offline_viewer" / "assets" / "ui_settings.json"
+        path = REPO_ROOT / "backend" / "offline_viewer" / "assets" / "ui_settings.json"
         if path.exists():
             data = json.loads(path.read_text(encoding="utf-8"))
             loaded = data[0] if (isinstance(data, list) and len(data) > 0) else (data if isinstance(data, dict) else {})
@@ -72,6 +72,7 @@ EXCLUDE_PRIVATE_FAMILIES = True
 # Allow importing the bridge whether launched as a module or a script.
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO_ROOT))
+sys.path.insert(0, str(REPO_ROOT / "backend"))  # backend modules (gui_server, feed_store, ...)
 
 from bridge import ChatBridge, ChatListModel, MessageModel, SourcesModel, SearchResultsModel  # noqa: E402
 

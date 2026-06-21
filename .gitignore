@@ -28,11 +28,14 @@ Thumbs.db
 .agents/
 
 # Offline cache and runtime folders
-offline_viewer/assets/cached_images/
-offline_viewer/assets/cached_articles/
+backend/offline_viewer/assets/cached_images/
+backend/offline_viewer/assets/cached_articles/
 frontend/qml/assets/icons_backup/
 *.bak
 
 # twscrape data
-twscrape/accounts.db
-twscrape/user_id_cache.json
+backend/twscrape/accounts.db
+backend/twscrape/user_id_cache.json
+
+# Migration backups
+OfflineFeed-backup-*.zip

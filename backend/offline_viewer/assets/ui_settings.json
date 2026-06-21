@@ -4,11 +4,11 @@
             "theme": "night",
             "font_family": "TikTok Sans",
             "accent_override": "#e8506e",
-            "wallpaper_mode": "pattern",
+            "wallpaper_mode": "image",
             "interface_scale": 1.0,
             "auto_night": false,
             "reader_font_family": "TikTok Sans",
-            "wallpaper_image": ""
+            "wallpaper_image": "file:///E:/Projects/OfflineFeed-master/data/wallpapers/wallpaper.jpg"
         },
         "notifications": {
             "enabled": true,

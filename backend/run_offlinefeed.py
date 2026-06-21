@@ -25,9 +25,10 @@ import subprocess
 import sys
 from pathlib import Path
 
-REPO_ROOT = Path(__file__).resolve().parent
+REPO_ROOT = Path(__file__).resolve().parent.parent  # backend/ sits one level below the repo root
+BACKEND = REPO_ROOT / "backend"
 FRONTEND = REPO_ROOT / "frontend"
-for _p in (str(REPO_ROOT), str(FRONTEND)):
+for _p in (str(REPO_ROOT), str(BACKEND), str(FRONTEND)):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 
@@ -86,7 +87,7 @@ def main() -> int:
     # Load configured port for diagnostics check
     port = 8080
     try:
-        settings_path = REPO_ROOT / "offline_viewer" / "assets" / "ui_settings.json"
+        settings_path = BACKEND / "offline_viewer" / "assets" / "ui_settings.json"
         if settings_path.exists():
             import json
             data = json.loads(settings_path.read_text(encoding="utf-8"))
@@ -116,7 +117,7 @@ def main() -> int:
 
     # Auto-start twscrape RSS shim if available
     shim_proc = None
-    shim_path = REPO_ROOT / "twscrape" / "twscrape_rss_shim.py"
+    shim_path = BACKEND / "twscrape" / "twscrape_rss_shim.py"
     if shim_path.exists():
         py_310 = _get_python_310_executable()
         if py_310:
@@ -124,7 +125,7 @@ def main() -> int:
             print(f"Auto-starting twscrape RSS shim using: {py_310}...")
             import os
             env = os.environ.copy()
-            env["TWSCRAPE_ACCOUNTS_DB"] = str(REPO_ROOT / "twscrape" / "accounts.db")
+            env["TWSCRAPE_ACCOUNTS_DB"] = str(BACKEND / "twscrape" / "accounts.db")
             if py_310.startswith("py "):
                 parts = py_310.split()
                 cmd = ["py", parts[1], str(shim_path)]
@@ -136,7 +137,7 @@ def main() -> int:
                 shim_log = open(log_dir / "twscrape_shim.log", "w", encoding="utf-8")
                 shim_proc = subprocess.Popen(
                     cmd,
-                    cwd=str(REPO_ROOT / "twscrape"),
+                    cwd=str(BACKEND / "twscrape"),
                     env=env,
                     stdout=shim_log,
                     stderr=shim_log
