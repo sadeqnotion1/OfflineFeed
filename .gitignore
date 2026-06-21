@@ -39,3 +39,4 @@ backend/twscrape/user_id_cache.json
 
 # Migration backups
 OfflineFeed-backup-*.zip
+backend/sessions.jsonl

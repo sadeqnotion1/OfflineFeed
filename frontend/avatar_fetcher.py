@@ -23,7 +23,7 @@ except ImportError:
     HAS_LIBS = False
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-AVATARS_DIR = REPO_ROOT / "data" / "avatars"
+AVATARS_DIR = REPO_ROOT / "backend" / "data" / "avatars"
 
 def slugify(name: str) -> str:
     """Normalize source name into a safe file slug."""

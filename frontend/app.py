@@ -73,6 +73,7 @@ EXCLUDE_PRIVATE_FAMILIES = True
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(REPO_ROOT))
 sys.path.insert(0, str(REPO_ROOT / "backend"))  # backend modules (gui_server, feed_store, ...)
+sys.path.insert(0, str(REPO_ROOT / "backend"))  # backend modules (gui_server, feed_store, ...)
 
 from bridge import ChatBridge, ChatListModel, MessageModel, SourcesModel, SearchResultsModel  # noqa: E402
 

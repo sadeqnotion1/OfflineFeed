@@ -49,7 +49,7 @@ def get_backend_port() -> int:
     if _cached_backend_port is not None:
         return _cached_backend_port
     try:
-        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "offline_viewer", "assets", "ui_settings.json")
+        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "backend", "offline_viewer", "assets", "ui_settings.json")
         if os.path.exists(path):
             with open(path, "r", encoding="utf-8") as f:
                 data = json.load(f)
@@ -1330,7 +1330,7 @@ class ChatBridge(QObject):
         try:
             from pathlib import Path
             repo_root = Path(__file__).resolve().parent.parent
-            avatars_dir = repo_root / "data" / "avatars"
+            avatars_dir = repo_root / "backend" / "data" / "avatars"
             avatars_dir.mkdir(parents=True, exist_ok=True)
 
             slug = re.sub(r'[^a-zA-Z0-9_-]', '_', name.lower())
@@ -1351,7 +1351,7 @@ class ChatBridge(QObject):
                 img = img.resize((128, 128), Image.Resampling.LANCZOS)
                 out_path = avatars_dir / f"{slug}.png"
                 img.save(out_path, "PNG")
-                target_rel = f"data/avatars/{slug}.png"
+                target_rel = f"backend/data/avatars/{slug}.png"
             else:
                 ext = os.path.splitext(local_path)[1].lower()
                 if not ext:
@@ -1359,7 +1359,7 @@ class ChatBridge(QObject):
                 out_path = avatars_dir / f"{slug}{ext}"
                 import shutil
                 shutil.copy2(local_path, out_path)
-                target_rel = f"data/avatars/{slug}{ext}"
+                target_rel = f"backend/data/avatars/{slug}{ext}"
 
             # Update custom_sources list on disk
             try:
@@ -1542,7 +1542,7 @@ class ChatBridge(QObject):
                     print(f"[Bridge] Failed to post telegram config: {e}")
 
     def _load_ui_settings(self) -> dict:
-        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "offline_viewer", "assets", "ui_settings.json")
+        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "backend", "offline_viewer", "assets", "ui_settings.json")
         defaults = {
             "appearance": {
                 "theme": "night",
@@ -1649,7 +1649,7 @@ class ChatBridge(QObject):
         return defaults
 
     def _save_ui_settings(self, settings: dict):
-        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "offline_viewer", "assets", "ui_settings.json")
+        path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "backend", "offline_viewer", "assets", "ui_settings.json")
         try:
             os.makedirs(os.path.dirname(path), exist_ok=True)
             with open(path, "w", encoding="utf-8") as f:
@@ -1748,7 +1748,7 @@ class ChatBridge(QObject):
             from pathlib import Path
             import shutil
             repo_root = Path(__file__).resolve().parent.parent
-            dest_dir = repo_root / "data" / "wallpapers"
+            dest_dir = repo_root / "backend" / "data" / "wallpapers"
             dest_dir.mkdir(parents=True, exist_ok=True)
             ext = os.path.splitext(src_path)[1].lower() or ".png"
             dest = dest_dir / ("wallpaper" + ext)
@@ -2200,13 +2200,13 @@ class ChatBridge(QObject):
         try:
             from pathlib import Path
             repo_root = Path(__file__).resolve().parent.parent
-            index_path = repo_root / "offline_viewer" / "assets" / "avatars" / "index.json"
+            index_path = repo_root / "backend" / "offline_viewer" / "assets" / "avatars" / "index.json"
             if index_path.exists():
                 with open(index_path, 'r', encoding='utf-8') as f:
                     index_map = json.load(f)
                 val = index_map.get(cid.lower())
                 if val:
-                    p = repo_root / "offline_viewer" / val
+                    p = repo_root / "backend" / "offline_viewer" / val
                     if p.exists():
                         return p.absolute().as_uri()
         except Exception:
@@ -2224,8 +2224,10 @@ class ChatBridge(QObject):
                 if not p.is_absolute():
                     if (repo_root / p).exists():
                         p = repo_root / p
+                    elif (repo_root / "backend" / p).exists():
+                        p = repo_root / "backend" / p
                     else:
-                        p = repo_root / "offline_viewer" / p
+                        p = repo_root / "backend" / "offline_viewer" / p
                 if p.exists():
                     return p.absolute().as_uri()
             return ap
@@ -2242,8 +2244,10 @@ class ChatBridge(QObject):
             if not p.is_absolute():
                 if (repo_root / p).exists():
                     p = repo_root / p
+                elif (repo_root / "backend" / p).exists():
+                    p = repo_root / "backend" / p
                 else:
-                    p = repo_root / "offline_viewer" / p
+                    p = repo_root / "backend" / "offline_viewer" / p
             if p.exists():
                 return p.absolute().as_uri()
         except Exception:

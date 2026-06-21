@@ -1,89 +1,41 @@
-<div align="center">
-
-<img src="frontend/qml/assets/logo.svg" width="96" alt="OfflineFeed logo" />
-
 # OfflineFeed
 
-**A native desktop news / RSS aggregator that reads feeds offline and reposts them to Telegram channels.**
-
-![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
-![UI](https://img.shields.io/badge/UI-PySide6%20%2F%20QML-41CD52?logo=qt&logoColor=white)
-![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
-![Telegram](https://img.shields.io/badge/Reposts%20to-Telegram-26A5E4?logo=telegram&logoColor=white)
-
-</div>
-
----
-
-## Overview
-
-OfflineFeed pulls articles from your RSS / news sources, stores them for offline
-reading, and lets you forward whole channels to Telegram. The interface is a
-Telegram-Desktop-style three-pane layout built with PySide6 + QML, backed by a
-local Python HTTP server.
-
-## Running
+A local, offline-first feed reader. The repository root is intentionally minimal:
 
 ```
-run.bat        # Windows
-./run.sh       # macOS / Linux
+backend/     # all Python, the offline_viewer/, tools/, twscrape/, docs/, and config
+frontend/    # the desktop GUI app (PySide/QML)
+run.bat      # Windows launcher
+run.sh       # macOS / Linux launcher
+README.md    # this file
+.gitignore
 ```
 
-Both wrappers simply call `python backend/run_offlinefeed.py`, which runs a
-health check first and prints the real error if startup fails. The repo root is
-intentionally Python-free; all backend code lives under `backend/`.
+## Run
 
-## Diagnostics
+```bash
+# Windows
+run.bat
 
-If the app will not start:
-
-```
-python -m frontend.doctor
+# macOS / Linux
+./run.sh
 ```
 
-Logs are written to `logs/offlinefeed_debug.log`.
+Both wrappers just call `backend/run_offlinefeed.py`, which launches the backend
+server and the `frontend` GUI together.
 
-## Architecture
+## Nitter (optional, for Twitter/X sources)
 
-| Layer | Technology | Location |
-| --- | --- | --- |
-| Desktop UI | PySide6 + QML | `frontend/qml/` |
-| Bridge (UI to backend) | Python QObject slots / signals | `frontend/bridge.py` |
-| App entry / bootstrap | Python | `frontend/app.py` |
-| Feed Server (HTTP API, port 8080) | Python | `backend/gui_server.py` |
-| Smart launcher | Python | `backend/run_offlinefeed.py` |
-| Offline web viewer + assets | HTML / JS + JSON | `backend/offline_viewer/` |
-| Diagnostics | Python | `frontend/debug.py`, `frontend/doctor.py` |
+The nitter stack lives under `backend/` now, so point compose at it explicitly:
 
-## Project structure
-
-```
-OfflineFeed/
-  run.bat                  Windows launcher
-  run.sh                   macOS / Linux launcher
-  docker-compose.yml
-  nitter.conf
-  backend/
-    run_offlinefeed.py     smart launcher
-    gui_server.py          Feed Server (HTTP API, port 8080)
-    feed_store.py          durable live-feed snapshot
-    media_cache.py         in-article image cache
-    cache_retention.py     cached-post archiver
-    offline_viewer/        web viewer + assets (served by the backend)
-    tools/                 icon importer + helpers
-    twscrape/              optional X -> RSS shim (port 8081)
-  frontend/
-    app.py                 entry point
-    bridge.py              UI <-> backend bridge
-    debug.py               diagnostics + logging
-    doctor.py              python -m frontend.doctor
-    gen_assets.py          regenerates SVG icons + logo
-    qml/                   QML UI and assets
-  docs/
+```bash
+docker compose -f backend/docker-compose.yml up -d
 ```
 
-## Requirements
+## Layout notes
 
-- Python 3.9 or newer
-- The packages in `requirements.txt` (PySide6, requests, feedparser,
-  beautifulsoup4, lxml)
+- `backend/run_offlinefeed.py` is the real entry point.
+- `backend/gui_server.py` serves `backend/offline_viewer/` on `127.0.0.1:8080`.
+- `frontend/app.py` is the GUI; it imports backend modules via `backend/` on
+  `sys.path` and talks to the server over HTTP.
+- History of this cleanup is in `backend/docs/CHANGELOG.md`.
