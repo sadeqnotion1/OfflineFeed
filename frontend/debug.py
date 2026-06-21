@@ -306,8 +306,8 @@ def check_port(port: int = _DEFAULT_PORT) -> Dict[str, str]:
 
 def check_backend_module(module: str = "gui_server") -> Dict[str, str]:
     import importlib.util
-    # Search the repo root + frontend dir the same way app.py does.
-    for p in (str(REPO_ROOT), str(HERE)):
+    # Search the repo root + backend + frontend dir the same way app.py does.
+    for p in (str(REPO_ROOT), str(REPO_ROOT / "backend"), str(HERE)):
         if p not in sys.path:
             sys.path.insert(0, p)
     try:
@@ -337,9 +337,16 @@ def probe_backend_import(module: str = "gui_server") -> Dict[str, str]:
         "importlib.import_module(sys.argv[1])"
     )
     try:
+        import os
+        env = os.environ.copy()
+        backend_path = str(REPO_ROOT / "backend")
+        frontend_path = str(REPO_ROOT / "frontend")
+        existing_pp = env.get("PYTHONPATH", "")
+        env["PYTHONPATH"] = os.pathsep.join(filter(None, [backend_path, frontend_path, str(REPO_ROOT), existing_pp]))
         proc = subprocess.run(
             [sys.executable, "-c", code, module],
             cwd=str(REPO_ROOT),
+            env=env,
             capture_output=True, text=True, timeout=30,
         )
     except Exception as exc:  # noqa: BLE001
@@ -357,7 +364,7 @@ def probe_backend_import(module: str = "gui_server") -> Dict[str, str]:
 def run_diagnostics(port: int = _DEFAULT_PORT, backend_module: str = "gui_server",
                     probe: bool = True) -> Dict[str, Any]:
     """Run all checks and return a structured report."""
-    req_path = REPO_ROOT / "requirements.txt"
+    req_path = REPO_ROOT / "backend" / "requirements.txt"
     checks: List[Dict[str, str]] = []
     checks.append(check_python())
     checks.append(_check("Working dir", "pass", str(Path.cwd())))
