@@ -27,7 +27,7 @@ Item {
             spacing: 8
 
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c1.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: c1.implicitHeight
                 Column {
                     id: c1; width: parent.width
                     SettingsSelect {

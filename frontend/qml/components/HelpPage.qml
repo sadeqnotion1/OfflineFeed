@@ -26,7 +26,7 @@ Item {
             spacing: 8
 
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: infoCol.implicitHeight + 28
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: infoCol.implicitHeight + 28
                 Column {
                     id: infoCol
                     x: 16; y: 14; width: parent.width - 32; spacing: 10

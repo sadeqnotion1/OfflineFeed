@@ -86,7 +86,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: cardFlow.implicitHeight + 24
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: cardFlow.implicitHeight + 24
                 Flow {
                     id: cardFlow
                     x: 16; y: 12
@@ -146,7 +146,7 @@ Item {
 
             // ===== Chat wallpaper =====
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c1.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: c1.implicitHeight
                 Column {
                     id: c1; width: parent.width
                     SettingsSelect {
@@ -161,7 +161,7 @@ Item {
 
             // ---- Item 8: custom wallpaper image ----
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: wallRow.implicitHeight + 24
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: wallRow.implicitHeight + 24
                 Row {
                     id: wallRow
                     x: 16; y: 12
@@ -222,7 +222,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c3.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: c3.implicitHeight
                 Column {
                     id: c3; width: parent.width
                     SettingsSelect {
@@ -242,7 +242,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: swatchFlow.implicitHeight + 24
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: swatchFlow.implicitHeight + 24
                 Flow {
                     id: swatchFlow
                     x: 16; y: 12
@@ -309,7 +309,7 @@ Item {
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c2.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: c2.implicitHeight
                 Column {
                     id: c2; width: parent.width
                     SettingsSelect {

@@ -150,15 +150,35 @@ QtObject {
     //  blue base). The tint* amounts are intentionally subtle (comms-style,
     //  not neon). Used only for isDark variants.
     // ---------------------------------------------------------------------
-    readonly property var darkNeutral: ({
-        "bg":        "#161616",
-        "panelAlt":  "#1c1c1c",
-        "panel":     "#242424",
-        "inBubble":  "#1e1e1e",
-        "divider":   "#0f0f0f",
-        "wallpaper": "#0d0d0d",
-        "secondary": "#8a8a8a"
+    // R1.2: Tinted is now a distinct CYBERPUNK variant. The dark-neutral
+    // ladder is variant-aware: Night/Classic keep the neutral charcoal base,
+    // while Tinted uses a deep neon-night indigo/violet base so it reads as a
+    // clearly different cyberpunk theme even when it shares the same accent as
+    // Night. Surfaces are still tinted toward `accent` via tint(), so the
+    // accent picker keeps working coherently on top of either base.
+    readonly property var darkNeutralVariants: ({
+        "neutral": {
+            "bg":        "#161616",
+            "panelAlt":  "#1c1c1c",
+            "panel":     "#242424",
+            "inBubble":  "#1e1e1e",
+            "divider":   "#0f0f0f",
+            "wallpaper": "#0d0d0d",
+            "secondary": "#8a8a8a"
+        },
+        "cyber": {
+            "bg":        "#0d0a1f",
+            "panelAlt":  "#120e2b",
+            "panel":     "#171236",
+            "inBubble":  "#140f2e",
+            "divider":   "#080614",
+            "wallpaper": "#080513",
+            "secondary": "#8b86c4"
+        }
     })
+    readonly property var darkNeutral: variant === "tinted"
+        ? darkNeutralVariants["cyber"]
+        : darkNeutralVariants["neutral"]
     readonly property real tintBg:        0.08
     readonly property real tintPanel:     0.10
     readonly property real tintPanelAlt:  0.09
@@ -285,7 +305,7 @@ QtObject {
     }
 
     // ----- Metrics -----
-    readonly property int railWidth: 72
+    readonly property int railWidth: 84
     readonly property int chatListWidth: 320
     readonly property int infoPanelWidth: 340
     readonly property int titleBarHeight: 44
@@ -302,7 +322,7 @@ QtObject {
     //   pill -> fully rounded (badges, avatars, pill buttons, toasts)
     // `pill` is a large constant; Qt clamps radius to min(w,h)/2, so it
     // yields a perfect pill for any height and a circle for square items.
-    readonly property var radius: ({ "sm": 8, "md": 12, "lg": 18, "pill": 9999 })
+    readonly property var radius: ({ "sm": 8, "md": 12, "card": 14, "lg": 18, "pill": 9999 })
     readonly property int avatarSize: 46
     readonly property int rowHeight: 70
 

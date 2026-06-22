@@ -49,7 +49,7 @@ Item {
                 title: qsTr("Reader")
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: cReader.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: cReader.implicitHeight
                 Column {
                     id: cReader; width: parent.width
                     SettingsSelect {
@@ -83,7 +83,7 @@ Item {
                 title: qsTr("Chat")
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: cChat.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: cChat.implicitHeight
                 Column {
                     id: cChat; width: parent.width
                     SettingsSelect {
@@ -98,7 +98,7 @@ Item {
             // Chat-wallpaper image picker, wired to the SAME bridge.wallpaperMode /
             // bridge.wallpaperImage state used by Appearance.
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: wallRow.implicitHeight + 24
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: wallRow.implicitHeight + 24
                 Row {
                     id: wallRow
                     x: 16; y: 12
@@ -160,7 +160,7 @@ Item {
                 subtitle: qsTr("Show these feed folders in the sidebar")
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: cFolders.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: cFolders.implicitHeight
                 Column {
                     id: cFolders; width: parent.width
                     SettingsToggle { id: tgEntertainment; label: qsTr("Entertainment")
@@ -181,7 +181,7 @@ Item {
             }
             // Create-folder row
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: 56
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: 56
                 Row {
                     anchors.fill: parent
                     anchors.leftMargin: 16; anchors.rightMargin: 12
@@ -224,7 +224,7 @@ Item {
             // Existing custom folders
             Rectangle {
                 visible: page.customFolders.length > 0
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true
                 height: folderCol.implicitHeight
                 Column {
                     id: folderCol; width: parent.width

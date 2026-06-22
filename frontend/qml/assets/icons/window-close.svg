@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <!-- OfflineFeed window-control close (R1.5). Deliberately distinct from the
+       in-app `close` glyph: a thin, sharp, full-bleed X in the OS title-bar
+       idiom. Recolored at runtime by Icon.qml via ColorOverlay, so the stroke
+       color here is just a placeholder. -->
+  <path d="M5 5 L19 19 M19 5 L5 19" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="square"/>
+</svg>

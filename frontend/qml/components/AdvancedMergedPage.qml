@@ -41,7 +41,7 @@ Item {
                 subtitle: qsTr("Telegram repost target")
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: cAccount.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: cAccount.implicitHeight
                 Column {
                     id: cAccount; width: parent.width
                     SettingsTextField { id: tfBot;    label: qsTr("Bot token");                placeholder: "123456:ABC-DEF..."; password: true }
@@ -86,7 +86,7 @@ Item {
                 title: qsTr("Privacy & Security")
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: cPrivacy.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: cPrivacy.implicitHeight
                 Column {
                     id: cPrivacy; width: parent.width
                     SettingsToggle { id: tgHistory; label: qsTr("Keep read/article history"); description: qsTr("Remember which items you have already opened")
@@ -106,7 +106,7 @@ Item {
                 subtitle: qsTr("Backend & diagnostics")
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: cBackend.implicitHeight
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: cBackend.implicitHeight
                 Column {
                     id: cBackend; width: parent.width
                     SettingsTextField {
@@ -123,7 +123,7 @@ Item {
                 }
             }
             Rectangle {
-                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: diagCol.implicitHeight + 24
+                width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: diagCol.implicitHeight + 24
                 Column {
                     id: diagCol
                     x: 16; y: 12; width: parent.width - 32; spacing: 12

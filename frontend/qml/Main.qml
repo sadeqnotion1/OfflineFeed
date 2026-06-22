@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
+import Qt5Compat.GraphicalEffects
 import "./themes"
 import "./components"
 
@@ -27,7 +28,7 @@ ApplicationWindow {
     visible: true
     title: "OfflineFeed"
     flags: Qt.Window | Qt.FramelessWindowHint
-    color: Theme.bg
+    color: "transparent"          // R1.1: rounded frameless shell — appShell paints the bg
 
     // ---- Window-mode state (PATCH) ----
     // Frameless windows have no native maximize that respects the taskbar, so
@@ -86,10 +87,39 @@ ApplicationWindow {
     // consumed it. We now lay the whole UI out at a "logical" size
     // (window / scale) and scale it up to fill the real window, so the value is
     // applied as a genuine, live UI zoom. At scale 1.0 this is a no-op.
+    // ---- R1.1: rounded frameless shell ----------------------------------
+    // The window itself is transparent; this rounded rectangle paints the app
+    // background so the four outer corners read as rounded. Corners go square
+    // when maximized (Telegram-style) so a maximized window still fills the
+    // screen edge-to-edge.
+    Rectangle {
+        id: appShell
+        anchors.fill: parent
+        radius: win._isMaxed ? 0 : Theme.radius.card
+        color: Theme.bg
+        antialiasing: true
+    }
+
+    // Rounded mask used to clip the whole UI below (never drawn directly).
+    Rectangle {
+        id: shellMask
+        anchors.fill: parent
+        radius: win._isMaxed ? 0 : Theme.radius.card
+        visible: false
+        antialiasing: true
+    }
+
     Item {
         id: uiScaler
         anchors.fill: parent
         readonly property real s: bridge.interfaceScale > 0 ? bridge.interfaceScale : 1.0
+
+        // R1.1: clip the entire UI to the rounded shell so the title bar, rail
+        // and content panes never paint into the rounded corners. Disabled
+        // while maximized (square corners + no full-window FBO cost).
+        layer.enabled: !win._isMaxed
+        layer.smooth: true
+        layer.effect: OpacityMask { maskSource: shellMask }
 
         Item {
         id: scaledRoot
@@ -261,6 +291,20 @@ ApplicationWindow {
             PauseAnimation { duration: 2200 }
             NumberAnimation { target: toast; property: "opacity"; to: 0; duration: Theme.anim }
         }
+    }
+
+    // ---- R1.1: crisp 1px rounded border around the shell ----
+    // Plain Rectangle (no MouseArea) so it never steals input; sits above the
+    // content but below the resize grips. Hidden when maximized.
+    Rectangle {
+        anchors.fill: parent
+        radius: Theme.radius.card
+        color: "transparent"
+        border.width: 1
+        border.color: Theme.hairline
+        antialiasing: true
+        visible: !win._isMaxed
+        z: 9000
     }
 
     // ---- Frameless-window resize grips (PATCH) ----

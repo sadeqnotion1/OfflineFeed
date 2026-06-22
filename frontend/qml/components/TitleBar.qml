@@ -64,7 +64,10 @@ Rectangle {
         // ---- Window controls (SVG, recolored, no emoji) ----
         WindowButton { iconName: "minimize"; onClicked: bar.requestMinimize() }
         WindowButton { iconName: "maximize"; onClicked: bar.requestToggleMaximize() }
-        WindowButton { iconName: "close"; hoverColor: "#e0565b"; onClicked: bar.requestClose() }
+        // R1.5: the WINDOW close control uses its own dedicated glyph
+        // (window-close.svg) so it is visually distinct from the in-app `close`
+        // icon used elsewhere (e.g. dialogs, search field).
+        WindowButton { iconName: "window-close"; hoverColor: "#e0565b"; onClicked: bar.requestClose() }
     }
 
     component WindowButton: Rectangle {
@@ -81,7 +84,8 @@ Rectangle {
             anchors.centerIn: parent
             name: parent.iconName
             size: bar.windowIconSize
-            color: (parent.iconName === "close" && hover.containsMouse) ? "#ffffff" : Theme.textSecondary
+            // R1.5: keep the white-on-hover treatment for the window close glyph.
+            color: ((parent.iconName === "close" || parent.iconName === "window-close") && hover.containsMouse) ? "#ffffff" : Theme.textSecondary
         }
         MouseArea {
             id: hover

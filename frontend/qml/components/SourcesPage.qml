@@ -66,7 +66,7 @@ Item {
             }
             Rectangle {
                 width: parent.width
-                radius: Theme.radius.lg
+                radius: Theme.radius.card
                 color: Theme.panel
                 height: defaultsCol.implicitHeight + 24
                 Column {
@@ -112,7 +112,7 @@ Item {
             }
             Rectangle {
                 width: parent.width
-                radius: Theme.radius.lg
+                radius: Theme.radius.card
                 color: Theme.panel
                 height: singleCol.implicitHeight + 24
                 Column {
@@ -168,7 +168,7 @@ Item {
             }
             Rectangle {
                 width: parent.width
-                radius: Theme.radius.lg
+                radius: Theme.radius.card
                 color: Theme.panel
                 height: batchCol.implicitHeight + 24
                 Column {
@@ -220,7 +220,7 @@ Item {
             }
             Rectangle {
                 width: parent.width
-                radius: Theme.radius.lg
+                radius: Theme.radius.card
                 color: Theme.panel
                 height: opmlCol.implicitHeight + 24
                 Column {
@@ -269,7 +269,7 @@ Item {
                     delegate: Rectangle {
                         id: row
                         width: page.width - 32 > 620 ? 620 : page.width - 32
-                        color: Theme.panel; radius: Theme.radius.lg
+                        color: Theme.panel; radius: Theme.radius.card
                         implicitHeight: rowStack.implicitHeight + 20
 
                         property bool editing: false
