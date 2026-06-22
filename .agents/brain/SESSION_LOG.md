@@ -15,3 +15,10 @@
 - No application code changed.
 - **Stop point / next:** start **M1 — Window chrome & theme foundation** (NEXT.md). Recommended first
   slice: R1.1 (rounded window) + R1.3 (all settings sub-cards rounded).
+
+## 2026-06-22 — Session 2: Applied fixes 1826 & 19336222026 (M1)
+- Applied standard Graphify schema fixes in graph renderer tools (`render_graph.py`, `README.md`) and added standard skill templates/files inside `.agents/skills/`.
+- Packaged requested files for UI foundation into a zip folder `m1_assets.zip` at project root.
+- Overwrote original QML and theme code with milestone M1 fixes (rounded app window, Tinted cyberpunk variant, card radius consolidation, widened left folder rail, distinct close icon).
+- Verified python syntax compilation and QML diagnostics using `doctor.py`.
+- **Stop point / next:** start **M2 — Settings information architecture & consistency** (NEXT.md).

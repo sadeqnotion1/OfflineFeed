@@ -11,16 +11,15 @@ Don't start the next one until the current one's acceptance criteria pass.
 
 ---
 
-## M1 — Window chrome & theme foundation ⬜ ← NEXT
-_Visual base everything else sits on. Mostly `frontend/qml/Main.qml`, `frontend/qml/themes/`, `frontend/qml/components/`._
+## M1 — Window chrome & theme foundation ✅
+_Visual base everything else sits on. Finished 2026-06-22._
+- **True rounded frameless shell** (R1.1)
+- **Cyberpunk Tinted theme** (R1.2)
+- **Shared 14px card radius token** (R1.3)
+- **84px folder rail** (R1.4)
+- **Distinct window-close glyph** (R1.5)
 
-- **R1.1 — Rounded app window.** The whole app window is square by default; give it rounded corners (frameless + rounded mask / background, keep resize + drag working).
-- **R1.2 — Tinted vs Night theme are identical.** Make the "Tinted" and "Night" themes visibly distinct in `themes/`.
-- **R1.3 — Mixed corner radii in settings.** Some settings sub-cards are square, some rounded — make them **all** rounded (one shared component/radius token).
-- **R1.4 — Left rail too narrow.** The left rail clips labels (e.g. "Entertainment" is cut off). Widen the rail / handle text elision so labels fit.
-- **R1.5 — App close button icon.** The window close button uses the same icon as other (in-app) close icons; give the window-close a distinct icon.
-
-## M2 — Settings information architecture & consistency ⬜
+## M2 — Settings information architecture & consistency ⬜ ← NEXT
 _Mostly `frontend/qml` settings views + labels._
 
 - **R2.1 — Two visual languages in Settings.** Some settings are "advanced-style", some "simple-style". Unify them into one consistent settings UI.
