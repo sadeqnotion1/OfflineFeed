@@ -12,7 +12,7 @@
 | Frontend (desktop UI) | ✅ | PySide6 + QML, three-pane Telegram-style. `frontend/app.py`, `frontend/bridge.py`, `frontend/qml/`. |
 | X / Twitter | ✅ (flaky) | twscrape RSS shim at 127.0.0.1:8081 (`backend/twscrape/`). Some high-volume handles go stale — see R9.1. |
 | Offline reader | ✅ | `backend/offline_reader.py` renders deep-link `?reader=...`. Too plain — see R8.1. |
-| Knowledge graph (`.agents/graph/`) | 🟦 | Seed `graph.json` of real modules included; expand as you touch areas. Regenerate via `render_graph.py`. |
+| Knowledge graph (`.agents/graph/`) | ✅ | Full 74-node Graphify graph included. Standard schema and renderer validated. |
 | Brain (`.agents/brain/`) | ✅ | This system. |
 | M1 Window chrome & theme | ⬜ | **← NEXT** |
 | M2–M10 | ⬜ | See ROADMAP.md |
