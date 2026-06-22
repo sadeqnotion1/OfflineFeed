@@ -2062,25 +2062,11 @@ def fetch_and_aggregate_news():
     all_articles = []
     status_map = {}
     
-    twitter_sources = []
-    other_sources = []
-    for s in sources:
-        url = s[1]
-        if "twitter.com/" in url or "x.com/" in url:
-            twitter_sources.append(s)
-        else:
-            other_sources.append(s)
-            
-    # Fetch non-Twitter sources concurrently
-    with concurrent.futures.ThreadPoolExecutor(max_workers=16) as executor:
-        results = list(executor.map(fetch_single_source, other_sources))
-        
-    # Fetch Twitter sources sequentially with a rate limit safety delay
-    import time
-    for ts in twitter_sources:
-        res = fetch_single_source(ts)
-        results.append(res)
-        time.sleep(0.5)
+    # Fetch all sources concurrently.
+    # Twitter sources are also fetched concurrently to avoid sequential bottlenecks
+    # where a single slow or timed-out request blocks the entire refresh cycle.
+    with concurrent.futures.ThreadPoolExecutor(max_workers=24) as executor:
+        results = list(executor.map(fetch_single_source, sources))
         
     with news_cache_lock:
         old_list = list(news_cache["data"])
