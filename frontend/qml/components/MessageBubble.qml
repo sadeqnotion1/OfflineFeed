@@ -14,6 +14,11 @@ import "../themes"
 // (caption in a solid bubble BELOW the image) is kept as the default so nothing
 // changes unless overlay mode is explicitly switched on. Toggle globally with
 // Theme.postOverlayMode, or per-bubble with `overlayMode` below.
+//
+// FIX (X images cut off / only 1 of 2 showing): the media slot now renders the
+// FULL list of post images. A single image keeps its natural aspect ratio
+// (PreserveAspectFit, bounded height) so portraits are no longer hard-cropped
+// to 16:9, and 2+ images render as a Telegram-style 2-column album grid.
 Item {
     id: root
 
@@ -22,6 +27,8 @@ Item {
     property string text: ""
     property string url: ""
     property string thumbnail: ""
+    // FIX (X multi-image): full list of post images; falls back to `thumbnail`.
+    property var images: []
     property string time: ""
     property bool outgoing: false
     property bool read: true
@@ -144,59 +151,106 @@ Item {
                 return Math.min(maxW, root.maxBubbleWidth - hPad * 2);
             }
 
-            // Article image (optional) with rounded top corners and fixed aspect ratio
-            // Phase 2 - Task 3 (missing thumbnail fallback): always render the
-            // media slot; when a post has no thumbnail (or it fails to load) we
-            // show a bundled placeholder instead of an empty/broken box. Mirrors
-            // the web viewer for cross-client consistency.
+            // Article media (optional). Phase 2 - Task 3 (missing thumbnail
+            // fallback): always render the media slot; when a post has no image
+            // (or it fails to load) we show a bundled placeholder instead of an
+            // empty/broken box.
+            //
+            // FIX (X images cut off / 2-pic posts): prefer the multi-image list
+            // and render ALL of them. A single image uses its NATURAL aspect
+            // ratio (no 16:9 hard-crop); 2+ images use a Telegram-style album.
             Item {
                 id: imageContainer
                 readonly property string placeholderSource: Qt.resolvedUrl("../assets/placeholder-thumb.svg")
+                readonly property var imageList: {
+                    if (root.images && root.images.length > 0) return root.images;
+                    if (root.thumbnail !== "") return [root.thumbnail];
+                    return [];
+                }
+                readonly property bool hasImages: imageList.length > 0
+                readonly property bool isAlbum: imageList.length > 1
+                readonly property real albumGap: 3
+                readonly property real albumCell: Math.floor((mediaWidth - albumGap) / 2)
+                readonly property int albumRows: isAlbum ? Math.ceil(imageList.length / 2) : 0
                 visible: true
                 width: mediaWidth
-                height: mediaHeight
+                height: isAlbum
+                        ? (albumRows * albumCell + (albumRows - 1) * albumGap)
+                        : (hasImages ? singleImage.fittedHeight : mediaHeight)
                 clip: true
 
+                // ---- Single image: natural aspect ratio, bounded height (no crop) ----
                 Rectangle {
                     id: imageClipContainer
+                    visible: !imageContainer.isAlbum
                     width: parent.width
-                    height: mediaHeight + Theme.bubbleRadius
+                    height: imageContainer.height + Theme.bubbleRadius
                     radius: Theme.radius.lg
                     color: Qt.darker(Theme.inBubble, 1.15)
                     clip: true
 
                     Image {
-                        id: image
+                        id: singleImage
+                        // Bounded natural height: fit the full image to the bubble
+                        // width and cap very tall images so they don't dominate.
+                        readonly property real ratio: (implicitWidth > 0 && implicitHeight > 0)
+                            ? (implicitHeight / implicitWidth) : (9 / 16)
+                        readonly property real fittedHeight:
+                            Math.max(60, Math.min(mediaWidth * ratio, mediaWidth * 1.4))
                         visible: true
-                        source: root.thumbnail !== "" ? root.thumbnail : imageContainer.placeholderSource
+                        source: imageContainer.hasImages ? imageContainer.imageList[0]
+                                                         : imageContainer.placeholderSource
                         width: mediaWidth
-                        height: mediaHeight
-                        fillMode: Image.PreserveAspectCrop
+                        height: imageContainer.height
+                        fillMode: Image.PreserveAspectFit
                         clip: true
                         asynchronous: true
                         cache: true
                         smooth: true
                         sourceSize.width: mediaWidth
-                        sourceSize.height: mediaHeight
-                        // Swap to the placeholder if the real thumbnail 404s / fails to load.
+                        // Swap to the placeholder if the real image 404s / fails to load.
                         onStatusChanged: if (status === Image.Error) source = imageContainer.placeholderSource
                     }
                 }
 
+                // ---- Album (2+ images): Telegram-style 2-column grid ----
+                Grid {
+                    id: albumGrid
+                    visible: imageContainer.isAlbum
+                    columns: 2
+                    columnSpacing: imageContainer.albumGap
+                    rowSpacing: imageContainer.albumGap
+                    Repeater {
+                        model: imageContainer.isAlbum ? imageContainer.imageList : []
+                        delegate: Rectangle {
+                            width: imageContainer.albumCell
+                            height: imageContainer.albumCell
+                            radius: Theme.radius.md
+                            color: Qt.darker(Theme.inBubble, 1.15)
+                            clip: true
+                            Image {
+                                anchors.fill: parent
+                                source: modelData
+                                fillMode: Image.PreserveAspectCrop
+                                asynchronous: true
+                                cache: true
+                                smooth: true
+                                sourceSize.width: imageContainer.albumCell
+                                sourceSize.height: imageContainer.albumCell
+                                onStatusChanged: if (status === Image.Error)
+                                    source = imageContainer.placeholderSource
+                            }
+                        }
+                    }
+                }
+
                 // ===== 06_image_overlay_scrim — legibility layer (overlay mode) =====
-                // STEP 1+3: bottom-anchored gradient scrim, clipped to the image.
-                //   * It is a child of imageContainer (clip:true, mediaWidth x
-                //     mediaHeight), so it is CLIPPED to the image rect; the
-                //     rounded TOP corners come from imageClipContainer beneath,
-                //     and the bottom meets the bubble exactly as before.
-                //   * Gradient runs transparent (top) -> rgba(0,0,0,0.7)
-                //     (bottom). It is sized to the caption band only, so ONLY the
-                //     text region is darkened — never the whole image.
-                // Z-ORDER: image (z 0, in imageClipContainer) < scrim (z 1) <
-                //          caption (z 2).
+                // Bottom-anchored gradient scrim, clipped to the image. Disabled
+                // for album mode (multi-image) since captions over a grid read
+                // poorly; single-image overlay behaviour is unchanged.
                 Rectangle {
                     id: scrim
-                    visible: root.overlayActive
+                    visible: root.overlayActive && !imageContainer.isAlbum
                     z: 1
                     anchors.left: parent.left
                     anchors.right: parent.right
@@ -205,20 +259,16 @@ Item {
                     // more than the image height.
                     height: Math.min(parent.height, overlayCaption.implicitHeight + 36)
                     gradient: Gradient {
-                        // Vertical by default (top -> bottom). The dark floor is
-                        // reached early (0.30) so the WHOLE caption band sits in
-                        // the >=0.55 alpha zone -> AA contrast even for 2 lines.
                         GradientStop { position: 0.0;  color: "transparent" }
                         GradientStop { position: 0.30; color: Theme.scrimMid }   // rgba(0,0,0,0.55)
                         GradientStop { position: 1.0;  color: Theme.scrim }      // rgba(0,0,0,0.78)
                     }
                 }
 
-                // STEP 2: title (14.5px≈15, weight 700) + meta (11px, muted)
-                // placed ABOVE the scrim (z 2) and anchored to the bottom band.
+                // title (≈15px, weight 700) + meta (11px, muted) ABOVE the scrim.
                 Column {
                     id: overlayCaption
-                    visible: root.overlayActive
+                    visible: root.overlayActive && !imageContainer.isAlbum
                     z: 2
                     spacing: 2
                     anchors.left: parent.left
@@ -236,11 +286,8 @@ Item {
                         text: root.title
                         color: Theme.onMedia                 // always-light, reuse theme token
                         font.family: Theme.fontFamily
-                        // QML font.pixelSize is integer; 14.5px spec ≈ 15px.
                         font.pixelSize: 15
                         font.weight: Font.Bold               // weight 700
-                        // Belt-and-suspenders legibility: a subtle dark outline
-                        // keeps text readable even on the lighter top of the scrim.
                         style: Text.Outline
                         styleColor: Qt.rgba(0, 0, 0, 0.55)
                         wrapMode: Text.WordWrap
@@ -253,7 +300,6 @@ Item {
                         id: overlayMeta
                         width: parent.width
                         visible: text !== ""
-                        // topic • views • time, condensed to one muted line.
                         text: {
                             var parts = [];
                             if (root.topic !== "")
@@ -312,9 +358,6 @@ Item {
             }
 
             // Meta row: topic tag, views, time, double-check ticks, forward.
-            // In overlay mode the textual meta (topic / views / time) is shown
-            // ON the image; the interactive action icons stay here so nothing is
-            // lost. The row hides entirely only when it would be empty.
             RowLayout {
                 id: metaRow
                 width: parent.width

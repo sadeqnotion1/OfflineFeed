@@ -328,6 +328,7 @@ Rectangle {
                     text: model.text
                     url: model.url
                     thumbnail: model.thumbnail
+                    images: model.images
                     time: model.time
                     outgoing: model.outgoing
                     read: model.read

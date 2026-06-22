@@ -15,6 +15,13 @@ Just keep OFFLINEFEED_NITTER_HOSTS = http://127.0.0.1:8081 (the default).
 Setup & run: see README_PATH_B.md.
 
 Deps: pip install twscrape   (Python 3.10+). Standard library otherwise.
+
+FIX (X images cut off / only 1 of 2 showing):
+  * _fetch_items now collects EVERY photo on a tweet (not just photos[0]).
+  * _full_res_twimg() upgrades pbs.twimg.com URLs to name=orig so the picture
+    is the FULL, uncropped original instead of a resized/cropped variant.
+  * render_rss emits one <media:content> per image (+ all <img> in the
+    description), so multi-photo tweets keep all their pictures.
 """
 import asyncio
 import os
@@ -22,7 +29,7 @@ import sys
 from datetime import datetime, timezone
 from email.utils import format_datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlsplit, urlunsplit, parse_qsl, urlencode
 from xml.sax.saxutils import escape
 
 HOST = os.environ.get("TWSCRAPE_SHIM_HOST", "127.0.0.1")
@@ -55,6 +62,36 @@ def save_user_id_cache():
 
 load_user_id_cache()
 
+
+def _full_res_twimg(url):
+    """Return the FULL-resolution original for a pbs.twimg.com image URL.
+
+    X serves cropped/resized variants via a `name=` query (e.g. name=small,
+    name=360x360). Requesting name=orig yields the uncropped original. Non-twimg
+    URLs are returned unchanged. Never raises.
+    """
+    try:
+        if not url or "pbs.twimg.com" not in url:
+            return url
+        parts = urlsplit(url)
+        q = dict(parse_qsl(parts.query))
+        path = parts.path
+        fmt = q.get("format")
+        if not fmt:
+            dot = path.rfind(".")
+            if dot != -1:
+                ext = path[dot + 1:].lower()
+                if ext in ("jpg", "jpeg", "png", "webp"):
+                    fmt = "jpg" if ext == "jpeg" else ext
+                    path = path[:dot]
+        q["name"] = "orig"
+        if fmt:
+            q["format"] = fmt
+        return urlunsplit((parts.scheme, parts.netloc, path, urlencode(q), parts.fragment))
+    except Exception:
+        return url
+
+
 async def get_user_id(api, handle):
     handle_key = handle.lower().strip()
     if handle_key in user_id_cache:
@@ -81,8 +118,8 @@ threading.Thread(target=_run_loop, args=(LOOP,), daemon=True).start()
 def render_rss(handle, items):
     """Pure function: build an RSS 2.0 string from a list of normalized dicts.
 
-    Each item dict: {id, text, url, date (aware datetime), thumb (str|None)}.
-    Kept dependency-free so it can be unit-tested offline.
+    Each item dict: {id, text, url, date (aware datetime), thumb (str|None),
+    thumbs (list[str])}. Kept dependency-free so it can be unit-tested offline.
     """
     now = format_datetime(datetime.now(timezone.utc))
     channel_link = "https://x.com/" + escape(handle)
@@ -106,15 +143,24 @@ def render_rss(handle, items):
         pub = it.get("date")
         pub_str = format_datetime(pub) if isinstance(pub, datetime) else now
         desc = escape(text or title)
-        thumb = it.get("thumb")
+        # FIX (multi-image): keep EVERY photo, not just the first one.
+        imgs = it.get("thumbs")
+        if not imgs:
+            single = it.get("thumb")
+            imgs = [single] if single else []
+        if imgs:
+            imgs_html = ""
+            for im in imgs:
+                if not im:
+                    continue
+                parts.append('      <media:content url="' + escape(im) + '" medium="image"/>')
+                imgs_html += '&lt;img src="' + escape(im) + '"/&gt; '
+            desc = imgs_html + desc
         parts.append("    <item>")
         parts.append("      <title>" + escape(title) + "</title>")
         parts.append("      <link>" + escape(url) + "</link>")
         parts.append('      <guid isPermaLink="true">' + escape(url) + "</guid>")
         parts.append("      <pubDate>" + pub_str + "</pubDate>")
-        if thumb:
-            parts.append('      <media:content url="' + escape(thumb) + '" medium="image"/>')
-            desc = '&lt;img src="' + escape(thumb) + '"/&gt; ' + desc
         parts.append("      <description>" + desc + "</description>")
         parts.append("    </item>")
     parts.append("  </channel>")
@@ -145,18 +191,24 @@ async def _fetch_items(handle):
     # 3. Fetch tweets
     raw = []
     async for tweet in api.user_tweets(user_id, limit=LIMIT):
-        thumb = None
+        # FIX (X images): capture ALL photos at FULL resolution (uncropped),
+        # not just the first cropped thumbnail.
+        imgs = []
         media = getattr(tweet, "media", None)
         photos = getattr(media, "photos", None) if media else None
         if photos:
-            thumb = getattr(photos[0], "url", None)
+            for p in photos:
+                u = getattr(p, "url", None)
+                if u:
+                    imgs.append(_full_res_twimg(u))
         raw.append(
             {
                 "id": getattr(tweet, "id", ""),
                 "text": getattr(tweet, "rawContent", "") or "",
                 "url": getattr(tweet, "url", "") or "",
                 "date": getattr(tweet, "date", None),
-                "thumb": thumb,
+                "thumb": imgs[0] if imgs else None,
+                "thumbs": imgs,
             }
         )
     # Newest first (defensive: pinned/retweets can arrive out of order).

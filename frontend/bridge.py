@@ -235,6 +235,7 @@ class MessageModel(QAbstractListModel):
     TopicRole = Qt.UserRole + 11
     DayRole = Qt.UserRole + 12
     PinnedRole = Qt.UserRole + 13   # item 2: per-post pin flag
+    ImagesRole = Qt.UserRole + 14   # FIX: all post images (X albums)
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -255,6 +256,7 @@ class MessageModel(QAbstractListModel):
             self.TopicRole: b"topic",
             self.DayRole: b"day",
             self.PinnedRole: b"pinned",
+            self.ImagesRole: b"images",
         }
 
     def rowCount(self, parent=QModelIndex()):
@@ -278,6 +280,7 @@ class MessageModel(QAbstractListModel):
             self.TopicRole: "topic",
             self.DayRole: "day",
             self.PinnedRole: "pinned",
+            self.ImagesRole: "images",
         }
         return item.get(mapping.get(role, ""), "")
 
@@ -2401,6 +2404,31 @@ class ChatBridge(QObject):
             return b64 if b64.startswith("data:") else ("data:image/png;base64," + b64)
         return ""
 
+    def _post_images(self, a):
+        """FIX (X multi-image): return ALL images for a post, resolved/cached.
+        Sources, in order: an explicit images list, <img> tags inside the
+        description (the X/twscrape RSS bridge embeds every photo there),
+        then the single thumbnail. Always falls back safely."""
+        import re as _re
+        raw = []
+        imgs = a.get("images")
+        if isinstance(imgs, (list, tuple)):
+            raw.extend([u for u in imgs if u])
+        desc = a.get("description") or ""
+        if isinstance(desc, str) and "<img" in desc:
+            raw.extend(_re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', desc))
+        if not raw:
+            t = a.get("thumbnail")
+            if t:
+                raw.append(t)
+        out, seen = [], set()
+        for u in raw:
+            ru = self._resolve_image(u)
+            if ru and ru not in seen:
+                seen.add(ru)
+                out.append(ru)
+        return out
+
     def _rebuild_messages(self, channel_id):
         if channel_id == SPECIAL_LOGS:
             self.loadLogs()
@@ -2437,6 +2465,7 @@ class ChatBridge(QObject):
                 "text": a.get("description", ""),
                 "url": url,
                 "thumbnail": self._resolve_image(a.get("thumbnail", "")),
+                "images": self._post_images(a),
                 "time": self._abs_datetime(a.get("published") or a.get("timestamp", "")),
                 "outgoing": False,
                 "read": True,

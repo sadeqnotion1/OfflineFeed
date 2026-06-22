@@ -11,6 +11,7 @@ import datetime
 import concurrent.futures
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 import feed_store
+import offline_reader   # NEW: server-rendered offline reader page (fixes ?reader= viewer)
 import media_cache       # NEW: caches in-article images for true offline reading
 import cache_retention   # NEW: 14-day cached-post archiver
 
@@ -2336,7 +2337,47 @@ class GUIHandler(SimpleHTTPRequestHandler):
         except Exception as e:  # never break the page; return a usable fallback
             self.send_json_response(200, {"fonts": FONT_FALLBACK_LIST, "error": str(e)})
 
+    def handle_offline_reader(self, article_url, title=""):
+        """Render a self-contained offline reader page (fixes ?reader= viewer)."""
+        try:
+            import urllib.parse as _u
+            import offline_reader
+            article_url = _u.unquote(article_url or "")
+            title = _u.unquote(title or "")
+            if not article_url:
+                self.send_error(400, "Missing ?reader= URL")
+                return
+            blocks = []
+            try:
+                blocks = get_article_content_blocks(article_url)
+            except Exception as _e:
+                print("[Reader] content extraction failed:", _e)
+            html_str = offline_reader.render_reader_html(article_url, title, blocks)
+            body = html_str.encode("utf-8")
+            self.send_response(200)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+        except Exception as _e:
+            try:
+                self.send_error(500, "Reader error: " + str(_e))
+            except Exception:
+                pass
+
     def do_GET(self):
+        # FIX (offline viewer): serve a real reader page for the ?reader=
+        # deep link instead of falling through to the static directory listing.
+        try:
+            import urllib.parse as _urlparse_mod
+            _pp = _urlparse_mod.urlparse(self.path)
+            if _pp.path in ("/", "/index.html"):
+                _qs = _urlparse_mod.parse_qs(_pp.query)
+                if "reader" in _qs:
+                    self.handle_offline_reader(_qs.get("reader", [""])[0], _qs.get("title", [""])[0])
+                    return
+        except Exception:
+            pass
         if self.path == "/api/status":
             self.send_json_response(200, {"status": "ok", "app": "OfflineFeed"})
         elif self.path == "/api/system/fonts":

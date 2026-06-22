@@ -45,10 +45,19 @@ ApplicationWindow {
             _isMaxed = false
         } else {
             _restoreGeom = Qt.rect(win.x, win.y, win.width, win.height)
-            win.x = Screen.virtualX
-            win.y = Screen.virtualY
-            win.width = Screen.desktopAvailableWidth
-            win.height = Screen.desktopAvailableHeight
+            // FIX (high-DPI "~3x too wide" maximize/restore bug):
+            // Screen.* metrics are reported in PHYSICAL device pixels, but a
+            // Window's geometry is in LOGICAL (device-independent) pixels. On a
+            // scaled display (e.g. 150% / 200% / 300%) feeding the physical
+            // numbers straight in made the window devicePixelRatio-times too
+            // large (the "3x bigger than screen" symptom). Convert to logical
+            // pixels via Screen.devicePixelRatio. At 100% scale dpr == 1, so
+            // this is a no-op on non-scaled displays.
+            var dpr = Screen.devicePixelRatio > 0 ? Screen.devicePixelRatio : 1
+            win.x = Math.round(Screen.virtualX / dpr)
+            win.y = Math.round(Screen.virtualY / dpr)
+            win.width = Math.round(Screen.desktopAvailableWidth / dpr)
+            win.height = Math.round(Screen.desktopAvailableHeight / dpr)
             _isMaxed = true
         }
     }
