@@ -17,7 +17,7 @@ Rectangle {
  id: root
  color: Theme.railBg
 
- property string activeTab: "entertainment"
+ property string activeTab: "all"
  signal tabSelected(string tab)
  signal settingsRequested()
 
@@ -26,6 +26,7 @@ Rectangle {
 
  // tab metadata
  property var tabs: [
+ { id: "all", label: qsTr("All"), icon: "chats" },
  { id: "entertainment", label: qsTr("Entertainment"), icon: "film" },
  { id: "sports", label: qsTr("Sports"), icon: "soccer" },
  { id: "technology", label: qsTr("Tech"), icon: "cpu" }

@@ -471,7 +471,7 @@ class ChatBridge(QObject):
             "reader_font_family", self._fontFamily)
         # Item 8: optional custom wallpaper image (stored as a file URI).
         self._wallpaperImage = self._ui_settings["appearance"].get("wallpaper_image", "")
-        self._active_tab = "entertainment"
+        self._active_tab = "all"
         self._current_channel_id = ""
         self._current_channel_name = ""
         self._current_channel_avatar = ""            # item 5
@@ -1788,7 +1788,7 @@ class ChatBridge(QObject):
         self._custom_folders = [f for f in self._custom_folders if f.get("id") != fid]
         self._save_folders()
         if self._active_tab == fid:
-            self._set_tab("entertainment")
+            self._set_tab("all")
 
     @Slot(str, str)
     def addChannelToFolder(self, fid, channel_id):
@@ -1829,9 +1829,14 @@ class ChatBridge(QObject):
         folder = self._folder_by_id(self._active_tab)
         if folder is not None:
             return cid in (folder.get("channels") or [])
-        if self._active_tab in ("settings",):
+        tab = (self._active_tab or "").strip().lower()
+        # "All chats" (and Settings) must NOT filter the channel list.
+        # Without this branch any feed whose section was not literally a
+        # tab id was hidden, with no "All" view to fall back to -> the chat
+        # list looked empty even though feeds were fetched fine.
+        if tab in ("all", "all chats", "allchats", "chats", "", "settings"):
             return True
-        return self._section_of(cid) == self._active_tab
+        return self._section_of(cid) == tab
 
     def _header_avatar_for(self, cid):
         if cid == SPECIAL_SAVED:
