@@ -1,0 +1,1787 @@
+{
+  "meta": {
+    "repo": "sadeqnotion1/OfflineFeed",
+    "generated": "2026-06-19T09:16:05.075279+00:00",
+    "node_count": 74,
+    "edge_count": 134,
+    "note": "Built via Graphify Protocol. Code edges read literally are EXTRACTED; edges from files referenced but not fully loaded (GitHub rate limit) are INFERRED."
+  },
+  "nodes": [
+    {
+      "id": "run_offlinefeed",
+      "label": "run_offlinefeed.py",
+      "type": "file",
+      "location": "run_offlinefeed.py:1",
+      "community": "bootstrap",
+      "summary": "Smart launcher: runs diagnostics, backfills avatars, then spawns frontend.app and tails the log on failure.",
+      "degree": 3
+    },
+    {
+      "id": "run_offlinefeed:main",
+      "label": "main()",
+      "type": "function",
+      "location": "run_offlinefeed.py:38",
+      "community": "bootstrap",
+      "summary": "Parses flags (--doctor/--force/--refresh-avatars), runs the doctor, refuses to launch on FAIL, then runs the GUI as a child process.",
+      "degree": 7
+    },
+    {
+      "id": "app",
+      "label": "frontend/app.py",
+      "type": "file",
+      "location": "frontend/app.py:1",
+      "community": "bootstrap",
+      "summary": "PySide6 entry point: boots the backend thread, loads fonts, registers bridge+models as QML context properties, loads Main.qml.",
+      "degree": 8
+    },
+    {
+      "id": "app:main",
+      "label": "main()",
+      "type": "function",
+      "location": "frontend/app.py:main",
+      "community": "bootstrap",
+      "summary": "Creates the QApplication, instantiates the four models + ChatBridge, wires QML context properties and loads Main.qml.",
+      "degree": 11
+    },
+    {
+      "id": "app:start_backend",
+      "label": "start_backend()",
+      "type": "function",
+      "location": "frontend/app.py:start_backend",
+      "community": "bootstrap",
+      "summary": "Imports gui_server in a daemon thread and calls the first available entry point (start_server/main/run/start/serve).",
+      "degree": 5
+    },
+    {
+      "id": "app:enumerate_system_fonts",
+      "label": "enumerate_system_fonts()",
+      "type": "function",
+      "location": "frontend/app.py:enumerate_system_fonts",
+      "community": "bootstrap",
+      "summary": "Returns a de-duplicated, sorted list of installed font families for the QML font picker.",
+      "degree": 2
+    },
+    {
+      "id": "app:get_backend_port",
+      "label": "get_backend_port() [app]",
+      "type": "function",
+      "location": "frontend/app.py:get_backend_port",
+      "community": "bootstrap",
+      "summary": "Reads backend_port from ui_settings.json, defaulting to 8080.",
+      "degree": 2
+    },
+    {
+      "id": "debug",
+      "label": "frontend/debug.py",
+      "type": "file",
+      "location": "frontend/debug.py:1",
+      "community": "diagnostics",
+      "summary": "Diagnostics + logging subsystem with no PySide6 dependency: rotating log, ring buffer, excepthooks, and the preflight doctor.",
+      "degree": 10
+    },
+    {
+      "id": "debug:run_diagnostics",
+      "label": "run_diagnostics()",
+      "type": "function",
+      "location": "frontend/debug.py:run_diagnostics",
+      "community": "diagnostics",
+      "summary": "Runs all preflight checks and returns a structured PASS/WARN/FAIL report.",
+      "degree": 7
+    },
+    {
+      "id": "debug:get_logger",
+      "label": "get_logger()",
+      "type": "function",
+      "location": "frontend/debug.py:get_logger",
+      "community": "diagnostics",
+      "summary": "Singleton logger writing to console, a rotating file, and the in-memory ring buffer.",
+      "degree": 3
+    },
+    {
+      "id": "debug:install_excepthooks",
+      "label": "install_excepthooks()",
+      "type": "function",
+      "location": "frontend/debug.py:install_excepthooks",
+      "community": "diagnostics",
+      "summary": "Routes uncaught main-thread and daemon-thread exceptions into the log.",
+      "degree": 2
+    },
+    {
+      "id": "debug:probe_backend_import",
+      "label": "probe_backend_import()",
+      "type": "function",
+      "location": "frontend/debug.py:probe_backend_import",
+      "community": "diagnostics",
+      "summary": "Imports gui_server in a clean subprocess to surface the real import-time traceback behind 'Code: 1'.",
+      "degree": 3
+    },
+    {
+      "id": "debug:check_backend_module",
+      "label": "check_backend_module()",
+      "type": "function",
+      "location": "frontend/debug.py:check_backend_module",
+      "community": "diagnostics",
+      "summary": "Verifies gui_server is resolvable on sys.path the same way app.py searches.",
+      "degree": 3
+    },
+    {
+      "id": "debug:_RingBufferHandler",
+      "label": "_RingBufferHandler",
+      "type": "class",
+      "location": "frontend/debug.py:_RingBufferHandler",
+      "community": "diagnostics",
+      "summary": "Logging handler that keeps the most recent records in memory for the in-app System Logs panel.",
+      "degree": 3
+    },
+    {
+      "id": "doctor",
+      "label": "frontend/doctor.py",
+      "type": "file",
+      "location": "frontend/doctor.py:1",
+      "community": "diagnostics",
+      "summary": "One-command CLI health check (python -m frontend.doctor) that wraps debug.run_diagnostics and exits 0/1.",
+      "degree": 2
+    },
+    {
+      "id": "doctor:main",
+      "label": "main()",
+      "type": "function",
+      "location": "frontend/doctor.py:main",
+      "community": "diagnostics",
+      "summary": "Resolves the port from settings, runs diagnostics, prints the report, returns the exit code.",
+      "degree": 3
+    },
+    {
+      "id": "log_file",
+      "label": "logs/offlinefeed_debug.log",
+      "type": "resource",
+      "location": "logs/offlinefeed_debug.log",
+      "community": "diagnostics",
+      "summary": "Rotating debug log written by the logger; tailed by the launcher on a non-zero exit.",
+      "degree": 2
+    },
+    {
+      "id": "bridge",
+      "label": "frontend/bridge.py",
+      "type": "file",
+      "location": "frontend/bridge.py:1",
+      "community": "bridge",
+      "summary": "QObject + QAbstractListModel layer that exposes the unchanged backend HTTP API to QML.",
+      "degree": 12
+    },
+    {
+      "id": "bridge:ChatBridge",
+      "label": "ChatBridge",
+      "type": "class",
+      "location": "frontend/bridge.py:ChatBridge",
+      "community": "bridge",
+      "summary": "Imperative surface QML calls into (slots) and observes (properties/signals); owns settings, models and backend calls.",
+      "degree": 19
+    },
+    {
+      "id": "bridge:ChatListModel",
+      "label": "ChatListModel",
+      "type": "class",
+      "location": "frontend/bridge.py:ChatListModel",
+      "community": "bridge",
+      "summary": "List model backing the channel list (incl. Saved Messages + System Logs).",
+      "degree": 5
+    },
+    {
+      "id": "bridge:MessageModel",
+      "label": "MessageModel",
+      "type": "class",
+      "location": "frontend/bridge.py:MessageModel",
+      "community": "bridge",
+      "summary": "List model backing the right pane: articles/posts of the selected channel.",
+      "degree": 4
+    },
+    {
+      "id": "bridge:SourcesModel",
+      "label": "SourcesModel",
+      "type": "class",
+      "location": "frontend/bridge.py:SourcesModel",
+      "community": "bridge",
+      "summary": "List model for custom RSS/news sources shown on the Settings page.",
+      "degree": 4
+    },
+    {
+      "id": "bridge:SearchResultsModel",
+      "label": "SearchResultsModel",
+      "type": "class",
+      "location": "frontend/bridge.py:SearchResultsModel",
+      "community": "bridge",
+      "summary": "List model for global search results.",
+      "degree": 3
+    },
+    {
+      "id": "bridge:_Task",
+      "label": "_Task / QThreadPool",
+      "type": "class",
+      "location": "frontend/bridge.py:_Task",
+      "community": "bridge",
+      "summary": "QRunnable that runs blocking backend calls off the GUI thread and emits the result via a signal.",
+      "degree": 1
+    },
+    {
+      "id": "bridge:_get",
+      "label": "_get()",
+      "type": "function",
+      "location": "frontend/bridge.py:_get",
+      "community": "bridge",
+      "summary": "Defensive HTTP GET wrapper around the backend API; retries once after re-resolving the port.",
+      "degree": 5
+    },
+    {
+      "id": "bridge:_post",
+      "label": "_post()",
+      "type": "function",
+      "location": "frontend/bridge.py:_post",
+      "community": "bridge",
+      "summary": "Defensive HTTP POST wrapper around the backend API; retries once after re-resolving the port.",
+      "degree": 4
+    },
+    {
+      "id": "bridge:get_backend_port",
+      "label": "get_backend_port() [bridge]",
+      "type": "function",
+      "location": "frontend/bridge.py:get_backend_port",
+      "community": "bridge",
+      "summary": "Caches and returns backend_port from ui_settings.json, defaulting to 8080.",
+      "degree": 2
+    },
+    {
+      "id": "bridge:highlight_text",
+      "label": "highlight_text()",
+      "type": "function",
+      "location": "frontend/bridge.py:highlight_text",
+      "community": "bridge",
+      "summary": "Wraps matched search terms in bold colored markup for the results UI.",
+      "degree": 1
+    },
+    {
+      "id": "Main.qml",
+      "label": "frontend/qml/Main.qml",
+      "type": "file",
+      "location": "frontend/qml/Main.qml:1",
+      "community": "ui",
+      "summary": "Frameless root window: 3-pane Telegram layout (rail | chat list | chat view) plus slide-in info panel, reader overlay and toast.",
+      "degree": 13
+    },
+    {
+      "id": "Theme",
+      "label": "Theme (themes singleton)",
+      "type": "component",
+      "location": "frontend/qml/themes",
+      "community": "ui",
+      "summary": "QML singleton holding theme variant, RTL, fonts, accent and wallpaper; kept in sync with ChatBridge via Bindings.",
+      "degree": 2
+    },
+    {
+      "id": "TitleBar",
+      "label": "TitleBar",
+      "type": "component",
+      "location": "frontend/qml/components/TitleBar.qml",
+      "community": "ui",
+      "summary": "Custom frameless title bar with minimize/maximize/close and system move.",
+      "degree": 1
+    },
+    {
+      "id": "FolderRail",
+      "label": "FolderRail",
+      "type": "component",
+      "location": "frontend/qml/components/FolderRail.qml",
+      "community": "ui",
+      "summary": "Left rail of folder/tab icons; emits tab + settings selection to the bridge.",
+      "degree": 2
+    },
+    {
+      "id": "ChatList",
+      "label": "ChatList",
+      "type": "component",
+      "location": "frontend/qml/components/ChatList.qml",
+      "community": "ui",
+      "summary": "Middle channel list bound to chatModel; opens chats and raises the context menu.",
+      "degree": 3
+    },
+    {
+      "id": "ChatView",
+      "label": "ChatView",
+      "type": "component",
+      "location": "frontend/qml/components/ChatView.qml",
+      "community": "ui",
+      "summary": "Right conversation pane bound to messageModel; forwards channels and opens the reader.",
+      "degree": 4
+    },
+    {
+      "id": "SearchResultsView",
+      "label": "SearchResultsView",
+      "type": "component",
+      "location": "frontend/qml/components/SearchResultsView.qml",
+      "community": "ui",
+      "summary": "Detail pane shown when the SearchResults virtual channel is active.",
+      "degree": 1
+    },
+    {
+      "id": "InfoPanel",
+      "label": "InfoPanel",
+      "type": "component",
+      "location": "frontend/qml/components/InfoPanel.qml",
+      "community": "ui",
+      "summary": "Slide-in channel info panel overlaying the right side.",
+      "degree": 1
+    },
+    {
+      "id": "ReaderView",
+      "label": "ReaderView",
+      "type": "component",
+      "location": "frontend/qml/components/ReaderView.qml",
+      "community": "ui",
+      "summary": "Full-body offline article reader overlay.",
+      "degree": 2
+    },
+    {
+      "id": "ChatContextMenu",
+      "label": "ChatContextMenu",
+      "type": "component",
+      "location": "frontend/qml/components/ChatContextMenu.qml",
+      "community": "ui",
+      "summary": "Per-channel context menu (pin/mute/archive/delete/mark unread/add to folder).",
+      "degree": 2
+    },
+    {
+      "id": "AddToFolderDialog",
+      "label": "AddToFolderDialog",
+      "type": "component",
+      "location": "frontend/qml/components/AddToFolderDialog.qml",
+      "community": "ui",
+      "summary": "Dialog to choose/create a custom folder for a channel.",
+      "degree": 1
+    },
+    {
+      "id": "SettingsView",
+      "label": "SettingsView",
+      "type": "component",
+      "location": "frontend/qml/components/SettingsView.qml",
+      "community": "ui",
+      "summary": "Settings page loaded on demand; binds appearance/language/source settings to the bridge.",
+      "degree": 3
+    },
+    {
+      "id": "gui_server",
+      "label": "gui_server.py",
+      "type": "file",
+      "location": "gui_server.py:1",
+      "community": "backend",
+      "summary": "Local ThreadingHTTPServer (port 8080) that aggregates RSS/HTML/Telegram/Twitter sources, caches news, serves the API and reposts to Telegram.",
+      "degree": 22
+    },
+    {
+      "id": "gui_server:news_cache",
+      "label": "news_cache",
+      "type": "variable",
+      "location": "gui_server.py:18",
+      "community": "backend",
+      "summary": "Global lock-guarded cache of aggregated news data, last-fetched time and per-source status.",
+      "degree": 8
+    },
+    {
+      "id": "gui_server:parse_xml_rss",
+      "label": "parse_xml_rss()",
+      "type": "function",
+      "location": "gui_server.py:parse_xml_rss",
+      "community": "backend",
+      "summary": "Parses RSS/Atom feeds into normalized article dicts, extracting title/link/date/thumbnail.",
+      "degree": 4
+    },
+    {
+      "id": "gui_server:scrape_vulture_html",
+      "label": "scrape_vulture_html()",
+      "type": "function",
+      "location": "gui_server.py:scrape_vulture_html",
+      "community": "backend",
+      "summary": "HTML scraper for Vulture article links.",
+      "degree": 4
+    },
+    {
+      "id": "gui_server:scrape_screendaily_html",
+      "label": "scrape_screendaily_html()",
+      "type": "function",
+      "location": "gui_server.py:scrape_screendaily_html",
+      "community": "backend",
+      "summary": "HTML scraper for Screen Daily with section-based categories.",
+      "degree": 3
+    },
+    {
+      "id": "gui_server:scrape_rt_html",
+      "label": "scrape_rt_html()",
+      "type": "function",
+      "location": "gui_server.py:scrape_rt_html",
+      "community": "backend",
+      "summary": "HTML scraper for Rotten Tomatoes editorial with inline date parsing.",
+      "degree": 3
+    },
+    {
+      "id": "gui_server:scrape_ew_html",
+      "label": "scrape_ew_html()",
+      "type": "function",
+      "location": "gui_server.py:scrape_ew_html",
+      "community": "backend",
+      "summary": "HTML scraper for Entertainment Weekly article links.",
+      "degree": 3
+    },
+    {
+      "id": "gui_server:scrape_telegram_html",
+      "label": "scrape_telegram_html()",
+      "type": "function",
+      "location": "gui_server.py:scrape_telegram_html",
+      "community": "backend",
+      "summary": "Scrapes the public t.me widget HTML into posts with text, date and thumbnail.",
+      "degree": 2
+    },
+    {
+      "id": "gui_server:scrape_twitter_syndication",
+      "label": "scrape_twitter_syndication()",
+      "type": "function",
+      "location": "gui_server.py:scrape_twitter_syndication",
+      "community": "backend",
+      "summary": "Parses Twitter syndication __NEXT_DATA__ JSON into tweet entries.",
+      "degree": 2
+    },
+    {
+      "id": "gui_server:resolve_image_url",
+      "label": "resolve_image_url()",
+      "type": "function",
+      "location": "gui_server.py:resolve_image_url",
+      "community": "backend",
+      "summary": "Normalizes protocol-relative/relative image URLs against a base host; drops data: URIs.",
+      "degree": 2
+    },
+    {
+      "id": "gui_server:extract_img_url",
+      "label": "extract_img_url()",
+      "type": "function",
+      "location": "gui_server.py:extract_img_url",
+      "community": "backend",
+      "summary": "Pulls a real image URL from lazy-load attributes/srcset, skipping placeholders.",
+      "degree": 2
+    },
+    {
+      "id": "gui_server:extract_title_for_anchor",
+      "label": "extract_title_for_anchor()",
+      "type": "function",
+      "location": "gui_server.py:extract_title_for_anchor",
+      "community": "backend",
+      "summary": "Derives an article title from an anchor via headings/classes/img alt/text.",
+      "degree": 4
+    },
+    {
+      "id": "gui_server:find_thumbnail_for_anchor",
+      "label": "find_thumbnail_for_anchor()",
+      "type": "function",
+      "location": "gui_server.py:find_thumbnail_for_anchor",
+      "community": "backend",
+      "summary": "Walks up the DOM from an anchor to find a usable thumbnail image.",
+      "degree": 4
+    },
+    {
+      "id": "gui_server:parse_date_to_timestamp",
+      "label": "parse_date_to_timestamp()",
+      "type": "function",
+      "location": "gui_server.py:parse_date_to_timestamp",
+      "community": "backend",
+      "summary": "Best-effort multi-format date string to epoch conversion.",
+      "degree": 2
+    },
+    {
+      "id": "ep:status",
+      "label": "GET /api/status",
+      "type": "endpoint",
+      "location": "gui_server.py",
+      "community": "backend",
+      "summary": "Health endpoint polled by app._backend_alive to confirm the Feed Server is up.",
+      "degree": 2
+    },
+    {
+      "id": "ep:news",
+      "label": "GET /api/news",
+      "type": "endpoint",
+      "location": "gui_server.py",
+      "community": "backend",
+      "summary": "Aggregated news feed endpoint consumed by the bridge models (inferred from the HTTP API contract).",
+      "degree": 2
+    },
+    {
+      "id": "ep:forward",
+      "label": "POST /api/forward-to-telegram",
+      "type": "endpoint",
+      "location": "gui_server.py",
+      "community": "backend",
+      "summary": "Repost-a-channel endpoint invoked when the UI forwards a channel to Telegram (inferred).",
+      "degree": 4
+    },
+    {
+      "id": "telegram",
+      "label": "Telegram (channels)",
+      "type": "resource",
+      "location": null,
+      "community": "backend",
+      "summary": "External Telegram destination that channels are reposted to.",
+      "degree": 2
+    },
+    {
+      "id": "avatar_fetcher",
+      "label": "frontend/avatar_fetcher.py",
+      "type": "file",
+      "location": "frontend/avatar_fetcher.py:1",
+      "community": "backend",
+      "summary": "Avatar backfill module run at launch; fetches/refreshes channel avatars (referenced from the launcher; body not loaded).",
+      "degree": 1
+    },
+    {
+      "id": "avatar_fetcher:backfill_avatars",
+      "label": "backfill_avatars()",
+      "type": "function",
+      "location": "frontend/avatar_fetcher.py:backfill_avatars",
+      "community": "backend",
+      "summary": "Populates missing channel avatars; called by run_offlinefeed.main unless --no-avatars.",
+      "degree": 3
+    },
+    {
+      "id": "ui_settings",
+      "label": "offline_viewer/assets/ui_settings.json",
+      "type": "config",
+      "location": "offline_viewer/assets/ui_settings.json",
+      "community": "config",
+      "summary": "Persisted UI settings (appearance, language, advanced.backend_port, pins, folders, bin). Read across launcher, app, bridge and doctor.",
+      "degree": 5
+    },
+    {
+      "id": "requirements",
+      "label": "requirements.txt",
+      "type": "config",
+      "location": "requirements.txt",
+      "community": "config",
+      "summary": "Dependency list (PySide6, requests, feedparser, beautifulsoup4, lxml) verified by the doctor.",
+      "degree": 1
+    },
+    {
+      "id": "spec",
+      "label": "OfflineFeed.spec",
+      "type": "config",
+      "location": "OfflineFeed.spec",
+      "community": "config",
+      "summary": "PyInstaller build spec.",
+      "degree": 0
+    },
+    {
+      "id": "runbat",
+      "label": "run.bat",
+      "type": "config",
+      "location": "run.bat",
+      "community": "config",
+      "summary": "Windows launcher that calls run_offlinefeed.py.",
+      "degree": 1
+    },
+    {
+      "id": "logo",
+      "label": "qml/assets/logo.svg",
+      "type": "resource",
+      "location": "frontend/qml/assets/logo.svg",
+      "community": "config",
+      "summary": "App logo/window icon; relies on the QtSvg plugin to render.",
+      "degree": 1
+    },
+    {
+      "id": "gen_assets",
+      "label": "frontend/gen_assets.py",
+      "type": "file",
+      "location": "frontend/gen_assets.py:1",
+      "community": "config",
+      "summary": "Regenerates the SVG icon set + logo (referenced in README; body not loaded).",
+      "degree": 0
+    },
+    {
+      "id": "why:svg",
+      "label": "Import QtSvg so icons render",
+      "type": "rationale",
+      "location": "frontend/app.py:QtSvg",
+      "community": "why",
+      "summary": "Importing QtSvg loads the qsvg image plugin; without it PySide6 renders SVG sources blank (why icons/logo were invisible).",
+      "degree": 1
+    },
+    {
+      "id": "why:unchanged_backend",
+      "label": "Backend left UNCHANGED, talk over HTTP",
+      "type": "rationale",
+      "location": "frontend/bridge.py:docstring",
+      "community": "why",
+      "summary": "The UI speaks to the existing backend only over its local HTTP API so aggregation/Telegram logic never breaks.",
+      "degree": 1
+    },
+    {
+      "id": "why:defensive_net",
+      "label": "Defensive networking keeps UI alive",
+      "type": "rationale",
+      "location": "frontend/bridge.py:_get",
+      "community": "why",
+      "summary": "Every backend call is defensive: if the backend is unreachable the UI loads empty + a toast instead of crashing.",
+      "degree": 1
+    },
+    {
+      "id": "why:real_traceback",
+      "label": "Replace opaque 'Code: 1' with real diagnostics",
+      "type": "rationale",
+      "location": "frontend/debug.py:docstring",
+      "community": "why",
+      "summary": "The old launcher hid the real failure; debug/doctor/launcher surface the actual traceback and a fix hint.",
+      "degree": 3
+    },
+    {
+      "id": "why:no_diskcache",
+      "label": "Disable QML disk cache",
+      "type": "rationale",
+      "location": "frontend/app.py:main",
+      "community": "why",
+      "summary": "QML_DISABLE_DISK_CACHE=1 prevents cached legacy component conflicts on startup.",
+      "degree": 1
+    },
+    {
+      "id": "why:no_oldui",
+      "label": "Suppress backend's old web UI",
+      "type": "rationale",
+      "location": "frontend/app.py:start_backend",
+      "community": "why",
+      "summary": "start_backend patches webbrowser.open to a no-op so the legacy backend can't pop the old web UI; the QML UI renders instead.",
+      "degree": 1
+    },
+    {
+      "id": "why:reader_font",
+      "label": "Reader font separate from chat font",
+      "type": "rationale",
+      "location": "frontend/bridge.py:ChatBridge",
+      "community": "why",
+      "summary": "The offline-reader font is stored independently so changing one never affects the other.",
+      "degree": 1
+    },
+    {
+      "id": "why:bin",
+      "label": "Bin keeps deleted posts recoverable",
+      "type": "rationale",
+      "location": "frontend/bridge.py:ChatBridge",
+      "community": "why",
+      "summary": "Full article dicts of deleted posts are kept locally so they survive feed refresh and stay readable.",
+      "degree": 1
+    }
+  ],
+  "edges": [
+    {
+      "source": "run_offlinefeed",
+      "target": "debug",
+      "type": "imports",
+      "confidence": "EXTRACTED",
+      "evidence": "import debug  (run_offlinefeed.py)"
+    },
+    {
+      "source": "run_offlinefeed",
+      "target": "run_offlinefeed:main",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def main() in run_offlinefeed.py"
+    },
+    {
+      "source": "run_offlinefeed:main",
+      "target": "debug:run_diagnostics",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "report = debug.run_diagnostics(port=port)"
+    },
+    {
+      "source": "run_offlinefeed:main",
+      "target": "debug:install_excepthooks",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "debug.install_excepthooks()"
+    },
+    {
+      "source": "run_offlinefeed:main",
+      "target": "avatar_fetcher:backfill_avatars",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "from frontend.avatar_fetcher import backfill_avatars; backfill_avatars(...)"
+    },
+    {
+      "source": "run_offlinefeed:main",
+      "target": "app",
+      "type": "depends_on",
+      "confidence": "EXTRACTED",
+      "evidence": "subprocess.run([sys.executable, '-m', 'frontend.app'])"
+    },
+    {
+      "source": "run_offlinefeed:main",
+      "target": "ui_settings",
+      "type": "reads",
+      "confidence": "EXTRACTED",
+      "evidence": "reads advanced.backend_port from offline_viewer/assets/ui_settings.json"
+    },
+    {
+      "source": "run_offlinefeed:main",
+      "target": "log_file",
+      "type": "reads",
+      "confidence": "EXTRACTED",
+      "evidence": "_tail(debug.LOG_FILE) printed on non-zero exit"
+    },
+    {
+      "source": "runbat",
+      "target": "run_offlinefeed",
+      "type": "depends_on",
+      "confidence": "INFERRED",
+      "evidence": "README: double-click run.bat launches run_offlinefeed.py"
+    },
+    {
+      "source": "avatar_fetcher",
+      "target": "avatar_fetcher:backfill_avatars",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "imported symbol backfill_avatars"
+    },
+    {
+      "source": "app",
+      "target": "app:main",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def main() in app.py"
+    },
+    {
+      "source": "app",
+      "target": "app:start_backend",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def start_backend() in app.py"
+    },
+    {
+      "source": "app",
+      "target": "app:enumerate_system_fonts",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def enumerate_system_fonts() in app.py"
+    },
+    {
+      "source": "app",
+      "target": "app:get_backend_port",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def get_backend_port() in app.py"
+    },
+    {
+      "source": "app",
+      "target": "bridge",
+      "type": "imports",
+      "confidence": "EXTRACTED",
+      "evidence": "from bridge import ChatBridge, ChatListModel, MessageModel, SourcesModel, SearchResultsModel"
+    },
+    {
+      "source": "app",
+      "target": "debug",
+      "type": "imports",
+      "confidence": "EXTRACTED",
+      "evidence": "import debug as _dbg"
+    },
+    {
+      "source": "app:start_backend",
+      "target": "gui_server",
+      "type": "depends_on",
+      "confidence": "EXTRACTED",
+      "evidence": "import gui_server inside start_backend daemon thread"
+    },
+    {
+      "source": "app:start_backend",
+      "target": "why:no_oldui",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "webbrowser.open = lambda *a, **k: True before importing gui_server"
+    },
+    {
+      "source": "app:start_backend",
+      "target": "ep:status",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "_backend_alive urlopen(get_backend_base()+'/api/status')"
+    },
+    {
+      "source": "app:main",
+      "target": "bridge:ChatBridge",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "bridge = ChatBridge(chat_model, message_model, sources_model, ...)"
+    },
+    {
+      "source": "app:main",
+      "target": "bridge:ChatListModel",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "chat_model = ChatListModel()"
+    },
+    {
+      "source": "app:main",
+      "target": "bridge:MessageModel",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "message_model = MessageModel()"
+    },
+    {
+      "source": "app:main",
+      "target": "bridge:SourcesModel",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "sources_model = SourcesModel()"
+    },
+    {
+      "source": "app:main",
+      "target": "bridge:SearchResultsModel",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "search_results_model = SearchResultsModel()"
+    },
+    {
+      "source": "app:main",
+      "target": "app:enumerate_system_fonts",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "system_fonts = enumerate_system_fonts()"
+    },
+    {
+      "source": "app:main",
+      "target": "app:start_backend",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "start_backend()"
+    },
+    {
+      "source": "app:main",
+      "target": "Main.qml",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "engine.load(QUrl.fromLocalFile(QML_DIR/'Main.qml'))"
+    },
+    {
+      "source": "app:main",
+      "target": "why:no_diskcache",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "os.environ['QML_DISABLE_DISK_CACHE']='1'"
+    },
+    {
+      "source": "app",
+      "target": "why:svg",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "from PySide6 import QtSvg comment about blank SVG icons"
+    },
+    {
+      "source": "app:main",
+      "target": "logo",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "app.setWindowIcon(QIcon(str(LOGO)))"
+    },
+    {
+      "source": "app:get_backend_port",
+      "target": "ui_settings",
+      "type": "reads",
+      "confidence": "EXTRACTED",
+      "evidence": "reads advanced.backend_port from ui_settings.json"
+    },
+    {
+      "source": "doctor",
+      "target": "debug",
+      "type": "imports",
+      "confidence": "EXTRACTED",
+      "evidence": "import debug (doctor.py)"
+    },
+    {
+      "source": "doctor",
+      "target": "doctor:main",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def main() in doctor.py"
+    },
+    {
+      "source": "doctor:main",
+      "target": "debug:run_diagnostics",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "report = debug.run_diagnostics(port=port)"
+    },
+    {
+      "source": "doctor:main",
+      "target": "ui_settings",
+      "type": "reads",
+      "confidence": "EXTRACTED",
+      "evidence": "reads advanced.backend_port from ui_settings.json"
+    },
+    {
+      "source": "debug",
+      "target": "debug:run_diagnostics",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def run_diagnostics in debug.py"
+    },
+    {
+      "source": "debug",
+      "target": "debug:get_logger",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def get_logger in debug.py"
+    },
+    {
+      "source": "debug",
+      "target": "debug:install_excepthooks",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def install_excepthooks in debug.py"
+    },
+    {
+      "source": "debug",
+      "target": "debug:probe_backend_import",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def probe_backend_import in debug.py"
+    },
+    {
+      "source": "debug",
+      "target": "debug:check_backend_module",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def check_backend_module in debug.py"
+    },
+    {
+      "source": "debug",
+      "target": "debug:_RingBufferHandler",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "class _RingBufferHandler in debug.py"
+    },
+    {
+      "source": "debug:run_diagnostics",
+      "target": "debug:check_backend_module",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "backend = check_backend_module(...)"
+    },
+    {
+      "source": "debug:run_diagnostics",
+      "target": "debug:probe_backend_import",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "checks.append(probe_backend_import(...))"
+    },
+    {
+      "source": "debug:run_diagnostics",
+      "target": "requirements",
+      "type": "reads",
+      "confidence": "EXTRACTED",
+      "evidence": "req_path = REPO_ROOT/'requirements.txt'; check_requirements(req_path)"
+    },
+    {
+      "source": "debug:check_backend_module",
+      "target": "gui_server",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "importlib.util.find_spec('gui_server')"
+    },
+    {
+      "source": "debug:probe_backend_import",
+      "target": "gui_server",
+      "type": "depends_on",
+      "confidence": "EXTRACTED",
+      "evidence": "subprocess imports gui_server to catch import-time crash"
+    },
+    {
+      "source": "debug:get_logger",
+      "target": "debug:_RingBufferHandler",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "logger.addHandler(_ring)"
+    },
+    {
+      "source": "debug:get_logger",
+      "target": "log_file",
+      "type": "writes",
+      "confidence": "EXTRACTED",
+      "evidence": "RotatingFileHandler(LOG_FILE, ...)"
+    },
+    {
+      "source": "debug:_RingBufferHandler",
+      "target": "why:real_traceback",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "ring buffer feeds in-app System Logs even when backend never came up"
+    },
+    {
+      "source": "debug",
+      "target": "why:real_traceback",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "module docstring: replace guesswork with facts"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:ChatBridge",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "class ChatBridge in bridge.py"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:ChatListModel",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "class ChatListModel"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:MessageModel",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "class MessageModel"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:SourcesModel",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "class SourcesModel"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:SearchResultsModel",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "class SearchResultsModel"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:_Task",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "class _Task(QRunnable)"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:_get",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def _get in bridge.py"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:_post",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def _post in bridge.py"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:get_backend_port",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def get_backend_port in bridge.py"
+    },
+    {
+      "source": "bridge",
+      "target": "bridge:highlight_text",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "def highlight_text in bridge.py"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "bridge:ChatListModel",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "ChatBridge.__init__(chat_model: ChatListModel, ...)"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "bridge:MessageModel",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "ChatBridge.__init__(message_model: MessageModel, ...)"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "bridge:SourcesModel",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "ChatBridge.__init__(sources_model: SourcesModel, ...)"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "bridge:SearchResultsModel",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "search_results_model: Optional[SearchResultsModel]"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "bridge:_get",
+      "type": "calls",
+      "confidence": "INFERRED",
+      "evidence": "slots load data through the _get HTTP helper"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "bridge:_post",
+      "type": "calls",
+      "confidence": "INFERRED",
+      "evidence": "action slots persist through the _post HTTP helper"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "ui_settings",
+      "type": "writes",
+      "confidence": "EXTRACTED",
+      "evidence": "_load_ui_settings/_save_ui_settings persist appearance/pins/folders/bin"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "why:reader_font",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "_readerFontFamily stored separately, falls back to chat font"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "why:bin",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "_binned_items keep deleted posts recoverable across refresh"
+    },
+    {
+      "source": "bridge:_get",
+      "target": "ep:news",
+      "type": "reads",
+      "confidence": "INFERRED",
+      "evidence": "GET helper consumes backend news endpoints"
+    },
+    {
+      "source": "bridge:_post",
+      "target": "ep:forward",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "forward-to-telegram action posts via _post"
+    },
+    {
+      "source": "bridge:_get",
+      "target": "why:defensive_net",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "try/except + retry once after reset_backend_port"
+    },
+    {
+      "source": "bridge:get_backend_port",
+      "target": "ui_settings",
+      "type": "reads",
+      "confidence": "EXTRACTED",
+      "evidence": "reads advanced.backend_port from ui_settings.json"
+    },
+    {
+      "source": "bridge",
+      "target": "why:unchanged_backend",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "docstring: backend left UNCHANGED, talk over HTTP"
+    },
+    {
+      "source": "bridge:_get",
+      "target": "gui_server",
+      "type": "depends_on",
+      "confidence": "EXTRACTED",
+      "evidence": "get_api_base() -> http://127.0.0.1:port served by gui_server"
+    },
+    {
+      "source": "bridge:_post",
+      "target": "gui_server",
+      "type": "depends_on",
+      "confidence": "EXTRACTED",
+      "evidence": "POST to the gui_server HTTP API"
+    },
+    {
+      "source": "Main.qml",
+      "target": "Theme",
+      "type": "imports",
+      "confidence": "EXTRACTED",
+      "evidence": "import './themes'; Theme.* used throughout"
+    },
+    {
+      "source": "Main.qml",
+      "target": "TitleBar",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "TitleBar { id: titleBar }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "FolderRail",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "FolderRail { id: rail }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "ChatList",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "ChatList { id: chatList }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "ChatView",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "ChatView { id: chatView }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "SearchResultsView",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "SearchResultsView { ... }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "InfoPanel",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "InfoPanel { id: infoPanel }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "ReaderView",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "ReaderView { id: reader }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "ChatContextMenu",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "ChatContextMenu { id: ctxMenu }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "AddToFolderDialog",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "AddToFolderDialog { id: addToFolderDialog }"
+    },
+    {
+      "source": "Main.qml",
+      "target": "SettingsView",
+      "type": "instantiates",
+      "confidence": "EXTRACTED",
+      "evidence": "Loader source: 'components/SettingsView.qml'"
+    },
+    {
+      "source": "Main.qml",
+      "target": "bridge:ChatBridge",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "bridge.theme/rtl/activeTab/currentChannelId + slot calls in Main.qml"
+    },
+    {
+      "source": "Theme",
+      "target": "bridge:ChatBridge",
+      "type": "references",
+      "confidence": "EXTRACTED",
+      "evidence": "Binding { target: Theme; value: bridge.theme/rtl/fontFamily/... }"
+    },
+    {
+      "source": "FolderRail",
+      "target": "bridge:ChatBridge",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "onTabSelected -> bridge.setTab(tab)"
+    },
+    {
+      "source": "ChatList",
+      "target": "bridge:ChatBridge",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "onOpenChat -> bridge.openChat(id)"
+    },
+    {
+      "source": "ChatList",
+      "target": "bridge:ChatListModel",
+      "type": "references",
+      "confidence": "INFERRED",
+      "evidence": "ChatList is bound to chatModel exposed from bridge"
+    },
+    {
+      "source": "ChatView",
+      "target": "bridge:ChatBridge",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "onForwardChannelRequested -> bridge.sendChannelToTelegram(id)"
+    },
+    {
+      "source": "ChatView",
+      "target": "bridge:MessageModel",
+      "type": "references",
+      "confidence": "INFERRED",
+      "evidence": "ChatView renders messageModel posts"
+    },
+    {
+      "source": "ChatView",
+      "target": "ReaderView",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "onReadArticleRequested -> reader.open(u,t,tx)"
+    },
+    {
+      "source": "ChatContextMenu",
+      "target": "bridge:ChatBridge",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "onTogglePin/Mute/Archive/Delete -> bridge.*"
+    },
+    {
+      "source": "SettingsView",
+      "target": "bridge:ChatBridge",
+      "type": "references",
+      "confidence": "INFERRED",
+      "evidence": "Settings page binds appearance/source settings to the bridge"
+    },
+    {
+      "source": "SettingsView",
+      "target": "bridge:SourcesModel",
+      "type": "references",
+      "confidence": "INFERRED",
+      "evidence": "custom sources list shown on Settings"
+    },
+    {
+      "source": "bridge:ChatBridge",
+      "target": "ep:forward",
+      "type": "references",
+      "confidence": "INFERRED",
+      "evidence": "sendChannelToTelegram slot triggers the backend repost"
+    },
+    {
+      "source": "ep:forward",
+      "target": "telegram",
+      "type": "depends_on",
+      "confidence": "INFERRED",
+      "evidence": "backend reposts the channel to Telegram"
+    },
+    {
+      "source": "gui_server",
+      "target": "telegram",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "README: one-click reposting of channels to Telegram"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:news_cache",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "news_cache global in gui_server.py"
+    },
+    {
+      "source": "gui_server",
+      "target": "ep:status",
+      "type": "contains",
+      "confidence": "INFERRED",
+      "evidence": "HTTP handler exposes /api/status (polled by app)"
+    },
+    {
+      "source": "gui_server",
+      "target": "ep:news",
+      "type": "contains",
+      "confidence": "INFERRED",
+      "evidence": "HTTP handler exposes aggregated news"
+    },
+    {
+      "source": "gui_server",
+      "target": "ep:forward",
+      "type": "contains",
+      "confidence": "INFERRED",
+      "evidence": "HTTP handler exposes the Telegram repost action"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:parse_xml_rss",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "scraper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server:parse_xml_rss",
+      "target": "gui_server:news_cache",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "scraped items aggregated into news_cache"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:scrape_vulture_html",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "scraper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server:scrape_vulture_html",
+      "target": "gui_server:news_cache",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "scraped items aggregated into news_cache"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:scrape_screendaily_html",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "scraper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server:scrape_screendaily_html",
+      "target": "gui_server:news_cache",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "scraped items aggregated into news_cache"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:scrape_rt_html",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "scraper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server:scrape_rt_html",
+      "target": "gui_server:news_cache",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "scraped items aggregated into news_cache"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:scrape_ew_html",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "scraper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server:scrape_ew_html",
+      "target": "gui_server:news_cache",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "scraped items aggregated into news_cache"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:scrape_telegram_html",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "scraper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server:scrape_telegram_html",
+      "target": "gui_server:news_cache",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "scraped items aggregated into news_cache"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:scrape_twitter_syndication",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "scraper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server:scrape_twitter_syndication",
+      "target": "gui_server:news_cache",
+      "type": "writes",
+      "confidence": "INFERRED",
+      "evidence": "scraped items aggregated into news_cache"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:resolve_image_url",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "helper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:extract_img_url",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "helper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:extract_title_for_anchor",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "helper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:find_thumbnail_for_anchor",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "helper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server",
+      "target": "gui_server:parse_date_to_timestamp",
+      "type": "contains",
+      "confidence": "EXTRACTED",
+      "evidence": "helper defined in gui_server.py"
+    },
+    {
+      "source": "gui_server:parse_xml_rss",
+      "target": "gui_server:resolve_image_url",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "thumbnail = resolve_image_url(thumbnail, base_host)"
+    },
+    {
+      "source": "gui_server:parse_xml_rss",
+      "target": "gui_server:parse_date_to_timestamp",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "'timestamp': parse_date_to_timestamp(pub_str)"
+    },
+    {
+      "source": "gui_server:scrape_vulture_html",
+      "target": "gui_server:extract_title_for_anchor",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "title = extract_title_for_anchor(a)"
+    },
+    {
+      "source": "gui_server:scrape_vulture_html",
+      "target": "gui_server:find_thumbnail_for_anchor",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "thumbnail = find_thumbnail_for_anchor(a)"
+    },
+    {
+      "source": "gui_server:scrape_screendaily_html",
+      "target": "gui_server:extract_title_for_anchor",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "title = extract_title_for_anchor(a)"
+    },
+    {
+      "source": "gui_server:scrape_rt_html",
+      "target": "gui_server:find_thumbnail_for_anchor",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "thumbnail = find_thumbnail_for_anchor(a)"
+    },
+    {
+      "source": "gui_server:scrape_ew_html",
+      "target": "gui_server:extract_title_for_anchor",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "title = extract_title_for_anchor(a)"
+    },
+    {
+      "source": "gui_server:find_thumbnail_for_anchor",
+      "target": "gui_server:extract_img_url",
+      "type": "calls",
+      "confidence": "EXTRACTED",
+      "evidence": "val = extract_img_url(img)"
+    },
+    {
+      "source": "avatar_fetcher:backfill_avatars",
+      "target": "bridge:ChatListModel",
+      "type": "references",
+      "confidence": "INFERRED",
+      "evidence": "avatars backfilled are shown via ChatListModel avatarPath"
+    },
+    {
+      "source": "debug:run_diagnostics",
+      "target": "why:real_traceback",
+      "type": "explains",
+      "confidence": "EXTRACTED",
+      "evidence": "probe surfaces the real reason for code 1"
+    }
+  ],
+  "communities": [
+    {
+      "id": "bootstrap",
+      "name": "App bootstrap & lifecycle",
+      "node_ids": [
+        "run_offlinefeed",
+        "run_offlinefeed:main",
+        "app",
+        "app:main",
+        "app:start_backend",
+        "app:enumerate_system_fonts",
+        "app:get_backend_port"
+      ]
+    },
+    {
+      "id": "diagnostics",
+      "name": "Diagnostics & logging",
+      "node_ids": [
+        "debug",
+        "debug:run_diagnostics",
+        "debug:get_logger",
+        "debug:install_excepthooks",
+        "debug:probe_backend_import",
+        "debug:check_backend_module",
+        "debug:_RingBufferHandler",
+        "doctor",
+        "doctor:main",
+        "log_file"
+      ]
+    },
+    {
+      "id": "bridge",
+      "name": "UI ↔ backend bridge",
+      "node_ids": [
+        "bridge",
+        "bridge:ChatBridge",
+        "bridge:ChatListModel",
+        "bridge:MessageModel",
+        "bridge:SourcesModel",
+        "bridge:SearchResultsModel",
+        "bridge:_Task",
+        "bridge:_get",
+        "bridge:_post",
+        "bridge:get_backend_port",
+        "bridge:highlight_text"
+      ]
+    },
+    {
+      "id": "ui",
+      "name": "QML UI layer",
+      "node_ids": [
+        "Main.qml",
+        "Theme",
+        "TitleBar",
+        "FolderRail",
+        "ChatList",
+        "ChatView",
+        "SearchResultsView",
+        "InfoPanel",
+        "ReaderView",
+        "ChatContextMenu",
+        "AddToFolderDialog",
+        "SettingsView"
+      ]
+    },
+    {
+      "id": "backend",
+      "name": "Feed Server backend & scrapers",
+      "node_ids": [
+        "gui_server",
+        "gui_server:news_cache",
+        "gui_server:parse_xml_rss",
+        "gui_server:scrape_vulture_html",
+        "gui_server:scrape_screendaily_html",
+        "gui_server:scrape_rt_html",
+        "gui_server:scrape_ew_html",
+        "gui_server:scrape_telegram_html",
+        "gui_server:scrape_twitter_syndication",
+        "gui_server:resolve_image_url",
+        "gui_server:extract_img_url",
+        "gui_server:extract_title_for_anchor",
+        "gui_server:find_thumbnail_for_anchor",
+        "gui_server:parse_date_to_timestamp",
+        "ep:status",
+        "ep:news",
+        "ep:forward",
+        "telegram",
+        "avatar_fetcher",
+        "avatar_fetcher:backfill_avatars"
+      ]
+    },
+    {
+      "id": "config",
+      "name": "Config, assets & build",
+      "node_ids": [
+        "ui_settings",
+        "requirements",
+        "spec",
+        "runbat",
+        "logo",
+        "gen_assets"
+      ]
+    },
+    {
+      "id": "why",
+      "name": "Rationale & concepts",
+      "node_ids": [
+        "why:svg",
+        "why:unchanged_backend",
+        "why:defensive_net",
+        "why:real_traceback",
+        "why:no_diskcache",
+        "why:no_oldui",
+        "why:reader_font",
+        "why:bin"
+      ]
+    }
+  ],
+  "insights": {
+    "god_nodes": [
+      "gui_server",
+      "bridge:ChatBridge",
+      "Main.qml",
+      "bridge",
+      "app:main",
+      "debug"
+    ],
+    "surprising_connections": [
+      {
+        "edge": [
+          "Main.qml/ChatView",
+          "telegram"
+        ],
+        "why": "A UI button (ChatView.onForwardChannelRequested) reaches all the way across the bridge and backend to repost a channel to an external Telegram destination."
+      },
+      {
+        "edge": [
+          "bridge:ChatBridge",
+          "ui_settings"
+        ],
+        "why": "backend_port lives in ui_settings.json and is re-read independently by app.py, bridge.py, doctor.py and run_offlinefeed.py — the same parsing logic is duplicated in four places instead of being centralized."
+      },
+      {
+        "edge": [
+          "debug",
+          "app + doctor + run_offlinefeed"
+        ],
+        "why": "debug.py deliberately imports no PySide6, which lets the same module serve both the pre-Qt CLI/launcher world and the GUI — an unusually load-bearing hub spanning two runtimes."
+      },
+      {
+        "edge": [
+          "app:start_backend",
+          "gui_server (start_server/main/run/start/serve)"
+        ],
+        "why": "The GUI imports the backend and calls whichever entry point exists via getattr fallbacks — a deliberately loose coupling where the real entry point is ambiguous."
+      }
+    ],
+    "suggested_questions": [
+      "How does clicking 'forward' on a channel end up reposting it to Telegram (UI → bridge → backend → Telegram)?",
+      "What exactly happens at startup when PySide6 is missing or the backend port is already busy?",
+      "Where is backend_port resolved, and why is the same logic duplicated across four modules?",
+      "How are article thumbnails extracted differently across RSS, scraped HTML, Telegram and Twitter sources?",
+      "What keeps the desktop UI usable when the Feed Server backend is unreachable?"
+    ],
+    "confidence_summary": {
+      "EXTRACTED": 111,
+      "INFERRED": 23,
+      "AMBIGUOUS": 0
+    }
+  }
+}

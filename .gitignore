@@ -24,8 +24,7 @@ Thumbs.db
 .idea/
 
 # Agent
-.agent/
-.agents/
+.agents/fixes/
 
 # Offline cache and runtime folders
 backend/offline_viewer/assets/cached_images/
