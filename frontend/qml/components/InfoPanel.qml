@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import QtQuick.Dialogs
 import "../themes"
 
 // Telegram-style channel INFO / MANAGE panel.
@@ -28,6 +29,14 @@ Rectangle {
     property string channelName: ""
     property string channelId: ""
     signal closed()
+
+    // Native file picker for the camera button (added by avatar fix).
+    FileDialog {
+        id: avatarFileDialog
+        title: qsTr("Choose channel icon")
+        nameFilters: ["Images (*.png *.jpg *.jpeg *.gif *.webp *.bmp)"]
+        onAccepted: bridge.setChannelAvatar(root.channelId, root.channelName, selectedFile)
+    }
 
     width: Theme.infoPanelWidth
 
@@ -125,12 +134,38 @@ Rectangle {
             Layout.fillWidth: true
             Layout.topMargin: 22
             spacing: 10
-            Avatar {
+            Item {
                 Layout.alignment: Qt.AlignHCenter
-                name: root.channelName
-                seed: root.channelId
-                avatarPath: bridge.currentChannelAvatar
-                size: 96
+                implicitWidth: 96
+                implicitHeight: 96
+                Avatar {
+                    id: bigAvatar
+                    anchors.fill: parent
+                    name: root.channelName
+                    seed: root.channelId
+                    avatarPath: bridge.currentChannelAvatar
+                    size: 96
+                }
+                // Camera button: set a custom channel icon yourself. Hidden for
+                // the non-manageable special entries. Wired to setChannelAvatar.
+                Rectangle {
+                    visible: !root.isSpecial
+                    width: 32
+                    height: 32
+                    radius: 16
+                    color: "#2f8ad6"
+                    border.color: Theme.panel
+                    border.width: 2
+                    anchors.right: parent.right
+                    anchors.bottom: parent.bottom
+                    Icon { anchors.centerIn: parent; name: "camera"; size: 16; color: Theme.onMedia }
+                    MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: avatarFileDialog.open()
+                    }
+                }
             }
             Text {
                 Layout.alignment: Qt.AlignHCenter

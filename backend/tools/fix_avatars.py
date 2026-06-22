@@ -201,6 +201,29 @@ def fetch_best_logo(url: str) -> tuple[bytes, str] | None:
     if not HAS_LIBS:
         return None
 
+    # X/Twitter: resolve the REAL per-account avatar from the @handle. The site
+    # domain (x.com) only ever yields the generic X platform logo, so for these
+    # sources use unavatar and otherwise give up (return None -> initials).
+    try:
+        _xp = urllib.parse.urlparse(url)
+        _xnet = (_xp.netloc or "").lower()
+        if "x.com" in _xnet or "twitter.com" in _xnet:
+            _parts = [pp for pp in _xp.path.split("/") if pp]
+            if _parts and _parts[0].lower() not in ("i", "home", "search", "hashtag"):
+                _handle = _parts[0].lstrip("@")
+                _hdr = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/115.0.0.0 Safari/537.36"}
+                for _cand in (f"https://unavatar.io/twitter/{_handle}?fallback=false",
+                              f"https://unavatar.io/x/{_handle}?fallback=false"):
+                    try:
+                        _r = requests.get(_cand, headers=_hdr, timeout=6)
+                        if _r.status_code == 200 and check_image_usability(_r.content, _r.headers.get("Content-Type", "")):
+                            return _r.content, _r.headers.get("Content-Type", "")
+                    except Exception:
+                        pass
+                return None
+    except Exception:
+        pass
+
     try:
         parsed = urllib.parse.urlparse(url)
         domain = parsed.netloc

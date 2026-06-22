@@ -2198,10 +2198,148 @@ class ChatBridge(QObject):
             "matchCount": 0
         }
 
+    @Slot(str, str, str)
+    def setChannelAvatar(self, channel_id, channel_name, local_path):
+        """Set a custom avatar for ANY channel (built-in OR custom) from a local
+        image file chosen in the UI. Unlike setSourceAvatar (custom-only) this
+        also handles built-in/aggregated channels: the image is normalized and
+        written under backend/offline_viewer/assets/avatars/, then registered on
+        the matching custom source (custom_sources.json) when there is one AND in
+        the shared defaults map (index.json) that _avatar_for() already reads."""
+        try:
+            from pathlib import Path as _Path
+            import shutil as _shutil
+            name = (channel_name or channel_id or "").strip()
+            cid = (channel_id or channel_name or "").strip()
+            if not name:
+                self.toastMessage.emit("error", "No channel selected")
+                return
+            raw = (local_path or "").strip()
+            if raw.startswith("file://"):
+                raw = urllib.parse.unquote(raw[len("file://"):])
+                # Windows file URIs look like file:///C:/... -> strip leading /
+                if re.match(r"^/[A-Za-z]:", raw):
+                    raw = raw[1:]
+            src = _Path(raw)
+            if not src.exists():
+                self.toastMessage.emit("error", "Image file not found")
+                return
+
+            def _slugify(text):
+                s = re.sub(r"[^a-zA-Z0-9_-]", "_", (text or "").lower())
+                s = re.sub(r"_+", "_", s).strip("_")
+                return s or "channel"
+
+            repo_root = _Path(__file__).resolve().parent.parent
+            avatars_dir = repo_root / "backend" / "offline_viewer" / "assets" / "avatars"
+            avatars_dir.mkdir(parents=True, exist_ok=True)
+            slug = _slugify(name)
+            dest = avatars_dir / (slug + ".png")
+
+            saved = False
+            try:
+                from PIL import Image as _Image
+                img = _Image.open(str(src))
+                if img.mode not in ("RGB", "RGBA"):
+                    img = img.convert("RGBA")
+                w, h = img.size
+                m = min(w, h)
+                left = (w - m) // 2
+                top = (h - m) // 2
+                img = img.crop((left, top, left + m, top + m)).resize((128, 128))
+                img.save(str(dest), "PNG")
+                saved = True
+            except Exception:
+                saved = False
+            if not saved:
+                try:
+                    _shutil.copyfile(str(src), str(dest))
+                    saved = True
+                except Exception:
+                    self.toastMessage.emit("error", "Could not save image")
+                    return
+
+            rel_path = "assets/avatars/" + dest.name
+
+            # Register on the matching custom source, if any.
+            is_custom = False
+            try:
+                for s in self._custom_sources:
+                    if (s.get("name") or "") == name:
+                        s["avatar_path"] = rel_path
+                        is_custom = True
+                        break
+            except Exception:
+                pass
+            if is_custom:
+                try:
+                    cs_path = repo_root / "backend" / "offline_viewer" / "assets" / "custom_sources.json"
+                    data = []
+                    if cs_path.exists():
+                        with open(cs_path, "r", encoding="utf-8") as f:
+                            data = json.load(f)
+                    for s in data:
+                        if (s.get("name") or "") == name:
+                            s["avatar_path"] = rel_path
+                            break
+                    with open(cs_path, "w", encoding="utf-8") as f:
+                        json.dump(data, f, indent=4, ensure_ascii=False)
+                except Exception:
+                    pass
+
+            # ALWAYS register in the shared defaults map so built-in channels
+            # (not present in custom_sources.json) resolve through _avatar_for().
+            try:
+                index_path = avatars_dir / "index.json"
+                index_map = {}
+                if index_path.exists():
+                    with open(index_path, "r", encoding="utf-8") as f:
+                        index_map = json.load(f)
+                index_map[name.lower()] = rel_path
+                if cid:
+                    index_map[cid.lower()] = rel_path
+                with open(index_path, "w", encoding="utf-8") as f:
+                    json.dump(index_map, f, indent=4, ensure_ascii=False)
+            except Exception:
+                pass
+
+            # Instant visual feedback for the open channel, then refresh the list.
+            try:
+                self._current_channel_avatar = dest.absolute().as_uri()
+                self.currentChannelAvatarChanged.emit(self._current_channel_avatar)
+            except Exception:
+                pass
+            try:
+                self._rebuild_chat_list()
+            except Exception:
+                pass
+            try:
+                self.customSourcesUpdated.emit()
+            except Exception:
+                pass
+            self.toastMessage.emit("ok", "Channel icon updated")
+        except Exception as exc:
+            try:
+                self.toastMessage.emit("error", "Could not update icon")
+            except Exception:
+                pass
+            print("[Bridge] setChannelAvatar error:", exc)
+
     def _avatar_for(self, cid):
         for s in self._custom_sources:
             if s.get("name") == cid:
-                return self._source_avatar(s)
+                _av = self._source_avatar(s)
+                try:
+                    if _av and not _av.startswith(("http://", "https://", "data:", "file://")):
+                        from pathlib import Path as _P
+                        _root = _P(__file__).resolve().parent.parent
+                        for _base in (_root / "backend" / "offline_viewer", _root):
+                            _p = _base / _av
+                            if _p.exists():
+                                return _p.absolute().as_uri()
+                except Exception:
+                    pass
+                return _av
         try:
             from pathlib import Path
             repo_root = Path(__file__).resolve().parent.parent

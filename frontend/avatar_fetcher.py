@@ -161,9 +161,17 @@ def fetch_avatar(source: dict, force: bool = False) -> Path | None:
     # per-domain favicon path below.
     x_handle = twitter_handle_from_url(feed_url)
     if x_handle:
-        p = try_download(f"https://unavatar.io/x/{x_handle}")
-        if p:
-            return p
+        # Resolve the REAL per-account avatar. fallback=false makes unavatar
+        # 404 instead of returning X's generic placeholder image.
+        for _cand in (f"https://unavatar.io/twitter/{x_handle}?fallback=false",
+                      f"https://unavatar.io/x/{x_handle}?fallback=false"):
+            p = try_download(_cand)
+            if p:
+                return p
+        # Do NOT fall through to the favicon / Google-favicon fallbacks below:
+        # for x.com they only ever return the generic X PLATFORM logo, never the
+        # account's avatar. Return None so the UI shows clean initials instead.
+        return None
 
     # (a) RSS <image> / channel image
     try:
@@ -266,6 +274,10 @@ def backfill_avatars(refresh_avatars: bool = False) -> None:
         return
 
     log.info("Starting channel avatar backfill pass...")
+    try:
+        backfill_default_avatars(refresh_avatars)
+    except Exception as _e:
+        log.error("Default-source avatar backfill failed: %s", _e)
     sources = load_sources_file()
     if not sources:
         log.info("No sources found to backfill.")
@@ -329,3 +341,128 @@ def backfill_avatars(refresh_avatars: bool = False) -> None:
         log.info("Sources file updated with avatars.")
     else:
         log.info("No avatars updated in this pass.")
+
+
+# --------------------------------------------------------------------------- #
+#  Built-in / aggregated source avatars (avatar fix: #2 auto-fetch coverage)
+#
+#  backfill_avatars() above only covers custom_sources.json. The built-in
+#  "aggregated" channels are hardcoded in backend/gui_server.py and were never
+#  auto-fetched, so they fell back to plain initials. These helpers statically
+#  read those default sources and populate the shared assets/avatars/index.json
+#  map that bridge.py._avatar_for() already reads for non-custom channels.
+# --------------------------------------------------------------------------- #
+_DEFAULTS_AVATARS_DIR = REPO_ROOT / "backend" / "offline_viewer" / "assets" / "avatars"
+_DEFAULTS_INDEX = _DEFAULTS_AVATARS_DIR / "index.json"
+
+
+def _clean_site_name(name: str) -> str:
+    """Mirror gui_server / fix_avatars channel naming so index.json keys match
+    the channel ids the UI actually shows."""
+    n = (name or "").lower()
+    table = [
+        ("variety", "Variety"), ("hollywood reporter", "The Hollywood Reporter"),
+        ("thr", "The Hollywood Reporter"), ("vulture", "Vulture"),
+        ("entertainment weekly", "Entertainment Weekly"), ("ew.com", "Entertainment Weekly"),
+        ("screen daily", "Screen Daily"), ("rotten tomatoes", "Rotten Tomatoes"),
+        ("deadline", "Deadline Hollywood"), ("collider", "Collider"),
+        ("rogerebert", "RogerEbert.com"), ("roger ebert", "RogerEbert.com"),
+        ("avclub", "The A.V. Club"), ("av club", "The A.V. Club"), ("a.v. club", "The A.V. Club"),
+        ("letterboxd", "Letterboxd Journal"), ("little white lies", "Little White Lies"),
+        ("lwlies", "Little White Lies"), ("empireonline", "Empire Magazine"),
+        ("empire magazine", "Empire Magazine"), ("cinemablend", "CinemaBlend"),
+        ("espn", "ESPN News"), ("bbc", "BBC Sport"), ("sky sports", "Sky Sports News"),
+        ("techcrunch", "TechCrunch"), ("wired", "Wired Tech"), ("the verge", "The Verge"),
+    ]
+    for needle, clean in table:
+        if needle in n:
+            return clean
+    return name
+
+
+def _load_default_sources() -> list:
+    """Statically parse backend/gui_server.py for the hardcoded `sources` list
+    inside fetch_and_aggregate_news (AST only, no import / no side effects)."""
+    import ast
+    gui = REPO_ROOT / "backend" / "gui_server.py"
+    if not gui.exists():
+        gui = REPO_ROOT / "gui_server.py"
+    if not gui.exists():
+        return []
+    try:
+        tree = ast.parse(gui.read_text(encoding="utf-8"))
+        for node in ast.walk(tree):
+            if isinstance(node, ast.FunctionDef) and node.name == "fetch_and_aggregate_news":
+                for stmt in node.body:
+                    if isinstance(stmt, ast.Assign):
+                        for tgt in stmt.targets:
+                            if isinstance(tgt, ast.Name) and tgt.id == "sources":
+                                return ast.literal_eval(stmt.value)
+    except Exception:
+        pass
+    return []
+
+
+def _load_defaults_index() -> dict:
+    if _DEFAULTS_INDEX.exists():
+        try:
+            return json.loads(_DEFAULTS_INDEX.read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    return {}
+
+
+def _save_defaults_index(mapping: dict) -> None:
+    try:
+        _DEFAULTS_AVATARS_DIR.mkdir(parents=True, exist_ok=True)
+        _DEFAULTS_INDEX.write_text(json.dumps(mapping, indent=4, ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        pass
+
+
+def backfill_default_avatars(refresh_avatars: bool = False) -> None:
+    """Fetch avatars for the built-in aggregated sources and register them in the
+    shared assets/avatars/index.json map keyed by channel name (lowercased)."""
+    if not HAS_LIBS:
+        return
+    raw = _load_default_sources()
+    if not raw:
+        return
+    index_map = _load_defaults_index()
+    seen = {}
+    for item in raw:
+        try:
+            raw_name = item[0]
+            url = item[1]
+        except Exception:
+            continue
+        clean = _clean_site_name(raw_name)
+        if clean not in seen:
+            seen[clean] = url
+    for clean, url in seen.items():
+        key = clean.lower()
+        slug = slugify(clean)
+        if not refresh_avatars:
+            mapped = index_map.get(key)
+            if mapped and (REPO_ROOT / "backend" / "offline_viewer" / mapped).exists():
+                continue
+        res_path = fetch_avatar({"name": clean, "url": url}, force=refresh_avatars)
+        if not res_path:
+            continue
+        try:
+            _DEFAULTS_AVATARS_DIR.mkdir(parents=True, exist_ok=True)
+            dest = _DEFAULTS_AVATARS_DIR / (slug + ".png")
+            if HAS_PILLOW:
+                try:
+                    img = Image.open(str(res_path))
+                    if img.mode not in ("RGB", "RGBA"):
+                        img = img.convert("RGBA")
+                    img.save(str(dest), "PNG")
+                except Exception:
+                    dest.write_bytes(Path(res_path).read_bytes())
+            else:
+                dest.write_bytes(Path(res_path).read_bytes())
+            index_map[key] = "assets/avatars/" + slug + ".png"
+        except Exception:
+            pass
+    _save_defaults_index(index_map)
