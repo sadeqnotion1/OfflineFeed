@@ -95,15 +95,16 @@ Item {
             }
 
             SettingsRow {
-                iconName: "cpu"
-                label: qsTr("Advanced Settings")
-                onClicked: root.sectionSelected("advanced")
-            }
-
-            SettingsRow {
                 iconName: "sun"
                 label: qsTr("Appearance")
                 onClicked: root.sectionSelected("appearance")
+            }
+
+            // R2.3 — Advanced now sits immediately before Language (was before Appearance).
+            SettingsRow {
+                iconName: "cpu"
+                label: qsTr("Advanced Settings")
+                onClicked: root.sectionSelected("advanced")
             }
 
             SettingsRow {

@@ -22,3 +22,10 @@
 - Overwrote original QML and theme code with milestone M1 fixes (rounded app window, Tinted cyberpunk variant, card radius consolidation, widened left folder rail, distinct close icon).
 - Verified python syntax compilation and QML diagnostics using `doctor.py`.
 - **Stop point / next:** start **M2 — Settings information architecture & consistency** (NEXT.md).
+
+## 2026-06-22 — Session 3: Applied fix 20176222026 (M2 / R2.3)
+- Packaged `SettingsRoot.qml` and `SettingsAdvanced.qml` into `settings_root_advanced.zip` at the project root per request.
+- Applied Milestone 2 / R2.3 layout fix: moved "Advanced Settings" row to sit directly before "Language & RTL" in `SettingsRoot.qml`.
+- Backed up the original file as `SettingsRoot_backup_<timestamp>.qml` in the scratch directory.
+- Ran `frontend.doctor` diagnostics and updated the visual graph files.
+- **Stop point / next:** continue **M2 — Settings information architecture & consistency** (unifying visual languages R2.1 and resolving naming issues R2.2).

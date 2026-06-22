@@ -24,7 +24,7 @@ _Mostly `frontend/qml` settings views + labels._
 
 - **R2.1 — Two visual languages in Settings.** Some settings are "advanced-style", some "simple-style". Unify them into one consistent settings UI.
 - **R2.2 — Naming errors in Settings.** e.g. the "Advanced" section contains another "Advanced" section. Audit and fix mislabeled sections.
-- **R2.3 — Advanced section placement.** "Advanced" sits in the middle; move it to appear **before** the Language setting.
+- **R2.3 — Advanced section placement.** ✅ Advanced sits immediately before Language.
 
 ## M3 — Icon hygiene ⬜
 _Icon set + where icons are chosen in `frontend/qml/components/` and channel/folder rows._

@@ -6,8 +6,8 @@ The AI rewrites this at the end of every session._
 
 ## ➡️ The one next task
 **M2 — Settings information architecture & consistency.** Clean up and unify settings views:
-Unify settings pages into a single consistent visual styling (R2.1), audit and fix mislabeled section
-names (R2.2), and move the "Advanced" settings section to appear immediately before "Language" (R2.3).
+Unify settings pages into a single consistent visual styling (R2.1) and audit/fix mislabeled section
+names (R2.2) (R2.3 is already completed).
 
 ## Start the next chat with this
 > "Let's do M2 — Settings information architecture & consistency. Start by showing me the QML file layout for the settings components and how advanced vs simple pages currently differ in style."

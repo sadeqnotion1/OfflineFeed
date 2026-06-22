@@ -15,7 +15,7 @@
 | Knowledge graph (`.agents/graph/`) | ✅ | Full 74-node Graphify graph included. Standard schema and renderer validated. |
 | Brain (`.agents/brain/`) | ✅ | This system. |
 | M1 Window chrome & theme | ✅ | True rounded frameless shell, cyberpunk Tinted theme, card radius, folder rail, distinct close glyph |
-| M2 Settings IA & consistency | ⬜ | **← NEXT** |
+| M2 Settings IA & consistency | 🟦 | **← NEXT** (R2.3 applied: Advanced row moved before Language. Awaiting files/clarification for R2.1/R2.2) |
 | M3–M10 | ⬜ | See ROADMAP.md |
 
 > Legend: ✅ done · 🟦 in progress · ⬜ not started · ⚠️ blocked. Mark the active task with **← NEXT**.
