@@ -7,16 +7,54 @@ import "./components"
 // Root window: frameless, custom title bar, 3-pane Telegram layout + slide-in
 // info panel. All panes talk to the Python `bridge` and the two list models
 // (`chatModel`, `messageModel`) exposed from bridge.py.
+//
+// ---------------------------------------------------------------------------
+//  WINDOW-MODES PATCH (responsive + resizable, like Telegram Desktop)
+//  - minimumWidth lowered so the window can shrink into a single-pane mode.
+//  - toggleMaximize() maximizes into the screen's AVAILABLE area (never over
+//    the taskbar) and restores cleanly, instead of a taskbar-covering fill.
+//  - WindowModes controller collapses the 3-pane shell to one pane when narrow.
+//  - ResizeHandles overlay restores edge/corner drag-resize on the frameless
+//    window (see components/ResizeHandles.qml + components/WindowModes.qml).
+//  Every edit is additive and reversible; the WIDE layout is unchanged.
+// ---------------------------------------------------------------------------
 ApplicationWindow {
     id: win
     width: 1180
     height: 760
-    minimumWidth: 760
-    minimumHeight: 520
+    minimumWidth: 380          // PATCH: was 760 - allow Telegram-style narrow single-pane mode
+    minimumHeight: 480         // PATCH: was 520
     visible: true
     title: "OfflineFeed"
     flags: Qt.Window | Qt.FramelessWindowHint
     color: Theme.bg
+
+    // ---- Window-mode state (PATCH) ----
+    // Frameless windows have no native maximize that respects the taskbar, so
+    // we maximize manually into the screen's *available* geometry and keep a
+    // restore rect for un-maximize. ResizeHandles clears _isMaxed when the user
+    // drag-resizes, so the restore size never goes stale.
+    property bool _isMaxed: false
+    property rect _restoreGeom: Qt.rect(100, 100, 1180, 760)
+    function toggleMaximize() {
+        if (_isMaxed) {
+            win.x = _restoreGeom.x
+            win.y = _restoreGeom.y
+            win.width = _restoreGeom.width
+            win.height = _restoreGeom.height
+            _isMaxed = false
+        } else {
+            _restoreGeom = Qt.rect(win.x, win.y, win.width, win.height)
+            win.x = Screen.virtualX
+            win.y = Screen.virtualY
+            win.width = Screen.desktopAvailableWidth
+            win.height = Screen.desktopAvailableHeight
+            _isMaxed = true
+        }
+    }
+
+    // Responsive layout controller (PATCH).
+    WindowModes { id: modes; windowWidth: win.width }
 
     // Keep the Theme singleton in sync with the bridge state.
     Binding { target: Theme; property: "variant"; value: bridge.theme }
@@ -59,7 +97,7 @@ ApplicationWindow {
             id: titleBar
             width: parent.width
             onRequestMinimize: win.showMinimized()
-            onRequestToggleMaximize: win.visibility === Window.Maximized ? win.showNormal() : win.showMaximized()
+            onRequestToggleMaximize: win.toggleMaximize()            // PATCH: taskbar-safe maximize/restore
             onRequestClose: Qt.quit()
             onStartSystemMove: win.startSystemMove()
         }
@@ -85,14 +123,22 @@ ApplicationWindow {
                 // Hairline seam between the folder rail and the chat list.
                 Rectangle { width: 1; height: parent.height; color: Theme.hairline }
 
-                // Master list (hidden when Settings is active to give it full width)
+                // Master list. PATCH: width is now responsive.
+                //  - Settings active        -> 0 (Settings takes the detail pane)
+                //  - COMPACT + chat open     -> 0 (single-pane shows the chat)
+                //  - COMPACT + no chat open  -> fills the body (single-pane list)
+                //  - WIDE                    -> fixed Theme.chatListWidth (unchanged)
                 ChatList {
                     id: chatList
-                    width: bridge.activeTab === "settings" ? 0 : Theme.chatListWidth
+                    width: bridge.activeTab === "settings"
+                           ? 0
+                           : (modes.compact
+                              ? (modes.detailActive ? 0 : (parent.width - rail.width - 1))
+                              : Theme.chatListWidth)
                     height: parent.height
                     visible: width > 0
                     Behavior on width { NumberAnimation { duration: Theme.anim; easing.type: Theme.easing } }
-                    onOpenChat: function(id) { bridge.openChat(id) }
+                    onOpenChat: function(id) { bridge.openChat(id); if (modes.compact) modes.detailActive = true }
                     // D5: receive the row's pin/mute state and pass it to the menu so
                     // it shows the correct verb; the action still toggles real state.
                     onChatContextMenu: function(id, name, pinned, muted, gx, gy) {
@@ -107,8 +153,11 @@ ApplicationWindow {
                 Rectangle { width: 1; height: parent.height; color: Theme.hairline; visible: chatList.visible }
 
                 // Detail pane swaps between the chat view and the Settings page.
+                // PATCH: in COMPACT mode it is 0-width until a chat is opened.
                 Item {
-                    width: parent.width - rail.width - 1 - (chatList.visible ? Theme.chatListWidth + 1 : 0)
+                    width: modes.compact
+                           ? (modes.detailActive ? (parent.width - rail.width - 1) : 0)
+                           : parent.width - rail.width - 1 - (chatList.visible ? Theme.chatListWidth + 1 : 0)
                     height: parent.height
 
                     ChatView {
@@ -117,6 +166,8 @@ ApplicationWindow {
                         visible: bridge.activeTab !== "settings" && bridge.currentChannelId !== "SearchResults"
                         channelId: bridge.currentChannelId
                         channelName: bridge.currentChannelName
+                        compact: modes.compact && modes.detailActive   // PATCH: show Back arrow in single-pane
+                        onBackRequested: modes.detailActive = false    // PATCH: return to the list
                         onInfoRequested: infoPanel.open = !infoPanel.open
                         onForwardChannelRequested: function(id) { bridge.sendChannelToTelegram(id) }
                         onReadArticleRequested: function(u, t, tx) { reader.open(u, t, tx) }
@@ -201,5 +252,16 @@ ApplicationWindow {
             PauseAnimation { duration: 2200 }
             NumberAnimation { target: toast; property: "opacity"; to: 0; duration: Theme.anim }
         }
+    }
+
+    // ---- Frameless-window resize grips (PATCH) ----
+    // Restores edge/corner drag-resize that Qt.FramelessWindowHint removed.
+    // Lives OUTSIDE uiScaler so it maps to real window pixels (never scaled),
+    // and on top (z) so the edges always win over content underneath.
+    ResizeHandles {
+        anchors.fill: parent
+        targetWindow: win
+        z: 9999
+        onResizeStarted: win._isMaxed = false
     }
 }

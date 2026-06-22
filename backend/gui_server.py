@@ -2081,8 +2081,22 @@ def fetch_and_aggregate_news():
         results.append(res)
         time.sleep(0.5)
         
+    with news_cache_lock:
+        old_list = list(news_cache["data"])
+
+    # Durability fix: the in-memory cache is empty on a fresh start, so fall
+    # back to the last on-disk snapshot. Without this, posts that leave the
+    # source feed between app restarts are never archived (lost forever).
+    if not old_list:
+        old_list = feed_store.load_feed_snapshot()
+
     for res in results:
         status_map[res["source"]] = res["status"]
+        # If the feed source failed to refresh, preserve its previous articles from the old list
+        # so the user doesn't lose them and they are not incorrectly archived/removed.
+        if res["status"].startswith("Failed") and old_list:
+            old_source_articles = [art for art in old_list if art.get("source") == res["source"]]
+            res["items"] = old_source_articles
         all_articles.extend(res["items"])
         
     seen_urls = set()
@@ -2105,15 +2119,6 @@ def fetch_and_aggregate_news():
     
     dated.sort(key=lambda x: x["timestamp"], reverse=True)
     final_list = dated + undated
-    
-    with news_cache_lock:
-        old_list = list(news_cache["data"])
-
-    # Durability fix: the in-memory cache is empty on a fresh start, so fall
-    # back to the last on-disk snapshot. Without this, posts that leave the
-    # source feed between app restarts are never archived (lost forever).
-    if not old_list:
-        old_list = feed_store.load_feed_snapshot()
 
     archive_removed_posts(old_list, final_list)
 

@@ -2,10 +2,14 @@ import QtQuick
 import QtQuick.Layouts
 import "../themes"
 
-// One Telegram-style settings row: SVG icon + label (+ optional value text and
-// a chevron), with hover and selection states driven entirely by the Theme
-// singleton. Reused for the root section list and as a navigable button row
-// inside detail pages. RTL-safe via LayoutMirroring + Theme.rtl.
+// One Telegram-style settings row: a ROUNDED-SQUARE colored icon tile + label
+// (+ optional value text and a chevron), with hover and selection states driven
+// entirely by the Theme singleton. Reused for the root section list and as a
+// navigable button row inside detail pages. RTL-safe via LayoutMirroring + Theme.rtl.
+//
+// CHANGE vs original: the bare Icon is now wrapped in a rounded-square colored
+// tile (Telegram Desktop style). Callers may set `tileColor` per row; it
+// defaults to Theme.accent so any existing usage keeps working.
 Item {
     id: row
 
@@ -14,6 +18,7 @@ Item {
     property string value: ""        // optional right-aligned value text
     property bool showChevron: false
     property bool selected: false
+    property color tileColor: Theme.accent   // NEW: rounded-square icon tile color
 
     signal clicked()
 
@@ -31,15 +36,23 @@ Item {
         anchors.fill: parent
         anchors.leftMargin: 16
         anchors.rightMargin: 16
-        spacing: 16
+        spacing: 14
         LayoutMirroring.enabled: Theme.rtl
 
-        Icon {
+        // NEW: Telegram-style rounded-square colored icon tile.
+        Rectangle {
             visible: row.iconName !== ""
-            name: row.iconName
-            size: 22
-            color: row.selected ? Theme.accentText : Theme.accent
+            Layout.preferredWidth: 30
+            Layout.preferredHeight: 30
             Layout.alignment: Qt.AlignVCenter
+            radius: Theme.radius.md
+            color: row.tileColor
+            Icon {
+                anchors.centerIn: parent
+                name: row.iconName
+                size: 18
+                color: "#ffffff"
+            }
         }
 
         Text {
@@ -76,7 +89,7 @@ Item {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.leftMargin: 54
+        anchors.leftMargin: 60
         height: 1
         color: Theme.divider
         opacity: 0.5

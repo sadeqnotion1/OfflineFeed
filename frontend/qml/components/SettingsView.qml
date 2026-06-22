@@ -6,23 +6,25 @@ import "../themes"
 // pushes one dedicated page per section (each page gets its own SVG icon + own
 // screen, with a back button in its header). Loaded by Main.qml in place of the
 // old single SettingsPage whenever bridge.activeTab === "settings".
+//
+// CHANGE: the purple group (Account + Privacy & Security + Advanced) is now ONE
+// page -> AdvancedMergedPage.qml, and the yellow group (Feed & Chat Settings +
+// Folders) is ONE page -> ChannelSettingsPage.qml. Each root row now carries a
+// `tile` color so the list shows Telegram-style rounded-square colored icons.
 Item {
     id: settingsView
     anchors.fill: parent
 
-    // ----- Section registry (id, label, icon, detail page) -----
+    // ----- Section registry (id, label, icon, tile color, detail page) -----
     // icon = a white-stroke SVG in qml/assets/icons recolored at runtime by Icon.qml.
     property var sections: [
-        { sid: "account",       label: qsTr("Account"),               icon: "user",    page: "AccountPage.qml" },
-        { sid: "notifications", label: qsTr("Notifications & Sounds"), icon: "bell",    page: "NotificationsPage.qml" },
-        { sid: "privacy",       label: qsTr("Privacy & Security"),     icon: "shield",  page: "PrivacyPage.qml" },
-        { sid: "feed",          label: qsTr("Feed & Chat Settings"),   icon: "chat",    page: "FeedPage.qml" },
-        { sid: "sources",      label: qsTr("News Sources"),           icon: "external", page: "SourcesPage.qml" },
-        { sid: "folders",       label: qsTr("Folders"),                icon: "folder",  page: "FoldersPage.qml" },
-        { sid: "advanced",      label: qsTr("Advanced"),               icon: "wrench",  page: "AdvancedPage.qml" },
-        { sid: "appearance",    label: qsTr("Appearance"),             icon: "palette", page: "AppearancePage.qml" },
-        { sid: "language",      label: qsTr("Language"),               icon: "globe",   page: "LanguagePage.qml" },
-        { sid: "help",          label: qsTr("Help"),                   icon: "help",    page: "HelpPage.qml" }
+        { sid: "channel",       label: qsTr("Channel Settings"),      icon: "chat",     tile: "#3390ec", page: "ChannelSettingsPage.qml" },
+        { sid: "notifications", label: qsTr("Notifications & Sounds"), icon: "bell",     tile: "#e8506e", page: "NotificationsPage.qml" },
+        { sid: "sources",       label: qsTr("News Sources"),           icon: "external", tile: "#4dcd5e", page: "SourcesPage.qml" },
+        { sid: "advanced",      label: qsTr("Advanced"),               icon: "wrench",   tile: "#13b9a8", page: "AdvancedMergedPage.qml" },
+        { sid: "appearance",    label: qsTr("Appearance"),             icon: "palette",  tile: "#9b6dff", page: "AppearancePage.qml" },
+        { sid: "language",      label: qsTr("Language"),               icon: "globe",    tile: "#2ea6ff", page: "LanguagePage.qml" },
+        { sid: "help",          label: qsTr("Help"),                   icon: "help",     tile: "#f5a623", page: "HelpPage.qml" }
     ]
 
     StackView {
@@ -82,6 +84,7 @@ Item {
                     required property var modelData
                     width: ListView.view.width
                     iconName: modelData.icon
+                    tileColor: modelData.tile
                     label: modelData.label
                     showChevron: true
                     onClicked: stack.push(Qt.resolvedUrl(modelData.page), { "stack": stack })

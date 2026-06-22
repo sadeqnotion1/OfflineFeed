@@ -5,6 +5,19 @@ import "../themes"
 // (theme / accentOverride / interfaceScale / fontFamily / wallpaperMode),
 // which already persist through the bridge's UI-settings store. No new
 // persistence code needed here.
+//
+// ---------------------------------------------------------------------------
+//  TELEGRAM-STYLE APPEARANCE PATCH
+//  - The plain "Color theme" dropdown is replaced with visual THEME CARDS
+//    (Classic / Day / Tinted / Night) that preview each palette, like
+//    Telegram Desktop.
+//  - The accent row keeps the preset swatches AND adds a "+" custom swatch
+//    that opens a full color picker (AccentPickerDialog) so ANY accent color
+//    can be chosen — the missing "color palette change".
+//  Everything else (wallpaper, reader font, app font, interface scale) is
+//  unchanged. The picker writes the same `bridge.accentOverride` the presets
+//  already use, so persistence + app-wide re-tint work with no backend edits.
+// ---------------------------------------------------------------------------
 Item {
     id: page
     property var stack: null
@@ -12,6 +25,18 @@ Item {
 
     // Preset accent swatches; "" means "use the theme default accent".
     property var accents: [ "", "#3390ec", "#2ea6ff", "#4dcd5e", "#f5a623", "#e8506e", "#9b6dff", "#13b9a8" ]
+
+    // Theme preview cards. Colors mirror the stock per-variant palettes in
+    // Theme.qml so each card previews that theme's look (order matches Telegram).
+    property var themeCards: [
+        { v: "classic", label: qsTr("Classic"), bg: "#18222d", panel: "#222e3a", accent: "#56a3eb" },
+        { v: "day",     label: qsTr("Day"),     bg: "#ffffff", panel: "#f4f4f5", accent: "#3390ec" },
+        { v: "tinted",  label: qsTr("Tinted"),  bg: "#1a1a2e", panel: "#24243e", accent: "#7a8cff" },
+        { v: "night",   label: qsTr("Night"),   bg: "#17212b", panel: "#232e3c", accent: "#5288c1" }
+    ]
+
+    // True when the active accent is a custom color (not a preset, not default).
+    readonly property bool customAccentActive: bridge.accentOverride !== "" && page.accents.indexOf(bridge.accentOverride) === -1
 
     property var fontOptions: getFontOptions()
     function getFontOptions() {
@@ -54,23 +79,76 @@ Item {
             y: 16
             spacing: 8
 
+            // ===== Theme (visual cards) =====
             Text {
                 width: parent.width; text: qsTr("Theme")
                 color: Theme.accent; font.family: Theme.fontFamily; font.pixelSize: 13; font.bold: true
                 horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
             }
             Rectangle {
+                width: parent.width; radius: Theme.radius.lg; color: Theme.panel; height: cardFlow.implicitHeight + 24
+                Flow {
+                    id: cardFlow
+                    x: 16; y: 12
+                    width: parent.width - 32
+                    spacing: 14
+                    layoutDirection: Theme.rtl ? Qt.RightToLeft : Qt.LeftToRight
+                    Repeater {
+                        model: page.themeCards
+                        delegate: Item {
+                            id: card
+                            required property var modelData
+                            readonly property bool selected: bridge.theme === modelData.v
+                            width: 128; height: 116
+                            Column {
+                                anchors.top: parent.top; anchors.horizontalCenter: parent.horizontalCenter
+                                spacing: 8
+                                // Mini chat preview
+                                Rectangle {
+                                    width: 128; height: 84; radius: Theme.radius.md
+                                    color: card.modelData.bg
+                                    border.width: card.selected ? 2 : 1
+                                    border.color: card.selected ? Theme.accent : Theme.divider
+                                    clip: true
+                                    Rectangle { x: 8; y: 8; width: parent.width - 16; height: 15; radius: 5; color: card.modelData.panel }
+                                    Rectangle { x: 8; y: 32; width: 62; height: 13; radius: 6; color: card.modelData.panel }
+                                    Rectangle { x: 8; y: 49; width: 44; height: 13; radius: 6; color: card.modelData.panel }
+                                    Rectangle { x: parent.width - 8 - 58; y: 64; width: 58; height: 13; radius: 6; color: card.modelData.accent }
+                                }
+                                // Radio + label
+                                Row {
+                                    anchors.horizontalCenter: parent.horizontalCenter
+                                    spacing: 6
+                                    Rectangle {
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        width: 16; height: 16; radius: 8
+                                        color: "transparent"; border.width: 2
+                                        border.color: card.selected ? Theme.accent : Theme.textSecondary
+                                        Rectangle { anchors.centerIn: parent; width: 8; height: 8; radius: 4; color: Theme.accent; visible: card.selected }
+                                    }
+                                    Text {
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        text: card.modelData.label
+                                        color: Theme.text; font.family: Theme.fontFamily; font.pixelSize: 13
+                                        font.bold: card.selected
+                                    }
+                                }
+                            }
+                            MouseArea {
+                                anchors.fill: parent
+                                cursorShape: Qt.PointingHandCursor
+                                onClicked: bridge.theme = card.modelData.v
+                            }
+                        }
+                    }
+                }
+            }
+
+            // ===== Chat wallpaper =====
+            Rectangle {
                 width: parent.width; radius: Theme.radius.lg; color: Theme.panel; clip: true; height: c1.implicitHeight
                 Column {
                     id: c1; width: parent.width
-                    SettingsSelect {
-                        id: selTheme
-                        label: qsTr("Color theme")
-                        options: [ { value: "night", label: qsTr("Dark") }, { value: "day", label: qsTr("Light") },
-                            { value: "classic", label: qsTr("Classic") }, { value: "tinted", label: qsTr("Tinted") } ]
-                        value: bridge.theme
-                        onActivatedValue: bridge.theme = value
-                    }
                     SettingsSelect {
                         id: selWall
                         label: qsTr("Chat wallpaper")
@@ -157,6 +235,7 @@ Item {
                 }
             }
 
+            // ===== Accent color (presets + custom picker) =====
             Text {
                 width: parent.width; text: qsTr("Accent color")
                 color: Theme.accent; font.family: Theme.fontFamily; font.pixelSize: 13; font.bold: true
@@ -196,9 +275,34 @@ Item {
                             }
                         }
                     }
+                    // ---- Custom color swatch (opens the picker) ----
+                    Rectangle {
+                        id: customSwatch
+                        width: 34; height: 34; radius: Theme.radius.pill
+                        color: page.customAccentActive ? bridge.accentOverride : Theme.bg
+                        border.width: page.customAccentActive ? 3 : 2
+                        border.color: page.customAccentActive ? Theme.accent : Theme.divider
+                        Icon {
+                            visible: !page.customAccentActive
+                            anchors.centerIn: parent; name: "plus"; size: 16; color: Theme.textSecondary
+                        }
+                        MouseArea {
+                            anchors.fill: parent
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: accentPicker.openWith(bridge.accentOverride)
+                        }
+                    }
                 }
             }
+            Text {
+                width: parent.width
+                text: qsTr("Tap + to choose any custom color. The accent re-tints the whole app.")
+                color: Theme.textSecondary; font.family: Theme.fontFamily; font.pixelSize: 12
+                wrapMode: Text.WordWrap
+                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+            }
 
+            // ===== Interface =====
             Text {
                 width: parent.width; text: qsTr("Interface")
                 color: Theme.accent; font.family: Theme.fontFamily; font.pixelSize: 13; font.bold: true
@@ -225,5 +329,11 @@ Item {
                 }
             }
         }
+    }
+
+    // Custom accent color picker (Telegram-style). Writes bridge.accentOverride.
+    AccentPickerDialog {
+        id: accentPicker
+        onAccepted: function(hex) { bridge.accentOverride = hex }
     }
 }

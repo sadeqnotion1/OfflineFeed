@@ -51,7 +51,7 @@ def twitter_handle_from_url(url: str) -> str:
 
 def load_sources_file() -> list:
     """Load sources from custom_sources.json."""
-    filepath = REPO_ROOT / "offline_viewer" / "assets" / "custom_sources.json"
+    filepath = REPO_ROOT / "backend" / "offline_viewer" / "assets" / "custom_sources.json"
     if filepath.exists():
         try:
             return json.loads(filepath.read_text(encoding="utf-8"))
@@ -61,7 +61,7 @@ def load_sources_file() -> list:
 
 def save_sources_file(sources: list) -> None:
     """Save sources back to custom_sources.json."""
-    filepath = REPO_ROOT / "offline_viewer" / "assets" / "custom_sources.json"
+    filepath = REPO_ROOT / "backend" / "offline_viewer" / "assets" / "custom_sources.json"
     try:
         filepath.parent.mkdir(parents=True, exist_ok=True)
         filepath.write_text(json.dumps(sources, indent=4, ensure_ascii=False), encoding="utf-8")

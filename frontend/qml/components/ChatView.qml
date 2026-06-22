@@ -6,6 +6,11 @@ import "../themes"
 
 // Right pane: chat header, pinned-message bar, wallpaper, message list with
 // day-separator pills, and a bottom action bar (forward channel to Telegram).
+//
+// WINDOW-MODES PATCH: in compact (single-pane) mode the header shows a Back
+// arrow so you can return to the chat list, exactly like Telegram on a narrow
+// window. The arrow is driven by the `compact` property and emits
+// backRequested(); it has ZERO width/impact when not compact.
 Rectangle {
     id: root
     color: Theme.contentBg
@@ -13,10 +18,12 @@ Rectangle {
     property string channelId: ""
     property string channelName: ""
     property bool searchActive: false
+    property bool compact: false               // PATCH: single-pane mode -> show Back arrow
     onChannelIdChanged: { searchActive = false; if (typeof chSearch !== 'undefined') chSearch.text = "" }
     signal infoRequested()
     signal forwardChannelRequested(string channelId)
     signal readArticleRequested(string url, string title, string fallback)  // -> opens reader overlay
+    signal backRequested()                     // PATCH: compact-mode "back to chat list"
 
     // Item 2: pinned posts for the open channel (kept in sync with the bridge).
     property var pinnedPosts: []
@@ -69,6 +76,35 @@ Rectangle {
                 spacing: 0                       // RULE 1: no uniform gaps
                 LayoutMirroring.enabled: Theme.rtl
 
+                // ---- Compact-mode Back arrow (PATCH) ----
+                // Single-pane navigation: tap to return to the chat list. Has
+                // zero width + zero margin when not compact, so the WIDE header
+                // is pixel-for-pixel unchanged.
+                Rectangle {
+                    id: backBtn
+                    visible: root.compact
+                    Layout.preferredWidth: visible ? 34 : 0
+                    Layout.preferredHeight: 34
+                    Layout.rightMargin: visible ? 6 : 0
+                    Layout.alignment: Qt.AlignVCenter
+                    radius: Theme.radius.pill
+                    color: backArea.containsMouse ? Theme.hover : "transparent"
+                    Behavior on color { ColorAnimation { duration: Theme.animFast } }
+                    Icon {
+                        anchors.centerIn: parent
+                        name: "back"
+                        size: 20
+                        color: Theme.text
+                    }
+                    MouseArea {
+                        id: backArea
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: root.backRequested()
+                    }
+                }
+
                 Avatar {
                     // Item 5: reuse the same avatar resolution as the list row
                     // (real channel image when available; gradient fallback).
@@ -84,6 +120,8 @@ Rectangle {
                     Layout.leftMargin: 10        // the single avatar -> name gap
                     Layout.alignment: Qt.AlignVCenter
                     spacing: 0
+                    // Telegram-style: click the header to open the channel manage panel.
+                    TapHandler { onTapped: root.infoRequested() }
                     RowLayout {
                         id: titleRow
                         Layout.fillWidth: true
