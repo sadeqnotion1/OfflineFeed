@@ -1,0 +1,229 @@
+{
+  "main": {
+    "id": "8145bab7e662d477",
+    "type": "split",
+    "children": [
+      {
+        "id": "f41bd536a3528cd0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f4b2900a3aabbf93",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "fbe30b6273668334",
+    "type": "split",
+    "children": [
+      {
+        "id": "c48c2db509f3c522",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4f0ee5bd2f036ca4",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "a90af40260fcd897",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "a4793cb8226b09ee",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "8228a6e17b5a0a8f",
+    "type": "split",
+    "children": [
+      {
+        "id": "b791d06a9487e904",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "cd538d3ca8095d15",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Welcome.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for Welcome"
+            }
+          },
+          {
+            "id": "cb249ffd5f010c55",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Welcome.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from Welcome"
+            }
+          },
+          {
+            "id": "273b8aa6c10264c4",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "4c84fc46b616fcce",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "9f829b7e36e231cd",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Welcome.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of Welcome"
+            }
+          },
+          {
+            "id": "aadf6c4d40d9cb59",
+            "type": "leaf",
+            "state": {
+              "type": "antigravity-terminal-view",
+              "state": {},
+              "icon": "bot",
+              "title": "Antigravity CLI"
+            }
+          }
+        ],
+        "currentTab": 5
+      }
+    ],
+    "direction": "horizontal",
+    "width": 539.5
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false,
+      "antigravity-cli-sidebar:Open Antigravity CLI": false
+    }
+  },
+  "active": "aadf6c4d40d9cb59",
+  "lastOpenFiles": [
+    "why/why_unchanged_backend.md",
+    "why/why_real_traceback.md",
+    "why/why_svg.md",
+    "why/why_reader_font.md",
+    "why/why_no_oldui.md",
+    "why/why_no_diskcache.md",
+    "why/why_defensive_net.md",
+    "why/why_bin.md",
+    "why",
+    "diagnostics/log_file.md",
+    "diagnostics/doctor_main.md",
+    "diagnostics/doctor.md",
+    "diagnostics/debug_run_diagnostics.md",
+    "diagnostics/debug_RingBufferHandler.md",
+    "diagnostics/debug_probe_backend_import.md",
+    "diagnostics/debug_install_excepthooks.md",
+    "diagnostics/debug_get_logger.md",
+    "diagnostics/debug_check_backend_module.md",
+    "diagnostics/debug.md",
+    "diagnostics",
+    "config/ui_settings.md",
+    "config/spec.md",
+    "config/runbat.md",
+    "config/requirements.md",
+    "config/logo.md",
+    "config/gen_assets.md",
+    "config",
+    "bridge/bridge_Task.md",
+    "bridge/bridge_SourcesModel.md",
+    "bridge",
+    "backend",
+    "ui",
+    "bootstrap"
+  ]
+}

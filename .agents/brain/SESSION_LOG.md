@@ -29,3 +29,11 @@
 - Backed up the original file as `SettingsRoot_backup_<timestamp>.qml` in the scratch directory.
 - Ran `frontend.doctor` diagnostics and updated the visual graph files.
 - **Stop point / next:** continue **M2 — Settings information architecture & consistency** (unifying visual languages R2.1 and resolving naming issues R2.2).
+
+## 2026-06-28 — Session 4: Convert knowledge graph to Obsidian vault
+- Created a Python script `build_obsidian.py` in `.agents/graph/` to automatically convert the Graphify codebase knowledge graph `graph.json` into an Obsidian vault format under `.agents/graph/Offlinefeed`.
+- The script automatically sanitizes node IDs into unique Windows-safe filenames, groups files into subdirectories matching their community categories, generates Obsidian `[[WikiLinks]]` from graph edges, and builds a comprehensive `Welcome.md` dashboard index.
+- Ran the script, generating 74 markdown files and the `Welcome.md` landing page. Preserved the user's `.obsidian/` configuration.
+- Cleaned up redundant visualizer/report files (`graph.html`, `GRAPH_REPORT.md`, and old duplicated graph HTML) from the `.agents/graph/` directory, since the Obsidian vault replaces their functionality.
+- **Stop point / next:** Resume milestone **M2 — Settings information architecture & consistency** (unifying visual languages R2.1 and resolving naming issues R2.2).
+
