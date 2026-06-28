@@ -15,8 +15,9 @@
 | Knowledge graph (`.agents/graph/`) | ✅ | Full 74-node Graphify graph included. Standard schema and renderer validated. |
 | Brain (`.agents/brain/`) | ✅ | This system. |
 | M1 Window chrome & theme | ✅ | True rounded frameless shell, cyberpunk Tinted theme, card radius, folder rail, distinct close glyph |
-| M2 Settings IA & consistency | 🟦 | **← NEXT** (R2.3 applied: Advanced row moved before Language. Awaiting files/clarification for R2.1/R2.2) |
-| M3–M10 | ⬜ | See ROADMAP.md |
+| M2 Settings IA & consistency | ✅ | Unified all settings sub-pages with card-based layouts and rich icon-led section headers (R2.1), resolved Advanced inner section naming duplication by renaming it to System (R2.2), and placed Advanced before Language setting row (R2.3). |
+| M3 Icon hygiene | 🟦 | **← NEXT** (R3.1 trash icon spacing, R3.2 folder icons, R3.3 Telegram forward icon, R3.4 avatar clamping) |
+| M4–M10 | ⬜ | See ROADMAP.md |
 
 > Legend: ✅ done · 🟦 in progress · ⬜ not started · ⚠️ blocked. Mark the active task with **← NEXT**.
 

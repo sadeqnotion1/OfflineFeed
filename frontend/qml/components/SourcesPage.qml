@@ -55,14 +55,14 @@ Item {
             x: Math.max(16, (parent.width - width) / 2)
             width: Math.min(parent.width - 32, 620)
             y: 16
-            spacing: 20
+            spacing: 14
 
             // ---- Defaults Section ----
-            Text {
+            SettingsSectionHeader {
                 width: parent.width
-                text: qsTr("Defaults for new sources")
-                color: Theme.accent; font.bold: true; font.family: Theme.fontFamily; font.pixelSize: 13
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+                iconName: "settings"; tileColor: "#4dcd5e"
+                title: qsTr("Defaults for new sources")
+                subtitle: qsTr("Section and category for new feeds")
             }
             Rectangle {
                 width: parent.width
@@ -104,11 +104,11 @@ Item {
             }
 
             // ---- Single Add Section ----
-            Text {
+            SettingsSectionHeader {
                 width: parent.width
-                text: qsTr("Add a single source")
-                color: Theme.accent; font.bold: true; font.family: Theme.fontFamily; font.pixelSize: 13
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+                iconName: "plus"; tileColor: "#3390ec"
+                title: qsTr("Add a single source")
+                subtitle: qsTr("Add feed by RSS URL, X handle, or Telegram link")
             }
             Rectangle {
                 width: parent.width
@@ -160,11 +160,11 @@ Item {
             }
 
             // ---- Batch Add Section ----
-            Text {
+            SettingsSectionHeader {
                 width: parent.width
-                text: qsTr("Batch add")
-                color: Theme.accent; font.bold: true; font.family: Theme.fontFamily; font.pixelSize: 13
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+                iconName: "plus"; tileColor: "#2ea6ff"
+                title: qsTr("Batch add")
+                subtitle: qsTr("Add multiple sources, one per line")
             }
             Rectangle {
                 width: parent.width
@@ -212,11 +212,11 @@ Item {
             }
 
             // ---- OPML Import Section ----
-            Text {
+            SettingsSectionHeader {
                 width: parent.width
-                text: qsTr("Import OPML")
-                color: Theme.accent; font.bold: true; font.family: Theme.fontFamily; font.pixelSize: 13
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+                iconName: "external"; tileColor: "#f5a623"
+                title: qsTr("Import OPML")
+                subtitle: qsTr("Import feeds exported from other readers")
             }
             Rectangle {
                 width: parent.width
@@ -244,11 +244,11 @@ Item {
             }
 
             // ---- Custom Sources List Section ----
-            Text {
+            SettingsSectionHeader {
                 width: parent.width
-                text: qsTr("Your custom sources")
-                color: Theme.accent; font.bold: true; font.family: Theme.fontFamily; font.pixelSize: 13
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+                iconName: "chat"; tileColor: "#9b6dff"
+                title: qsTr("Your custom sources")
+                subtitle: qsTr("Manage your added news feeds")
             }
 
             Column {

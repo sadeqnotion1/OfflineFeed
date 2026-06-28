@@ -24,7 +24,14 @@ Item {
             x: Math.max(16, (parent.width - width) / 2)
             width: Math.min(parent.width - 32, 620)
             y: 16
-            spacing: 8
+            spacing: 14
+
+            SettingsSectionHeader {
+                width: parent.width
+                iconName: "globe"; tileColor: "#2ea6ff"
+                title: qsTr("Language")
+                subtitle: qsTr("Interface and reading direction")
+            }
 
             Rectangle {
                 width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: c1.implicitHeight

@@ -23,7 +23,14 @@ Item {
             x: Math.max(16, (parent.width - width) / 2)
             width: Math.min(parent.width - 32, 620)
             y: 16
-            spacing: 8
+            spacing: 14
+
+            SettingsSectionHeader {
+                width: parent.width
+                iconName: "help"; tileColor: "#f5a623"
+                title: qsTr("Help")
+                subtitle: qsTr("Frequently asked questions and support")
+            }
 
             Rectangle {
                 width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: infoCol.implicitHeight + 28

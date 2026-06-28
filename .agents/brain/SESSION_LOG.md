@@ -37,3 +37,12 @@
 - Cleaned up redundant visualizer/report files (`graph.html`, `GRAPH_REPORT.md`, and old duplicated graph HTML) from the `.agents/graph/` directory, since the Obsidian vault replaces their functionality.
 - **Stop point / next:** Resume milestone **M2 — Settings information architecture & consistency** (unifying visual languages R2.1 and resolving naming issues R2.2).
 
+## 2026-06-28 — Session 5: Finished M2 settings UI architecture & styling unification
+- Backed up all affected settings files to the designated scratch directory (`<appDataDir>\brain\<conversation-id>/scratch/`) before making edits.
+- Unified the visual language across all settings sub-pages ([AppearancePage.qml](file:///E:/Projects/OfflineFeed-master/frontend/qml/components/AppearancePage.qml), [NotificationsPage.qml](file:///E:/Projects/OfflineFeed-master/frontend/qml/components/NotificationsPage.qml), [LanguagePage.qml](file:///E:/Projects/OfflineFeed-master/frontend/qml/components/LanguagePage.qml), [HelpPage.qml](file:///E:/Projects/OfflineFeed-master/frontend/qml/components/HelpPage.qml), and [SourcesPage.qml](file:///E:/Projects/OfflineFeed-master/frontend/qml/components/SourcesPage.qml)) by implementing card-based layouts and replacing plain text section headers with rich, icon-led [SettingsSectionHeader.qml](file:///E:/Projects/OfflineFeed-master/frontend/qml/components/SettingsSectionHeader.qml) components (R2.1).
+- Swapped sections list order in [SettingsView.qml](file:///E:/Projects/OfflineFeed-master/frontend/qml/components/SettingsView.qml) so "Advanced" row sits immediately before "Language" (R2.3).
+- Resolved section naming duplication ("Advanced contains Advanced") in [AdvancedMergedPage.qml](file:///E:/Projects/OfflineFeed-master/frontend/qml/components/AdvancedMergedPage.qml) by renaming the inner section title to "System" (R2.2).
+- Consolidated Column layouts and vertical card/header spacing (`spacing: 14`) across all pages for a polished visual flow.
+- Verified QML engine imports and overall application health using the diagnostic doctor suite (`python -m frontend.doctor`).
+- **Stop point / next:** Start **M3 — Icon hygiene** (trash icon spacing, distinct folder icons, inline Telegram forwarding to icon transition, and avatar size clamping).
+

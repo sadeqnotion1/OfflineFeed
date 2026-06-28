@@ -19,14 +19,10 @@ _Visual base everything else sits on. Finished 2026-06-22._
 - **84px folder rail** (R1.4)
 - **Distinct window-close glyph** (R1.5)
 
-## M2 — Settings information architecture & consistency ⬜ ← NEXT
-_Mostly `frontend/qml` settings views + labels._
+## M2 — Settings information architecture & consistency ✅
+_Unified all settings sub-pages with card-based layouts and rich icon-led section headers (R2.1), resolved Advanced inner section naming duplication by renaming it to System (R2.2), and placed Advanced before Language setting row (R2.3). Finished 2026-06-28._
 
-- **R2.1 — Two visual languages in Settings.** Some settings are "advanced-style", some "simple-style". Unify them into one consistent settings UI.
-- **R2.2 — Naming errors in Settings.** e.g. the "Advanced" section contains another "Advanced" section. Audit and fix mislabeled sections.
-- **R2.3 — Advanced section placement.** ✅ Advanced sits immediately before Language.
-
-## M3 — Icon hygiene ⬜
+## M3 — Icon hygiene ⬜ ← NEXT
 _Icon set + where icons are chosen in `frontend/qml/components/` and channel/folder rows._
 
 - **R3.1 — Back-to-back trash icons.** Two identical trash icons sitting next to each other read as one blob. Use distinct icons (or spacing/variant) so each action is clear.

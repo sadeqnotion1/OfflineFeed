@@ -77,13 +77,14 @@ Item {
             x: Math.max(16, (parent.width - width) / 2)
             width: Math.min(parent.width - 32, 620)
             y: 16
-            spacing: 8
+            spacing: 14
 
             // ===== Theme (visual cards) =====
-            Text {
-                width: parent.width; text: qsTr("Theme")
-                color: Theme.accent; font.family: Theme.fontFamily; font.pixelSize: 13; font.bold: true
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+            SettingsSectionHeader {
+                width: parent.width
+                iconName: "palette"; tileColor: "#9b6dff"
+                title: qsTr("Theme")
+                subtitle: qsTr("Personalize the application look")
             }
             Rectangle {
                 width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: cardFlow.implicitHeight + 24
@@ -145,6 +146,12 @@ Item {
             }
 
             // ===== Chat wallpaper =====
+            SettingsSectionHeader {
+                width: parent.width
+                iconName: "image"; tileColor: "#3390ec"
+                title: qsTr("Chat Wallpaper")
+                subtitle: qsTr("Background for conversation views")
+            }
             Rectangle {
                 width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: c1.implicitHeight
                 Column {
@@ -216,10 +223,11 @@ Item {
             }
 
             // ---- Item 1: independent offline-reader font ----
-            Text {
-                width: parent.width; text: qsTr("Reader")
-                color: Theme.accent; font.family: Theme.fontFamily; font.pixelSize: 13; font.bold: true
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+            SettingsSectionHeader {
+                width: parent.width
+                iconName: "web-viewer"; tileColor: "#e8506e"
+                title: qsTr("Reader Font")
+                subtitle: qsTr("Offline article text style")
             }
             Rectangle {
                 width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: c3.implicitHeight
@@ -236,10 +244,11 @@ Item {
             }
 
             // ===== Accent color (presets + custom picker) =====
-            Text {
-                width: parent.width; text: qsTr("Accent color")
-                color: Theme.accent; font.family: Theme.fontFamily; font.pixelSize: 13; font.bold: true
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+            SettingsSectionHeader {
+                width: parent.width
+                iconName: "palette"; tileColor: "#13b9a8"
+                title: qsTr("Accent Color")
+                subtitle: qsTr("Custom tint for buttons and highlights")
             }
             Rectangle {
                 width: parent.width; radius: Theme.radius.card; color: Theme.panel; height: swatchFlow.implicitHeight + 24
@@ -303,10 +312,11 @@ Item {
             }
 
             // ===== Interface =====
-            Text {
-                width: parent.width; text: qsTr("Interface")
-                color: Theme.accent; font.family: Theme.fontFamily; font.pixelSize: 13; font.bold: true
-                horizontalAlignment: Theme.rtl ? Text.AlignRight : Text.AlignLeft
+            SettingsSectionHeader {
+                width: parent.width
+                iconName: "settings"; tileColor: "#2ea6ff"
+                title: qsTr("Interface")
+                subtitle: qsTr("Font sizes and display scaling")
             }
             Rectangle {
                 width: parent.width; radius: Theme.radius.card; color: Theme.panel; clip: true; height: c2.implicitHeight

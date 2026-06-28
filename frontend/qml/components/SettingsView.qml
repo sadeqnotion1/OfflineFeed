@@ -21,8 +21,8 @@ Item {
         { sid: "channel",       label: qsTr("Channel Settings"),      icon: "chat",     tile: "#3390ec", page: "ChannelSettingsPage.qml" },
         { sid: "notifications", label: qsTr("Notifications & Sounds"), icon: "bell",     tile: "#e8506e", page: "NotificationsPage.qml" },
         { sid: "sources",       label: qsTr("News Sources"),           icon: "external", tile: "#4dcd5e", page: "SourcesPage.qml" },
-        { sid: "advanced",      label: qsTr("Advanced"),               icon: "wrench",   tile: "#13b9a8", page: "AdvancedMergedPage.qml" },
         { sid: "appearance",    label: qsTr("Appearance"),             icon: "palette",  tile: "#9b6dff", page: "AppearancePage.qml" },
+        { sid: "advanced",      label: qsTr("Advanced"),               icon: "wrench",   tile: "#13b9a8", page: "AdvancedMergedPage.qml" },
         { sid: "language",      label: qsTr("Language"),               icon: "globe",    tile: "#2ea6ff", page: "LanguagePage.qml" },
         { sid: "help",          label: qsTr("Help"),                   icon: "help",     tile: "#f5a623", page: "HelpPage.qml" }
     ]

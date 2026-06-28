@@ -102,7 +102,7 @@ Item {
             SettingsSectionHeader {
                 width: parent.width
                 iconName: "wrench"; tileColor: "#13b9a8"
-                title: qsTr("Advanced")
+                title: qsTr("System")
                 subtitle: qsTr("Backend & diagnostics")
             }
             Rectangle {
